@@ -9,7 +9,6 @@
 			"email": "martin@smartemailing.cz"
 		}
 	],
-	"minimum-stability": "stable",
 	"require": {
 		"php": "~7.1",
 		"nette/tester": "^2.1@dev",
