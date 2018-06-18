@@ -1,0 +1,45 @@
+<?php
+
+declare(strict_types = 1);
+
+namespace SmartEmailing\Types;
+
+use Consistence\Type\ObjectMixinTrait;
+use SmartEmailing\Types\Currency;
+use SmartEmailing\Types\InvalidTypeException;
+use SmartEmailing\Types\Price;
+use Tester\Assert;
+use Tester\TestCase;
+
+require __DIR__ . '/bootstrap.php';
+
+final class PriceTest extends TestCase
+{
+
+	use ObjectMixinTrait;
+
+	public function test1(): void
+	{
+
+		$data = [
+			'with_vat' => 432.1,
+			'without_vat' => '123.45',
+			'currency' => Currency::CZK,
+		];
+
+		$price = Price::from($data);
+		Assert::type(Price::class, $price);
+		Assert::type('float', $price->getWithoutVat());
+		Assert::type('float', $price->getWithVat());
+
+		Assert::throws(
+			function () {
+				Price::from([]);
+			},
+			InvalidTypeException::class
+		);
+	}
+
+}
+
+(new PriceTest())->run();

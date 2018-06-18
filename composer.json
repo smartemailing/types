@@ -1,0 +1,40 @@
+{
+	"name": "smartemailing/types",
+	"description": "Lightweight collection of handy PHP value objects",
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "martin",
+			"email": "martin@smartemailing.cz"
+		}
+	],
+	"minimum-stability": "dev",
+	"require": {
+		"php": "~7.1",
+		"nette/tester": "^2.1@dev",
+		"consistence/consistence": "dev-master",
+		"nette/utils": "^3.0@dev",
+		"nette/http": "^3.0@dev"
+	},
+	"autoload": {
+		"psr-4": {
+			"SmartEmailing\\Types\\": [
+				"src"
+			]
+		},
+		"classmap": [
+			"src"
+		]
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"SmartEmailing\\Types\\": [
+				"tests"
+			]
+		},
+		"classmap": [
+			"tests"
+		]
+	}
+}

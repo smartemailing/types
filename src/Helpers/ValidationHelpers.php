@@ -1,0 +1,31 @@
+<?php
+
+declare(strict_types = 1);
+
+namespace SmartEmailing\Types\Helpers;
+
+use Consistence\Type\ObjectMixinTrait;
+
+abstract class ValidationHelpers
+{
+
+	use ObjectMixinTrait;
+
+	/**
+	 * @param mixed[] $array
+	 * @param string $typeName
+	 * @return bool
+	 */
+	final public static function isTypedObjectArray(
+		array $array,
+		string $typeName
+	): bool {
+		foreach ($array as $item) {
+			if (!($item instanceof $typeName)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+}
