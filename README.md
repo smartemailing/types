@@ -2,7 +2,7 @@
 
 🚧 Work in progress
 
-Pull requests are welcomed!
+All pull requests are welcomed :-)
 
 Collection of value objects to make data validation easy peasy
 
