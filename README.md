@@ -1,4 +1,4 @@
-# SmartEmailing\Types 
+# smartemailing\Types 
 
 🚧 Work in progress
 
