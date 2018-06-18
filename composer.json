@@ -12,7 +12,7 @@
 	"require": {
 		"php": "~7.1",
 		"nette/tester": "^2.0",
-		"consistence/consistence": "dev-master",
+		"consistence/consistence": "^1.0",
 		"nette/utils": "^2.4",
 		"nette/http": "~2.4"
 	},
