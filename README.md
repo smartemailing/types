@@ -89,32 +89,32 @@ They can be easily converted back to string by `(string)` type casting or callin
 
 ### Emailaddress
 
-Lowercased e-mail address. 
+Lowercased e-mail address (`hell@gmail.com`)
 
 Type-specific methods:
-- `getLocalPart() : string` returns local part of e-mail address (part before `@`)
-- `getDomain() : \SmartEmailing\Types\Domain` returns Domain type (part after `@`, represented as `Types\Domain`)
+- `getLocalPart() : string` returns local part of e-mail address (`hello`)
+- `getDomain() : \SmartEmailing\Types\Domain` returns Domain type (`gmail.com`, represented as `Types\Domain`)
 
 ### Domain
 
-Lowercased domain name. 
+Lowercased domain name (`mx1.googlemx.google.com`)
 
 Type-specific methods:
-- `getSecondLevelDomain() : \SmartEmailing\Types\Domain` returns derived second-level Domain.
+- `getSecondLevelDomain() : \SmartEmailing\Types\Domain` returns derived second-level Domain. (`google.com`)
 
 
 ### Hex32
 
-Lowercased 32-characters long hexadecimal string useful as container for MD5 or UUID withou dashes.
+Lowercased 32-characters long hexadecimal string useful as container for MD5 or UUID without dashes. (`741ecf779c9244358e6b85975bd13452`)
 
 
 ### Guid
 
-Lowercased Guid
+Lowercased Guid with dashes (`741ecf77-9c92-4435-8e6b-85975bd13452`)
 
 ### IPAddress
 
-IP address v4 or v6.
+IP address v4 or v6. (`127.0.0.1`, `[2001:0db8:0a0b:12f0:0000:0000:0000:0001]`, `2001:db8:a0b:12f0::1`)
 
 Type-specific methods:
 - `getVersion() : int` returns IP address version, `4` or `6`
