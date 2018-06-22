@@ -21,7 +21,7 @@ That means you initialize value object. From that time, you no not need any more
 
 Different types provide different type- or family-related methods, but every type shares following common API:
 
-## Creation directly from value
+## Wrapping raw value
 
 ```php
 <?php
