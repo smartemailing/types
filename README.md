@@ -21,7 +21,7 @@ That means you initialize value object. From that time, you no not need any more
 
 Different types provide different type- or family-related methods, but every type shares following common API:
 
-#### Creation directly from value
+## Creation directly from value
 
 ```php
 <?php
@@ -48,7 +48,7 @@ Different types provide different type- or family-related methods, but every typ
 
 ```
 
-#### Extraction from array
+## Extraction from array
 
 This is really useful for strict-typing (validation) multidimensional arrays like API requests or Forms data.
 
@@ -81,13 +81,13 @@ This is really useful for strict-typing (validation) multidimensional arrays lik
 
 ```
 
-### String-extractable types
+## String-extractable types
 
 String-extractable types are based on validated strings. 
 
 They can be easily converted back to string by `(string)` type casting or calling `$type->getValue()`
 
-#### Emailaddress
+### Emailaddress
 
 Trimmed, lowercased e-mail address. 
 
