@@ -23,26 +23,28 @@ Different types provide different type- or family-related methods, but every typ
 
 #### Creation directly from value
 
-```
+```php
 <?php
+
+	use SmartEmailing\Types\Emailaddress;
 
 	// Valid input
 
-	$emailaddress = Emailaddress::from('hello@gmail.com') // returns Emailaddress object
-	$emailaddress = Emailaddress::from($emailaddress) // returns original $emailaddress
+	$emailaddress = Emailaddress::from('hello@gmail.com'); // returns Emailaddress object
+	$emailaddress = Emailaddress::from($emailaddress); // returns original $emailaddress
 
 	// Invalid input
 
-	$emailaddress = Emailaddress::from('blabla') // throws InvalidTypeException
-	$emailaddress = Emailaddress::from(1) // throws InvalidTypeException
-	$emailaddress = Emailaddress::from(false) // throws InvalidTypeException
-	$emailaddress = Emailaddress::from(null) // throws InvalidTypeException
-	$emailaddress = Emailaddress::from([]) // throws InvalidTypeException
-	$emailaddress = Emailaddress::from(new \StdClass()) // throws InvalidTypeException
+	$emailaddress = Emailaddress::from('blabla'); // throws InvalidTypeException
+	$emailaddress = Emailaddress::from(1); // throws InvalidTypeException
+	$emailaddress = Emailaddress::from(false); // throws InvalidTypeException
+	$emailaddress = Emailaddress::from(null); // throws InvalidTypeException
+	$emailaddress = Emailaddress::from([]); // throws InvalidTypeException
+	$emailaddress = Emailaddress::from(new \StdClass()); // throws InvalidTypeException
 
-	$emailaddress = Emailaddress::fromOrNull(null) // returns NULL
-	$emailaddress = Emailaddress::fromOrNull('blabla') // throws InvalidTypeException
-	$emailaddress = Emailaddress::fromOrNull('blabla', true) // returns NULL
+	$emailaddress = Emailaddress::fromOrNull(null); // returns NULL
+	$emailaddress = Emailaddress::fromOrNull('blabla'); // throws InvalidTypeException
+	$emailaddress = Emailaddress::fromOrNull('blabla', true); // returns NULL
 
 ```
 
@@ -50,8 +52,11 @@ Different types provide different type- or family-related methods, but every typ
 
 This is really useful for strict-typing (validation) multidimensional arrays like API requests or Forms data.
 
-```
+```php
+
 <?php
+
+	use SmartEmailing\Types\Emailaddress;
 
 	$input = [
 
@@ -64,15 +69,15 @@ This is really useful for strict-typing (validation) multidimensional arrays lik
 		'emailaddress' => 'blabla'
 	];
 
-	$emailaddress = Emailaddress::extract($input, 'emailaddress') //  throws InvalidTypeException
-	$emailaddress = Emailaddress::extractOrNull($input, 'emailaddress') //  throws InvalidTypeException
-	$emailaddress = Emailaddress::extractOrNull($input, 'emailaddress', true) // returns null
+	$emailaddress = Emailaddress::extract($input, 'emailaddress'); //  throws InvalidTypeException
+	$emailaddress = Emailaddress::extractOrNull($input, 'emailaddress'); //  throws InvalidTypeException
+	$emailaddress = Emailaddress::extractOrNull($input, 'emailaddress', true); // returns null
 
 	$input = [
-		'emailaddress' => 'blabla'
+		'emailaddress' => 'hello@gmail.com'
 	];
 
-	$emailaddress = Emailaddress::extract($emailaddress) // returns Emailaddress object
+	$emailaddress = Emailaddress::extract($input, $emailaddress); // returns Emailaddress object
 
 ```
 
