@@ -58,7 +58,7 @@ abstract class DateTimes
 		array &$data,
 		string $key
 	): \DateTime {
-		$date = Arrays::get($data, $key);
+		$date = Arrays::get($data, $key, '');
 
 		if ($date instanceof \DateTime) {
 			$date = $date->format('Y-m-d');
