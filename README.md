@@ -95,7 +95,7 @@ Type-specific methods:
 - `getLocalPart() : string` returns local part of e-mail address (part before `@`)
 - `getDomain() : \SmartEmailing\Types\Domain` returns Domain type (part after `@`, represented as `Types\Domain`)
 
-### Emailaddress
+### Domain
 
 Lowercased domain name. 
 
