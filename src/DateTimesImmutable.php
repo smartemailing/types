@@ -18,7 +18,8 @@ abstract class DateTimesImmutable
 	final public static function from(
 		$value
 	): \DateTimeImmutable {
-		return self::immutate($value);
+		$dateTime = DateTimes::from($value);
+		return self::immutate($dateTime);
 	}
 
 	/**

@@ -22,6 +22,11 @@ abstract class DateTimes
 		if ($value instanceof \DateTime) {
 			return $value;
 		}
+
+		if ($value instanceof \DateTimeImmutable) {
+			$value = DateTimeFormatter::format($value);
+		}
+
 		if (\is_string($value) && \preg_match('#^\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d\z#', $value)) {
 			return \DateTime::createFromFormat(DateTimeFormat::DATETIME, $value);
 		}
@@ -60,7 +65,7 @@ abstract class DateTimes
 	): \DateTime {
 		$date = Arrays::get($data, $key, '');
 
-		if ($date instanceof \DateTime) {
+		if ($date instanceof \DateTimeInterface) {
 			$date = $date->format('Y-m-d');
 		}
 
