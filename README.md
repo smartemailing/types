@@ -1,4 +1,4 @@
-# smartemailing \ Types 
+#SmartEmailing \ Types 
 
 Handy collection of PHP value objects and composite types to make data validation easier. 
 
@@ -83,21 +83,44 @@ This is really useful for strict-typing (validation) multidimensional arrays lik
 
 ## String-extractable types
 
-String-extractable types are based on validated strings. 
+String-extractable types are based on validated strings. All values are trimmed before validation.
 
 They can be easily converted back to string by `(string)` type casting or calling `$type->getValue()`
 
 ### Emailaddress
 
-Trimmed, lowercased e-mail address. 
+Lowercased e-mail address. 
 
 Type-specific methods:
-- `getLocalPart()` returns local part of e-mail address (part before `@`)
-- `getDomain()` returns Domain type (part after `@`, represented as `Types\Domain`)
+- `getLocalPart() : string` returns local part of e-mail address (part before `@`)
+- `getDomain() : \SmartEmailing\Types\Domain` returns Domain type (part after `@`, represented as `Types\Domain`)
+
+### Emailaddress
+
+Lowercased domain name. 
+
+Type-specific methods:
+- `getSecondLevelDomain() : \SmartEmailing\Types\Domain` returns derived second-level Domain.
+
+
+### Hex32
+
+Lowercased 32-characters long hexadecimal string useful as container for MD5 or UUID withou dashes.
+
+
+### Guid
+
+Lowercased Guid
+
+### IPAddress
+
+IP address v4 or v6.
+
+Type-specific methods:
+- `getVersion() : int` returns IP address version, `4` or `6`
 
 
 
-...
-WORK IN PROGRESS
+...TO BE CONTINUED 🚧 
 
 run tests by `vendor/bin/tester tests`
