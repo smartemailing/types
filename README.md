@@ -13,43 +13,44 @@ your code much more readable and less vulnerable to bugs.
 
 How does it work? Simply! 
 You just initialize particular value object by one line of code. 
-From this point, you have sanitized, normalized and valid data; or an exception to catch.
+From this point, you have sanitized, normalized and valid data; or an exception to handle.
 
 **Types** are divided into several families:
 
-- String-extractable types - validated strings (e-mail address, domains, hexadecimal strings,...)
-- Int-extractable types - validated integerss (Port) 
+- String-extractable types - validated strings (E-mail address, Domains, Hexadecimal strings,...)
+- Int-extractable types - validated integers (Port) 
 - Enum-extractable types - enumerables (Country, Currency, GDPR's Lawful purpose, ...)
 - Composite (Array-extractable) types - structures containing multiple another types (Address, ...)
 
-Different families and their types provide different methods related to them, but every type shares following common API:
+Different families and their types provide different methods related to them, but all types share this extraction API:
 
 ## Wrapping raw value
 
 ```php
 <?php
 
-	use SmartEmailing\Types\Emailaddress;
+use SmartEmailing\Types\Emailaddress;
+use SmartEmailing\Types\InvalidTypeException;
 
-	// Valid input
+// Valid input
 
-	$emailaddress = Emailaddress::from('hello@gmail.com'); // returns Emailaddress object
-	$emailaddress = Emailaddress::from($emailaddress); // returns original $emailaddress
+$emailaddress = Emailaddress::from('hello@gmail.com'); // returns Emailaddress object
+$emailaddress = Emailaddress::from($emailaddress); // returns original $emailaddress
 
-	// Invalid input
+// Invalid input
 
-	$emailaddress = Emailaddress::from('blabla'); // throws InvalidTypeException
-	$emailaddress = Emailaddress::from(1); // throws InvalidTypeException
-	$emailaddress = Emailaddress::from(false); // throws InvalidTypeException
-	$emailaddress = Emailaddress::from(null); // throws InvalidTypeException
-	$emailaddress = Emailaddress::from([]); // throws InvalidTypeException
-	$emailaddress = Emailaddress::from(new \StdClass()); // throws InvalidTypeException
+$emailaddress = Emailaddress::from('bla bla'); // throws InvalidTypeException
+$emailaddress = Emailaddress::from(1); // throws InvalidTypeException
+$emailaddress = Emailaddress::from(false); // throws InvalidTypeException
+$emailaddress = Emailaddress::from(null); // throws InvalidTypeException
+$emailaddress = Emailaddress::from([]); // throws InvalidTypeException
+$emailaddress = Emailaddress::from(new \StdClass()); // throws InvalidTypeException
 
-	// Nullables
+// Nullables
 
-	$emailaddress = Emailaddress::fromOrNull(null); // returns NULL
-	$emailaddress = Emailaddress::fromOrNull('blabla', true); // returns null instead of throwing
-	$emailaddress = Emailaddress::fromOrNull('blabla'); // throws InvalidTypeException
+$emailaddress = Emailaddress::fromOrNull(null); // returns NULL
+$emailaddress = Emailaddress::fromOrNull('bla bla'); // throws InvalidTypeException
+$emailaddress = Emailaddress::fromOrNull('bla bla', true); // returns null instead of throwing
 
 ```
 
@@ -61,29 +62,30 @@ This is really useful for strict-typing (validation) multidimensional arrays lik
 
 <?php
 
-	use SmartEmailing\Types\Emailaddress;
+use SmartEmailing\Types\Emailaddress;
+use SmartEmailing\Types\InvalidTypeException;
 
-	$input = [
-		'emailaddress' => 'hello@gmail.com',
-		'already_types_emailaddress' => Emailaddress::from('hello2@gmail.com'),
-		'invalid_data' => 'bla bla bla',
-	];
+$input = [
+	'emailaddress' => 'hello@gmail.com',
+	'already_types_emailaddress' => Emailaddress::from('hello2@gmail.com'),
+	'invalid_data' => 'bla bla',
+];
 
-	// Valid input
+// Valid input
 
-	$emailaddress = Emailaddress::extract($input, 'emailaddress'); // returns Emailaddress object
-	$emailaddress = Emailaddress::extract($input, 'already_types_emailaddress'); // returns original Emailaddress object
+$emailaddress = Emailaddress::extract($input, 'emailaddress'); // returns Emailaddress object
+$emailaddress = Emailaddress::extract($input, 'already_types_emailaddress'); // returns original Emailaddress object
 
-	// Invalid input
+// Invalid input
 
-	$emailaddress = Emailaddress::extract($input, 'invalid_data'); // throws InvalidTypeException
-	$emailaddress = Emailaddress::extract($input, 'not_existing_key'); // throws InvalidTypeException
+$emailaddress = Emailaddress::extract($input, 'invalid_data'); // throws InvalidTypeException
+$emailaddress = Emailaddress::extract($input, 'not_existing_key'); // throws InvalidTypeException
 
-	// Nullables 
+// Nullables 
 
-	$emailaddress = Emailaddress::extractOrNull($input, 'not_existing_key'); // returns null
-	$emailaddress = Emailaddress::extractOrNull($input, 'invalid_data'); //  throws InvalidTypeException
-	$emailaddress = Emailaddress::extractOrNull($input, 'invalid_data', true); // returns null instead of throwing
+$emailaddress = Emailaddress::extractOrNull($input, 'not_existing_key'); // returns null
+$emailaddress = Emailaddress::extractOrNull($input, 'invalid_data'); //  throws InvalidTypeException
+$emailaddress = Emailaddress::extractOrNull($input, 'invalid_data', true); // returns null instead of throwing
 
 ```
 
@@ -91,22 +93,22 @@ This is really useful for strict-typing (validation) multidimensional arrays lik
 
 String-extractable types are based on validated strings. All values are trimmed before validation.
 
-They can be easily converted back to string by `(string)` type casting or calling `$type->getValue()`
+They can be easily converted back to string by string-type casting or calling `$type->getValue()`.
 
 ### Emailaddress
 
-Lowercased e-mail address (`hell@gmail.com`)
+Lowercased and ASCII-transformed e-mail address (`hello@gmail.com`)
 
 Type-specific methods:
 - `getLocalPart() : string` returns local part of e-mail address (`hello`)
-- `getDomain() : \SmartEmailing\Types\Domain` returns Domain type (`gmail.com`, represented as `Types\Domain`)
+- `getDomain() : \SmartEmailing\Types\Domain` returns domain part (`gmail.com`, represented as `Types\Domain`)
 
 ### Domain
 
 Lowercased domain name (`mx1.googlemx.google.com`)
 
 Type-specific methods:
-- `getSecondLevelDomain() : \SmartEmailing\Types\Domain` returns derived second-level Domain. (`google.com`)
+- `getSecondLevelDomain() : \SmartEmailing\Types\Domain` returns second-level domain. (`google.com`)
 
 
 ### Hex32
@@ -128,6 +130,7 @@ Type-specific methods:
 
 
 🚧 TO BE CONTINUED 🚧 
+
 
 
 run tests by `vendor/bin/tester tests`
