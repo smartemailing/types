@@ -140,10 +140,10 @@ Type-specific methods:
 
 `SmartEmailing\Types\UrlType`
 
-URL based on `\Nette\Http\Url` (`https://www.google.com/search?q=all+work+and+no+play+makes+jack+a+dull+boy`)
+URL based on `Nette\Http\Url` (`https://www.google.com/search?q=all+work+and+no+play+makes+jack+a+dull+boy`)
 
 Type-specific methods:
-- `getAuthority() : string` returns Authority (`www.google.com`)
+- `getAuthority() : string` returns authority (`www.google.com`)
 - `getHost() : string` returns Host (`www.google.com`)
 - `getQueryString() : string` returns Query string (`q=all%20work%20and%20no%20play%20makes%20jack%20a%20dull%20boy`)
 - `getPath() : string` returns URl Path (`/search`)
@@ -171,7 +171,7 @@ Type-specific methods:
 - `getCountry() : SmartEmailing\Types\Country` Originating country (`CZ`)
 
 
-### ZIP Code
+### ZIP code
 
 `SmartEmailing\Types\ZipCode`
 
@@ -197,7 +197,7 @@ Valid Base 64-encoded data as string
 
 Type-specific methods:
 - `static encode(string $value) : SmartEmailing\Types\Base64String` create Base64String from string
-- `getDecodedValue() : mixed` decode Base64String back to original string
+- `getDecodedValue() : string` decode Base64String back to original string
 
 
 
