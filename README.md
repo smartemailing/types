@@ -1,4 +1,4 @@
-#SmartEmailing \ Types 
+# SmartEmailing \ Types 
 
 Handy collection of PHP value objects and composite types to make data validation easier. 
 
