@@ -94,7 +94,9 @@ String-extractable types are based on validated strings. All values are trimmed 
 
 They can be easily converted back to string by string-type casting or calling `$type->getValue()`.
 
-### Emailaddress
+### E-mai laddress
+
+`SmartEmailing\Types\Emailaddress`
 
 Lowercased and ASCII-transformed e-mail address (`hello@gmail.com`)
 
@@ -104,22 +106,30 @@ Type-specific methods:
 
 ### Domain
 
+`SmartEmailing\Types\Domain`
+
 Lowercased domain name (`mx1.googlemx.google.com`)
 
 Type-specific methods:
 - `getSecondLevelDomain() : \SmartEmailing\Types\Domain` returns second-level domain. (`google.com`)
 
 
-### Hex32
+### Hex 32
+
+`SmartEmailing\Types\Hex32`
 
 Lowercased 32-characters long hexadecimal string useful as container for MD5 or UUID without dashes. (`741ecf779c9244358e6b85975bd13452`)
 
 
-### Guid
+### GUID
+
+`SmartEmailing\Types\Guid`
 
 Lowercased Guid with dashes (`741ecf77-9c92-4435-8e6b-85975bd13452`)
 
-### IPAddress
+### IP address
+
+`SmartEmailing\Types\IpAddress`
 
 IP address v4 or v6. (`127.0.0.1`, `[2001:0db8:0a0b:12f0:0000:0000:0000:0001]`, `2001:db8:a0b:12f0::1`)
 
