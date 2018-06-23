@@ -153,6 +153,52 @@ Type-specific methods:
 - `getScheme(): string` Return URL scheme (`https`)
 - `hasParameters(string[] $names): bool` Returns `true` if URL parameters contain all parameters defined in `$names` array
 
+### Company registration number
+
+`SmartEmailing\Types\CompanyRegistrationNumber`
+
+Whitespace-free company registration number for following countries: 
+`CZ`, `SK`, `DE`, `CY`
+
+### Phone number
+
+`SmartEmailing\Types\PhoneNumber`
+
+Whitespace-free phone number in international format for following countries: 
+`CZ`, `SK`, `AT`, `BE`, `FR`, `HU`, `GB`, `DE`, `US`, `PL`, `IT`, `SE`, `SI`, `MH`, `NL`, `CY`, `IE`, `DK`, `FI`, `LU`
+
+Type-specific methods:
+- `getCountry() : SmartEmailing\Types\Country` Originating country (`CZ`)
+
+
+### ZIP Code
+
+`SmartEmailing\Types\ZipCode`
+
+Whitespace-free ZIP code valid in following countries: 
+`CZ`, `SK`, `UK`, `US`
+
+
+### JSON
+
+`SmartEmailing\Types\JsonString`
+
+Valid JSON-encoded data as string
+
+Type-specific methods:
+- `static encode(mixed $data) : SmartEmailing\Types\JsonString` create JsonString from raw data
+- `getDecodedValue() : mixed` decode JsonString back to raw data
+
+### Base 64
+
+`SmartEmailing\Types\Base64String`
+
+Valid Base 64-encoded data as string
+
+Type-specific methods:
+- `static encode(string $value) : SmartEmailing\Types\Base64String` create Base64String from string
+- `getDecodedValue() : mixed` decode Base64String back to original string
+
 
 
 
