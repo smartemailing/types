@@ -18,6 +18,8 @@ final class TimeUnit extends Enum
 
 	public const DAYS = 'days';
 
+	public const WEEKS = 'weeks';
+
 	public const MONTHS = 'months';
 
 	public const YEARS = 'years';
