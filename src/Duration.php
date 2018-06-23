@@ -33,8 +33,8 @@ final class Duration
 		array $data
 	) {
 		$value = PrimitiveTypes::extractInt($data, 'value');
-		if ($value < 0 || $value > self::MAX_VALUE) {
-			throw new InvalidTypeException('Value is out of range: [0, ' . self::MAX_VALUE . ']');
+		if ($value < -self::MAX_VALUE || $value > self::MAX_VALUE || $value === 0) {
+			throw new InvalidTypeException('Value is out of range: [-' . self::MAX_VALUE . ', ' . self::MAX_VALUE . '] except 0.');
 		}
 		$this->value = $value;
 		$this->unit = TimeUnit::extract($data, 'unit');
@@ -42,14 +42,18 @@ final class Duration
 
 	public static function fromString(string $duration): self
 	{
-		$matches = Strings::match($duration, '/^(\d+)\s+(.+)/');
+		$matches = Strings::match($duration, '/^(-?|\+?)(\d+)\s+(.+)/');
 
 		if (!$matches) {
-			throw new InvalidTypeException('Duration: ' . $duration . ' is not in valid format.');
+			throw new InvalidTypeException('Duration: ' . $duration . '  is not in valid format.');
 		}
 
-		$value = PrimitiveTypes::extractInt($matches, '1');
-		$unit = TimeUnit::extract($matches, '2');
+		$value = PrimitiveTypes::extractInt($matches, '2');
+		$unit = TimeUnit::extract($matches, '3');
+
+		if ($matches[1] === '-') {
+			$value *= -1;
+		}
 
 		return new self([
 			'value' => $value,
