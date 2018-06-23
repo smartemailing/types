@@ -14,7 +14,7 @@ your code much more readable and less vulnerable to bugs.
 How does it work? You just initialize particular value object by simple one-liner. 
 From this point, you have sanitized, normalized and valid data; or an exception to handle.
 
-**Types** are divided into several families:
+**Types** consist from:
 
 - String-extractable types - validated strings (E-mail address, Domains, Hexadecimal strings,...)
 - Int-extractable types - validated integers (Port) 
