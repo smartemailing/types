@@ -6,7 +6,7 @@
 
 ##
 
-Data validation accross the application is tedious. Replacing it **Types** will make 
+Data validation accross the application is tedious. Replacing it with **Types** will make 
 your code much more readable and less vulnerable to bugs.
 
 **Types** provide value objects that are guaranteed to be **valid and normalized; or not to exist at all**. 
