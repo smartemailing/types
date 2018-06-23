@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"authors": [
 		{
-			"name": "martin",
+			"name": "Martin Strouhalr",
 			"email": "martin@smartemailing.cz"
 		}
 	],
@@ -30,9 +30,6 @@
 			"SmartEmailing\\Types\\": [
 				"tests"
 			]
-		},
-		"classmap": [
-			"tests"
-		]
+		}
 	}
 }

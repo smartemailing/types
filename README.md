@@ -6,13 +6,12 @@
 
 ##
 
-Data validation accross the application is tedious. Replacing it with **Types** will make 
+Neverending data validation is tedious. Replacing it with **Types** will make 
 your code much more readable and less vulnerable to bugs.
 
 **Types** provide value objects that are guaranteed to be **valid and normalized; or not to exist at all**. 
 
-How does it work? Simply! 
-You just initialize particular value object by one line of code. 
+How does it work? You just initialize particular value object by simple one-liner. 
 From this point, you have sanitized, normalized and valid data; or an exception to handle.
 
 **Types** are divided into several families:
@@ -21,8 +20,9 @@ From this point, you have sanitized, normalized and valid data; or an exception 
 - Int-extractable types - validated integers (Port) 
 - Enum-extractable types - enumerables (Country, Currency, GDPR's Lawful purpose, ...)
 - Composite (Array-extractable) types - structures containing multiple another types (Address, ...)
+- Primitive types extractors and arrays
 
-Different families and their types provide different methods related to them, but all types share this extraction API:
+Different types provide different methods related to them, but all types share this extraction API:
 
 ## Wrapping raw value
 
@@ -200,6 +200,17 @@ Type-specific methods:
 - `getDecodedValue() : string` decode Base64String back to original string
 
 
+## Int-extractable types
+
+Int-extractable types are based on validated integers.
+
+They can be easily converted back to int by int-type casting or calling `$type->getValue()`.
+
+### Port
+
+`SmartEmailing\Types\Port`
+
+Port number, `0 - 65535`
 
 
 
