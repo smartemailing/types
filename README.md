@@ -4,7 +4,7 @@
 
 🚧 Work in progress, all pull requests are welcome :-)
 
-========
+##
 
 Data validation accross the application is tedious. Replacing it **Types** will make 
 your code much more readable and less vulnerable to bugs.
