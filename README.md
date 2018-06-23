@@ -94,7 +94,7 @@ String-extractable types are based on validated strings. All values are trimmed 
 
 They can be easily converted back to string by string-type casting or calling `$type->getValue()`.
 
-### E-mai laddress
+### E-mail address
 
 `SmartEmailing\Types\Emailaddress`
 
@@ -135,6 +135,25 @@ IP address v4 or v6. (`127.0.0.1`, `[2001:0db8:0a0b:12f0:0000:0000:0000:0001]`, 
 
 Type-specific methods:
 - `getVersion() : int` returns IP address version, `4` or `6`
+
+### URL
+
+`SmartEmailing\Types\UrlType`
+
+URL based on `\Nette\Http\Url` (`https://www.google.com/search?q=all+work+and+no+play+makes+jack+a+dull+boy`)
+
+Type-specific methods:
+- `getAuthority() : string` returns Authority (`www.google.com`)
+- `getHost() : string` returns Host (`www.google.com`)
+- `getQueryString() : string` returns Query string (`q=all%20work%20and%20no%20play%20makes%20jack%20a%20dull%20boy`)
+- `getPath() : string` returns URl Path (`/search`)
+- `getAbsoluteUrl() : string` Complete URL as `string`, alias for `getValue()` 
+- `getParameter(string $name): ?string` Return value of parameter `$name`, or `null` if not set
+- `getBaseUrl(): string` Return URL without path, query string and hash part (`https://www.google.cz/`)
+- `getScheme(): string` Return URL scheme (`https`)
+- `hasParameters(string[] $names): bool` Returns `true` if URL parameters contain all parameters defined in `$names` array
+
+
 
 
 
