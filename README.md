@@ -59,7 +59,6 @@ $emailaddress = Emailaddress::fromOrNull('bla bla', true); // returns null inste
 This is really useful for strict-typing (validation) multidimensional arrays like API requests or forms data.
 
 ```php
-
 <?php
 
 use SmartEmailing\Types\Emailaddress;
