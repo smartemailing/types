@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types;
 
 use Consistence\Type\ObjectMixinTrait;
+use Nette\Utils\Strings;
 use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 
 final class Duration
@@ -39,6 +40,23 @@ final class Duration
 		$this->unit = TimeUnit::extract($data, 'unit');
 	}
 
+	public static function fromString(string $duration): self
+	{
+		$matches = Strings::match($duration, '/^(\d+)\s+(.+)/');
+
+		if (!$matches) {
+			throw new InvalidTypeException('Duration: ' . $duration . ' is not in valid format.');
+		}
+
+		$value = PrimitiveTypes::extractInt($matches, '1');
+		$unit = TimeUnit::extract($matches, '2');
+
+		return new self([
+			'value' => $value,
+			'unit' => $unit->getValue(),
+		]);
+	}
+
 	public function getValue(): int
 	{
 		return $this->value;
@@ -47,6 +65,11 @@ final class Duration
 	public function getUnit(): TimeUnit
 	{
 		return $this->unit;
+	}
+
+	public function getDateTimeModify(): string
+	{
+		return $this->value . ' ' . $this->unit->getValue();
 	}
 
 	/**
