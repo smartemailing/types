@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types\Helpers;
 
 use Consistence\Type\ObjectMixinTrait;
-use SmartEmailing\Types\ArrayExtractableTrait;
+use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 use SmartEmailing\Types\InvalidTypeException;
 use SmartEmailing\Types\ToStringInterface;
 use SmartEmailing\Types\UniqueArrayFeatures;
@@ -34,6 +34,7 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 
 	/**
 	 * @param \SmartEmailing\Types\ToStringTrait[] $data
+	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	private function __construct(array $data = [])
 	{
@@ -67,6 +68,11 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 		return \array_values($this->objects);
 	}
 
+	/**
+	 * @param \SmartEmailing\Types\ToStringInterface $valueObject
+	 * @return bool
+	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 */
 	public function add(
 		ToStringInterface $valueObject
 	): bool {
@@ -110,6 +116,10 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 		return isset($this->objects[$key]);
 	}
 
+	/**
+	 * @param \SmartEmailing\Types\Helpers\UniqueToStringArray $toBeMerged
+	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 */
 	public function merge(
 		UniqueToStringArray $toBeMerged
 	): void {

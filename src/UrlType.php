@@ -8,6 +8,7 @@ use Consistence\Type\ObjectMixinTrait;
 use Nette\Http\Url;
 use Nette\InvalidArgumentException;
 use Nette\Utils\Validators;
+use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 use SmartEmailing\Types\Helpers\StringHelpers;
 
 final class UrlType

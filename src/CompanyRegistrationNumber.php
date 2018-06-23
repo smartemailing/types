@@ -6,6 +6,7 @@ namespace SmartEmailing\Types;
 
 use Consistence\Type\ObjectMixinTrait;
 use Nette\Utils\Strings;
+use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
 final class CompanyRegistrationNumber
 {

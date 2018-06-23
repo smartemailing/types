@@ -7,6 +7,7 @@ namespace SmartEmailing\Types;
 use Consistence\Type\ObjectMixinTrait;
 use Nette\Utils\Strings;
 use Nette\Utils\Validators;
+use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
 final class Emailaddress implements ToStringInterface
 {

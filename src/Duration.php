@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types;
 
 use Consistence\Type\ObjectMixinTrait;
+use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 
 final class Duration
 {

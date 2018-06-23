@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace SmartEmailing\Types;
+namespace SmartEmailing\Types\ExtractableTraits;
 
-use SmartEmailing\Types\ExtractableTraits\ExtractableTrait;
+use SmartEmailing\Types\PrimitiveTypes;
 
 trait ArrayExtractableTrait
 {

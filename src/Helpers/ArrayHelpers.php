@@ -2,9 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace SmartEmailing\Types;
+namespace SmartEmailing\Types\Helpers;
 
 use Consistence\Type\ObjectMixinTrait;
+use SmartEmailing\Types\ToArrayInterface;
 
 abstract class ArrayHelpers
 {

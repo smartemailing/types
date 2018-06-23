@@ -16,15 +16,15 @@
 		"nette/utils": "^2.4",
 		"nette/http": "~2.4"
 	},
+	"require_dev": {
+		"nette/tester": "^2.0"
+	},
 	"autoload": {
 		"psr-4": {
 			"SmartEmailing\\Types\\": [
 				"src"
 			]
-		},
-		"classmap": [
-			"src"
-		]
+		}
 	},
 	"autoload-dev": {
 		"psr-4": {

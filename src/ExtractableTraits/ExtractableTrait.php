@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types\ExtractableTraits;
 
-use SmartEmailing\Types\ExtractableHelpers;
+use SmartEmailing\Types\Helpers\ExtractableHelpers;
 use SmartEmailing\Types\Helpers\ValidationHelpers;
 use SmartEmailing\Types\InvalidTypeException;
 use SmartEmailing\Types\PrimitiveTypes;
