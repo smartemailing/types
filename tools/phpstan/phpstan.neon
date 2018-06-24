@@ -1,0 +1,11 @@
+parameters:
+	autoload_directories:
+		- ../../src
+		- ../../tests
+	autoload_files:
+	excludes_analyse:
+	ignoreErrors:
+		- '#Call to function is_string\(\) will always evaluate to false#'
+includes:
+	- ../../vendor/phpstan/phpstan-nette/extension.neon
+	- ../../vendor/phpstan/phpstan-nette/rules.neon

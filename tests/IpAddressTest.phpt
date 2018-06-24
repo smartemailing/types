@@ -5,8 +5,6 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types;
 
 use Consistence\Type\ObjectMixinTrait;
-use SmartEmailing\Types\InvalidTypeException;
-use SmartEmailing\Types\IpAddress;
 use Tester\Assert;
 use Tester\TestCase;
 

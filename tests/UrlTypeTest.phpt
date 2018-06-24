@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types;
 
 use Consistence\Type\ObjectMixinTrait;
-use SmartEmailing\Types\UrlType;
 use Tester\Assert;
 use Tester\TestCase;
 

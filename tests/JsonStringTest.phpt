@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types;
 
 use Consistence\Type\ObjectMixinTrait;
-use SmartEmailing\Types\JsonString;
 use Tester\Assert;
 use Tester\TestCase;
 
@@ -22,7 +21,7 @@ final class JsonStringTest extends TestCase
 		$validValues = [
 			123,
 			'[]',
-			json_encode(['hello', '123', 456]),
+			\json_encode(['hello', '123', 456]),
 		];
 
 		foreach ($validValues as $value) {

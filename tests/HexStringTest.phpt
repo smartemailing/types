@@ -5,9 +5,6 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types;
 
 use Consistence\Type\ObjectMixinTrait;
-use SmartEmailing\Types\Emailaddress;
-use SmartEmailing\Types\Hex32;
-use SmartEmailing\Types\InvalidTypeException;
 use Tester\Assert;
 use Tester\TestCase;
 

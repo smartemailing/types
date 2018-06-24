@@ -28,6 +28,9 @@ final class DateTimesTest extends TestCase
 		Assert::same(self::TEST_DATE_TIME, DateTimeFormatter::format($date));
 	}
 
+	/**
+	 * @return string[]
+	 */
 	public function defaultTestGenerator(): array
 	{
 		return [

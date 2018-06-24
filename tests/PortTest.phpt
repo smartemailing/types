@@ -26,7 +26,7 @@ final class PortTest extends TestCase
 
 		foreach ($invalidValues as $validValue) {
 			Assert::throws(
-				function () use ($validValue) : void {
+				function () use ($validValue): void {
 					Port::from($validValue);
 				},
 				InvalidTypeException::class

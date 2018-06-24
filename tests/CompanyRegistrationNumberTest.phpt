@@ -5,8 +5,6 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types;
 
 use Consistence\Type\ObjectMixinTrait;
-use SmartEmailing\Types\CompanyRegistrationNumber;
-use SmartEmailing\Types\InvalidTypeException;
 use Tester\Assert;
 use Tester\TestCase;
 
@@ -27,7 +25,7 @@ final class CompanyRegistrationNumberTest extends TestCase
 
 		foreach ($invalidValues as $invalidValue) {
 			Assert::throws(
-				function () use ($invalidValue) {
+				function () use ($invalidValue): void {
 					CompanyRegistrationNumber::from($invalidValue);
 				},
 				InvalidTypeException::class

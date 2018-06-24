@@ -5,9 +5,6 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types;
 
 use Consistence\Type\ObjectMixinTrait;
-use SmartEmailing\Types\Currency;
-use SmartEmailing\Types\InvalidTypeException;
-use SmartEmailing\Types\Price;
 use Tester\Assert;
 use Tester\TestCase;
 
@@ -33,7 +30,7 @@ final class PriceTest extends TestCase
 		Assert::type('float', $price->getWithVat());
 
 		Assert::throws(
-			function () {
+			function (): void {
 				Price::from([]);
 			},
 			InvalidTypeException::class

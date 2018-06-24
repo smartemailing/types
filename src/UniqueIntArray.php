@@ -115,7 +115,7 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate
 
 	public function isEmpty(): bool
 	{
-		return empty($this->valuesPresenceMap);
+		return $this->valuesPresenceMap === [];
 	}
 
 	public function orderASC(): void

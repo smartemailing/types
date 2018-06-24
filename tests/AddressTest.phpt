@@ -31,7 +31,7 @@ final class AddressTest extends TestCase
 		Assert::type(Country::class, $address->getCountry());
 
 		Assert::throws(
-			function () {
+			function (): void {
 				Address::from([]);
 			},
 			InvalidTypeException::class

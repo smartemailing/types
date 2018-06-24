@@ -68,11 +68,6 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 		return \array_values($this->objects);
 	}
 
-	/**
-	 * @param \SmartEmailing\Types\ToStringInterface $valueObject
-	 * @return bool
-	 * @throws \SmartEmailing\Types\InvalidTypeException
-	 */
 	public function add(
 		ToStringInterface $valueObject
 	): bool {
@@ -106,7 +101,7 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 
 	public function isEmpty(): bool
 	{
-		return empty($this->objects);
+		return $this->objects === [];
 	}
 
 	public function contains(
@@ -116,10 +111,6 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 		return isset($this->objects[$key]);
 	}
 
-	/**
-	 * @param \SmartEmailing\Types\Helpers\UniqueToStringArray $toBeMerged
-	 * @throws \SmartEmailing\Types\InvalidTypeException
-	 */
 	public function merge(
 		UniqueToStringArray $toBeMerged
 	): void {

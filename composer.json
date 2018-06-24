@@ -16,7 +16,9 @@
 		"nette/http": "~2.4"
 	},
 	"require-dev": {
-		"nette/tester": "^2.0"
+		"nette/tester": "^2.0",
+		"slevomat/coding-standard": "^4.6",
+		"phpstan/phpstan-nette": "^0.9.0"
 	},
 	"autoload": {
 		"psr-4": {
