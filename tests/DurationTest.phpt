@@ -14,22 +14,22 @@ final class DurationTest extends TestCase
 
 	public function testException(): void
 	{
-		Assert::exception(function () {
+		Assert::exception(function (): void {
 			Duration::fromDateTimeModify('test');
 		}, InvalidTypeException::class);
 
-		Assert::exception(function () {
+		Assert::exception(function (): void {
 			Duration::fromDateTimeModify('-99999999999999999999 months');
 		}, InvalidTypeException::class);
 
-		Assert::exception(function () {
+		Assert::exception(function (): void {
 			Duration::from([
 				'value' => 9999999999999999,
 				'unit' => TimeUnit::WEEKS,
 			]);
 		}, InvalidTypeException::class);
 
-		Assert::exception(function () {
+		Assert::exception(function (): void {
 			Duration::from([
 				'value' => 0,
 				'unit' => 'week',
@@ -82,7 +82,7 @@ final class DurationTest extends TestCase
 	public function testGetDateTimeModify(): void
 	{
 		foreach ($this->getTestDateTimeModifyData() as $data) {
-			/** @var Duration $duration */
+			/** @var \SmartEmailing\Types\Duration $duration */
 			/** @var string $expectedDateTimeModify */
 			[$duration, $expectedDateTimeModify] = $data;
 
@@ -93,7 +93,7 @@ final class DurationTest extends TestCase
 	public function testToArray(): void
 	{
 		foreach ($this->getTestToArrayData() as $data) {
-			/** @var Duration $duration */
+			/** @var \SmartEmailing\Types\Duration $duration */
 			/** @var array $expectedArray */
 			[$duration, $expectedArray] = $data;
 
