@@ -14,6 +14,10 @@ final class TimeUnit extends Enum
 	use EnumExtractableTrait;
 	use ToStringTrait;
 
+	public const SECONDS = 'seconds';
+
+	public const MINUTES = 'minutes';
+
 	public const HOURS = 'hours';
 
 	public const DAYS = 'days';
