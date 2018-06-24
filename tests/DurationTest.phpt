@@ -12,6 +12,31 @@ require_once __DIR__ . '/bootstrap.php';
 final class DurationTest extends TestCase
 {
 
+	public function testException(): void
+	{
+		Assert::exception(function () {
+			Duration::fromDateTimeModify('test');
+		}, InvalidTypeException::class);
+
+		Assert::exception(function () {
+			Duration::fromDateTimeModify('-99999999999999999999 months');
+		}, InvalidTypeException::class);
+
+		Assert::exception(function () {
+			Duration::from([
+				'value' => 9999999999999999,
+				'unit' => TimeUnit::WEEKS,
+			]);
+		}, InvalidTypeException::class);
+
+		Assert::exception(function () {
+			Duration::from([
+				'value' => 0,
+				'unit' => 'week',
+			]);
+		}, InvalidTypeException::class);
+	}
+
 	public function testCreate(): void
 	{
 		Duration::from([
