@@ -35,12 +35,9 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
 
       # run tests!
-      - run: php -m
-      - run: php -i
-      - run: cat /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
       - run: bin/cs
       - run: bin/stan
       - run: vendor/bin/tester tests -c tests/php.ini --coverage coverage.xml --coverage-src src
 
       - store_artifacts:
-          path: /home/circleci/repo/
+          path: /home/circleci/repo/coverage.xml
