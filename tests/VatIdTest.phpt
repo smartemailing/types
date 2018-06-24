@@ -11,6 +11,16 @@ require __DIR__ . '/bootstrap.php';
 final class VatIdTest extends TestCase
 {
 
+	public function testDefault(): void
+	{
+		$vatId = VatId::from('CZ123456789');
+
+		Assert::type(VatId::class, $vatId);
+		Assert::type(Country::class, $vatId->getCountry());
+		Assert::equal('123456789', $vatId->getVatNumber());
+		Assert::equal('CZ123456789', $vatId->getValue());
+	}
+
 	/**
 	 * @dataProvider testIsValidData
 	 */
