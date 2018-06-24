@@ -38,6 +38,21 @@ final class VatIdTest extends TestCase
 		}
 	}
 
+	public function testException(): void
+	{
+		Assert::exception(function () {
+			VatId::from('');
+		}, InvalidTypeException::class);
+
+		Assert::exception(function () {
+			VatId::from('sk123456789');
+		}, InvalidTypeException::class);
+
+		Assert::exception(function () {
+			VatId::from('CZ1234 56789');
+		}, InvalidTypeException::class);
+	}
+
 	/**
 	 * @return string[]
 	 */
