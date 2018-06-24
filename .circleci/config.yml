@@ -37,5 +37,5 @@ jobs:
       # run tests!
       - run: bin/cs
       - run: bin/stan
-      - run: vendor/bin/tester tests
+      - run: vendor/bin/tester tests --coverage coverage.xml
 
