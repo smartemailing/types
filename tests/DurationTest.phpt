@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
@@ -53,16 +54,13 @@ final class DurationTest extends TestCase
 		Assert::equal(1, $duration->getValue());
 	}
 
-	/**
-	 * @dataProvider testGetDateTimeModifyData
-	 */
 	public function testGetDateTimeModify(Duration $duration, string $expectedDateTimeModify): void
 	{
 		Assert::equal($expectedDateTimeModify, $duration->getDateTimeModify());
 	}
 
 	/**
-	 * @dataProvider testToArrayData
+	 * @param mixed[] $expectedArray
 	 */
 	public function testToArray(Duration $duration, array $expectedArray): void
 	{
@@ -76,6 +74,9 @@ final class DurationTest extends TestCase
 		Assert::type(Duration::class, Duration::extract(['duration' => $duration->toArray()], 'duration'));
 	}
 
+	/**
+	 * @return mixed[]
+	 */
 	public function testGetDateTimeModifyData(): array
 	{
 		return [
@@ -99,6 +100,9 @@ final class DurationTest extends TestCase
 		];
 	}
 
+	/**
+	 * @return mixed[]
+	 */
 	public function testToArrayData(): array
 	{
 		return [
@@ -107,6 +111,7 @@ final class DurationTest extends TestCase
 			[Duration::fromDateTimeModify('+8 weeks'), ['value' => 8, 'unit' => TimeUnit::WEEKS]],
 		];
 	}
+
 }
 
-(new DurationTest)->run();
+(new DurationTest())->run();

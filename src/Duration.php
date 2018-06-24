@@ -33,7 +33,7 @@ final class Duration
 		array $data
 	) {
 		$value = PrimitiveTypes::extractInt($data, 'value');
-		if (abs($value) > self::MAX_VALUE) {
+		if (\abs($value) > self::MAX_VALUE) {
 			throw new InvalidTypeException('Value is out of range: [-' . self::MAX_VALUE . ', ' . self::MAX_VALUE . '].');
 		}
 		$this->value = $value;
