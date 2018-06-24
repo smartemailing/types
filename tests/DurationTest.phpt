@@ -25,9 +25,9 @@ final class DurationTest extends TestCase
 			],
 		], 'duration');
 
-		Duration::fromString('1 weeks');
+		Duration::fromDateTimeModify('1 weeks');
 
-		Duration::fromString('-10 months');
+		Duration::fromDateTimeModify('-10 months');
 	}
 
 	public function testGetUnit(): void
@@ -71,7 +71,7 @@ final class DurationTest extends TestCase
 
 	public function testSerialize(): void
 	{
-		$duration = Duration::fromString('1 weeks');
+		$duration = Duration::fromDateTimeModify('1 weeks');
 		Assert::type(Duration::class, Duration::from($duration->toArray()));
 		Assert::type(Duration::class, Duration::extract(['duration' => $duration->toArray()], 'duration'));
 	}
@@ -79,32 +79,32 @@ final class DurationTest extends TestCase
 	public function testGetDateTimeModifyData(): array
 	{
 		return [
-			[Duration::fromString('-5 hours'), '-5 hours',],
-			[Duration::fromString('-1 days'), '-1 days',],
-			[Duration::fromString('-55 weeks'), '-55 weeks',],
-			[Duration::fromString('-12 months'), '-12 months',],
-			[Duration::fromString('-1 years'), '-1 years',],
+			[Duration::fromDateTimeModify('-5 hours'), '-5 hours',],
+			[Duration::fromDateTimeModify('-1 days'), '-1 days',],
+			[Duration::fromDateTimeModify('-55 weeks'), '-55 weeks',],
+			[Duration::fromDateTimeModify('-12 months'), '-12 months',],
+			[Duration::fromDateTimeModify('-1 years'), '-1 years',],
 
-			[Duration::fromString('5 hours'), '5 hours',],
-			[Duration::fromString('1 days'), '1 days',],
-			[Duration::fromString('55 weeks'), '55 weeks',],
-			[Duration::fromString('12 months'), '12 months',],
-			[Duration::fromString('1 years'), '1 years',],
+			[Duration::fromDateTimeModify('5 hours'), '5 hours',],
+			[Duration::fromDateTimeModify('1 days'), '1 days',],
+			[Duration::fromDateTimeModify('55 weeks'), '55 weeks',],
+			[Duration::fromDateTimeModify('12 months'), '12 months',],
+			[Duration::fromDateTimeModify('1 years'), '1 years',],
 
-			[Duration::fromString('+5 hours'), '5 hours',],
-			[Duration::fromString('+1 days'), '1 days',],
-			[Duration::fromString('+55 weeks'), '55 weeks',],
-			[Duration::fromString('+12 months'), '12 months',],
-			[Duration::fromString('+1 years'), '1 years',],
+			[Duration::fromDateTimeModify('+5 hours'), '5 hours',],
+			[Duration::fromDateTimeModify('+1 days'), '1 days',],
+			[Duration::fromDateTimeModify('+55 weeks'), '55 weeks',],
+			[Duration::fromDateTimeModify('+12 months'), '12 months',],
+			[Duration::fromDateTimeModify('+1 years'), '1 years',],
 		];
 	}
 
 	public function testToArrayData(): array
 	{
 		return [
-			[Duration::fromString('-1 years'), ['value' => -1, 'unit' => TimeUnit::YEARS]],
-			[Duration::fromString('2 months'), ['value' => 2, 'unit' => TimeUnit::MONTHS]],
-			[Duration::fromString('+8 weeks'), ['value' => 8, 'unit' => TimeUnit::WEEKS]],
+			[Duration::fromDateTimeModify('-1 years'), ['value' => -1, 'unit' => TimeUnit::YEARS]],
+			[Duration::fromDateTimeModify('2 months'), ['value' => 2, 'unit' => TimeUnit::MONTHS]],
+			[Duration::fromDateTimeModify('+8 weeks'), ['value' => 8, 'unit' => TimeUnit::WEEKS]],
 		];
 	}
 }

@@ -33,14 +33,14 @@ final class Duration
 		array $data
 	) {
 		$value = PrimitiveTypes::extractInt($data, 'value');
-		if ($value < -self::MAX_VALUE || $value > self::MAX_VALUE || $value === 0) {
-			throw new InvalidTypeException('Value is out of range: [-' . self::MAX_VALUE . ', ' . self::MAX_VALUE . '] except 0.');
+		if (abs($value) > self::MAX_VALUE) {
+			throw new InvalidTypeException('Value is out of range: [-' . self::MAX_VALUE . ', ' . self::MAX_VALUE . '].');
 		}
 		$this->value = $value;
 		$this->unit = TimeUnit::extract($data, 'unit');
 	}
 
-	public static function fromString(string $duration): self
+	public static function fromDateTimeModify(string $duration): self
 	{
 		$matches = Strings::match($duration, '/^(-?|\+?)(\d+)\s+(.+)/');
 
