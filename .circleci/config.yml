@@ -40,5 +40,5 @@ jobs:
       - run: cat /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
       - run: bin/cs
       - run: bin/stan
-      - run: vendor/bin/tester tests --coverage coverage.xml
+      - run: vendor/bin/tester tests -c tests/php.ini --coverage coverage.xml
 
