@@ -2,7 +2,8 @@
 
 ### Missing data types for PHP. Highly extendable.
 
-[![CircleCI](https://circleci.com/gh/smartemailing/types.svg?style=svg)](https://circleci.com/gh/smartemailing/types)
+[![CircleCI](https://circleci.com/gh/smartemailing/types.svg?style=shield)](https://circleci.com/gh/smartemailing/types)
+[![codecov](https://codecov.io/gh/smartemailing/types/branch/master/graph/badge.svg)](https://codecov.io/gh/smartemailing/types)
 
 🚧 Work in progress, all pull requests are welcome :-)
 
