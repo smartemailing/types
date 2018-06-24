@@ -36,6 +36,7 @@ jobs:
 
       # run tests!
       - run: php -m
+      - run: php -i
       - run: bin/cs
       - run: bin/stan
       - run: vendor/bin/tester tests --coverage coverage.xml
