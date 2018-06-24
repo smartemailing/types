@@ -10,6 +10,7 @@ use Nette\Utils\Arrays;
 use Nette\Utils\Strings;
 use Nette\Utils\Validators;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
+use SmartEmailing\Types\Helpers\StringHelpers;
 
 final class VatId implements ToStringInterface
 {
@@ -30,10 +31,9 @@ final class VatId implements ToStringInterface
 
 	private function __construct(string $vatId)
 	{
-		$this->country = self::parseCountryOrNull($vatId);
-		$this->vatNumber = self::parseVatNumber($this->country, $vatId);
+		[$this->country, $this->vatNumber] = self::extractCountryAndNumber($vatId);
 
-		if (!self::isValid($this->getValue())) {
+		if (!self::validate($this->country, $this->vatNumber)) {
 			throw new InvalidTypeException('VatId: ' . $this->getValue() . ' is not valid.');
 		}
 	}
@@ -60,9 +60,12 @@ final class VatId implements ToStringInterface
 
 	public static function isValid(string $vatId): bool
 	{
-		$country = self::parseCountryOrNull($vatId);
-		$vatNumber = self::parseVatNumber($country, $vatId);
+		[$country, $vatNumber] = self::extractCountryAndNumber($vatId);
+		return self::validate($country, $vatNumber);
+	}
 
+	private static function validate(?Country $country, string $vatNumber): bool
+	{
 		if ($country) {
 			return self::isValidForCountry($country, $vatNumber);
 		}
@@ -99,10 +102,10 @@ final class VatId implements ToStringInterface
 			Country::HR => 'HR\d{11}',
 			Country::CY => 'CY\d{8}[A-Z]',
 			Country::CZ => 'CZ\d{8,10}',
-			Country::DK => 'DK(\d{2} ){3}(\d{2})',
+			Country::DK => 'DK(\d{2}){3}(\d{2})',
 			Country::EE => 'EE\d{9}',
 			Country::FI => 'FI\d{8}',
-			Country::FR => 'FR[A-Z0-9]{2} \d{9}',
+			Country::FR => 'FR[A-Z0-9]{2}\d{9}',
 			Country::DE => 'DE\d{9}',
 			Country::GR => '(GR|EL)\d{9}',
 			Country::HU => 'HU\d{8}',
@@ -121,7 +124,7 @@ final class VatId implements ToStringInterface
 			Country::ES => 'ES(([A-Z]\d{8})|([A-Z]\d{7}[A-Z]))',
 			Country::SE => 'SE\d{12}',
 			Country::CH => 'CHE\d{9}((MWST)|(TVA)|(IVA))',
-			Country::GB => 'GB((\d{3} \d{4} \d{2})|(\d{3} \d{4} \d{2} \d{3}))',
+			Country::GB => 'GB((\d{9})|(\d{12}))',
 		];
 	}
 
@@ -140,6 +143,11 @@ final class VatId implements ToStringInterface
 		return false; //todo
 	}
 
+	private static function preProcessVatId(string $vatId): string
+	{
+		return StringHelpers::removeWhitespace($vatId);
+	}
+
 	public function getCountry(): ?Country
 	{
 		return $this->country;
@@ -153,6 +161,18 @@ final class VatId implements ToStringInterface
 	public function getValue(): string
 	{
 		return $this->country . $this->vatNumber;
+	}
+
+	/**
+	 * @return mixed[]
+	 */
+	private static function extractCountryAndNumber(string $vatId): array
+	{
+		$vatId = self::preProcessVatId($vatId);
+		$country = self::parseCountryOrNull($vatId);
+		$vatNumber = self::parseVatNumber($country, $vatId);
+
+		return [$country, $vatNumber];
 	}
 
 }
