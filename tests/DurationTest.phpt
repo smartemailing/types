@@ -54,12 +54,18 @@ final class DurationTest extends TestCase
 		Assert::equal(1, $duration->getValue());
 	}
 
-	public function testGetDateTimeModify(Duration $duration, string $expectedDateTimeModify): void
+	/**
+	 * @dataProvider testGetDateTimeModifyData
+	 * @param \SmartEmailing\Types\Duration $duration
+	 * @param mixed $expectedDateTimeModify
+	 */
+	public function testGetDateTimeModify(Duration $duration, $expectedDateTimeModify): void
 	{
 		Assert::equal($expectedDateTimeModify, $duration->getDateTimeModify());
 	}
 
 	/**
+	 * @dataProvider testToArrayData
 	 * @param mixed[] $expectedArray
 	 */
 	public function testToArray(Duration $duration, array $expectedArray): void
