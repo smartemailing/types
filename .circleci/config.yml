@@ -42,3 +42,5 @@ jobs:
       - run: bin/stan
       - run: vendor/bin/tester tests -c tests/php.ini --coverage coverage.xml --coverage-src src
 
+      - store_artifacts:
+          path: /home/circleci/repo/
