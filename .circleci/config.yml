@@ -35,6 +35,7 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
 
       # run tests!
+      - run: php -m
       - run: bin/cs
       - run: bin/stan
       - run: vendor/bin/tester tests --coverage coverage.xml
