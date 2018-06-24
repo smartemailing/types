@@ -22,12 +22,20 @@ final class VatIdTest extends TestCase
 		Assert::equal('CZ123456789', $vatId->getValue());
 	}
 
-	public function testIsValid(string $vatId): void
+	/**
+	 * @dataProvider testIsValidData
+	 * @param mixed $vatId
+	 */
+	public function testIsValid($vatId): void
 	{
 		Assert::true(VatId::isValid($vatId));
 	}
 
-	public function testIsInValid(string $vatId): void
+	/**
+	 * @dataProvider testIsInvalidData
+	 * @param mixed $vatId
+	 */
+	public function testIsInvalid($vatId): void
 	{
 		Assert::false(VatId::isValid($vatId));
 	}
