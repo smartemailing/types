@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
@@ -17,10 +18,14 @@ final class VatId implements ToStringInterface
 	use ToStringTrait;
 	use StringExtractableTrait;
 
-	/** @var Country|null */
+	/**
+     * @var \SmartEmailing\Types\Country|null
+     */
 	private $country;
 
-	/** @var string */
+	/**
+     * @var string
+     */
 	private $vatNumber;
 
 	private function __construct(string $vatId)
@@ -82,6 +87,9 @@ final class VatId implements ToStringInterface
 		return true;
 	}
 
+	/**
+	 * @return string[]
+	 */
 	private static function getPatternsByCountry(): array
 	{
 		return [
@@ -117,6 +125,9 @@ final class VatId implements ToStringInterface
 		];
 	}
 
+	/**
+	 * @return int[]
+	 */
 	private static function getDivisible(): array
 	{
 		return [
@@ -141,7 +152,7 @@ final class VatId implements ToStringInterface
 
 	public function getValue(): string
 	{
-		return ($this->country ?: '') . $this->vatNumber;
+		return ($this->country ? $this->country : '') . $this->vatNumber;
 	}
 
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
@@ -21,22 +22,19 @@ final class VatIdTest extends TestCase
 		Assert::equal('CZ123456789', $vatId->getValue());
 	}
 
-	/**
-	 * @dataProvider testIsValidData
-	 */
 	public function testIsValid(string $vatId): void
 	{
 		Assert::true(VatId::isValid($vatId));
 	}
 
-	/**
-	 * @dataProvider testIsInvalidData
-	 */
 	public function testIsInValid(string $vatId): void
 	{
 		Assert::false(VatId::isValid($vatId));
 	}
 
+	/**
+	 * @return string[]
+	 */
 	public function testIsValidData(): array
 	{
 		return [
@@ -148,6 +146,9 @@ final class VatIdTest extends TestCase
 		];
 	}
 
+	/**
+	 * @return string[]
+	 */
 	public function testIsInvalidData(): array
 	{
 		return [
@@ -248,6 +249,7 @@ final class VatIdTest extends TestCase
 			[Country::GB . '1234567890',],
 		];
 	}
+
 }
 
-(new VatIdTest)->run();
+(new VatIdTest())->run();
