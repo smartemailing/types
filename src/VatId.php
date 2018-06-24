@@ -19,13 +19,13 @@ final class VatId implements ToStringInterface
 	use StringExtractableTrait;
 
 	/**
-     * @var \SmartEmailing\Types\Country|null
-     */
+	 * @var \SmartEmailing\Types\Country|null
+	 */
 	private $country;
 
 	/**
-     * @var string
-     */
+	 * @var string
+	 */
 	private $vatNumber;
 
 	private function __construct(string $vatId)
@@ -74,7 +74,7 @@ final class VatId implements ToStringInterface
 	{
 		$pattern = Arrays::get(self::getPatternsByCountry(), $country->getValue());
 
-		$match = Strings::match($country->getValue() . $vatNumber, '/^(' . $pattern . ')$/');
+		$match = Strings::match($country . $vatNumber, '/^(' . $pattern . ')$/');
 		if (!$match) {
 			return false;
 		}
@@ -152,7 +152,7 @@ final class VatId implements ToStringInterface
 
 	public function getValue(): string
 	{
-		return ($this->country ? $this->country : '') . $this->vatNumber;
+		return $this->country . $this->vatNumber;
 	}
 
 }
