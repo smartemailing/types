@@ -40,12 +40,12 @@ final class Duration
 		$this->unit = TimeUnit::extract($data, 'unit');
 	}
 
-	public static function fromDateTimeModify(string $duration): self
+	public static function fromDateTimeModify(string $dateTimeModify): self
 	{
-		$matches = Strings::match($duration, '/^(-?|\+?)(\d+)\s+(.+)/');
+		$matches = Strings::match($dateTimeModify, '/^(-?|\+?)(\d+)\s+(.+)/');
 
 		if (!$matches) {
-			throw new InvalidTypeException('Duration: ' . $duration . '  is not in valid format.');
+			throw new InvalidTypeException('Duration: ' . $dateTimeModify . '  is not in valid format.');
 		}
 
 		$value = PrimitiveTypes::extractInt($matches, '2');

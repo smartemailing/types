@@ -54,23 +54,26 @@ final class DurationTest extends TestCase
 		Assert::equal(1, $duration->getValue());
 	}
 
-	/**
-	 * @dataProvider testGetDateTimeModifyData
-	 * @param \SmartEmailing\Types\Duration $duration
-	 * @param mixed $expectedDateTimeModify
-	 */
-	public function testGetDateTimeModify(Duration $duration, $expectedDateTimeModify): void
+	public function testGetDateTimeModify(): void
 	{
-		Assert::equal($expectedDateTimeModify, $duration->getDateTimeModify());
+		foreach ($this->getTestDateTimeModifyData() as $data) {
+			/** @var Duration $duration */
+			/** @var string $expectedDateTimeModify */
+			[$duration, $expectedDateTimeModify] = $data;
+
+			Assert::equal($expectedDateTimeModify, $duration->getDateTimeModify());
+		}
 	}
 
-	/**
-	 * @dataProvider testToArrayData
-	 * @param mixed[] $expectedArray
-	 */
-	public function testToArray(Duration $duration, array $expectedArray): void
+	public function testToArray(): void
 	{
-		Assert::equal($expectedArray, $duration->toArray());
+		foreach ($this->getTestToArrayData() as $data) {
+			/** @var Duration $duration */
+			/** @var array $expectedArray */
+			[$duration, $expectedArray] = $data;
+
+			Assert::equal($expectedArray, $duration->toArray());
+		}
 	}
 
 	public function testSerialize(): void
@@ -83,7 +86,7 @@ final class DurationTest extends TestCase
 	/**
 	 * @return mixed[]
 	 */
-	public function testGetDateTimeModifyData(): array
+	public function getTestDateTimeModifyData(): array
 	{
 		return [
 			[Duration::fromDateTimeModify('-5 hours'), '-5 hours',],
@@ -109,7 +112,7 @@ final class DurationTest extends TestCase
 	/**
 	 * @return mixed[]
 	 */
-	public function testToArrayData(): array
+	public function getTestToArrayData(): array
 	{
 		return [
 			[Duration::fromDateTimeModify('-1 years'), ['value' => -1, 'unit' => TimeUnit::YEARS]],
