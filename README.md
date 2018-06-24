@@ -2,7 +2,10 @@
 
 ### Missing data types for PHP. Highly extendable.
 
-[![CircleCI](https://circleci.com/gh/smartemailing/types.svg?style=svg)](https://circleci.com/gh/smartemailing/types)
+[![Monthly Downloads](https://poser.pugx.org/smartemailing/types/d/monthly)](https://packagist.org/packages/smartemailing/types)
+[![codecov](https://codecov.io/gh/smartemailing/types/branch/master/graph/badge.svg)](https://codecov.io/gh/smartemailing/types)
+[![CircleCI](https://circleci.com/gh/smartemailing/types.svg?style=shield)](https://circleci.com/gh/smartemailing/types)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/smartemailing/types/blob/master/LICENSE)
 
 🚧 Work in progress, all pull requests are welcome :-)
 
