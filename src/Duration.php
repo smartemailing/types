@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types;
 
 use Consistence\Type\ObjectMixinTrait;
+use Nette\Utils\Strings;
 use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 
 final class Duration
@@ -32,11 +33,32 @@ final class Duration
 		array $data
 	) {
 		$value = PrimitiveTypes::extractInt($data, 'value');
-		if ($value < 0 || $value > self::MAX_VALUE) {
-			throw new InvalidTypeException('Value is out of range: [0, ' . self::MAX_VALUE . ']');
+		if (\abs($value) > self::MAX_VALUE) {
+			throw new InvalidTypeException('Value is out of range: [-' . self::MAX_VALUE . ', ' . self::MAX_VALUE . '].');
 		}
 		$this->value = $value;
 		$this->unit = TimeUnit::extract($data, 'unit');
+	}
+
+	public static function fromDateTimeModify(string $dateTimeModify): self
+	{
+		$matches = Strings::match($dateTimeModify, '/^(-?|\+?)(\d+)\s+(.+)/');
+
+		if (!$matches) {
+			throw new InvalidTypeException('Duration: ' . $dateTimeModify . '  is not in valid format.');
+		}
+
+		$value = PrimitiveTypes::extractInt($matches, '2');
+		$unit = TimeUnit::extract($matches, '3');
+
+		if ($matches[1] === '-') {
+			$value *= -1;
+		}
+
+		return new self([
+			'value' => $value,
+			'unit' => $unit->getValue(),
+		]);
 	}
 
 	public function getValue(): int
@@ -47,6 +69,11 @@ final class Duration
 	public function getUnit(): TimeUnit
 	{
 		return $this->unit;
+	}
+
+	public function getDateTimeModify(): string
+	{
+		return $this->value . ' ' . $this->unit->getValue();
 	}
 
 	/**
