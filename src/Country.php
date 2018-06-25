@@ -15,11 +15,12 @@ use SmartEmailing\Types\ExtractableTraits\EnumExtractableTrait;
  * ISO-3166-1 Alpha 2 country code enum
  * @see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
  */
-final class Country extends Enum
+final class Country extends Enum implements ToStringInterface
 {
 
 	use ObjectMixinTrait;
 	use EnumExtractableTrait;
+	use ToStringTrait;
 
 	// Czech Republic
 	public const CZ = 'CZ';
@@ -107,5 +108,32 @@ final class Country extends Enum
 
 	// Spain
 	public const ES = 'ES';
+
+	// Bulgaria
+	public const BG = 'BG';
+
+	// Croatia
+	public const HR = 'HR';
+
+	// Estonia
+	public const EE = 'EE';
+
+	// Greece
+	public const GR = 'GR';
+
+	// Latvia
+	public const LV = 'LV';
+
+	// Lithuania
+	public const LT = 'LT';
+
+	// Portugal
+	public const PT = 'PT';
+
+	// Romania
+	public const RO = 'RO';
+
+	// Israel
+	public const IL = 'IL';
 
 }
