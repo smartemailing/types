@@ -40,7 +40,7 @@ final class CompanyRegistrationNumber
 		string $value
 	): bool {
 		return
-			$this->isValidCZ($value) ||
+			$this->isValidCZSK($value) ||
 			$this->isValidGB($value) ||
 			$this->isValidDE($value) ||
 			$this->isValidCY($value);
@@ -113,7 +113,7 @@ final class CompanyRegistrationNumber
 		);
 	}
 
-	private function isValidCZ(
+	private function isValidCZSK(
 		string $value
 	): bool {
 		$value = (string) \preg_replace(
