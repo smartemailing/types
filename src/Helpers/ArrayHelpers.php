@@ -6,6 +6,7 @@ namespace SmartEmailing\Types\Helpers;
 
 use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ToArrayInterface;
+use SmartEmailing\Types\ToStringInterface;
 
 abstract class ArrayHelpers
 {
@@ -25,6 +26,22 @@ abstract class ArrayHelpers
 		return \array_map(
 			$toArrayCallback,
 			$arrayableCollection
+		);
+	}
+
+	/**
+	 * @param \SmartEmailing\Types\ToStringInterface[] $stringableCollection
+	 * @return string[]
+	 */
+	final public static function stringExtractableCollectionToArray(
+		array $stringableCollection
+	): array {
+		$toArrayCallback = function (ToStringInterface $toString) {
+			return (string) $toString;
+		};
+		return \array_map(
+			$toArrayCallback,
+			$stringableCollection
 		);
 	}
 
