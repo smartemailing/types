@@ -25,7 +25,10 @@
 			"SmartEmailing\\Types\\": [
 				"src"
 			]
-		}
+		},
+		"classmap": [
+			"src/deprecated/"
+		]
 	},
 	"autoload-dev": {
 		"psr-4": {
