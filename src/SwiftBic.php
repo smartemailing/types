@@ -35,7 +35,10 @@ final class SwiftBic implements ToStringInterface
 
 	private function isValid(string $value): bool
 	{
-		return (bool) Strings::match($value, '/^([a-zA-Z]){4}([a-zA-Z]){2}([0-9a-zA-Z]){2}([0-9a-zA-Z]{3})?$/');
+		return (bool) Strings::match(
+			$value,
+			'/^([a-zA-Z]){4}([a-zA-Z]){2}([0-9a-zA-Z]){2}([0-9a-zA-Z]{3})?$/'
+		);
 	}
 
 }
