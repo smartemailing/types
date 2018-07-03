@@ -217,6 +217,25 @@ They can be easily converted back to int by int-type casting or calling `$type->
 
 Port number, `0 - 65535`
 
+### Iban
+
+`SmartEmailing\Types\Iban`
+
+Type-specific methods:
+- `getFormatted(): string` returns whitespace Iban
+- `getCountry(): SmartEmailing\Types\Country`
+- `getChecksum(): int` 
+- `getAccountIdentification(): string`
+- `getInstituteIdentification(): string`
+- `getBankAccountNumber(): string`
+
+### SwiftBic
+
+`SmartEmailing\Types\SwiftBic`
+
+Valid Swift/Bic codes.
+
+
 
 
 🚧 TO BE CONTINUED 🚧 
