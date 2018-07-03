@@ -123,22 +123,4 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate
 		\ksort($this->valuesPresenceMap);
 	}
 
-	/**
-	 * @param int $chunkSize
-	 * @return \SmartEmailing\Types\UniqueIntArray[]
-	 */
-	public function split(
-		int $chunkSize
-	): array {
-		$return = [];
-		$chunks = \array_chunk(
-			$this->getValues(),
-			$chunkSize
-		);
-		foreach ($chunks as $chunk) {
-			$return[] = self::from($chunk);
-		}
-		return $return;
-	}
-
 }
