@@ -22,7 +22,7 @@ if (!\class_exists('SmartSelling\Parameters\InvalidParameterException')) {
      * @package SmartSelling\Parameters
 	 * @deprecated
 	 */
-	abstract class InvalidParameterException extends \RuntimeException
+	class InvalidParameterException extends \RuntimeException
 	{
 
 		use ObjectMixinTrait;
