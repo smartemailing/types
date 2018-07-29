@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types;
 
 use Consistence\Type\ObjectMixinTrait;
+use Nette\Utils\Validators;
 use SmartEmailing\Types\Helpers\ExtractableHelpers;
 
 abstract class PrimitiveTypes
@@ -19,13 +20,7 @@ abstract class PrimitiveTypes
 	final public static function getInt(
 		$value
 	): int {
-		if (\is_int($value)) {
-			return $value;
-		}
-		if (\is_string($value)) {
-			$value = \ltrim($value, '0');
-		}
-		if ((string) (int) $value === $value) {
+		if (Validators::isNumericInt($value)) {
 			return (int) $value;
 		}
 		throw InvalidTypeException::typeError('int', $value);
