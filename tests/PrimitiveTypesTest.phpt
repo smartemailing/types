@@ -47,6 +47,8 @@ final class PrimitiveTypesTest extends TestCase
 
 		Assert::equal(10174, PrimitiveTypes::getInt('0010174'));
 
+		Assert::equal(0, PrimitiveTypes::getInt('0'));
+		Assert::equal(0, PrimitiveTypes::getInt('000'));
 	}
 
 	public function testFloat(): void
