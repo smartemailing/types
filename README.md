@@ -1,6 +1,6 @@
 # SmartEmailing \ Types 
 
-### Missing data types for PHP. Highly extendable.
+### Missing data types for PHP 7.1. Highly extendable.
 
 [![Monthly Downloads](https://poser.pugx.org/smartemailing/types/d/monthly)](https://packagist.org/packages/smartemailing/types)
 [![codecov](https://codecov.io/gh/smartemailing/types/branch/master/graph/badge.svg)](https://codecov.io/gh/smartemailing/types)
@@ -33,6 +33,8 @@ Different types provide different methods related to them, but all types share t
 
 ```php
 <?php
+
+declare(strict_types = 1);
 
 use SmartEmailing\Types\Emailaddress;
 use SmartEmailing\Types\InvalidTypeException;
