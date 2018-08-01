@@ -48,9 +48,9 @@ final class Iban implements ToStringInterface
 		return $this->iban->format();
 	}
 
-	public function getChecksum(): string
+	public function getChecksum(): int
 	{
-		return $this->iban->getChecksum();
+		return (int) $this->iban->getChecksum();
 	}
 
 	public function getAccountIdentification(): string

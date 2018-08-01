@@ -19,6 +19,8 @@ final class IbanTest extends TestCase
 			Assert::type(Iban::class, $iban);
 			Assert::type('string', $iban->getFormatted());
 			Assert::type('string', $iban->getValue());
+			Assert::type('int', $iban->getChecksum());
+			Assert::notEqual(0, $iban->getChecksum());
 		}
 	}
 
