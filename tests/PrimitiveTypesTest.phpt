@@ -166,6 +166,22 @@ final class PrimitiveTypesTest extends TestCase
 		);
 	}
 
+	public function testExtractArrayOrNull(): void
+	{
+		$data = [
+			'null' => null,
+			'non_empty_array' => [1, 2, 3],
+			'not_an_array' => 'hello!',
+		];
+
+		Assert::null(PrimitiveTypes::extractArrayOrNull($data, 'test'));
+		Assert::null(PrimitiveTypes::extractArrayOrNull($data, 'null'));
+		Assert::same([1, 2, 3], PrimitiveTypes::extractArrayOrNull($data, 'non_empty_array'));
+		Assert::exception(function () use ($data): void {
+			PrimitiveTypes::extractArrayOrNull($data, 'not_an_array');
+		}, InvalidTypeException::class);
+	}
+
 }
 
 (new PrimitiveTypesTest())->run();

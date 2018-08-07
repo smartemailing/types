@@ -269,4 +269,21 @@ abstract class PrimitiveTypes
 		}
 	}
 
+	/**
+	 * Preserves keys
+	 *
+	 * @param mixed[] $data
+	 * @param string $key
+	 * @return mixed[]|null
+	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 */
+	final public static function extractArrayOrNull(array &$data, string $key): ?array
+	{
+		if (!isset($data[$key]) || $data[$key] === null) {
+			return null;
+		}
+
+		return self::extractArray($data, $key);
+	}
+
 }
