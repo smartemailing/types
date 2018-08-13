@@ -136,4 +136,7 @@ final class Country extends Enum implements ToStringInterface
 	// Israel
 	public const IL = 'IL';
 
+	// Guernsey
+	public const GG = 'GG';
+
 }

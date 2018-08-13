@@ -25,15 +25,20 @@ final class VatId implements ToStringInterface
 	private $country;
 
 	/**
+	 * @var string|null
+	 */
+	private $prefix;
+
+	/**
 	 * @var string
 	 */
 	private $vatNumber;
 
 	private function __construct(string $vatId)
 	{
-		[$this->country, $this->vatNumber] = self::extractCountryAndNumber($vatId);
+		[$this->country, $this->prefix, $this->vatNumber] = self::extractCountryAndPrefixAndNumber($vatId);
 
-		if (!self::validate($this->country, $this->vatNumber)) {
+		if (!self::validate($this->country, $this->prefix, $this->vatNumber)) {
 			throw new InvalidTypeException('VatId: ' . $this->getValue() . ' is not valid.');
 		}
 	}
@@ -46,11 +51,24 @@ final class VatId implements ToStringInterface
 			$countryCode = Country::GR;
 		}
 
+		if ($countryCode === 'GY') {
+			$countryCode = Country::GG;
+		}
+
 		try {
 			return Country::from($countryCode);
 		} catch (InvalidEnumValueException $e) {
 			return null;
 		}
+	}
+
+	private static function parsePrefixOrNull(?Country $country, string $vatId): ?string
+	{
+		if (!$country) {
+			return null;
+		}
+
+		return Strings::substring($vatId, 0, 2);
 	}
 
 	private static function parseVatNumber(?Country $country, string $vatId): string
@@ -60,24 +78,24 @@ final class VatId implements ToStringInterface
 
 	public static function isValid(string $vatId): bool
 	{
-		[$country, $vatNumber] = self::extractCountryAndNumber($vatId);
-		return self::validate($country, $vatNumber);
+		[$country, $countryPrefix, $vatNumber] = self::extractCountryAndPrefixAndNumber($vatId);
+		return self::validate($country, $countryPrefix, $vatNumber);
 	}
 
-	private static function validate(?Country $country, string $vatNumber): bool
+	private static function validate(?Country $country, ?string $prefix, string $vatNumber): bool
 	{
 		if ($country) {
-			return self::isValidForCountry($country, $vatNumber);
+			return self::isValidForCountry($country, $prefix, $vatNumber);
 		}
 
 		return self::isValidForNonCountry($vatNumber);
 	}
 
-	private static function isValidForCountry(Country $country, string $vatNumber): bool
+	private static function isValidForCountry(Country $country, ?string $prefix, string $vatNumber): bool
 	{
 		$pattern = Arrays::get(self::getPatternsByCountry(), $country->getValue());
 
-		$match = Strings::match($country . $vatNumber, '/^(' . $pattern . ')$/');
+		$match = Strings::match($prefix . $vatNumber, '/^(' . $pattern . ')$/');
 		if (!$match) {
 			return false;
 		}
@@ -125,6 +143,7 @@ final class VatId implements ToStringInterface
 			Country::SE => 'SE\d{12}',
 			Country::CH => 'CHE\d{9}((MWST)|(TVA)|(IVA))',
 			Country::GB => 'GB((\d{9})|(\d{12}))',
+			Country::GG => 'GY\d{6}',
 		];
 	}
 
@@ -145,12 +164,18 @@ final class VatId implements ToStringInterface
 
 	private static function preProcessVatId(string $vatId): string
 	{
-		return StringHelpers::removeWhitespace($vatId);
+		$vatId = StringHelpers::removeWhitespace($vatId);
+		return Strings::upper($vatId);
 	}
 
 	public function getCountry(): ?Country
 	{
 		return $this->country;
+	}
+
+	public function getPrefix(): ?string
+	{
+		return $this->prefix;
 	}
 
 	public function getVatNumber(): string
@@ -160,19 +185,20 @@ final class VatId implements ToStringInterface
 
 	public function getValue(): string
 	{
-		return $this->country . $this->vatNumber;
+		return $this->prefix . $this->vatNumber;
 	}
 
 	/**
 	 * @return mixed[]
 	 */
-	private static function extractCountryAndNumber(string $vatId): array
+	private static function extractCountryAndPrefixAndNumber(string $vatId): array
 	{
 		$vatId = self::preProcessVatId($vatId);
 		$country = self::parseCountryOrNull($vatId);
+		$prefix = self::parsePrefixOrNull($country, $vatId);
 		$vatNumber = self::parseVatNumber($country, $vatId);
 
-		return [$country, $vatNumber];
+		return [$country, $prefix, $vatNumber];
 	}
 
 }
