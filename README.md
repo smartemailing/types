@@ -237,6 +237,16 @@ Type-specific methods:
 
 Valid Swift/Bic codes.
 
+### VatId
+`SmartEmailing\Types\VatId`
+
+Type-specific methods:
+- `static isValid(string $vatId): bool` returns true if the vat id is valid otherwise returns false
+- `getCountry(): ?Country` returns `Country` under which the subject should falls or null.
+- `getPrefix(): ?string` returns string that prefixing vat id like `EL` from `EL123456789` or null.
+- `getVatNumber(): string` returns vat number without prefix like `123456789`
+- `getValue(): string` return whole vat id `EL123456789`
+
 
 
 

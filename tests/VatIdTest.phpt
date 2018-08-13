@@ -14,12 +14,14 @@ final class VatIdTest extends TestCase
 
 	public function testDefault(): void
 	{
-		$vatId = VatId::from('CZ123456789');
+		$vatId = VatId::from('cz123456789');
 
 		Assert::type(VatId::class, $vatId);
 		Assert::type(Country::class, $vatId->getCountry());
+		Assert::equal(Country::CZ, $vatId->getCountry()->getValue());
 		Assert::equal('123456789', $vatId->getVatNumber());
 		Assert::equal('CZ123456789', $vatId->getValue());
+		Assert::equal('CZ', $vatId->getPrefix());
 	}
 
 	public function testIsValid(): void
@@ -51,6 +53,21 @@ final class VatIdTest extends TestCase
 		Assert::exception(function (): void {
 			VatId::from('CZ1234.56789');
 		}, InvalidTypeException::class);
+	}
+
+	public function testVatIdWithDifferentCountryCode(): void
+	{
+		$vatId = VatId::from('EL123456789');
+		Assert::equal('EL123456789', $vatId->getValue());
+		Assert::equal(Country::GR, $vatId->getCountry()->getValue());
+		Assert::equal('EL', $vatId->getPrefix());
+		Assert::equal('123456789', $vatId->getVatNumber());
+
+		$vatId = VatId::from('GY123456');
+		Assert::equal('GY123456', $vatId->getValue());
+		Assert::equal(Country::GG, $vatId->getCountry()->getValue());
+		Assert::equal('GY', $vatId->getPrefix());
+		Assert::equal('123456', $vatId->getVatNumber());
 	}
 
 	/**
@@ -127,6 +144,8 @@ final class VatIdTest extends TestCase
 			Country::CH . 'E' . '123456789' . 'IVA',
 
 			Country::GB . '123 4567 89',
+
+			'GY123456',
 
 			'ATU99999999',
 			'BE0999999999',
@@ -266,6 +285,9 @@ final class VatIdTest extends TestCase
 
 			Country::GB . '12345678',
 			Country::GB . '1234567890',
+
+			'GY12345',
+			'GY1234567',
 		];
 	}
 
