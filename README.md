@@ -23,6 +23,7 @@ From this point, you have sanitized, normalized and valid data; or an exception 
 
 - String-extractable types - validated strings (E-mail address, Domains, Hexadecimal strings,...)
 - Int-extractable types - validated integers (Port) 
+- Float-extractable types - validated floats (Part) 
 - Enum-extractable types - enumerables (Country, Currency, GDPR's Lawful purpose, ...)
 - Composite (Array-extractable) types - structures containing multiple another types (Address, ...)
 - Primitive types extractors and arrays
@@ -92,6 +93,18 @@ $emailaddress = Emailaddress::extract($input, 'not_existing_key'); // throws Inv
 $emailaddress = Emailaddress::extractOrNull($input, 'not_existing_key'); // returns null
 $emailaddress = Emailaddress::extractOrNull($input, 'invalid_data'); //  throws InvalidTypeException
 $emailaddress = Emailaddress::extractOrNull($input, 'invalid_data', true); // returns null instead of throwing
+
+// Default values
+$emailaddress 
+	= Emailaddress::extractOrNull($input, 'not_existing_key') 
+	?? Emailaddress::from('default@domain.com'); 
+	// uses null coalescing operator to assign default value if key not present or null
+
+$emailaddress 
+	= Emailaddress::extractOrNull($input, 'not_existing_key', true) 
+	?? Emailaddress::from('default@domain.com'); 
+	// uses null coalescing operator to assign default value if key not present or null or invalid
+
 
 ```
 
@@ -207,18 +220,6 @@ Type-specific methods:
 - `getDecodedValue() : string` decode Base64String back to original string
 
 
-## Int-extractable types
-
-Int-extractable types are based on validated integers.
-
-They can be easily converted back to int by int-type casting or calling `$type->getValue()`.
-
-### Port
-
-`SmartEmailing\Types\Port`
-
-Port number, `0 - 65535`
-
 ### Iban
 
 `SmartEmailing\Types\Iban`
@@ -248,6 +249,29 @@ Type-specific methods:
 - `getValue(): string` return whole vat id `EL123456789`
 
 
+## Int-extractable types
+
+Int-extractable types are based on validated integers.
+
+They can be easily converted back to int by int-type casting or calling `$type->getValue()`.
+
+### Port
+
+`SmartEmailing\Types\Port`
+
+Port number, `0 - 65535`
+
+## Float-extractable types
+
+Float-extractable types are based on validated floats.
+
+They can be easily converted back to float by float-type casting or calling `$type->getValue()`.
+
+### Part
+
+`SmartEmailing\Types\Part`
+
+Portion of the whole, `<0.0, 1.0>`
 
 
 🚧 TO BE CONTINUED 🚧 
