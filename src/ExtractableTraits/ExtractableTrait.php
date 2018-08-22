@@ -132,7 +132,6 @@ trait ExtractableTrait
 		bool $nullIfInvalid = false // default value breaks code sniffer
 	): ?self
 	{
-
 		if (!\is_array($data)) {
 			throw InvalidTypeException::typeError('array', $data);
 		}

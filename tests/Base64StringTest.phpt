@@ -17,7 +17,6 @@ final class Base64StringTest extends TestCase
 
 	public function test1(): void
 	{
-
 		$invalidValues = [
 			'12345',
 			\base64_encode('test') . 'x',

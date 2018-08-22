@@ -76,7 +76,7 @@ final class VatIdTest extends TestCase
 	public function getValidVatIds(): array
 	{
 		return [
-			Country::AT . 'U' . '12345678',
+			Country::AT . 'U12345678',
 
 			Country::BE . '1234567890',
 			Country::BE . '0234567890',
@@ -107,7 +107,7 @@ final class VatIdTest extends TestCase
 			Country::DE . '123456789',
 
 			Country::GR . '123456789',
-			'EL' . '123456789',
+			'EL123456789',
 
 			Country::HU . '12345678',
 
@@ -139,9 +139,9 @@ final class VatIdTest extends TestCase
 
 			Country::SE . '123456789012',
 
-			Country::CH . 'E' . '123456789' . 'MWST',
-			Country::CH . 'E' . '123456789' . 'TVA',
-			Country::CH . 'E' . '123456789' . 'IVA',
+			Country::CH . 'E123456789MWST',
+			Country::CH . 'E123456789TVA',
+			Country::CH . 'E123456789IVA',
 
 			Country::GB . '123 4567 89',
 
@@ -190,8 +190,8 @@ final class VatIdTest extends TestCase
 	public function getInvalidVatIds(): array
 	{
 		return [
-			Country::AT . 'U' . '123456789',
-			Country::AT . 'U' . '12345678901',
+			Country::AT . 'U123456789',
+			Country::AT . 'U12345678901',
 
 			Country::BE . '2234567890',
 			Country::BE . '023456789',
@@ -229,8 +229,8 @@ final class VatIdTest extends TestCase
 
 			Country::GR . '12345678',
 			Country::GR . '1234567890',
-			'EL' . '12345678',
-			'EL' . '1234567890',
+			'EL12345678',
+			'EL1234567890',
 
 			Country::HU . '1234567',
 			Country::HU . '123456789',
@@ -279,9 +279,9 @@ final class VatIdTest extends TestCase
 			Country::SE . '123456789',
 			Country::SE . 'X1234567X1',
 
-			Country::CH . '123456789' . 'MWST',
-			Country::CH . 'E' . '12345679' . 'TVA',
-			Country::CH . 'E' . '123456789' . 'IVAA',
+			Country::CH . '123456789MWST',
+			Country::CH . 'E12345679TVA',
+			Country::CH . 'E123456789IVAA',
 
 			Country::GB . '12345678',
 			Country::GB . '1234567890',

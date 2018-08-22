@@ -67,6 +67,9 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate
 		throw InvalidTypeException::typeError('all members of array to be int', $value);
 	}
 
+	/**
+	 * @return \Traversable|int[]
+	 */
 	public function getIterator(): \Traversable
 	{
 		return new \RecursiveArrayIterator($this->getValues());

@@ -114,23 +114,23 @@ final class DurationTest extends TestCase
 	public function getTestDateTimeModifyData(): array
 	{
 		return [
-			[Duration::fromDateTimeModify('-5 hours'), '-5 hours',],
-			[Duration::fromDateTimeModify('-1 days'), '-1 days',],
-			[Duration::fromDateTimeModify('-55 weeks'), '-55 weeks',],
-			[Duration::fromDateTimeModify('-12 months'), '-12 months',],
-			[Duration::fromDateTimeModify('-1 years'), '-1 years',],
+			[Duration::fromDateTimeModify('-5 hours'), '-5 hours'],
+			[Duration::fromDateTimeModify('-1 days'), '-1 days'],
+			[Duration::fromDateTimeModify('-55 weeks'), '-55 weeks'],
+			[Duration::fromDateTimeModify('-12 months'), '-12 months'],
+			[Duration::fromDateTimeModify('-1 years'), '-1 years'],
 
-			[Duration::fromDateTimeModify('5 hours'), '5 hours',],
-			[Duration::fromDateTimeModify('1 days'), '1 days',],
-			[Duration::fromDateTimeModify('55 weeks'), '55 weeks',],
-			[Duration::fromDateTimeModify('12 months'), '12 months',],
-			[Duration::fromDateTimeModify('1 years'), '1 years',],
+			[Duration::fromDateTimeModify('5 hours'), '5 hours'],
+			[Duration::fromDateTimeModify('1 days'), '1 days'],
+			[Duration::fromDateTimeModify('55 weeks'), '55 weeks'],
+			[Duration::fromDateTimeModify('12 months'), '12 months'],
+			[Duration::fromDateTimeModify('1 years'), '1 years'],
 
-			[Duration::fromDateTimeModify('+5 hours'), '5 hours',],
-			[Duration::fromDateTimeModify('+1 days'), '1 days',],
-			[Duration::fromDateTimeModify('+55 weeks'), '55 weeks',],
-			[Duration::fromDateTimeModify('+12 months'), '12 months',],
-			[Duration::fromDateTimeModify('+1 years'), '1 years',],
+			[Duration::fromDateTimeModify('+5 hours'), '5 hours'],
+			[Duration::fromDateTimeModify('+1 days'), '1 days'],
+			[Duration::fromDateTimeModify('+55 weeks'), '55 weeks'],
+			[Duration::fromDateTimeModify('+12 months'), '12 months'],
+			[Duration::fromDateTimeModify('+1 years'), '1 years'],
 		];
 	}
 

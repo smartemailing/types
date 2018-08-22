@@ -50,6 +50,9 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 		}
 	}
 
+	/**
+	 * @return \Traversable|\SmartEmailing\Types\ToStringInterface[]
+	 */
 	public function getIterator(): \Traversable
 	{
 		return new \RecursiveArrayIterator($this->getValues());

@@ -17,7 +17,6 @@ final class IpAddressTest extends TestCase
 
 	public function test1(): void
 	{
-
 		$invalidValues = [
 			'12345',
 			'-testx@seznam.cz',

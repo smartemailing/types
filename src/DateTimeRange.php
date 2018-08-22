@@ -61,8 +61,7 @@ final class DateTimeRange implements ToArrayInterface
 		\DateTimeInterface $dateTime
 	): bool {
 		$timestamp = $dateTime->getTimestamp();
-		return
-			$timestamp >= $this->getFrom()->getTimestamp() &&
+		return $timestamp >= $this->getFrom()->getTimestamp() &&
 			$timestamp <= $this->getTo()->getTimestamp();
 	}
 

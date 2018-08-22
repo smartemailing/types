@@ -17,7 +17,6 @@ final class GuidTest extends TestCase
 
 	public function test1(): void
 	{
-
 		$invalidValues = [
 			'dssdssdsd',
 			'd7c8539e-089e-11e8-b161-2edbc134be21-12',

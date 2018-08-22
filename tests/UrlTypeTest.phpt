@@ -17,7 +17,6 @@ final class UrlTypeTest extends TestCase
 
 	public function test1(): void
 	{
-
 		$validValues = [
 			'https://www.vyzva21dni.cz/sq-podekovani-2018/?utm_source=seznam&utm_medium=cpc&utm_campaign=Sklik-[sch] - Cviky%2C Cviceni&utm_content=Stehna&email=xxx@seeznam.cz',
 		];

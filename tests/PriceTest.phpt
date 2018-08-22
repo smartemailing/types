@@ -17,7 +17,6 @@ final class PriceTest extends TestCase
 
 	public function test1(): void
 	{
-
 		$data = [
 			'with_vat' => 432.1,
 			'without_vat' => '123.45',

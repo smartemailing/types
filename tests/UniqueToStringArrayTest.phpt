@@ -18,7 +18,6 @@ final class UniqueToStringArrayTest extends TestCase
 
 	public function test1(): void
 	{
-
 		$invalidValues = [
 			[
 				1,
@@ -78,9 +77,7 @@ final class UniqueToStringArrayTest extends TestCase
 		Assert::equal([$ip2], $append->getValues());
 
 		$empty = UniqueToStringArray::extractOrEmpty(
-			[
-
-			],
+			[],
 			'not_existing'
 		);
 

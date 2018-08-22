@@ -17,7 +17,6 @@ final class PhoneNumberTest extends TestCase
 
 	public function test1(): void
 	{
-
 		$invalidValues = [
 			'720182158',
 			'+720182158',
