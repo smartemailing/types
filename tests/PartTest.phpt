@@ -34,11 +34,25 @@ final class PartTest extends TestCase
 			);
 		}
 
-		Assert::type(Part::class, Part::from(0));
-		Assert::type(Part::class, Part::from(0.0));
-		Assert::type(Part::class, Part::from(1.0));
-		Assert::type(Part::class, Part::from(1));
-		Assert::type(Part::class, Part::from(0.0003));
+		$part = Part::from(0);
+		Assert::type(Part::class, $part);
+		Assert::equal(0.0, $part->getValue());
+
+		$part = Part::from(0.0);
+		Assert::type(Part::class, $part);
+		Assert::equal(0.0, $part->getValue());
+
+		$part = Part::from(1);
+		Assert::type(Part::class, $part);
+		Assert::equal(1.0, $part->getValue());
+
+		$part = Part::from(1.0);
+		Assert::type(Part::class, $part);
+		Assert::equal(1.0, $part->getValue());
+
+		$part = Part::from(0.0003);
+		Assert::type(Part::class, $part);
+		Assert::equal(0.0003, $part->getValue());
 	}
 
 }
