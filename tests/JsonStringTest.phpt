@@ -17,7 +17,6 @@ final class JsonStringTest extends TestCase
 
 	public function test1(): void
 	{
-
 		$validValues = [
 			123,
 			'[]',

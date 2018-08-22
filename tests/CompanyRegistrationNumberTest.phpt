@@ -17,7 +17,6 @@ final class CompanyRegistrationNumberTest extends TestCase
 
 	public function test1(): void
 	{
-
 		$invalidValues = [
 			'12345',
 			'blabla',

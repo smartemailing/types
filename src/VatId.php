@@ -189,10 +189,12 @@ final class VatId implements ToStringInterface
 	}
 
 	/**
+	 * @param string $vatId
 	 * @return mixed[]
 	 */
-	private static function extractCountryAndPrefixAndNumber(string $vatId): array
-	{
+	private static function extractCountryAndPrefixAndNumber(
+		string $vatId
+	): array {
 		$vatId = self::preProcessVatId($vatId);
 		$country = self::parseCountryOrNull($vatId);
 		$prefix = self::parsePrefixOrNull($country, $vatId);

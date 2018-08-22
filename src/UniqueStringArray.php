@@ -45,6 +45,9 @@ final class UniqueStringArray implements \Countable, \IteratorAggregate
 		return (string) $value;
 	}
 
+	/**
+	 * @return \Traversable|string[]
+	 */
 	public function getIterator(): \Traversable
 	{
 		return new \RecursiveArrayIterator($this->getValues());

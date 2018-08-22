@@ -17,7 +17,6 @@ final class DomainTest extends TestCase
 
 	public function test1(): void
 	{
-
 		$invalidValues = [
 			'sfhwiupokpkpkpppokpokhfwifhsfhwiupokpkpksfhwiupokpkpkpppokpokhfwifhiwefhiwfehufw' .
 			'iuefhiueznamsfhwiupokpkpkpppokpokhfwifhiwefhiwfehufwiuefhiueznamsfhwiupokpkpkppp' .

@@ -17,7 +17,6 @@ final class IntArrayUniqueTest extends TestCase
 
 	public function test1(): void
 	{
-
 		$invalidValues = [
 			[
 				1,
@@ -82,9 +81,7 @@ final class IntArrayUniqueTest extends TestCase
 		Assert::equal([2], $append->getValues());
 
 		$empty = UniqueIntArray::extractOrEmpty(
-			[
-
-			],
+			[],
 			'not_existing'
 		);
 

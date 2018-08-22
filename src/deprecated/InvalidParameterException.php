@@ -18,8 +18,8 @@ use Consistence\Type\ObjectMixinTrait;
 if (!\class_exists('SmartSelling\Parameters\InvalidParameterException')) {
 	/**
 	 * Class InvalidParameterException
-     *
-     * @package SmartSelling\Parameters
+	 *
+	 * @package SmartSelling\Parameters
 	 * @deprecated
 	 */
 	class InvalidParameterException extends \RuntimeException
@@ -29,4 +29,3 @@ if (!\class_exists('SmartSelling\Parameters\InvalidParameterException')) {
 
 	}
 }
-

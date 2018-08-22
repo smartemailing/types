@@ -17,7 +17,6 @@ final class AddressTest extends TestCase
 
 	public function test1(): void
 	{
-
 		$data = [
 			'street_and_number' => 'Testovací 123',
 			'town' => 'Želeč',

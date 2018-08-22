@@ -39,8 +39,7 @@ final class CompanyRegistrationNumber
 	private function isValid(
 		string $value
 	): bool {
-		return
-			$this->isValidCZSK($value) ||
+		return $this->isValidCZSK($value) ||
 			$this->isValidGB($value) ||
 			$this->isValidDE($value) ||
 			$this->isValidCY($value);

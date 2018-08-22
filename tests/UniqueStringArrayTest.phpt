@@ -17,7 +17,6 @@ final class UniqueStringArrayTest extends TestCase
 
 	public function test1(): void
 	{
-
 		$invalidValues = [
 			[
 				1,
@@ -72,9 +71,7 @@ final class UniqueStringArrayTest extends TestCase
 		Assert::equal(['2'], $append->getValues());
 
 		$empty = UniqueStringArray::extractOrEmpty(
-			[
-
-			],
+			[],
 			'not_existing'
 		);
 
