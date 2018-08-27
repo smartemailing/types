@@ -98,24 +98,4 @@ final class UniqueStringArray implements \Countable, \IteratorAggregate
 		return isset($this->valuesPresenceMap[$value]);
 	}
 
-	public function merge(
-		UniqueStringArray $toBeMerged
-	): UniqueStringArray {
-		$dolly = clone $this;
-		foreach ($toBeMerged->getValues() as $value) {
-			$dolly->add($value);
-		}
-		return $dolly;
-	}
-
-	public function deduct(
-		UniqueStringArray $toBeDeducted
-	): UniqueStringArray {
-		$dolly = clone $this;
-		foreach ($toBeDeducted->getValues() as $value) {
-			$dolly->remove($value);
-		}
-		return $dolly;
-	}
-
 }

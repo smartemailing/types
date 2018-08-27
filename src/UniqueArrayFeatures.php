@@ -49,4 +49,25 @@ trait UniqueArrayFeatures
 		return $return;
 	}
 
+
+	public function merge(
+		self $toBeMerged
+	): self {
+		$dolly = clone $this;
+		foreach ($toBeMerged->getValues() as $value) {
+			$dolly->add($value);
+		}
+		return $dolly;
+	}
+
+	public function deduct(
+		self $toBeDeducted
+	): self {
+		$dolly = clone $this;
+		foreach ($toBeDeducted->getValues() as $value) {
+			$dolly->remove($value);
+		}
+		return $dolly;
+	}
+
 }

@@ -112,24 +112,4 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate
 		\ksort($this->valuesPresenceMap);
 	}
 
-	public function merge(
-		UniqueIntArray $toBeMerged
-	): UniqueIntArray {
-		$dolly = clone $this;
-		foreach ($toBeMerged->getValues() as $value) {
-			$dolly->add($value);
-		}
-		return $dolly;
-	}
-
-	public function deduct(
-		UniqueIntArray $toBeDeducted
-	): UniqueIntArray {
-		$dolly = clone $this;
-		foreach ($toBeDeducted->getValues() as $value) {
-			$dolly->remove($value);
-		}
-		return $dolly;
-	}
-
 }
