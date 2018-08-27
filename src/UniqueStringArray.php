@@ -117,4 +117,12 @@ final class UniqueStringArray implements \Countable, \IteratorAggregate
 		}
 	}
 
+	public function deduct(
+		UniqueStringArray $toBeDeducted
+	): void {
+		foreach ($toBeDeducted->getValues() as $value) {
+			$this->remove($value);
+		}
+	}
+
 }

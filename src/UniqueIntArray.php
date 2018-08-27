@@ -126,4 +126,20 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate
 		\ksort($this->valuesPresenceMap);
 	}
 
+	public function merge(
+		UniqueIntArray $toBeMerged
+	): void {
+		foreach ($toBeMerged->getValues() as $value) {
+			$this->add($value);
+		}
+	}
+
+	public function deduct(
+		UniqueIntArray $toBeDeducted
+	): void {
+		foreach ($toBeDeducted->getValues() as $value) {
+			$this->remove($value);
+		}
+	}
+
 }
