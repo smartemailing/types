@@ -6,7 +6,6 @@ namespace SmartEmailing\Types;
 
 use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\FloatExtractableTrait;
-use SmartEmailing\Types\ExtractableTraits\IntExtractableTrait;
 
 final class Part
 {

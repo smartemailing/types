@@ -116,18 +116,22 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 
 	public function merge(
 		UniqueToStringArray $toBeMerged
-	): void {
+	): UniqueToStringArray {
+		$dolly = clone $this;
 		foreach ($toBeMerged->getValues() as $value) {
-			$this->add($value);
+			$dolly->add($value);
 		}
+		return $dolly;
 	}
 
 	public function deduct(
 		UniqueToStringArray $toBeDeducted
-	): void {
+	): UniqueToStringArray {
+		$dolly = clone $this;
 		foreach ($toBeDeducted->getValues() as $value) {
-			$this->remove($value);
+			$dolly->remove($value);
 		}
+		return $dolly;
 	}
 
 }

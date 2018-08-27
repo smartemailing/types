@@ -87,13 +87,13 @@ final class UniqueToStringArrayTest extends TestCase
 		$data = [
 			'data' => $empty,
 		];
-		$derived = \SmartEmailing\Types\Helpers\UniqueToStringArray::extract(
+		$derived = UniqueToStringArray::extract(
 			$data,
 			'data'
 		);
-		Assert::type(\SmartEmailing\Types\Helpers\UniqueToStringArray::class, $derived);
+		Assert::type(UniqueToStringArray::class, $derived);
 
-		$containsTest = \SmartEmailing\Types\Helpers\UniqueToStringArray::from(
+		$containsTest = UniqueToStringArray::from(
 			[
 				IpAddress::from('8.8.8.9'),
 			]
@@ -106,6 +106,29 @@ final class UniqueToStringArrayTest extends TestCase
 
 		$containsTest->remove(IpAddress::from('8.8.8.9'));
 		Assert::false($containsTest->contains(IpAddress::from('8.8.8.9')));
+
+		$deductable = UniqueToStringArray::from(
+			[
+				IpAddress::from('8.8.8.8'),
+				IpAddress::from('8.8.8.9'),
+			]
+		);
+
+		$toBeDeducted = UniqueToStringArray::from(
+			[
+				IpAddress::from('8.8.8.9'),
+				IpAddress::from('8.8.8.10'),
+			]
+		);
+
+		$result = $deductable->deduct($toBeDeducted);
+
+		Assert::equal(
+			[
+				IpAddress::from('8.8.8.8'),
+			],
+			$result->getValues()
+		);
 	}
 
 }

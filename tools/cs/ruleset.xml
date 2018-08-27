@@ -37,9 +37,6 @@
         <!-- because of \DateTime, \Iterator etc. -->
         <exclude name="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly.ReferenceViaFullyQualifiedName"/>
 
-        <!-- because of @method annotations -->
-        <exclude name="SlevomatCodingStandard.Namespaces.UnusedUses.UnusedUse"/>
-
         <!-- because of if ($match = Strings::match(...)) -->
         <exclude name="SlevomatCodingStandard.ControlStructures.AssignmentInCondition"/>
 

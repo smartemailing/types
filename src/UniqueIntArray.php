@@ -26,7 +26,11 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate
 	{
 		$this->valuesPresenceMap = [];
 		foreach ($data as $value) {
-			$this->add($this->getIntValue($value));
+			try {
+				$this->add(PrimitiveTypes::getInt($value));
+			} catch (InvalidTypeException $e) {
+				throw InvalidTypeException::typeError('all members of array to be int', $value);
+			}
 		}
 	}
 
@@ -47,24 +51,6 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate
 			throw InvalidTypeException::cannotBeEmptyError($key);
 		}
 		return $self;
-	}
-
-	/**
-	 * @param mixed $value
-	 * @return int
-	 */
-	private function getIntValue($value): int
-	{
-		if (\is_int($value)) {
-			return $value;
-		}
-		if (!\is_scalar($value)) {
-			throw InvalidTypeException::typeError('all members of array to be int', $value);
-		}
-		if ($value === ((string) (int) $value)) {
-			return (int) $value;
-		}
-		throw InvalidTypeException::typeError('all members of array to be int', $value);
 	}
 
 	/**
@@ -128,18 +114,22 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate
 
 	public function merge(
 		UniqueIntArray $toBeMerged
-	): void {
+	): UniqueIntArray {
+		$dolly = clone $this;
 		foreach ($toBeMerged->getValues() as $value) {
-			$this->add($value);
+			$dolly->add($value);
 		}
+		return $dolly;
 	}
 
 	public function deduct(
 		UniqueIntArray $toBeDeducted
-	): void {
+	): UniqueIntArray {
+		$dolly = clone $this;
 		foreach ($toBeDeducted->getValues() as $value) {
-			$this->remove($value);
+			$dolly->remove($value);
 		}
+		return $dolly;
 	}
 
 }

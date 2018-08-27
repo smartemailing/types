@@ -26,23 +26,12 @@ final class UniqueStringArray implements \Countable, \IteratorAggregate
 	{
 		$this->valuesPresenceMap = [];
 		foreach ($data as $value) {
-			$this->add($this->getStringValue($value));
+			try {
+				$this->add(PrimitiveTypes::getString($value));
+			} catch (InvalidTypeException $e) {
+				throw InvalidTypeException::typeError('all members of array to be string', $value);
+			}
 		}
-	}
-
-	/**
-	 * @param mixed $value
-	 * @return string
-	 */
-	private function getStringValue($value): string
-	{
-		if (\is_string($value)) {
-			return $value;
-		}
-		if (!\is_scalar($value)) {
-			throw InvalidTypeException::typeError('all members of array to be string', $value);
-		}
-		return (string) $value;
 	}
 
 	/**
@@ -111,18 +100,22 @@ final class UniqueStringArray implements \Countable, \IteratorAggregate
 
 	public function merge(
 		UniqueStringArray $toBeMerged
-	): void {
+	): UniqueStringArray {
+		$dolly = clone $this;
 		foreach ($toBeMerged->getValues() as $value) {
-			$this->add($value);
+			$dolly->add($value);
 		}
+		return $dolly;
 	}
 
 	public function deduct(
 		UniqueStringArray $toBeDeducted
-	): void {
+	): UniqueStringArray {
+		$dolly = clone $this;
 		foreach ($toBeDeducted->getValues() as $value) {
-			$this->remove($value);
+			$dolly->remove($value);
 		}
+		return $dolly;
 	}
 
 }

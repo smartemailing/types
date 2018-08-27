@@ -100,6 +100,29 @@ final class UniqueStringArrayTest extends TestCase
 
 		$containsTest->remove('xxx');
 		Assert::false($containsTest->contains('xxx'));
+
+		$deductable = UniqueStringArray::from(
+			[
+				'a',
+				'b',
+			]
+		);
+
+		$toBeDeducted = UniqueStringArray::from(
+			[
+				'b',
+				'c',
+			]
+		);
+
+		$result = $deductable->deduct($toBeDeducted);
+
+		Assert::equal(
+			[
+				'a',
+			],
+			$result->toArray()
+		);
 	}
 
 }
