@@ -38,7 +38,7 @@ final class UniqueToStringArrayTest extends TestCase
 
 		foreach ($invalidValues as $invalidValue) {
 			Assert::throws(
-				function () use ($invalidValue): void {
+				static function () use ($invalidValue): void {
 					UniqueToStringArray::from($invalidValue);
 				},
 				InvalidTypeException::class

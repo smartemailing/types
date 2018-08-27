@@ -20,14 +20,14 @@ final class PrimitiveTypesTest extends TestCase
 		Assert::equal(1, PrimitiveTypes::getInt(1));
 		Assert::equal(333, PrimitiveTypes::getInt('333'));
 		Assert::throws(
-			function (): void {
+			static function (): void {
 				PrimitiveTypes::getInt('ščščř');
 			},
 			InvalidTypeException::class,
 			'Expected int, got string (ščščř)'
 		);
 		Assert::throws(
-			function (): void {
+			static function (): void {
 				PrimitiveTypes::getInt([1, 2, 3]);
 			},
 			InvalidTypeException::class,
@@ -38,7 +38,7 @@ final class PrimitiveTypesTest extends TestCase
 		Assert::equal(null, PrimitiveTypes::extractIntOrNull(['test' => 1], 'foo'));
 
 		Assert::throws(
-			function (): void {
+			static function (): void {
 				PrimitiveTypes::extractInt(['test' => 1], 'foo');
 			},
 			InvalidTypeException::class,
@@ -57,14 +57,14 @@ final class PrimitiveTypesTest extends TestCase
 		Assert::equal(333.3, PrimitiveTypes::getFloat('333.3'));
 		Assert::equal(333.3, PrimitiveTypes::getFloat('00333.3'));
 		Assert::throws(
-			function (): void {
+			static function (): void {
 				PrimitiveTypes::getFloat('ščščř');
 			},
 			InvalidTypeException::class,
 			'Expected float, got string (ščščř)'
 		);
 		Assert::throws(
-			function (): void {
+			static function (): void {
 				PrimitiveTypes::getFloat([1, 2, 3]);
 			},
 			InvalidTypeException::class,
@@ -75,7 +75,7 @@ final class PrimitiveTypesTest extends TestCase
 		Assert::equal(null, PrimitiveTypes::extractFloatOrNull(['test' => 1.0], 'foo'));
 
 		Assert::throws(
-			function (): void {
+			static function (): void {
 				PrimitiveTypes::extractFloat(['test' => 1], 'foo');
 			},
 			InvalidTypeException::class,
@@ -88,7 +88,7 @@ final class PrimitiveTypesTest extends TestCase
 		Assert::equal('1', PrimitiveTypes::getString(1.0));
 		Assert::equal('333.3', PrimitiveTypes::getString('333.3'));
 		Assert::throws(
-			function (): void {
+			static function (): void {
 				PrimitiveTypes::getString([1, 2, 3]);
 			},
 			InvalidTypeException::class,
@@ -99,7 +99,7 @@ final class PrimitiveTypesTest extends TestCase
 		Assert::equal(null, PrimitiveTypes::extractStringOrNull(['test' => 'aaa'], 'foo'));
 
 		Assert::throws(
-			function (): void {
+			static function (): void {
 				PrimitiveTypes::extractString(['test' => 'aaa'], 'foo');
 			},
 			InvalidTypeException::class,
@@ -118,7 +118,7 @@ final class PrimitiveTypesTest extends TestCase
 		);
 
 		Assert::throws(
-			function (): void {
+			static function (): void {
 				PrimitiveTypes::extractStringArray(['test' => [[]]], 'test');
 			},
 			InvalidTypeException::class,
@@ -137,7 +137,7 @@ final class PrimitiveTypesTest extends TestCase
 		Assert::false(PrimitiveTypes::getBool(false));
 
 		Assert::throws(
-			function (): void {
+			static function (): void {
 				PrimitiveTypes::getBool(null);
 			},
 			InvalidTypeException::class,
@@ -145,7 +145,7 @@ final class PrimitiveTypesTest extends TestCase
 		);
 
 		Assert::throws(
-			function (): void {
+			static function (): void {
 				PrimitiveTypes::getBool([1, 2, 3]);
 			},
 			InvalidTypeException::class,
@@ -158,7 +158,7 @@ final class PrimitiveTypesTest extends TestCase
 		Assert::equal([1, 2, 3], PrimitiveTypes::getArray([1, 2, 3]));
 
 		Assert::throws(
-			function (): void {
+			static function (): void {
 				PrimitiveTypes::getArray('aaa');
 			},
 			InvalidTypeException::class,
@@ -177,7 +177,7 @@ final class PrimitiveTypesTest extends TestCase
 		Assert::null(PrimitiveTypes::extractArrayOrNull($data, 'test'));
 		Assert::null(PrimitiveTypes::extractArrayOrNull($data, 'null'));
 		Assert::same([1, 2, 3], PrimitiveTypes::extractArrayOrNull($data, 'non_empty_array'));
-		Assert::exception(function () use ($data): void {
+		Assert::exception(static function () use ($data): void {
 			PrimitiveTypes::extractArrayOrNull($data, 'not_an_array');
 		}, InvalidTypeException::class);
 	}

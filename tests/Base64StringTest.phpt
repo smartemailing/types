@@ -27,7 +27,7 @@ final class Base64StringTest extends TestCase
 
 		foreach ($invalidValues as $invalidValue) {
 			Assert::throws(
-				function () use ($invalidValue): void {
+				static function () use ($invalidValue): void {
 					Base64String::from($invalidValue);
 				},
 				InvalidTypeException::class

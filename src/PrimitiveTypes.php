@@ -112,7 +112,7 @@ abstract class PrimitiveTypes
 	/**
 	 * @param mixed[] $data
 	 * @param string $key
-	 * @return null|bool
+	 * @return bool|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractBoolOrNull(
@@ -128,7 +128,7 @@ abstract class PrimitiveTypes
 	/**
 	 * @param mixed[] $data
 	 * @param string $key
-	 * @return null|string
+	 * @return string|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractStringOrNull(

@@ -29,7 +29,7 @@ final class DomainTest extends TestCase
 
 		foreach ($invalidValues as $invalidValue) {
 			Assert::throws(
-				function () use ($invalidValue): void {
+				static function () use ($invalidValue): void {
 					Domain::from($invalidValue);
 				},
 				InvalidTypeException::class

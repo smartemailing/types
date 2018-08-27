@@ -24,7 +24,7 @@ final class SwiftBicTest extends TestCase
 	public function testInvalidIban(): void
 	{
 		foreach ($this->getInvalidIbanValues() as $invalidIbanValue) {
-			Assert::exception(function () use ($invalidIbanValue): void {
+			Assert::exception(static function () use ($invalidIbanValue): void {
 				SwiftBic::from($invalidIbanValue);
 			}, InvalidTypeException::class);
 		}

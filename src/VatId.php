@@ -157,6 +157,11 @@ final class VatId implements ToStringInterface
 		];
 	}
 
+	/**
+	 * @param string $vatNumber
+	 * @return bool
+	 * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
+	 */
 	private static function isValidForNonCountry(string $vatNumber): bool
 	{
 		return false; //todo

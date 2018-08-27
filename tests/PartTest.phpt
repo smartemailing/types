@@ -27,7 +27,7 @@ final class PartTest extends TestCase
 
 		foreach ($invalidValues as $validValue) {
 			Assert::throws(
-				function () use ($validValue): void {
+				static function () use ($validValue): void {
 					Part::from($validValue);
 				},
 				InvalidTypeException::class

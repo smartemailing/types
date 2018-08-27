@@ -42,15 +42,15 @@ final class VatIdTest extends TestCase
 
 	public function testException(): void
 	{
-		Assert::exception(function (): void {
+		Assert::exception(static function (): void {
 			VatId::from('');
 		}, InvalidTypeException::class);
 
-		Assert::exception(function (): void {
+		Assert::exception(static function (): void {
 			VatId::from('sk123456789-');
 		}, InvalidTypeException::class);
 
-		Assert::exception(function (): void {
+		Assert::exception(static function (): void {
 			VatId::from('CZ1234.56789');
 		}, InvalidTypeException::class);
 	}

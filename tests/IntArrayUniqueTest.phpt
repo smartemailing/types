@@ -42,7 +42,7 @@ final class IntArrayUniqueTest extends TestCase
 
 		foreach ($invalidValues as $invalidValue) {
 			Assert::throws(
-				function () use ($invalidValue): void {
+				static function () use ($invalidValue): void {
 					UniqueIntArray::from($invalidValue);
 				},
 				InvalidTypeException::class
@@ -98,7 +98,7 @@ final class IntArrayUniqueTest extends TestCase
 		Assert::type(UniqueIntArray::class, $derived);
 
 		Assert::throws(
-			function (): void {
+			static function (): void {
 				$data = [
 					'arr' => [],
 				];

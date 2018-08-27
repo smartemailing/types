@@ -20,7 +20,7 @@ abstract class ArrayHelpers
 	final public static function collectionItemsToArray(
 		array $arrayableCollection
 	): array {
-		$toArrayCallback = function (ToArrayInterface $toArray) {
+		$toArrayCallback = static function (ToArrayInterface $toArray) {
 			return $toArray->toArray();
 		};
 		return \array_map(
@@ -36,7 +36,7 @@ abstract class ArrayHelpers
 	final public static function stringExtractableCollectionToArray(
 		array $stringableCollection
 	): array {
-		$toArrayCallback = function (ToStringInterface $toString) {
+		$toArrayCallback = static function (ToStringInterface $toString) {
 			return (string) $toString;
 		};
 		return \array_map(

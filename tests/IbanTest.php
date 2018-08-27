@@ -27,7 +27,7 @@ final class IbanTest extends TestCase
 	public function testInvalidIban(): void
 	{
 		foreach ($this->getInvalidIbanValues() as $invalidIbanValue) {
-			Assert::exception(function () use ($invalidIbanValue): void {
+			Assert::exception(static function () use ($invalidIbanValue): void {
 				Iban::from($invalidIbanValue);
 			}, InvalidTypeException::class);
 		}

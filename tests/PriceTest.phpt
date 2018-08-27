@@ -29,7 +29,7 @@ final class PriceTest extends TestCase
 		Assert::type('float', $price->getWithVat());
 
 		Assert::throws(
-			function (): void {
+			static function (): void {
 				Price::from([]);
 			},
 			InvalidTypeException::class

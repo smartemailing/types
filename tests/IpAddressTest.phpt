@@ -26,7 +26,7 @@ final class IpAddressTest extends TestCase
 
 		foreach ($invalidValues as $invalidValue) {
 			Assert::throws(
-				function () use ($invalidValue): void {
+				static function () use ($invalidValue): void {
 					IpAddress::from($invalidValue);
 				},
 				InvalidTypeException::class

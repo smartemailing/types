@@ -99,7 +99,7 @@ trait ExtractableTrait
 	/**
 	 * @param mixed $value
 	 * @param bool $getNullIfInvalid
-	 * @return null|self
+	 * @return self|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function fromOrNull(
