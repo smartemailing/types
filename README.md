@@ -273,6 +273,9 @@ They can be easily converted back to float by float-type casting or calling `$ty
 
 Portion of the whole, `<0.0, 1.0>`
 
+Type-specific methods:
+- `static fromRatio(float $value, float $whole): Part` creates new instance by division `$value` and `$whole`.
+-  `getPercent(): float` returns `(Ratio's value) * 100` to get percent representation
 
 🚧 TO BE CONTINUED 🚧 
 

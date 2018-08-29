@@ -33,4 +33,28 @@ final class Part
 		return $this->value;
 	}
 
+	public static function fromRatio(
+		float $value,
+		float $whole
+	): self {
+		if ($value > $whole) {
+			throw new InvalidTypeException(
+				'Value cannot be higher than whole: but '
+				. $value
+				. ' / '
+				. $whole
+				. ' given.'
+			);
+		}
+		if ($whole === 0.0) {
+			return new self(0.0);
+		}
+		return new self($value / $whole);
+	}
+
+	public function getPercent(): float
+	{
+		return $this->getValue() * 100;
+	}
+
 }
