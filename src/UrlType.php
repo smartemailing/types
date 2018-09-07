@@ -68,6 +68,11 @@ final class UrlType
 		return $this->getValue();
 	}
 
+	/**
+	 * @param string $name
+	 * @return string|null
+	 * @deprecated use getQueryParameter() instead
+	 */
 	public function getParameter(string $name): ?string
 	{
 		return $this->url->getQueryParameter($name, null);
@@ -106,6 +111,31 @@ final class UrlType
 	}
 
 	/**
+	 * @return mixed[]
+	 */
+	public function getParameters(): array
+	{
+		return $this->url->getQueryParameters();
+	}
+
+	/**
+	 * @param string $name
+	 * @param mixed|null $value
+	 * @return \SmartEmailing\Types\UrlType
+	 */
+	public function withQueryParameter(
+		string $name,
+		$value
+	): self {
+		$dolly = clone $this;
+		$dolly->url->setQueryParameter(
+			$name,
+			$value
+		);
+		return $dolly;
+	}
+
+	/**
 	 * @param string $name
 	 * @param mixed|null $default
 	 * @return mixed
@@ -120,6 +150,11 @@ final class UrlType
 	public function getValue(): string
 	{
 		return $this->url->getAbsoluteUrl();
+	}
+
+	public function __clone()
+	{
+		$this->url = clone $this->url;
 	}
 
 }

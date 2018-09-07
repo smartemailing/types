@@ -168,10 +168,12 @@ Type-specific methods:
 - `getQueryString() : string` returns Query string (`q=all%20work%20and%20no%20play%20makes%20jack%20a%20dull%20boy`)
 - `getPath() : string` returns URl Path (`/search`)
 - `getAbsoluteUrl() : string` Complete URL as `string`, alias for `getValue()` 
-- `getParameter(string $name): ?string` Return value of parameter `$name`, or `null` if not set
+- `getQueryParameter(string $name, mixed $default = null): mixed` Return value of parameter `$name`
 - `getBaseUrl(): string` Return URL without path, query string and hash part (`https://www.google.cz/`)
 - `getScheme(): string` Return URL scheme (`https`)
 - `hasParameters(string[] $names): bool` Returns `true` if URL parameters contain all parameters defined in `$names` array
+- `getParameters(): array` Returns all URL parameters as string-indexed array
+- `withQueryParameter(string $name, mixed $value): UrlType` Returns new instance with added query parameter.
 
 ### Company registration number
 

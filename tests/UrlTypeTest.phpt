@@ -27,6 +27,64 @@ final class UrlTypeTest extends TestCase
 		}
 	}
 
+	public function testMethods(): void
+	{
+		$url = UrlType::from('https://www.seznam.cz/');
+		Assert::equal('https://www.seznam.cz/', $url->getValue());
+		Assert::equal('https://www.seznam.cz/', $url->getAbsoluteUrl());
+		Assert::equal('https://www.seznam.cz/', $url->getBaseUrl());
+		Assert::equal('www.seznam.cz', $url->getAuthority());
+		Assert::equal('www.seznam.cz', $url->getHost());
+		Assert::equal('https', $url->getScheme());
+		Assert::equal('/', $url->getPath());
+	}
+
+	public function testQueryParameters(): void
+	{
+		$url = UrlType::from('https://www.seznam.cz');
+
+		Assert::equal(
+			[],
+			$url->getParameters()
+		);
+
+		$parameterX = $url->getQueryParameter(
+			'x'
+		);
+
+		Assert::null($parameterX);
+
+		$url = $url->withQueryParameter(
+			'x',
+			'y'
+		);
+
+		$hasParameters = $url->hasParameters(
+			[
+				'x',
+			]
+		);
+
+		Assert::true($hasParameters);
+
+		$hasParameters = $url->hasParameters(
+			[
+				'x',
+				'z',
+			]
+		);
+
+		Assert::false($hasParameters);
+
+		$parameters = $url->getParameters();
+		Assert::equal(
+			[
+				'x' => 'y',
+			],
+			$parameters
+		);
+	}
+
 }
 
 (new UrlTypeTest())->run();
