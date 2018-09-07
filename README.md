@@ -295,7 +295,7 @@ Float interval `<-1.0, 1.0>`.
 
 `SmartEmailing\Types\ReLUValue`
 
-Result of Rectified Linear Unit function function, useful when building neural networks.
+Result of Rectified Linear Unit function, useful when building neural networks.
 
 Float interval `<0.0, Infninity)`. 
 
