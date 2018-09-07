@@ -7,7 +7,7 @@ namespace SmartEmailing\Types;
 use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\FloatExtractableTrait;
 
-final class SigmoidValue
+final class ReLUValue
 {
 
 	use ObjectMixinTrait;
@@ -22,8 +22,8 @@ final class SigmoidValue
 	public function __construct(
 		float $value
 	) {
-		if ($value < -1 || $value > 1) {
-			throw new InvalidTypeException('Invalid sigmoid value: ' . $value);
+		if ($value < 0.0) {
+			throw new InvalidTypeException('Invalid ReLU value: ' . $value);
 		}
 		$this->value = $value;
 	}

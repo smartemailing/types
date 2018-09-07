@@ -283,7 +283,7 @@ Type-specific methods:
 - `static fromRatio(float $value, float $whole): Part` creates new instance by division `$value` and `$whole`.
 -  `getPercent(): float` returns `(Ratio's value) * 100` to get percent representation
 
-### SigmoidValue
+### Sigmoid function value
 
 `SmartEmailing\Types\SigmoidValue`
 
@@ -291,8 +291,15 @@ Result of Sigmoid function, useful when building neural networks.
 
 Float interval `<-1.0, 1.0>`. 
 
+### Rectified Linear Unit function value
 
-🚧 TO BE CONTINUED 🚧 
+`SmartEmailing\Types\ReLUValue`
+
+Result of Rectified Linear Unit function function, useful when building neural networks.
+
+Float interval `<0.0, Infninity)`. 
+
+🚧 Documentation still under construction, to be continued :-) 🚧 
 
 
 #
