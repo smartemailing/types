@@ -45,6 +45,12 @@ final class DomainTest extends TestCase
 			$domain = Domain::from($validValue);
 			Assert::type(Domain::class, $domain);
 		}
+
+		$domain = Domain::from('test.seznam.cz');
+		Assert::equal('seznam.cz', $domain->getSecondLevelDomain()->getValue());
+
+		$domain = Domain::from('test.seznam.co.uk');
+		Assert::equal('seznam.co.uk', $domain->getSecondLevelDomain()->getValue());
 	}
 
 }

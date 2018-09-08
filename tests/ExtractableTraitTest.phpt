@@ -150,9 +150,33 @@ final class ExtractableTraitTest extends TestCase
 
 		$e = Emailaddress::extractOrNull($data, 'c');
 		Assert::type(Emailaddress::class, $e);
+	}
 
+	public function testIdentityExtraction(): void
+	{
+		$e = Emailaddress::from('martin@smartemailng.cz');
 		$e2 = Emailaddress::from($e);
 		Assert::same($e, $e2);
+
+		$p = Port::from(80);
+		$p2 = Port::from($p);
+		Assert::same($p, $p2);
+
+		$s = SigmoidValue::from(0.3);
+		$s2 = SigmoidValue::from($s);
+		Assert::same($s, $s2);
+
+		$a = Address::from(
+			[
+				'street_and_number' => 'Netroufalky 5',
+				'town' => 'Brno',
+				'zip_code' => 12345,
+				'country' => 'CZ',
+			]
+		);
+
+		$a2 = Address::from($a);
+		Assert::same($a, $a2);
 	}
 
 }

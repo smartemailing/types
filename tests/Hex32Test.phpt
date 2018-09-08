@@ -10,7 +10,7 @@ use Tester\TestCase;
 
 require __DIR__ . '/bootstrap.php';
 
-final class HexStringTest extends TestCase
+final class Hex32Test extends TestCase
 {
 
 	use ObjectMixinTrait;
@@ -28,22 +28,19 @@ final class HexStringTest extends TestCase
 		foreach ($invalidValues as $invalidValue) {
 			Assert::throws(
 				static function () use ($invalidValue): void {
-					Emailaddress::from($invalidValue);
+					Hex32::from($invalidValue);
 				},
 				InvalidTypeException::class
 			);
 		}
 
-		$validValues = [
-			'ed9c1bede86c497fbb2f782324d394e1',
-		];
+		$validValue = 'ed9c1bede86c497fbb2f782324d394e1';
 
-		foreach ($validValues as $validValue) {
-			$hexString = Hex32::from($validValue);
-			Assert::type(Hex32::class, $hexString);
-		}
+		$hex32 = Hex32::from($validValue);
+		Assert::type(Hex32::class, $hex32);
+		Assert::equal($validValue, $hex32->getValue());
 	}
 
 }
 
-(new HexStringTest())->run();
+(new Hex32Test())->run();

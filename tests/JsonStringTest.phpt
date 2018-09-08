@@ -32,6 +32,20 @@ final class JsonStringTest extends TestCase
 				$jsonString->getDecodedValue()
 			);
 		}
+
+		$j = JsonString::encode([1, 2, 3]);
+
+		Assert::type('string', $j->getValue());
+	}
+
+	public function test2(): void
+	{
+		Assert::throws(
+			static function (): void {
+				JsonString::from([]);
+			},
+			InvalidTypeException::class
+		);
 	}
 
 }
