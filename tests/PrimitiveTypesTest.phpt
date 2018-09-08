@@ -35,6 +35,7 @@ final class PrimitiveTypesTest extends TestCase
 		);
 
 		Assert::equal(1, PrimitiveTypes::extractInt(['test' => 1], 'test'));
+		Assert::equal(1, PrimitiveTypes::extractIntOrNull(['test' => 1], 'test'));
 		Assert::equal(null, PrimitiveTypes::extractIntOrNull(['test' => 1], 'foo'));
 
 		Assert::throws(
@@ -43,6 +44,13 @@ final class PrimitiveTypesTest extends TestCase
 			},
 			InvalidTypeException::class,
 			'Missing key: foo'
+		);
+
+		Assert::throws(
+			static function (): void {
+				PrimitiveTypes::extractInt(['test' => []], 'test');
+			},
+			InvalidTypeException::class
 		);
 
 		Assert::equal(10174, PrimitiveTypes::getInt('0010174'));
@@ -72,6 +80,7 @@ final class PrimitiveTypesTest extends TestCase
 		);
 
 		Assert::equal(1.0, PrimitiveTypes::extractFloat(['test' => 1.0], 'test'));
+		Assert::equal(1.0, PrimitiveTypes::extractFloatOrNull(['test' => 1.0], 'test'));
 		Assert::equal(null, PrimitiveTypes::extractFloatOrNull(['test' => 1.0], 'foo'));
 
 		Assert::throws(
@@ -80,6 +89,13 @@ final class PrimitiveTypesTest extends TestCase
 			},
 			InvalidTypeException::class,
 			'Missing key: foo'
+		);
+
+		Assert::throws(
+			static function (): void {
+				PrimitiveTypes::extractFloat(['test' => 'ppppp'], 'test');
+			},
+			InvalidTypeException::class
 		);
 	}
 
@@ -96,6 +112,7 @@ final class PrimitiveTypesTest extends TestCase
 		);
 
 		Assert::equal('aaa', PrimitiveTypes::extractString(['test' => 'aaa'], 'test'));
+		Assert::equal('aaa', PrimitiveTypes::extractStringOrNull(['test' => 'aaa'], 'test'));
 		Assert::equal(null, PrimitiveTypes::extractStringOrNull(['test' => 'aaa'], 'foo'));
 
 		Assert::throws(
@@ -104,6 +121,13 @@ final class PrimitiveTypesTest extends TestCase
 			},
 			InvalidTypeException::class,
 			'Missing key: foo'
+		);
+
+		Assert::throws(
+			static function (): void {
+				PrimitiveTypes::extractString(['test' => []], 'test');
+			},
+			InvalidTypeException::class
 		);
 
 		$array = [
@@ -151,6 +175,27 @@ final class PrimitiveTypesTest extends TestCase
 			InvalidTypeException::class,
 			'Expected bool, got array'
 		);
+
+		$data = [
+			'x' => true,
+			'y' => 'aaaa',
+		];
+
+		Assert::throws(
+			static function () use ($data): void {
+				PrimitiveTypes::extractBool($data, 'y');
+			},
+			InvalidTypeException::class
+		);
+
+		$bool = PrimitiveTypes::extractBool($data, 'x');
+		Assert::true($bool);
+
+		$bool = PrimitiveTypes::extractBoolOrNull($data, 'x');
+		Assert::true($bool);
+
+		$null = PrimitiveTypes::extractBoolOrNull($data, 'not-exist');
+		Assert::null($null);
 	}
 
 	public function testArray(): void
@@ -177,9 +222,12 @@ final class PrimitiveTypesTest extends TestCase
 		Assert::null(PrimitiveTypes::extractArrayOrNull($data, 'test'));
 		Assert::null(PrimitiveTypes::extractArrayOrNull($data, 'null'));
 		Assert::same([1, 2, 3], PrimitiveTypes::extractArrayOrNull($data, 'non_empty_array'));
-		Assert::exception(static function () use ($data): void {
-			PrimitiveTypes::extractArrayOrNull($data, 'not_an_array');
-		}, InvalidTypeException::class);
+		Assert::exception(
+			static function () use ($data): void {
+				PrimitiveTypes::extractArrayOrNull($data, 'not_an_array');
+			},
+			InvalidTypeException::class
+		);
 	}
 
 }

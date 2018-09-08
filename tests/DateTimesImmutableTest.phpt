@@ -13,31 +13,57 @@ require __DIR__ . '/bootstrap.php';
 final class DateTimesImmutableTest extends TestCase
 {
 
-	private const TEST_DATE_TIME = '2018-06-22 12:34:56';
-
 	use ObjectMixinTrait;
 
-	/**
-	 * @param mixed $input
-	 * @dataProvider defaultTestGenerator
-	 */
-	public function testValidDateTime($input): void
+	public function testFrom(): void
 	{
-		$date = DateTimesImmutable::from($input);
-		Assert::type(\DateTimeImmutable::class, $date);
-		Assert::same(self::TEST_DATE_TIME, DateTimeFormatter::format($date));
+		$d = DateTimesImmutable::from('2000-01-01 00:00:00');
+		Assert::type(\DateTimeImmutable::class, $d);
 	}
 
-	/**
-	 * @return string[]
-	 */
-	public function defaultTestGenerator(): array
+	public function testExtract(): void
 	{
-		return [
-			[self::TEST_DATE_TIME],
-			[\DateTime::createFromFormat(DateTimeFormat::DATETIME, self::TEST_DATE_TIME)],
-			[\DateTimeImmutable::createFromFormat(DateTimeFormat::DATETIME, self::TEST_DATE_TIME)],
+		$data = [
+			'b' => '2000-01-01 00:00:00',
 		];
+
+		$d = DateTimesImmutable::extract($data, 'b');
+		Assert::type(\DateTimeImmutable::class, $d);
+	}
+
+	public function testExtractDate(): void
+	{
+		$data = [
+			'b' => '2000-01-01',
+		];
+		$d = DateTimesImmutable::extractDate($data, 'b');
+		Assert::type(\DateTimeImmutable::class, $d);
+	}
+
+	public function testExtractDateOrNull(): void
+	{
+		$data = [
+			'b' => '2000-01-01',
+		];
+
+		$d = DateTimesImmutable::extractDateOrNull($data, 'not-a-key');
+		Assert::null($d);
+
+		$d = DateTimesImmutable::extractDateOrNull($data, 'b');
+		Assert::type(\DateTimeImmutable::class, $d);
+	}
+
+	public function testExtractOrNull(): void
+	{
+		$data = [
+			'b' => '2000-01-01 00:00:00',
+		];
+
+		$d = DateTimesImmutable::extractOrNull($data, 'not-a-key');
+		Assert::null($d);
+
+		$d = DateTimesImmutable::extractOrNull($data, 'b');
+		Assert::type(\DateTimeImmutable::class, $d);
 	}
 
 }

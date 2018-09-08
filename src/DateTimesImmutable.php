@@ -83,8 +83,6 @@ abstract class DateTimesImmutable
 		);
 	}
 
-	// @codingStandardsIgnoreStart
-
 	/**
 	 * @param mixed[] $data
 	 * @param string $key
@@ -96,7 +94,6 @@ abstract class DateTimesImmutable
 		string $key,
 		bool $getNullIfInvalid = false
 	): ?\DateTimeImmutable {
-
 		$dateTime = DateTimes::extractOrNull(
 			$data,
 			$key,
@@ -109,7 +106,5 @@ abstract class DateTimesImmutable
 
 		return self::immutate($dateTime);
 	}
-
-	// @codingStandardsIgnoreEnd
 
 }

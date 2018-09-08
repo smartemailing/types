@@ -54,9 +54,6 @@ abstract class PrimitiveTypes
 		if (\is_numeric($value)) {
 			return (float) $value;
 		}
-		if (\is_float($value)) {
-			return $value;
-		}
 		throw InvalidTypeException::typeError('float', $value);
 	}
 
