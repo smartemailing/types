@@ -46,6 +46,13 @@ final class JsonStringTest extends TestCase
 			},
 			InvalidTypeException::class
 		);
+
+		Assert::throws(
+			static function (): void {
+				JsonString::from('=');
+			},
+			InvalidTypeException::class
+		);
 	}
 
 }

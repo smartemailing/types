@@ -29,6 +29,7 @@ final class IbanTest extends TestCase
 
 		Assert::equal('08000000002677686023', $iban->getAccountIdentification());
 		Assert::equal('0026776860', $iban->getBankAccountNumber());
+		Assert::equal('08000000', $iban->getInstituteIdentification());
 	}
 
 	public function testInvalidIban(): void

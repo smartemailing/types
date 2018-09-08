@@ -35,6 +35,8 @@ final class PortTest extends TestCase
 		Assert::type(Port::class, Port::from(0));
 		Assert::type(Port::class, Port::from(65535));
 		Assert::type(Port::class, Port::from(20));
+
+		Assert::equal(20, Port::from(20)->getValue());
 	}
 
 }

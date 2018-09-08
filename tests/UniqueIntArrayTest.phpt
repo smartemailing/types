@@ -94,7 +94,8 @@ final class UniqueIntArrayTest extends TestCase
 		Assert::true($containsTest->contains(123));
 		Assert::false($containsTest->contains(321));
 
-		$containsTest->add(321);
+		Assert::true($containsTest->add(321));
+		Assert::false($containsTest->add(321));
 		Assert::true($containsTest->contains(321));
 
 		$containsTest->remove(123);
@@ -121,6 +122,25 @@ final class UniqueIntArrayTest extends TestCase
 				1,
 			],
 			$result->toArray()
+		);
+
+		foreach ($result as $item) {
+			Assert::type('int', $item);
+		}
+
+		$arr = UniqueIntArray::from(
+			[
+				2,
+				1,
+			]
+		);
+		$arr->orderASC();
+		Assert::equal(
+			[
+				1,
+				2,
+			],
+			$arr->toArray()
 		);
 	}
 

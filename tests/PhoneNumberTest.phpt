@@ -44,6 +44,8 @@ final class PhoneNumberTest extends TestCase
 			$phone = PhoneNumber::from($number);
 			Assert::type(PhoneNumber::class, $phone);
 			Assert::equal($country, $phone->getCountry()->getValue());
+			Assert::equal($number, $phone->getValue());
+			Assert::equal($number, (string) $phone);
 		}
 	}
 
