@@ -17,6 +17,13 @@ final class ExtractableTraitTest extends TestCase
 
 	public function testExtract(): void
 	{
+		Assert::throws(
+			static function (): void {
+				Emailaddress::extract('aa', 'x');
+			},
+			InvalidTypeException::class
+		);
+
 		$emailaddress1 = Emailaddress::from('martin+1@smartemailing.cz');
 		$data = [
 			'x' => 'martin@smartemailing.cz',

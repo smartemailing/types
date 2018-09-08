@@ -67,7 +67,8 @@ final class UniqueToStringArrayTest extends TestCase
 		Assert::equal([$ip1], $append->getValues());
 
 		$ip2 = IpAddress::from('8.8.4.5');
-		$append->add($ip2);
+		Assert::true($append->add($ip2));
+		Assert::false($append->add($ip2));
 		Assert::equal([$ip1, $ip2], $append->getValues());
 
 		$append->remove(IpAddress::from('100.8.4.5'));
@@ -129,6 +130,14 @@ final class UniqueToStringArrayTest extends TestCase
 			],
 			$result->getValues()
 		);
+
+		foreach ($result as $item) {
+			Assert::type(IpAddress::class, $item);
+		}
+
+		$result->remove(IpAddress::from('8.8.8.8'));
+
+		Assert::true($result->isEmpty());
 	}
 
 }

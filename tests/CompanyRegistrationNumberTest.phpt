@@ -42,6 +42,9 @@ final class CompanyRegistrationNumberTest extends TestCase
 			$crn = CompanyRegistrationNumber::from($validValue);
 			Assert::type(CompanyRegistrationNumber::class, $crn);
 		}
+
+		$number = CompanyRegistrationNumber::from('73270091');
+		Assert::equal('73270091', $number->getValue());
 	}
 
 }

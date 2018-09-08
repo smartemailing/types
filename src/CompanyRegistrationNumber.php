@@ -41,57 +41,7 @@ final class CompanyRegistrationNumber
 	): bool {
 		return $this->isValidCZSK($value) ||
 			$this->isValidGB($value) ||
-			$this->isValidDE($value) ||
 			$this->isValidCY($value);
-	}
-
-	private function isValidDE(
-		string $value
-	): bool {
-		$value = (string) \preg_replace(
-			'/\D/',
-			'',
-			$value
-		);
-
-		if (\strlen($value) !== 11) {
-			return false;
-		}
-
-		if ($value[0] === '0') {
-			return false;
-		}
-
-		/*
-		 make sure that within the first ten digits:
-			 1.) one digit appears exactly twice or thrice
-			 2.) one or two digits appear zero times
-			 3.) and oll other digits appear exactly once once
-		*/
-		$digits = \str_split($value);
-		$first10Digits = $digits;
-		\array_pop($first10Digits);
-		$countDigits = \count(\array_count_values($first10Digits));
-		if ($countDigits !== 9 && $countDigits !== 8) {
-			return false;
-		}
-
-		// last check: 11th digit has to be the correct checkums
-		// see http://de.wikipedia.org/wiki/Steueridentifikationsnummer#Aufbau_der_Identifikationsnummer
-		$product = 10;
-		for ($i = 0; $i <= 9; $i++) {
-			$sum = ($digits[$i] + $product) % 10;
-			if ($sum === 0) {
-				$sum = 10;
-			}
-			$product = ($sum * 2) % 11;
-		}
-		$checksum = 11 - $product;
-		if ($checksum === 10) {
-			$checksum = 0;
-		}
-
-		return $value[10] === $checksum;
 	}
 
 	private function isValidCY(
