@@ -150,6 +150,9 @@ final class ExtractableTraitTest extends TestCase
 
 		$e = Emailaddress::extractOrNull($data, 'c');
 		Assert::type(Emailaddress::class, $e);
+
+		$e2 = Emailaddress::from($e);
+		Assert::same($e, $e2);
 	}
 
 }
