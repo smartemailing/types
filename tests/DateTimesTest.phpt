@@ -13,31 +13,129 @@ require __DIR__ . '/bootstrap.php';
 final class DateTimesTest extends TestCase
 {
 
-	private const TEST_DATE_TIME = '2018-06-22 12:34:56';
-
 	use ObjectMixinTrait;
 
-	/**
-	 * @param mixed $input
-	 * @dataProvider defaultTestGenerator
-	 */
-	public function testValidDateTime($input): void
+	public function testFrom(): void
 	{
-		$date = DateTimes::from($input);
-		Assert::type(\DateTime::class, $date);
-		Assert::same(self::TEST_DATE_TIME, DateTimeFormatter::format($date));
+		$d = DateTimes::from('2000-01-01 00:00:00');
+		Assert::type(\DateTime::class, $d);
+
+		$d2 = DateTimes::from($d);
+		Assert::same($d, $d2);
+
+		$d = DateTimes::from(new \DateTimeImmutable('2000-01-01 00:00:00'));
+		Assert::equal('2000-01-01 00:00:00', DateTimeFormatter::format($d));
+
+		Assert::throws(
+			static function (): void {
+				DateTimes::from('aaa');
+			},
+			InvalidTypeException::class
+		);
 	}
 
-	/**
-	 * @return string[]
-	 */
-	public function defaultTestGenerator(): array
+	public function testExtract(): void
 	{
-		return [
-			[self::TEST_DATE_TIME],
-			[\DateTime::createFromFormat(DateTimeFormat::DATETIME, self::TEST_DATE_TIME)],
-			[\DateTimeImmutable::createFromFormat(DateTimeFormat::DATETIME, self::TEST_DATE_TIME)],
+		$d = DateTimes::from('2010-01-01 00:00:00');
+		$data = [
+			'a' => 'xx',
+			'b' => '2000-01-01 00:00:00',
+			'c' => $d,
 		];
+
+		Assert::throws(
+			static function () use ($data): void {
+				DateTimes::extract($data, 'a');
+			},
+			InvalidTypeException::class
+		);
+
+		Assert::throws(
+			static function () use ($data): void {
+				DateTimes::extract($data, 'not-key');
+			},
+			InvalidTypeException::class
+		);
+
+		$d = DateTimes::extract($data, 'b');
+		Assert::type(\DateTime::class, $d);
+
+		$d = DateTimes::extract($data, 'c');
+		Assert::type(\DateTime::class, $d);
+	}
+
+	public function testExtractDate(): void
+	{
+		$d = DateTimes::from('2010-01-01 10:00:00');
+		$data = [
+			'a' => 'xx',
+			'b' => '2000-01-01',
+			'c' => $d,
+		];
+
+		Assert::throws(
+			static function () use ($data): void {
+				DateTimes::extractDate($data, 'a');
+			},
+			InvalidTypeException::class
+		);
+
+		Assert::throws(
+			static function () use ($data): void {
+				DateTimes::extractDate($data, 'not-key');
+			},
+			InvalidTypeException::class
+		);
+
+		$d = DateTimes::extractDate($data, 'b');
+		Assert::type(\DateTime::class, $d);
+		Assert::equal('2000-01-01 00:00:00', DateTimeFormatter::format($d));
+
+		$d = DateTimes::extractDate($data, 'c');
+		Assert::type(\DateTime::class, $d);
+		Assert::equal('2010-01-01 00:00:00', DateTimeFormatter::format($d));
+	}
+
+	public function testExtractDateOrNull(): void
+	{
+		$data = [
+			'b' => '2000-01-01',
+		];
+
+		$d = DateTimes::extractDateOrNull($data, 'not-a-key');
+		Assert::null($d);
+
+		$d = DateTimes::extractDateOrNull($data, 'b');
+		Assert::type(\DateTime::class, $d);
+	}
+
+	public function testExtractOrNull(): void
+	{
+		$d = DateTimes::from('2010-01-01 10:00:00');
+		$data = [
+			'a' => 'xx',
+			'b' => '2000-01-01 00:00:00',
+			'c' => $d,
+		];
+
+		$d = DateTimes::extractOrNull($data, 'not-a-key');
+		Assert::null($d);
+
+		Assert::throws(
+			static function () use ($data): void {
+				DateTimes::extractOrNull($data, 'a');
+			},
+			InvalidTypeException::class
+		);
+
+		$d = DateTimes::extractOrNull($data, 'a', true);
+		Assert::null($d);
+
+		$d = DateTimes::extractOrNull($data, 'b');
+		Assert::type(\DateTime::class, $d);
+
+		$d = DateTimes::extractOrNull($data, 'b', true);
+		Assert::type(\DateTime::class, $d);
 	}
 
 }

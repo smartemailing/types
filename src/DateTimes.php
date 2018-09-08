@@ -91,8 +91,6 @@ abstract class DateTimes
 		return self::extractDate($data, $key);
 	}
 
-	// @codingStandardsIgnoreStart
-
 	/**
 	 * @param mixed[] $data
 	 * @param string $key
@@ -116,7 +114,5 @@ abstract class DateTimes
 		}
 		return self::extract($data, $key);
 	}
-
-	// @codingStandardsIgnoreEnd
 
 }
