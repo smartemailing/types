@@ -82,6 +82,14 @@ final class UniqueToStringArrayTest extends TestCase
 			'not_existing'
 		);
 
+		$deep = [
+			'a' => $empty,
+		];
+
+		$empty2 = UniqueToStringArray::extractOrEmpty($deep, 'a');
+
+		Assert::same($empty, $empty2);
+
 		Assert::type(UniqueToStringArray::class, $empty);
 		Assert::count(0, $empty);
 
@@ -138,6 +146,28 @@ final class UniqueToStringArrayTest extends TestCase
 		$result->remove(IpAddress::from('8.8.8.8'));
 
 		Assert::true($result->isEmpty());
+	}
+
+
+	public function testMerge(): void
+	{
+		$a = UniqueToStringArray::from(
+			[
+				IpAddress::from('8.8.8.8'),
+				IpAddress::from('8.8.8.9'),
+			]
+		);
+
+		$b = UniqueToStringArray::from(
+			[
+				IpAddress::from('8.8.8.8'),
+				IpAddress::from('8.8.8.10'),
+			]
+		);
+
+		$c = $b->merge($a);
+
+		Assert::equal(3, \count($c->getValues()));
 	}
 
 }

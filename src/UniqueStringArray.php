@@ -67,6 +67,9 @@ final class UniqueStringArray implements \Countable, \IteratorAggregate
 		return $this->getValues();
 	}
 
+	/**
+	 * @deprecated This method does nothing because array is already unique
+	 */
 	public function removeDuplicities(): void
 	{
 		$this->valuesPresenceMap = \array_unique($this->valuesPresenceMap);

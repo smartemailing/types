@@ -83,6 +83,20 @@ final class UrlTypeTest extends TestCase
 			],
 			$parameters
 		);
+
+		Assert::equal('x=y', $url->getQueryString());
+
+		Assert::equal('y', $url->getParameter('x'));
+
+		Assert::equal('https://www.seznam.cz/?x=y', $url->getValue());
+		Assert::equal('https://www.seznam.cz/?x=y', $url->toString());
+
+		Assert::throws(
+			static function (): void {
+				UrlType::from('ddddd');
+			},
+			InvalidTypeException::class
+		);
 	}
 
 }

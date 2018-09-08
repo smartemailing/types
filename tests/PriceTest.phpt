@@ -28,6 +28,10 @@ final class PriceTest extends TestCase
 		Assert::type('float', $price->getWithoutVat());
 		Assert::type('float', $price->getWithVat());
 
+		Assert::equal(Currency::CZK, $price->getCurrency()->getValue());
+
+		Assert::type('array', $price->toArray());
+
 		Assert::throws(
 			static function (): void {
 				Price::from([]);

@@ -22,14 +22,24 @@ final class IbanTest extends TestCase
 			Assert::type('int', $iban->getChecksum());
 			Assert::notEqual(0, $iban->getChecksum());
 		}
+
+		$iban = Iban::from('CZ8508000000002677686023');
+
+		Assert::equal('CZ', $iban->getCountry()->getValue());
+
+		Assert::equal('08000000002677686023', $iban->getAccountIdentification());
+		Assert::equal('0026776860', $iban->getBankAccountNumber());
 	}
 
 	public function testInvalidIban(): void
 	{
 		foreach ($this->getInvalidIbanValues() as $invalidIbanValue) {
-			Assert::exception(static function () use ($invalidIbanValue): void {
-				Iban::from($invalidIbanValue);
-			}, InvalidTypeException::class);
+			Assert::exception(
+				static function () use ($invalidIbanValue): void {
+					Iban::from($invalidIbanValue);
+				},
+				InvalidTypeException::class
+			);
 		}
 	}
 

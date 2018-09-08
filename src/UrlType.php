@@ -83,6 +83,10 @@ final class UrlType
 		return $this->url->getBaseUrl();
 	}
 
+	/**
+	 * @return string
+	 * @deprecated use getValue() or (string) type cast
+	 */
 	public function toString(): string
 	{
 		return (string) $this->url;

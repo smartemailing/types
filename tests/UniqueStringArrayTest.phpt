@@ -75,6 +75,8 @@ final class UniqueStringArrayTest extends TestCase
 			'not_existing'
 		);
 
+		Assert::true($empty->isEmpty());
+
 		Assert::type(UniqueStringArray::class, $empty);
 		Assert::count(0, $empty);
 
@@ -95,7 +97,8 @@ final class UniqueStringArrayTest extends TestCase
 		Assert::true($containsTest->contains('xxx'));
 		Assert::false($containsTest->contains('yyy'));
 
-		$containsTest->add('yyy');
+		Assert::true($containsTest->add('yyy'));
+		Assert::false($containsTest->add('yyy'));
 		Assert::true($containsTest->contains('yyy'));
 
 		$containsTest->remove('xxx');
@@ -123,6 +126,12 @@ final class UniqueStringArrayTest extends TestCase
 			],
 			$result->toArray()
 		);
+
+		$result->removeDuplicities();
+
+		foreach ($result as $item) {
+			Assert::type('string', $item);
+		}
 	}
 
 }

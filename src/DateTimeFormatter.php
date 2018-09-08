@@ -11,8 +11,6 @@ abstract class DateTimeFormatter
 
 	use ObjectMixinTrait;
 
-	// @codingStandardsIgnoreStart
-
 	final public static function formatOrNull(
 		?\DateTimeInterface $dateTime,
 		string $format = DateTimeFormat::DATETIME
@@ -29,7 +27,5 @@ abstract class DateTimeFormatter
 	): string {
 		return $dateTime->format($format);
 	}
-
-	// @codingStandardsIgnoreEnd
 
 }
