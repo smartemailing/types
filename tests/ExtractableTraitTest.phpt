@@ -54,6 +54,10 @@ final class ExtractableTraitTest extends TestCase
 			'd' => [
 				'not-email',
 			],
+			'e' => [
+				Emailaddress::from('martin+10@smartemailing.cz'),
+				Emailaddress::from('martin+11@smartemailing.cz'),
+			],
 		];
 
 		$arr = Emailaddress::extractArrayOf($data, 'a');
@@ -81,6 +85,9 @@ final class ExtractableTraitTest extends TestCase
 
 		$arr = Emailaddress::extractArrayOfOrEmpty($data, 'not-existing-key');
 		Assert::equal([], $arr);
+
+		$arr = Emailaddress::extractArrayOf($data, 'e');
+		Assert::equal(2, \count($arr));
 	}
 
 	public function testFromOrNull(): void
