@@ -20,7 +20,7 @@ final class PriceTest extends TestCase
 		$data = [
 			'with_vat' => 432.1,
 			'without_vat' => '123.45',
-			'currency' => Currency::CZK,
+			'currency' => CurrencyCode::CZK,
 		];
 
 		$price = Price::from($data);
@@ -28,7 +28,7 @@ final class PriceTest extends TestCase
 		Assert::type('float', $price->getWithoutVat());
 		Assert::type('float', $price->getWithVat());
 
-		Assert::equal(Currency::CZK, $price->getCurrency()->getValue());
+		Assert::equal(CurrencyCode::CZK, $price->getCurrency()->getValue());
 
 		Assert::type('array', $price->toArray());
 

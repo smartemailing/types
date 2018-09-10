@@ -19,56 +19,56 @@ final class PhoneNumber
 	 * @var int[]
 	 */
 	private static $phoneCodes = [
-		Country::CZ => 420,
-		Country::SK => 421,
-		Country::AT => 43,
-		Country::BE => 32,
-		Country::FR => 33,
-		Country::HU => 36,
-		Country::GB => 44,
-		Country::DE => 49,
-		Country::US => 1,
-		Country::PL => 48,
-		Country::IT => 39,
-		Country::SE => 46,
-		Country::SI => 386,
-		Country::MH => 692,
-		Country::NL => 31,
-		Country::CY => 357,
-		Country::IE => 353,
-		Country::DK => 45,
-		Country::FI => 358,
-		Country::LU => 352,
+		CountryCode::CZ => 420,
+		CountryCode::SK => 421,
+		CountryCode::AT => 43,
+		CountryCode::BE => 32,
+		CountryCode::FR => 33,
+		CountryCode::HU => 36,
+		CountryCode::GB => 44,
+		CountryCode::DE => 49,
+		CountryCode::US => 1,
+		CountryCode::PL => 48,
+		CountryCode::IT => 39,
+		CountryCode::SE => 46,
+		CountryCode::SI => 386,
+		CountryCode::MH => 692,
+		CountryCode::NL => 31,
+		CountryCode::CY => 357,
+		CountryCode::IE => 353,
+		CountryCode::DK => 45,
+		CountryCode::FI => 358,
+		CountryCode::LU => 352,
 	];
 
 	/**
 	 * @var int[][]
 	 */
 	private static $phoneNumberLengths = [
-		Country::CZ => [9],
-		Country::SK => [9],
-		Country::AT => [10, 11],
-		Country::BE => [9],
-		Country::FR => [9],
-		Country::HU => [9],
-		Country::GB => [10],
-		Country::DE => [10, 11],
-		Country::US => [10],
-		Country::PL => [9],
-		Country::IT => [9, 10, 12, 13],
-		Country::SE => [7],
-		Country::SI => [9],
-		Country::MH => [7],
-		Country::NL => [9],
-		Country::CY => [6],
-		Country::IE => [9],
-		Country::DK => [8],
-		Country::FI => [10],
-		Country::LU => [9],
+		CountryCode::CZ => [9],
+		CountryCode::SK => [9],
+		CountryCode::AT => [10, 11],
+		CountryCode::BE => [9],
+		CountryCode::FR => [9],
+		CountryCode::HU => [9],
+		CountryCode::GB => [10],
+		CountryCode::DE => [10, 11],
+		CountryCode::US => [10],
+		CountryCode::PL => [9],
+		CountryCode::IT => [9, 10, 12, 13],
+		CountryCode::SE => [7],
+		CountryCode::SI => [9],
+		CountryCode::MH => [7],
+		CountryCode::NL => [9],
+		CountryCode::CY => [6],
+		CountryCode::IE => [9],
+		CountryCode::DK => [8],
+		CountryCode::FI => [10],
+		CountryCode::LU => [9],
 	];
 
 	/**
-	 * @var \SmartEmailing\Types\Country
+	 * @var \SmartEmailing\Types\CountryCode
 	 */
 	private $country;
 
@@ -119,7 +119,7 @@ final class PhoneNumber
 					continue;
 				}
 
-				$this->country = Country::get($countryCode);
+				$this->country = CountryCode::get($countryCode);
 				$this->value = $value;
 				return true;
 			}
@@ -127,7 +127,7 @@ final class PhoneNumber
 		return false;
 	}
 
-	public function getCountry(): Country
+	public function getCountry(): CountryCode
 	{
 		return $this->country;
 	}

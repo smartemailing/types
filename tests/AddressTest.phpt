@@ -27,7 +27,7 @@ final class AddressTest extends TestCase
 		$address = Address::from($data);
 		Assert::type(Address::class, $address);
 		Assert::type(ZipCode::class, $address->getZipCode());
-		Assert::type(Country::class, $address->getCountry());
+		Assert::type(CountryCode::class, $address->getCountry());
 
 		Assert::throws(
 			static function (): void {

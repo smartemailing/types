@@ -44,9 +44,9 @@ final class Iban implements ToStringInterface
 		return $this->value;
 	}
 
-	public function getCountry(): Country
+	public function getCountry(): CountryCode
 	{
-		return Country::from($this->iban->getCountryCode());
+		return CountryCode::from($this->iban->getCountryCode());
 	}
 
 	public function getFormatted(string $type = self::FORMAT_ELECTRONIC): string

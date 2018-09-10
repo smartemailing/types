@@ -247,6 +247,16 @@ Type-specific methods:
 - `getVatNumber(): string` returns vat number without prefix like `123456789`
 - `getValue(): string` return whole vat id `EL123456789`
 
+### CurrencyCode
+`SmartEmailing\Types\CurrencyCode` 
+
+Valid currency codes by ISO 4217
+
+### CountryCode
+`SmartEmailing\Types\CountryCode`
+
+Valid country codes by ISO 3166-1 alpha-2
+
 
 ## Int-extractable types
 
