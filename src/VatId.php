@@ -57,7 +57,7 @@ final class VatId implements ToStringInterface
 
 		try {
 			return Country::from($countryCode);
-		} catch (InvalidEnumValueException $e) {
+		} catch (InvalidTypeException $e) {
 			return null;
 		}
 	}
