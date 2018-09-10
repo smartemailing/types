@@ -26,10 +26,10 @@ final class IbanTest extends TestCase
 		$iban = Iban::from('CZ8508000000002677686023');
 
 		Assert::equal('CZ', $iban->getCountry()->getValue());
-
-		Assert::equal('08000000002677686023', $iban->getAccountIdentification());
-		Assert::equal('0026776860', $iban->getBankAccountNumber());
-		Assert::equal('08000000', $iban->getInstituteIdentification());
+		Assert::equal('CZ8508000000002677686023', $iban->getValue());
+		Assert::equal(85, $iban->getChecksum());
+		Assert::equal('CZ8508000000002677686023', $iban->getFormatted());
+		Assert::equal('CZ85 0800 0000 0026 7768 6023', $iban->getFormatted(Iban::FORMAT_PRINT));
 	}
 
 	public function testInvalidIban(): void

@@ -227,12 +227,9 @@ Type-specific methods:
 `SmartEmailing\Types\Iban`
 
 Type-specific methods:
-- `getFormatted(): string` returns whitespace Iban
+- `getFormatted(string $type = SmartEmailing\Types\Iban::FORMAT_ELECTRONIC): string` returns formatted Iban string. Format types: `FORMAT_ELECTRONIC`, `FORMAT_PRINT`.
 - `getCountry(): SmartEmailing\Types\Country`
 - `getChecksum(): int` 
-- `getAccountIdentification(): string`
-- `getInstituteIdentification(): string`
-- `getBankAccountNumber(): string`
 
 ### SwiftBic
 
