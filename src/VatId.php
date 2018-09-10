@@ -19,7 +19,7 @@ final class VatId implements ToStringInterface
 	use StringExtractableTrait;
 
 	/**
-	 * @var \SmartEmailing\Types\Country|null
+	 * @var \SmartEmailing\Types\CountryCode|null
 	 */
 	private $country;
 
@@ -42,26 +42,26 @@ final class VatId implements ToStringInterface
 		}
 	}
 
-	private static function parseCountryOrNull(string $vatId): ?Country
+	private static function parseCountryOrNull(string $vatId): ?CountryCode
 	{
 		$countryCode = Strings::substring($vatId, 0, 2);
 
 		if ($countryCode === 'EL') {
-			$countryCode = Country::GR;
+			$countryCode = CountryCode::GR;
 		}
 
 		if ($countryCode === 'GY') {
-			$countryCode = Country::GG;
+			$countryCode = CountryCode::GG;
 		}
 
 		try {
-			return Country::from($countryCode);
+			return CountryCode::from($countryCode);
 		} catch (InvalidTypeException $e) {
 			return null;
 		}
 	}
 
-	private static function parsePrefixOrNull(?Country $country, string $vatId): ?string
+	private static function parsePrefixOrNull(?CountryCode $country, string $vatId): ?string
 	{
 		if (!$country) {
 			return null;
@@ -70,7 +70,7 @@ final class VatId implements ToStringInterface
 		return Strings::substring($vatId, 0, 2);
 	}
 
-	private static function parseVatNumber(?Country $country, string $vatId): string
+	private static function parseVatNumber(?CountryCode $country, string $vatId): string
 	{
 		return $country ? Strings::substring($vatId, 2) : $vatId;
 	}
@@ -81,7 +81,7 @@ final class VatId implements ToStringInterface
 		return self::validate($country, $countryPrefix, $vatNumber);
 	}
 
-	private static function validate(?Country $country, ?string $prefix, string $vatNumber): bool
+	private static function validate(?CountryCode $country, ?string $prefix, string $vatNumber): bool
 	{
 		if ($country) {
 			return self::isValidForCountry($country, $prefix, $vatNumber);
@@ -90,7 +90,7 @@ final class VatId implements ToStringInterface
 		return self::isValidForNonCountry($vatNumber);
 	}
 
-	private static function isValidForCountry(Country $country, ?string $prefix, string $vatNumber): bool
+	private static function isValidForCountry(CountryCode $country, ?string $prefix, string $vatNumber): bool
 	{
 		$pattern = Arrays::get(self::getPatternsByCountry(), $country->getValue());
 
@@ -113,36 +113,36 @@ final class VatId implements ToStringInterface
 	private static function getPatternsByCountry(): array
 	{
 		return [
-			Country::AT => 'ATU\d{8}',
-			Country::BE => 'BE[0-1]\d{9}',
-			Country::BG => 'BG\d{9,10}',
-			Country::HR => 'HR\d{11}',
-			Country::CY => 'CY\d{8}[A-Z]',
-			Country::CZ => 'CZ\d{8,10}',
-			Country::DK => 'DK(\d{2}){3}(\d{2})',
-			Country::EE => 'EE\d{9}',
-			Country::FI => 'FI\d{8}',
-			Country::FR => 'FR[A-Z0-9]{2}\d{9}',
-			Country::DE => 'DE\d{9}',
-			Country::GR => '(GR|EL)\d{9}',
-			Country::HU => 'HU\d{8}',
-			Country::IE => 'IE\d{7}[A-Z]{1,2}',
-			Country::IT => 'IT\d{11}',
-			Country::LV => 'LV\d{11}',
-			Country::LT => 'LT(\d{9}|\d{12})',
-			Country::LU => 'LU\d{8}',
-			Country::MT => 'MT\d{8}',
-			Country::NL => 'NL\d{9}B\d{2}',
-			Country::PL => 'PL\d{10}',
-			Country::PT => 'PT\d{9}',
-			Country::RO => 'RO\d{2,10}',
-			Country::SK => 'SK\d{10}',
-			Country::SI => 'SI\d{8}',
-			Country::ES => 'ES(([A-Z]\d{8})|([A-Z]\d{7}[A-Z]))',
-			Country::SE => 'SE\d{12}',
-			Country::CH => 'CHE\d{9}((MWST)|(TVA)|(IVA))',
-			Country::GB => 'GB((\d{9})|(\d{12}))',
-			Country::GG => 'GY\d{6}',
+			CountryCode::AT => 'ATU\d{8}',
+			CountryCode::BE => 'BE[0-1]\d{9}',
+			CountryCode::BG => 'BG\d{9,10}',
+			CountryCode::HR => 'HR\d{11}',
+			CountryCode::CY => 'CY\d{8}[A-Z]',
+			CountryCode::CZ => 'CZ\d{8,10}',
+			CountryCode::DK => 'DK(\d{2}){3}(\d{2})',
+			CountryCode::EE => 'EE\d{9}',
+			CountryCode::FI => 'FI\d{8}',
+			CountryCode::FR => 'FR[A-Z0-9]{2}\d{9}',
+			CountryCode::DE => 'DE\d{9}',
+			CountryCode::GR => '(GR|EL)\d{9}',
+			CountryCode::HU => 'HU\d{8}',
+			CountryCode::IE => 'IE\d{7}[A-Z]{1,2}',
+			CountryCode::IT => 'IT\d{11}',
+			CountryCode::LV => 'LV\d{11}',
+			CountryCode::LT => 'LT(\d{9}|\d{12})',
+			CountryCode::LU => 'LU\d{8}',
+			CountryCode::MT => 'MT\d{8}',
+			CountryCode::NL => 'NL\d{9}B\d{2}',
+			CountryCode::PL => 'PL\d{10}',
+			CountryCode::PT => 'PT\d{9}',
+			CountryCode::RO => 'RO\d{2,10}',
+			CountryCode::SK => 'SK\d{10}',
+			CountryCode::SI => 'SI\d{8}',
+			CountryCode::ES => 'ES(([A-Z]\d{8})|([A-Z]\d{7}[A-Z]))',
+			CountryCode::SE => 'SE\d{12}',
+			CountryCode::CH => 'CHE\d{9}((MWST)|(TVA)|(IVA))',
+			CountryCode::GB => 'GB((\d{9})|(\d{12}))',
+			CountryCode::GG => 'GY\d{6}',
 		];
 	}
 
@@ -152,7 +152,7 @@ final class VatId implements ToStringInterface
 	private static function getDivisible(): array
 	{
 		return [
-			Country::SK => 11,
+			CountryCode::SK => 11,
 		];
 	}
 
@@ -172,7 +172,7 @@ final class VatId implements ToStringInterface
 		return Strings::upper($vatId);
 	}
 
-	public function getCountry(): ?Country
+	public function getCountry(): ?CountryCode
 	{
 		return $this->country;
 	}

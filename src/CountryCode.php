@@ -8,14 +8,11 @@ use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\EnumExtractableTrait;
 
 /**
- * Class Country
- *
- * @package SmartEmailing\Types
- *
  * ISO-3166-1 Alpha 2 country code enum
+ *
  * @see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
  */
-final class Country extends Enum implements ToStringInterface
+final class CountryCode extends Enum implements ToStringInterface
 {
 
 	use ObjectMixinTrait;

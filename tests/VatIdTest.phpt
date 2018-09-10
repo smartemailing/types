@@ -17,8 +17,8 @@ final class VatIdTest extends TestCase
 		$vatId = VatId::from('cz123456789');
 
 		Assert::type(VatId::class, $vatId);
-		Assert::type(Country::class, $vatId->getCountry());
-		Assert::equal(Country::CZ, $vatId->getCountry()->getValue());
+		Assert::type(CountryCode::class, $vatId->getCountry());
+		Assert::equal(CountryCode::CZ, $vatId->getCountry()->getValue());
 		Assert::equal('123456789', $vatId->getVatNumber());
 		Assert::equal('CZ123456789', $vatId->getValue());
 		Assert::equal('CZ', $vatId->getPrefix());
@@ -59,13 +59,13 @@ final class VatIdTest extends TestCase
 	{
 		$vatId = VatId::from('EL123456789');
 		Assert::equal('EL123456789', $vatId->getValue());
-		Assert::equal(Country::GR, $vatId->getCountry()->getValue());
+		Assert::equal(CountryCode::GR, $vatId->getCountry()->getValue());
 		Assert::equal('EL', $vatId->getPrefix());
 		Assert::equal('123456789', $vatId->getVatNumber());
 
 		$vatId = VatId::from('GY123456');
 		Assert::equal('GY123456', $vatId->getValue());
-		Assert::equal(Country::GG, $vatId->getCountry()->getValue());
+		Assert::equal(CountryCode::GG, $vatId->getCountry()->getValue());
 		Assert::equal('GY', $vatId->getPrefix());
 		Assert::equal('123456', $vatId->getVatNumber());
 	}
@@ -76,74 +76,74 @@ final class VatIdTest extends TestCase
 	public function getValidVatIds(): array
 	{
 		return [
-			Country::AT . 'U12345678',
+			'ATU12345678',
 
-			Country::BE . '1234567890',
-			Country::BE . '0234567890',
+			'BE1234567890',
+			'BE0234567890',
 
-			Country::BG . '123456789',
-			Country::BG . '1234567890',
+			'BG123456789',
+			'BG1234567890',
 
-			Country::HR . '12345678901',
-			Country::HR . '12345678901',
+			'HR12345678901',
+			'HR12345678901',
 
-			Country::CY . '12345678X',
-			Country::CY . '12345678Y',
+			'CY12345678X',
+			'CY12345678Y',
 
-			Country::CZ . '12345678',
-			Country::CZ . '123456789',
-			Country::CZ . '1234567890',
+			'CZ12345678',
+			'CZ123456789',
+			'CZ1234567890',
 
-			Country::DK . '12 34 56 78',
+			'DK12 34 56 78',
 
-			Country::EE . '123456789',
+			'EE123456789',
 
-			Country::FI . '12345678',
+			'FI12345678',
 
-			Country::FR . 'XX 123456789',
-			Country::FR . 'X1 123456789',
-			Country::FR . '11 123456789',
+			'FRXX 123456789',
+			'FRX1 123456789',
+			'FR11 123456789',
 
-			Country::DE . '123456789',
+			'DE123456789',
 
-			Country::GR . '123456789',
+			'GR123456789',
 			'EL123456789',
 
-			Country::HU . '12345678',
+			'HU12345678',
 
-			Country::IE . '1234567X',
-			Country::IE . '1234567XW',
+			'IE1234567X',
+			'IE1234567XW',
 
-			Country::IT . '12345678901',
+			'IT12345678901',
 
-			Country::LV . '12345678901',
+			'LV12345678901',
 
-			Country::LT . '123456789',
-			Country::LT . '123456789012',
+			'LT123456789',
+			'LT123456789012',
 
-			Country::LU . '12345678',
+			'LU12345678',
 
-			Country::MT . '12345678',
+			'MT12345678',
 
-			Country::NL . '123456789B12',
+			'NL123456789B12',
 
-			Country::PL . '1234567890',
+			'PL1234567890',
 
-			Country::PT . '123456789',
+			'PT123456789',
 
-			Country::RO . '1234567890',
+			'RO1234567890',
 
-			Country::SK . '1234567895',
+			'SK1234567895',
 
-			Country::SI . '12345678',
+			'SI12345678',
 
-			Country::SE . '123456789012',
+			'SE123456789012',
 
-			Country::CH . 'E123456789MWST',
-			Country::CH . 'E123456789TVA',
-			Country::CH . 'E123456789IVA',
+			'CHE123456789MWST',
+			'CHE123456789TVA',
+			'CHE123456789IVA',
 
-			Country::GB . '123 4567 89',
+			'GB123 4567 89',
 
 			'GY123456',
 
@@ -190,102 +190,102 @@ final class VatIdTest extends TestCase
 	public function getInvalidVatIds(): array
 	{
 		return [
-			Country::AT . 'U123456789',
-			Country::AT . 'U12345678901',
+			'ATU123456789',
+			'ATU12345678901',
 
-			Country::BE . '2234567890',
-			Country::BE . '023456789',
-			Country::BE . '02345678901',
+			'BE2234567890',
+			'BE023456789',
+			'BE02345678901',
 
-			Country::BG . '12345678',
-			Country::BG . '12345678901',
+			'BG12345678',
+			'BG12345678901',
 
-			Country::HR . '1234567890',
-			Country::HR . '123456789012',
+			'HR1234567890',
+			'HR123456789012',
 
-			Country::CY . '123456781',
-			Country::CY . '123456781X',
-			Country::CY . '1234567X',
+			'CY123456781',
+			'CY123456781X',
+			'CY1234567X',
 
-			Country::CZ . '1234567',
-			Country::CZ . '12345678901',
+			'CZ1234567',
+			'CZ12345678901',
 
-			Country::DK . '1234567',
-			Country::DK . '123456789',
+			'DK1234567',
+			'DK123456789',
 
-			Country::EE . '12345678',
-			Country::EE . '1234567890',
+			'EE12345678',
+			'EE1234567890',
 
-			Country::FI . '1234567',
-			Country::FI . '123456789',
+			'FI1234567',
+			'FI123456789',
 
-			Country::FR . 'X123456789',
-			Country::FR . 'X123456789',
-			Country::FR . '1123456789',
-			Country::FR . '112345678901',
+			'FRX123456789',
+			'FRX123456789',
+			'FR1123456789',
+			'FR112345678901',
 
-			Country::DE . '12345678',
-			Country::DE . '1234567890',
+			'DE12345678',
+			'DE1234567890',
 
-			Country::GR . '12345678',
-			Country::GR . '1234567890',
+			'GR12345678',
+			'GR1234567890',
 			'EL12345678',
 			'EL1234567890',
 
-			Country::HU . '1234567',
-			Country::HU . '123456789',
+			'HU1234567',
+			'HU123456789',
 
-			Country::IE . '123456X',
-			Country::IE . '1234567',
-			Country::IE . '1234567XWS',
-			Country::IE . '1234567XW1',
+			'IE123456X',
+			'IE1234567',
+			'IE1234567XWS',
+			'IE1234567XW1',
 
-			Country::IT . '1234567890',
-			Country::IT . '123456789012',
+			'IT1234567890',
+			'IT123456789012',
 
-			Country::LV . '1234567890',
-			Country::LV . '123456789012',
+			'LV1234567890',
+			'LV123456789012',
 
-			Country::LT . '12345678',
-			Country::LT . '1234567890',
-			Country::LT . '12345678901',
-			Country::LT . '1234567890123',
+			'LT12345678',
+			'LT1234567890',
+			'LT12345678901',
+			'LT1234567890123',
 
-			Country::LU . '1234567',
-			Country::LU . '123456789',
+			'LU1234567',
+			'LU123456789',
 
-			Country::MT . '1234567',
-			Country::MT . '123456789',
+			'MT1234567',
+			'MT123456789',
 
-			Country::NL . '123456789B123',
-			Country::NL . '123456789B1',
+			'NL123456789B123',
+			'NL123456789B1',
 
-			Country::PL . '123456789',
-			Country::PL . '12345678901',
+			'PL123456789',
+			'PL12345678901',
 
-			Country::PT . '12345678',
-			Country::PT . '1234567890',
+			'PT12345678',
+			'PT1234567890',
 
-			Country::RO . '1',
-			Country::RO . '12345678901',
+			'RO1',
+			'RO12345678901',
 
-			Country::SK . '123456789',
-			Country::SK . '12345678901',
-			Country::SK . '1234567896',
+			'SK123456789',
+			'SK12345678901',
+			'SK1234567896',
 
-			Country::SI . '1234567',
-			Country::SI . '123456789',
+			'SI1234567',
+			'SI123456789',
 
-			Country::SE . '1X12345678',
-			Country::SE . '123456789',
-			Country::SE . 'X1234567X1',
+			'SE1X12345678',
+			'SE123456789',
+			'SEX1234567X1',
 
-			Country::CH . '123456789MWST',
-			Country::CH . 'E12345679TVA',
-			Country::CH . 'E123456789IVAA',
+			'CH123456789MWST',
+			'CHE12345679TVA',
+			'CHE123456789IVAA',
 
-			Country::GB . '12345678',
-			Country::GB . '1234567890',
+			'GB12345678',
+			'GB1234567890',
 
 			'GY12345',
 			'GY1234567',

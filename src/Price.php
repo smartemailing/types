@@ -24,7 +24,7 @@ final class Price
 	private $withVat;
 
 	/**
-	 * @var \SmartEmailing\Types\Currency
+	 * @var \SmartEmailing\Types\CurrencyCode
 	 */
 	private $currency;
 
@@ -36,7 +36,7 @@ final class Price
 	) {
 		$this->withoutVat = PrimitiveTypes::extractFloat($data, 'without_vat');
 		$this->withVat = PrimitiveTypes::extractFloat($data, 'with_vat');
-		$this->currency = Currency::extract($data, 'currency');
+		$this->currency = CurrencyCode::extract($data, 'currency');
 	}
 
 	public function getWithoutVat(): float
@@ -49,7 +49,7 @@ final class Price
 		return $this->withVat;
 	}
 
-	public function getCurrency(): Currency
+	public function getCurrency(): CurrencyCode
 	{
 		return $this->currency;
 	}

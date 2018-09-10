@@ -29,7 +29,7 @@ final class Address
 	private $zipCode;
 
 	/**
-	 * @var \SmartEmailing\Types\Country
+	 * @var \SmartEmailing\Types\CountryCode
 	 */
 	private $country;
 
@@ -42,7 +42,7 @@ final class Address
 		$this->streetAndNumber = PrimitiveTypes::extractString($data, 'street_and_number');
 		$this->town = PrimitiveTypes::extractString($data, 'town');
 		$this->zipCode = ZipCode::extract($data, 'zip_code');
-		$this->country = Country::extract($data, 'country');
+		$this->country = CountryCode::extract($data, 'country');
 	}
 
 	/**
@@ -73,7 +73,7 @@ final class Address
 		return $this->zipCode;
 	}
 
-	public function getCountry(): Country
+	public function getCountry(): CountryCode
 	{
 		return $this->country;
 	}
