@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Enum\InvalidEnumValueException;
 use Consistence\Type\ObjectMixinTrait;
 use Nette\Utils\Arrays;
 use Nette\Utils\Strings;

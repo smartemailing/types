@@ -28,11 +28,6 @@ final class Iban implements ToStringInterface
 	 */
 	private $value;
 
-	/**
-	 * @var Validator
-	 */
-	private $validator;
-
 	public function __construct(string $value)
 	{
 		$this->iban = new \Iban\Validation\Iban($value);
