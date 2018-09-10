@@ -271,6 +271,7 @@ final class VatIdTest extends TestCase
 
 			Country::SK . '123456789',
 			Country::SK . '12345678901',
+			Country::SK . '1234567896',
 
 			Country::SI . '1234567',
 			Country::SI . '123456789',
@@ -288,6 +289,8 @@ final class VatIdTest extends TestCase
 
 			'GY12345',
 			'GY1234567',
+
+			'123456789',
 		];
 	}
 

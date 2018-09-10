@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Enum\InvalidEnumValueException;
 use Consistence\Type\ObjectMixinTrait;
 use Nette\Utils\Arrays;
 use Nette\Utils\Strings;
@@ -57,7 +56,7 @@ final class VatId implements ToStringInterface
 
 		try {
 			return Country::from($countryCode);
-		} catch (InvalidEnumValueException $e) {
+		} catch (InvalidTypeException $e) {
 			return null;
 		}
 	}

@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types;
 
 use Consistence\Type\ObjectMixinTrait;
+use Iban\Validation\Validator;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
 final class Iban implements ToStringInterface
@@ -14,8 +15,11 @@ final class Iban implements ToStringInterface
 	use StringExtractableTrait;
 	use ToStringTrait;
 
+	public const FORMAT_ELECTRONIC = 'electronic';
+	public const FORMAT_PRINT = 'print';
+
 	/**
-	 * @var \IBAN\Core\IBAN
+	 * @var \Iban\Validation\Iban
 	 */
 	private $iban;
 
@@ -26,8 +30,10 @@ final class Iban implements ToStringInterface
 
 	public function __construct(string $value)
 	{
-		$this->iban = new \IBAN\Core\IBAN($value);
-		if (!$this->iban->validate()) {
+		$this->iban = new \Iban\Validation\Iban($value);
+		$validator = new Validator();
+
+		if (!$validator->validate($this->iban)) {
 			throw new InvalidTypeException('Invalid Iban: ' . $value);
 		}
 		$this->value = $value;
@@ -40,32 +46,17 @@ final class Iban implements ToStringInterface
 
 	public function getCountry(): Country
 	{
-		return Country::from($this->iban->getLocaleCode());
+		return Country::from($this->iban->getCountryCode());
 	}
 
-	public function getFormatted(): string
+	public function getFormatted(string $type = self::FORMAT_ELECTRONIC): string
 	{
-		return $this->iban->format();
+		return $this->iban->format($type);
 	}
 
 	public function getChecksum(): int
 	{
 		return (int) $this->iban->getChecksum();
-	}
-
-	public function getAccountIdentification(): string
-	{
-		return $this->iban->getAccountIdentification();
-	}
-
-	public function getInstituteIdentification(): string
-	{
-		return $this->iban->getInstituteIdentification();
-	}
-
-	public function getBankAccountNumber(): string
-	{
-		return $this->iban->getBankAccountNumber();
 	}
 
 }
