@@ -334,7 +334,7 @@ They are created from associative array. All Array-extractable types implement m
 
 ### DateTimeRange
 
-Range between two \DateTimeInterfaces
+Range between two `\DateTimeInterface`s
 
 Can be created from:
 
@@ -347,8 +347,8 @@ DateTimeRange::from(
 )
 ```
 Type-specific methods:
-- `getFrom(): \DateTimeImmutable` returns `From` date and time as `DateTimeImmutable` instance
-- `getTo(): \DateTimeImmutable` returns `To` date and time as `DateTimeImmutable` instance
+- `getFrom(): \DateTimeImmutable` returns `From` date and time as `\DateTimeImmutable` instance
+- `getTo(): \DateTimeImmutable` returns `To` date and time as `\DateTimeImmutable` instance
 - `getDurationInSeconds(): int` returns number of seconds between `From` and `To` dates
 - `contains(\DateTimeInterface $dateTime): bool` returns `true` if provided `\DateTimeInterface` lies between `From` and `To` dates.
 
