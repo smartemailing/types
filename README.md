@@ -370,6 +370,8 @@ They are created from associative array. All Array-extractable types implement m
 
 ### DateTimeRange
 
+`SmartEmailing\Types\DateTimeRange`
+
 Range between two `\DateTimeInterface`s
 
 Can be created from:
@@ -389,6 +391,8 @@ Type-specific methods:
 - `contains(\DateTimeInterface $dateTime): bool` returns `true` if provided `\DateTimeInterface` lies between `From` and `To` dates.
 
 ### Duration
+
+`SmartEmailing\Types\Duration`
 
 Human-readable time interval.
 
@@ -411,6 +415,8 @@ Type-specific methods:
 
 ### Address
 
+`SmartEmailing\Types\Address`
+
 Location address cotaining street and number, town, zip code and country.
 
 Can be created from:
@@ -430,6 +436,28 @@ Type-specific methods:
 - `getTown(): string` returns Town
 - `getZipCode(): ZipCode` returns ZipCode instance
 - `getCountry(): CountryCode` returns CountryCode instance
+
+### Price
+
+`SmartEmailing\Types\Price`
+
+Price object containing number of currency units with VAT, number of currency units without VAT and currency.
+
+Can be created from:
+
+```php
+Price::from(
+	[
+		'with_vat' => 432.1,
+		'without_vat' => '123.45',
+		'currency' => CurrencyCode::CZK,
+	]
+);
+```
+Type-specific methods:
+- `getWithoutVat(): float` returns price without VAT
+- `getWithVat(): float` returns price with VAT
+- `getCurrency(): CurrencyCode` returns CurrencyCode instance
 
 
 
