@@ -22,9 +22,7 @@ your code much more readable and less vulnerable to bugs.
 It allows you to use specific type hints instead of primitive types or arrays.
 Your code will be unbreakable and your IDE will love it.
 
-
-![IDE](docs/img/ide-love.png)
-
+![](./docs/img/ide-love-2.png)
 
 ## Installation
 
