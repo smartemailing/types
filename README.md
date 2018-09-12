@@ -451,7 +451,7 @@ Price::from(
 	[
 		'with_vat' => 432.1,
 		'without_vat' => 123.45,
-		'currency' => CurrencyCode::CZK,
+		'currency' => CurrencyCode::EUR,
 	]
 );
 ```
