@@ -12,7 +12,7 @@
 
 Neverending data validation can be tiresome. Either you have to validate your data 
 over and over again in every function you use it, or you have to rely 
-they are validated somewhere else and risk errors. Smelly, right?
+it is already validated somewhere else and risk potential errors. Smelly, right?
 
 Replacing validation hell with **Types** will make 
 your code much more readable and less vulnerable to bugs.
@@ -35,7 +35,7 @@ composer require smartemailing/types
 ## How does it work
 
 It is easy. You just initialize particular value object by simple one-liner. 
-From this point, you have sanitized, normalized and valid data; or an exception to handle.
+From this point, you have sanitized, normalized and valid data; or `SmartEmailing\Types\InvalidTypeException` to handle.
 
 **Types** consist from:
 
