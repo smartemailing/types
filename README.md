@@ -10,7 +10,7 @@
 [![CircleCI](https://circleci.com/gh/smartemailing/types.svg?style=shield)](https://circleci.com/gh/smartemailing/types)
 
 
-Neverending data validation can be tiresome. Either have to validate the same data 
+Neverending data validation can be tiresome. Either you have to validate your data 
 over and over again in every function you use it, or you have to rely 
 they are validated somewhere else and risk errors. Smelly, right?
 
