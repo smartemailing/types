@@ -83,7 +83,7 @@ $emailaddress = Emailaddress::fromOrNull('bla bla', true); // returns null inste
 
 ## Extraction from array
 
-This is really useful for strict-typing (validation) multidimensional arrays like API requests or forms data.
+This is really useful for strict-typing (validation) multidimensional arrays like API requests, forms or database data.
 
 ```php
 <?php
@@ -351,6 +351,52 @@ Type-specific methods:
 - `getTo(): \DateTimeImmutable` returns `To` date and time as `\DateTimeImmutable` instance
 - `getDurationInSeconds(): int` returns number of seconds between `From` and `To` dates
 - `contains(\DateTimeInterface $dateTime): bool` returns `true` if provided `\DateTimeInterface` lies between `From` and `To` dates.
+
+### Duration
+
+Human-readable time interval.
+
+Can be created from:
+
+```php
+Duration::from(
+	[
+		'value' => 1,
+		'unit' => TimeUnit::HOURS,
+	]
+);
+```
+Type-specific methods:
+- `getDateTimeModify(): string` returns string that is compatible with `\DateTime::modify()` and `\DateTimeImmutable::modify()`
+- `getUnit(): TimeUnit` returns `TimeUnit` enum type
+- `getValue() int` returns number of units
+- `static fromDateTimeModify(string $dateTimeModify): self` creates new instance from string compatible with `\DateTime::modify()` and `\DateTimeImmutable::modify()`
+
+
+### Address
+
+Location address cotaining street and number, town, zip code and country.
+
+Can be created from:
+
+```php
+Address::from(
+	[
+		'street_and_number' => '29 Neibolt Street',
+		'town' => 'Derry',
+		'zip_code' => '03038',
+		'country' => 'US',
+	]
+);
+```
+Type-specific methods:
+- `getStreetAndNumber(): string` returns street and number
+- `getTown(): string` returns Town
+- `getZipCode(): ZipCode` returns ZipCode instance
+- `getCountry(): CountryCode` returns CountryCode instance
+
+
+
 
 
 
