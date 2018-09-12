@@ -24,6 +24,42 @@ Your code will be unbreakable and your IDE will love it.
 
 ![](./docs/img/ide-love-2.png)
 
+
+## Table of Contents
+
+  * [Installation](#installation)
+  * [How does it work](#how-does-it-work)
+  * [Wrapping raw value](#wrapping-raw-value)
+  * [Extraction from array](#extraction-from-array)
+  * [String-extractable types](#string-extractable-types)
+    + [E-mail address](#e-mail-address)
+    + [Domain](#domain)
+    + [Hex 32](#hex-32)
+    + [GUID](#guid)
+    + [IP address](#ip-address)
+    + [URL](#url)
+    + [Company registration number](#company-registration-number)
+    + [Phone number](#phone-number)
+    + [ZIP code](#zip-code)
+    + [JSON](#json)
+    + [Base 64](#base-64)
+    + [Iban](#iban)
+    + [SwiftBic](#swiftbic)
+    + [VatId](#vatid)
+    + [CurrencyCode](#currencycode)
+    + [CountryCode](#countrycode)
+  * [Int-extractable types](#int-extractable-types)
+    + [Port](#port)
+  * [Float-extractable types](#float-extractable-types)
+    + [Part](#part)
+    + [Sigmoid function value](#sigmoid-function-value)
+    + [Rectified Linear Unit function value](#rectified-linear-unit-function-value)
+  * [Array-extractable types](#array-extractable-types)
+    + [DateTimeRange](#datetimerange)
+    + [Duration](#duration)
+    + [Address](#address)
+
+
 ## Installation
 
 The recommended way to install is via Composer:
@@ -399,11 +435,6 @@ Type-specific methods:
 
 
 
-
+=========================
 
 🚧 Docs still under construction, stay tuned :-) 🚧 
-
-
-#
-
-run tests by `vendor/bin/tester tests`
