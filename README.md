@@ -58,6 +58,7 @@ Your code will be unbreakable and your IDE will love it.
     + [DateTimeRange](#datetimerange)
     + [Duration](#duration)
     + [Address](#address)
+    + [Price](#price)
 
 
 ## Installation
