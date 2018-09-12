@@ -3,20 +3,40 @@
 ### Missing data types for PHP 7.1. Highly extendable.
 
 [![Monthly Downloads](https://poser.pugx.org/smartemailing/types/d/monthly)](https://packagist.org/packages/smartemailing/types)
+[![License](https://poser.pugx.org/smartemailing/types/license)](https://packagist.org/packages/smartemailing/types)
+[![Latest Stable Version](https://poser.pugx.org/smartemailing/types/v/stable)](https://packagist.org/packages/smartemailing/types)
+
 [![codecov](https://codecov.io/gh/smartemailing/types/branch/master/graph/badge.svg)](https://codecov.io/gh/smartemailing/types)
 [![CircleCI](https://circleci.com/gh/smartemailing/types.svg?style=shield)](https://circleci.com/gh/smartemailing/types)
-[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/smartemailing/types/blob/master/LICENSE)
 
-🚧 Work in progress, all pull requests are welcome :-)
 
-##
+Neverending data validation can be tiresome. Either have to validate the same data 
+over and over again in every function you use it, or you have to rely 
+they are validated somewhere else and risk errors. Smelly, right?
 
-Neverending data validation is tedious. Replacing it with **Types** will make 
+Replacing validation hell with **Types** will make 
 your code much more readable and less vulnerable to bugs.
 
-**Types** provide value objects that are guaranteed to be **valid and normalized; or not to exist at all**. 
+**Types** wrap your data in value objects that are guaranteed to be 
+**valid and normalized; or not to exist at all**. 
+It allows you to use specific type hints instead of primitive types or arrays.
+Your code will be unbreakable and your IDE will love it.
 
-How does it work? You just initialize particular value object by simple one-liner. 
+
+![IDE](docs/img/ide-love.png)
+
+
+## Installation
+
+The recommended way to install is via Composer:
+
+```
+composer require smartemailing/types
+```
+
+## How does it work
+
+It is easy. You just initialize particular value object by simple one-liner. 
 From this point, you have sanitized, normalized and valid data; or an exception to handle.
 
 **Types** consist from:
@@ -26,7 +46,8 @@ From this point, you have sanitized, normalized and valid data; or an exception 
 - Float-extractable types - validated floats (Part) 
 - Enum-extractable types - enumerables (Country, Currency, GDPR's Lawful purpose, ...)
 - Composite (Array-extractable) types - structures containing multiple another types (Address, ...)
-- Primitive types extractors and arrays
+- DateTimes - extraction of DateTime and DateTimeImmutable
+- Primitive types extractors and unique arrays
 
 Different types provide different methods related to them, but all types share this extraction API:
 
@@ -180,7 +201,7 @@ Type-specific methods:
 `SmartEmailing\Types\CompanyRegistrationNumber`
 
 Whitespace-free company registration number for following countries: 
-`CZ`, `SK`, `DE`, `CY`
+`CZ`, `SK`, `CY`
 
 ### Phone number
 
@@ -304,9 +325,39 @@ Float interval `<-1.0, 1.0>`.
 
 Result of Rectified Linear Unit function, useful when building neural networks.
 
-Float interval `<0.0, Infninity)`. 
+Float interval `<0.0, Infinity)`. 
 
-🚧 Documentation still under construction, to be continued :-) 🚧 
+
+## Array-extractable types
+
+Array-extractable types are composite types encapsulating one or more another types.
+They are created from associative array. All Array-extractable types implement method 
+`toArray() : array` which returns normalized array or type's data.
+
+### DateTimeRange
+
+Range between two \DateTimeInterfaces
+
+Can be created from:
+
+```php
+DateTimeRange::from(
+	[
+		'from' => 'YYYY-MM-DD HH:MM:SS',
+		'to' => 'YYYY-MM-DD HH:MM:SS',
+	]
+)
+```
+Type-specific methods:
+- `getFrom(): \DateTimeImmutable` returns `From` date and time as `DateTimeImmutable` instance
+- `getTo(): \DateTimeImmutable` returns `To` date and time as `DateTimeImmutable` instance
+- `getDurationInSeconds(): int` returns number of seconds between `From` and `To` dates
+- `contains(\DateTimeInterface $dateTime): bool` returns `true` if provided `\DateTimeInterface` lies between `From` and `To` dates.
+
+
+
+
+🚧 Docs still under construction, stay tuned :-) 🚧 
 
 
 #
