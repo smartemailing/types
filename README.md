@@ -27,38 +27,6 @@ Your code will be unbreakable and your IDE will love it.
 
 ## Table of Contents
 
-  * [Installation](#installation)
-  * [How does it work](#how-does-it-work)
-  * [Wrapping raw value](#wrapping-raw-value)
-  * [Extraction from array](#extraction-from-array)
-  * [String-extractable types](#string-extractable-types)
-    + [E-mail address](#e-mail-address)
-    + [Domain](#domain)
-    + [Hex 32](#hex-32)
-    + [GUID](#guid)
-    + [IP address](#ip-address)
-    + [URL](#url)
-    + [Company registration number](#company-registration-number)
-    + [Phone number](#phone-number)
-    + [ZIP code](#zip-code)
-    + [JSON](#json)
-    + [Base 64](#base-64)
-    + [Iban](#iban)
-    + [SwiftBic](#swiftbic)
-    + [VatId](#vatid)
-    + [CurrencyCode](#currencycode)
-    + [CountryCode](#countrycode)
-  * [Int-extractable types](#int-extractable-types)
-    + [Port](#port)
-  * [Float-extractable types](#float-extractable-types)
-    + [Part](#part)
-    + [Sigmoid function value](#sigmoid-function-value)
-    + [Rectified Linear Unit function value](#rectified-linear-unit-function-value)
-  * [Array-extractable types](#array-extractable-types)
-    + [DateTimeRange](#datetimerange)
-    + [Duration](#duration)
-    + [Address](#address)
-    + [Price](#price)
 
 
 ## Installation
@@ -460,10 +428,147 @@ Type-specific methods:
 - `getWithVat(): float` returns price with VAT
 - `getCurrency(): CurrencyCode` returns CurrencyCode instance
 
+## Array-types
+
+`Types` provide another kind of Array-extractable types: Unique primitive-type arrays.
+Their purpose is to hold unique set of primitives. 
+They implement `\Countable` and `\IteratorAggregate` and natively support
+set operations.
+
+All Array-types share following features:
+- `static empty() : self` Creates new empty instance of desired array-type.
+- `split(int $chunkSize): self[]` Splits current instance into array of several instances, each with maximum data-set size of `$chunkSize`.
+- `merge(self $toBeMerged): self` Returns new instance with data-set combined from parent and `$toBeMerged` instances. Both source instances stay unchanged. 
+- `deduct(self $toBeDeducted): self` Returns new instance with data-set containing all items from parent that are not contained in `$toBeDeducted`. Both source instances stay unchanged. 
+- `count(): int` Returns data-set size.
+- `isEmpty(): bool` Returns `true` if data-set is empty, `false` otherwise.
+
+Array-types-specific extractors:
+- `static extractOrEmpty(array $data, string $key): self` Behaves like standard `::extract()` method, but returns empty set when `$data[$key]` is `null` or not set.
+- `static extractNotEmpty(array $data, string $key): self` Behaves like standard `::extract()` method, but throws `InvalidTypeException` when `$data[$key]` is not set, `null` or empty array.
+
+### UniqueIntArray
+
+`SmartEmailing\Types\UniqueIntArray`
+
+UniqueIntArray is able to hold unique set of integers. 
+
+Can be created from:
+
+```php
+// duplicate values will be discarted
+// keys are ignored
+
+UniqueIntArray::from(
+	[
+		1, 2, 2, 3, 3, 3, 4 
+	]
+);
+```
+
+Type-specific methods:
+- `getValues(): int[]` Returns data-set of unique integers as array.
+- `toArray(): int[]` Is just alias for `getValues()`.
+- `add(int $id): bool` Adds another integer to the data-set. Returns `false` if integer has already been there.
+- `remove(int $id): void` Removes integer from the data-set, if present.
+- `contains(int $id): bool` Returns `true` if `$id` is contained in the data-set, `false` otherwise.
+
+### UniqueStringArray
+
+`SmartEmailing\Types\UniqueIntArray`
+
+UniqueStringArray is able to hold unique set of strings. 
+
+Can be created from:
+
+```php
+// duplicate values will be discarted
+// keys are ignored
+
+UniqueStringArray::from(
+	[
+		'a', 
+		'b', 
+		'c', 
+		'all work and no play makes jack a dull boy',
+		'all work and no play makes jack a dull boy',
+		'all work and no play makes jack a dull boy',
+	]
+);
+```
+
+Type-specific methods:
+- `getValues(): string[]` Returns data-set of unique strings as array.
+- `toArray(): string[]` Is just alias for `getValues()`.
+- `add(string $id): bool` Adds another string to the data-set. Returns `false` if string has already been there.
+- `remove(string $id): void` Removes string from the data-set, if present.
+- `contains(string $id): bool` Returns `true` if `$id` is contained in the set, `false` otherwise.
 
 
+## Enum-extractable types
+
+Enum-extractable types are types that can contain single value from defined set. They are based on kkk
+
+All Enum-extractable types share following features:
+- `getValue() : string` Returns enum-value
+- `equals(self $enum): bool` Returns `true` if `$enum` contains same value as parent. 
+- `equalsValue(string $value): self` Returns `true` if parent contains the same value as `$value`.
+
+Enums can be created using standard extractors or using their constants:
+```php
+CurrencyCode::from(
+	CurrencyCode::EUR
+);
+CurrencyCode::from(
+	'EUR'
+);
+```
 
 
-=========================
+### Lawful Basis For Processing
 
-🚧 Docs still under construction, stay tuned :-) 🚧 
+`SmartEmailing\Types\LawfulBasisForProcessing`
+
+GDPR's lawful basis for processing
+
+[Available values](./src/LawfulBasisForProcessing.php)
+
+### Country code
+
+`SmartEmailing\Types\CountryCode`
+
+ISO-3166-1 Alpha 2 country code
+
+[Available values](./src/CountryCode.php)
+
+### Currency code
+
+`SmartEmailing\Types\CurrencyCode`
+
+ISO-4217 three-letter currency code
+
+[Available values](./src/CurrencyCode.php)
+
+### Field of Application
+
+`SmartEmailing\Types\FieldOfApplication`
+
+Most common fields of human applications.
+
+[Available values](./src/FieldOfApplication.php)
+
+### Time unit
+
+`SmartEmailing\Types\TimeUnit`
+
+Time unit compatible with `\DateTime::modify()` argument format
+
+[Available values](./src/TimeUnit.php)
+
+### Relation
+
+`SmartEmailing\Types\Relation`
+
+Represents Relation or Gate - AND / OR
+
+[Available values](./src/Relation.php)
