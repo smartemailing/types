@@ -32,8 +32,15 @@ abstract class StringHelpers
 	final public static function removeWhitespace(
 		string $value
 	): string {
-		return (string) \preg_replace(
+		// removed whitespace
+		$value = (string) \preg_replace(
 			'/\s+/',
+			'',
+			$value
+		);
+		// removed unbreakable whitespace
+		return (string) \preg_replace(
+			'~\x{00a0}~',
 			'',
 			$value
 		);

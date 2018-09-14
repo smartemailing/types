@@ -7,6 +7,7 @@ namespace SmartEmailing\Types;
 use Consistence\Type\ObjectMixinTrait;
 use Nette\Utils\Strings;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
+use SmartEmailing\Types\Helpers\StringHelpers;
 
 final class PhoneNumber
 {
@@ -18,27 +19,27 @@ final class PhoneNumber
 	/**
 	 * @var int[]
 	 */
-	private static $phoneCodes = [
+	private static $countryCodesToPhoneCodes = [
+		CountryCode::SI => 386,
+		CountryCode::MH => 692,
 		CountryCode::CZ => 420,
 		CountryCode::SK => 421,
+		CountryCode::CY => 357,
+		CountryCode::IE => 353,
+		CountryCode::FI => 358,
+		CountryCode::LU => 352,
 		CountryCode::AT => 43,
 		CountryCode::BE => 32,
 		CountryCode::FR => 33,
 		CountryCode::HU => 36,
 		CountryCode::GB => 44,
 		CountryCode::DE => 49,
-		CountryCode::US => 1,
 		CountryCode::PL => 48,
 		CountryCode::IT => 39,
 		CountryCode::SE => 46,
-		CountryCode::SI => 386,
-		CountryCode::MH => 692,
 		CountryCode::NL => 31,
-		CountryCode::CY => 357,
-		CountryCode::IE => 353,
 		CountryCode::DK => 45,
-		CountryCode::FI => 358,
-		CountryCode::LU => 352,
+		CountryCode::US => 1,
 	];
 
 	/**
@@ -97,52 +98,69 @@ final class PhoneNumber
 	private function initilize(
 		string $value
 	): bool {
-		$value = $this->preprocessValue(
+		$value = StringHelpers::removeWhitespace(
 			$value
 		);
 
-		foreach (self::$phoneCodes as $countryCode => $phoneCode) {
+		$matchingCountryCodes = $this->getMatchingCountryCodes(
+			$value
+		);
 
+		foreach ($matchingCountryCodes as $matchingCountryCode) {
+			$match = $this->matchLengthForCountry(
+				$matchingCountryCode,
+				$value
+			);
+
+			if ($match) {
+				$this->value = $value;
+				$this->country = CountryCode::from($matchingCountryCode);
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	private function matchLengthForCountry(
+		string $countryCode,
+		string $value
+	): bool {
+		$afterCountryCode = Strings::after(
+			$value,
+			(string) self::$countryCodesToPhoneCodes[$countryCode]
+		);
+
+		if (!\ctype_digit($afterCountryCode)) {
+			return false;
+		}
+
+		$lenght = Strings::length($afterCountryCode);
+
+		return \in_array(
+			$lenght,
+			self::$phoneNumberLengths[$countryCode],
+			true
+		);
+	}
+
+	/**
+	 * @param string $value
+	 * @return string[] matching country code constants
+	 */
+	private function getMatchingCountryCodes(
+		string $value
+	): array {
+		$matching = [];
+		foreach (self::$countryCodesToPhoneCodes as $countryCode => $phoneCode) {
 			$prefix = '+' . $phoneCode;
-
 			if (!Strings::startsWith($value, $prefix)) {
 				continue;
 			}
 
-			$plainNumber = Strings::after($value, $prefix);
-
-			if (!\ctype_digit($plainNumber)) {
-				return false;
-			}
-
-			$plainNumberLength = Strings::length($value) - Strings::length($prefix);
-
-			foreach (self::$phoneNumberLengths[$countryCode] as $phoneNumberLength) {
-				if ($phoneNumberLength !== $plainNumberLength) {
-					continue;
-				}
-
-				$this->country = CountryCode::get($countryCode);
-				$this->value = $value;
-				return true;
-			}
+			$matching[] = $countryCode;
 		}
-		return false;
-	}
-
-	private function preprocessValue(
-		string $value
-	): string {
-		$value = (string) \preg_replace(
-			'/\s+/',
-			'',
-			$value
-		);
-		return (string) \preg_replace(
-			'~\x{00a0}~',
-			'',
-			$value
-		);
+		return $matching;
 	}
 
 }
