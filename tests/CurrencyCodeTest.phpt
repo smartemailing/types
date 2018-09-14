@@ -41,8 +41,8 @@ final class CurrencyCodeTest extends TestCase
 		$value = \reset($values);
 		Assert::equal('CZK', $value);
 
-		$country = Currency::from('CZK');
-		Assert::type(Currency::class, $country);
+		$country = CurrencyCode::from('CZK');
+		Assert::type(CurrencyCode::class, $country);
 		Assert::type(CurrencyCode::class, $country);
 	}
 

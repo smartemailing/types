@@ -30,10 +30,6 @@
 		},
 		"classmap": [
 			"src/deprecated/"
-		],
-		"files": [
-			"src/deprecated/Country.php",
-			"src/deprecated/Currency.php"
 		]
 	},
 	"autoload-dev": {
