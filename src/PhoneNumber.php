@@ -84,17 +84,20 @@ final class PhoneNumber
 		}
 	}
 
+	public function getCountry(): CountryCode
+	{
+		return $this->country;
+	}
+
+	public function getValue(): string
+	{
+		return $this->value;
+	}
+
 	private function initilize(
 		string $value
 	): bool {
-		$value = (string) \preg_replace(
-			'/\s+/',
-			'',
-			$value
-		);
-		$value = (string) \preg_replace(
-			'~\x{00a0}~',
-			'',
+		$value = $this->preprocessValue(
 			$value
 		);
 
@@ -127,14 +130,19 @@ final class PhoneNumber
 		return false;
 	}
 
-	public function getCountry(): CountryCode
-	{
-		return $this->country;
-	}
-
-	public function getValue(): string
-	{
-		return $this->value;
+	private function preprocessValue(
+		string $value
+	): string {
+		$value = (string) \preg_replace(
+			'/\s+/',
+			'',
+			$value
+		);
+		return (string) \preg_replace(
+			'~\x{00a0}~',
+			'',
+			$value
+		);
 	}
 
 }
