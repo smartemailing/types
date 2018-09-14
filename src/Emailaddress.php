@@ -93,15 +93,8 @@ final class Emailaddress implements ToStringInterface
 			return false;
 		}
 
-		if (\strcmp($emailaddress, Strings::toAscii($emailaddress)) !== 0) {
-			return false;
-		}
-
 		$exploded = \explode('@', $emailaddress);
 
-		if (\count($exploded) !== 2) {
-			return false;
-		}
 		[$this->localPart, $domain] = $exploded;
 
 		$this->domain = Domain::from($domain);
