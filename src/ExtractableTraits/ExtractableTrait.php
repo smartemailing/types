@@ -130,8 +130,7 @@ trait ExtractableTrait
 		$data,
 		string $key,
 		bool $nullIfInvalid = false
-	): ?self
-	{
+	): ?self {
 		if (!\is_array($data)) {
 			throw InvalidTypeException::typeError('array', $data);
 		}
@@ -144,6 +143,25 @@ trait ExtractableTrait
 			return null;
 		}
 
+		return self::tryToExtract(
+			$data,
+			$key,
+			$nullIfInvalid
+		);
+	}
+
+	/**
+	 * @param mixed|mixed[] $data
+	 * @param string $key
+	 * @param bool $nullIfInvalid
+	 * @return self|null
+	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 */
+	private static function tryToExtract(
+		$data,
+		string $key,
+		bool $nullIfInvalid
+	): ?self {
 		try {
 			return self::extract($data, $key);
 		} catch (InvalidTypeException $e) {
