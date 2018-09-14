@@ -12,7 +12,7 @@
 
 Neverending data validation can be tiresome. Either you have to validate your data 
 over and over again in every function you use it, or you have to rely 
-it is already validated somewhere else and risk potential errors. Smelly, right?
+it has already been validated somewhere else and risk potential errors. Smelly, right?
 
 Replacing validation hell with **Types** will make 
 your code much more readable and less vulnerable to bugs.
@@ -28,12 +28,10 @@ Your code will be unbreakable and your IDE will love it.
 ## Table of Contents
 
 - [SmartEmailing \ Types](#smartemailing---types)
-    + [Missing data types for PHP 7.1. Highly extendable.](#missing-data-types-for-php-71-highly-extendable)
-  * [Table of Contents](#table-of-contents)
   * [Installation](#installation)
   * [How does it work](#how-does-it-work)
-  * [Wrapping raw value](#wrapping-raw-value)
-  * [Extraction from array](#extraction-from-array)
+    + [Wrapping raw value](#wrapping-raw-value)
+    + [Extraction from array](#extraction-from-array)
   * [String-extractable types](#string-extractable-types)
     + [E-mail address](#e-mail-address)
     + [Domain](#domain)
@@ -83,22 +81,22 @@ composer require smartemailing/types
 
 ## How does it work
 
-It is easy. You just initialize particular value object by simple one-liner. 
+It is easy. You just initialize desired value object by simple one-liner. 
 From this point, you have sanitized, normalized and valid data; or `SmartEmailing\Types\InvalidTypeException` to handle.
 
 **Types** consist from:
 
-- String-extractable types - validated strings (E-mail address, Domains, Hexadecimal strings,...)
+- String-extractable types - validated strings (E-mail address, Domains, Hexadecimal strings, ...)
 - Int-extractable types - validated integers (Port) 
-- Float-extractable types - validated floats (Part) 
-- Enum-extractable types - enumerables (Country, Currency, GDPR's Lawful purpose, ...)
+- Float-extractable types - validated floats (SigmoidValue, Part, ...) 
+- Enum-extractable types - enumerables (CountryCode, CurrencyCode, GDPR's Lawful purpose, ...)
 - Composite (Array-extractable) types - structures containing multiple another types (Address, ...)
 - DateTimes - extraction of DateTime and DateTimeImmutable
 - Primitive types extractors and unique arrays
 
 Different types provide different methods related to them, but all types share this extraction API:
 
-## Wrapping raw value
+### Wrapping raw value
 
 ```php
 <?php
@@ -130,7 +128,7 @@ $emailaddress = Emailaddress::fromOrNull('bla bla', true); // returns null inste
 
 ```
 
-## Extraction from array
+### Extraction from array
 
 This is really useful for strict-typing (validation) multidimensional arrays like API requests, forms or database data.
 
