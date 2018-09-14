@@ -136,7 +136,7 @@ final class VatId implements ToStringInterface
 		}
 
 		$modulo = Arrays::get(self::getDivisible(), $country->getValue(), 1);
-		if (($vatNumber % $modulo !== 0) && Validators::isNumericInt($vatNumber)) {
+		if (Validators::isNumericInt($vatNumber) && ($vatNumber % $modulo !== 0)) {
 			return false;
 		}
 
