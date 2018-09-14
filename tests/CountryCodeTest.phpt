@@ -39,8 +39,8 @@ final class CountryCodeTest extends \Tester\TestCase
 		$value = \reset($values);
 		Assert::equal('CZ', $value);
 
-		$country = Country::from('CZ');
-		Assert::type(Country::class, $country);
+		$country = CountryCode::from('CZ');
+		Assert::type(CountryCode::class, $country);
 		Assert::type(CountryCode::class, $country);
 	}
 
