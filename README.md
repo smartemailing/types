@@ -8,7 +8,7 @@
 
 [![codecov](https://codecov.io/gh/smartemailing/types/branch/master/graph/badge.svg)](https://codecov.io/gh/smartemailing/types)
 [![CircleCI](https://circleci.com/gh/smartemailing/types.svg?style=shield)](https://circleci.com/gh/smartemailing/types)
-[![CodeClimate](https://codeclimate.com/github/smartemailing/types.png)](https://codeclimate.com/github/smartemailing/types/maintainability)
+[![CodeClimate](https://img.shields.io/codeclimate/maintainability/smartemailing/types.svg)](https://codeclimate.com/github/smartemailing/types/maintainability)
 
 
 Neverending data validation can be tiresome. Either you have to validate your data 
