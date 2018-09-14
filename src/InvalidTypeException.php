@@ -4,9 +4,7 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use SmartSelling\Parameters\InvalidParameterException;
-
-class InvalidTypeException extends InvalidParameterException
+class InvalidTypeException extends \RuntimeException
 {
 
 	public function wrap(

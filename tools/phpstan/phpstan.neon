@@ -2,8 +2,6 @@ parameters:
 	autoload_directories:
 		- ../../src
 		- ../../tests
-	autoload_files:
-		- ../../src/deprecated/InvalidParameterException.php
 	excludes_analyse:
 	ignoreErrors:
 		- '#Call to function is_string\(\) will always evaluate to false#'
