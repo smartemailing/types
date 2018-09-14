@@ -7,7 +7,7 @@ namespace SmartEmailing\Types;
 use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 
-final class UniqueStringArray implements \Countable, \IteratorAggregate
+final class UniqueStringArray implements \Countable, \IteratorAggregate, ToArrayInterface
 {
 
 	use ObjectMixinTrait;

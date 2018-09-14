@@ -8,6 +8,9 @@ use Consistence\Enum\Enum;
 use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\EnumExtractableTrait;
 
+/**
+ * ISO-4217 three-letter ("Alpha-3")
+ */
 final class CurrencyCode extends Enum implements ToStringInterface
 {
 

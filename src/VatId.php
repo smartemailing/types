@@ -33,6 +33,42 @@ final class VatId implements ToStringInterface
 	 */
 	private $vatNumber;
 
+	/**
+	 * @var string[]
+	 */
+	private static $patternsByCountry = [
+		CountryCode::AT => 'ATU\d{8}',
+		CountryCode::BE => 'BE[0-1]\d{9}',
+		CountryCode::BG => 'BG\d{9,10}',
+		CountryCode::HR => 'HR\d{11}',
+		CountryCode::CY => 'CY\d{8}[A-Z]',
+		CountryCode::CZ => 'CZ\d{8,10}',
+		CountryCode::DK => 'DK(\d{2}){3}(\d{2})',
+		CountryCode::EE => 'EE\d{9}',
+		CountryCode::FI => 'FI\d{8}',
+		CountryCode::FR => 'FR[A-Z0-9]{2}\d{9}',
+		CountryCode::DE => 'DE\d{9}',
+		CountryCode::GR => '(GR|EL)\d{9}',
+		CountryCode::HU => 'HU\d{8}',
+		CountryCode::IE => 'IE\d{7}[A-Z]{1,2}',
+		CountryCode::IT => 'IT\d{11}',
+		CountryCode::LV => 'LV\d{11}',
+		CountryCode::LT => 'LT(\d{9}|\d{12})',
+		CountryCode::LU => 'LU\d{8}',
+		CountryCode::MT => 'MT\d{8}',
+		CountryCode::NL => 'NL\d{9}B\d{2}',
+		CountryCode::PL => 'PL\d{10}',
+		CountryCode::PT => 'PT\d{9}',
+		CountryCode::RO => 'RO\d{2,10}',
+		CountryCode::SK => 'SK\d{10}',
+		CountryCode::SI => 'SI\d{8}',
+		CountryCode::ES => 'ES(([A-Z]\d{8})|([A-Z]\d{7}[A-Z]))',
+		CountryCode::SE => 'SE\d{12}',
+		CountryCode::CH => 'CHE\d{9}((MWST)|(TVA)|(IVA))',
+		CountryCode::GB => 'GB((\d{9})|(\d{12}))',
+		CountryCode::GG => 'GY\d{6}',
+	];
+
 	private function __construct(string $vatId)
 	{
 		[$this->country, $this->prefix, $this->vatNumber] = self::extractCountryAndPrefixAndNumber($vatId);
@@ -112,38 +148,7 @@ final class VatId implements ToStringInterface
 	 */
 	private static function getPatternsByCountry(): array
 	{
-		return [
-			CountryCode::AT => 'ATU\d{8}',
-			CountryCode::BE => 'BE[0-1]\d{9}',
-			CountryCode::BG => 'BG\d{9,10}',
-			CountryCode::HR => 'HR\d{11}',
-			CountryCode::CY => 'CY\d{8}[A-Z]',
-			CountryCode::CZ => 'CZ\d{8,10}',
-			CountryCode::DK => 'DK(\d{2}){3}(\d{2})',
-			CountryCode::EE => 'EE\d{9}',
-			CountryCode::FI => 'FI\d{8}',
-			CountryCode::FR => 'FR[A-Z0-9]{2}\d{9}',
-			CountryCode::DE => 'DE\d{9}',
-			CountryCode::GR => '(GR|EL)\d{9}',
-			CountryCode::HU => 'HU\d{8}',
-			CountryCode::IE => 'IE\d{7}[A-Z]{1,2}',
-			CountryCode::IT => 'IT\d{11}',
-			CountryCode::LV => 'LV\d{11}',
-			CountryCode::LT => 'LT(\d{9}|\d{12})',
-			CountryCode::LU => 'LU\d{8}',
-			CountryCode::MT => 'MT\d{8}',
-			CountryCode::NL => 'NL\d{9}B\d{2}',
-			CountryCode::PL => 'PL\d{10}',
-			CountryCode::PT => 'PT\d{9}',
-			CountryCode::RO => 'RO\d{2,10}',
-			CountryCode::SK => 'SK\d{10}',
-			CountryCode::SI => 'SI\d{8}',
-			CountryCode::ES => 'ES(([A-Z]\d{8})|([A-Z]\d{7}[A-Z]))',
-			CountryCode::SE => 'SE\d{12}',
-			CountryCode::CH => 'CHE\d{9}((MWST)|(TVA)|(IVA))',
-			CountryCode::GB => 'GB((\d{9})|(\d{12}))',
-			CountryCode::GG => 'GY\d{6}',
-		];
+		return self::$patternsByCountry;
 	}
 
 	/**

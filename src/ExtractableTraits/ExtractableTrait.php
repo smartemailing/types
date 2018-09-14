@@ -129,7 +129,7 @@ trait ExtractableTrait
 	public static function extractOrNull(
 		$data,
 		string $key,
-		bool $nullIfInvalid = false // default value breaks code sniffer
+		bool $nullIfInvalid = false
 	): ?self
 	{
 		if (!\is_array($data)) {
