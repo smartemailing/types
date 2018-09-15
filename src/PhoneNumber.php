@@ -39,8 +39,8 @@ final class PhoneNumber
 		CountryCode::SE => 46,
 		CountryCode::NL => 31,
 		CountryCode::DK => 45,
-        CountryCode::US => 1,
-        CountryCode::TR => 90,
+		CountryCode::US => 1,
+		CountryCode::TR => 90,
 	];
 
 	/**
@@ -66,8 +66,8 @@ final class PhoneNumber
 		CountryCode::IE => [9],
 		CountryCode::DK => [8],
 		CountryCode::FI => [10],
-        CountryCode::LU => [9],
-        CountryCode::TR => [10],
+		CountryCode::LU => [9],
+		CountryCode::TR => [10],
 	];
 
 	/**
