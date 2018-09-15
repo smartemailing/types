@@ -254,7 +254,7 @@ Whitespace-free company registration number for following countries:
 `SmartEmailing\Types\PhoneNumber`
 
 Whitespace-free phone number in international format for following countries: 
-`CZ`, `SK`, `AT`, `BE`, `FR`, `HU`, `GB`, `DE`, `US`, `PL`, `IT`, `SE`, `SI`, `MH`, `NL`, `CY`, `IE`, `DK`, `FI`, `LU`
+`CZ`, `SK`, `AT`, `BE`, `FR`, `HU`, `GB`, `DE`, `US`, `PL`, `IT`, `SE`, `SI`, `MH`, `NL`, `CY`, `IE`, `DK`, `FI`, `LU`, `TR`
 
 Type-specific methods:
 - `getCountry() : SmartEmailing\Types\Country` Originating country (`CZ`)

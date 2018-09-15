@@ -38,6 +38,7 @@ final class PhoneNumberTest extends TestCase
 		$validValues = [
 			'+420720182158' => CountryCode::CZ,
 			'+391234567891234' => CountryCode::IT,
+			'+905322002020' => CountryCode::TR,
 		];
 
 		foreach ($validValues as $number => $country) {
