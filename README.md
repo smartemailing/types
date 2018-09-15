@@ -1,6 +1,6 @@
 # SmartEmailing \ Types 
 
-### Missing data types for PHP 7.1. Highly extendable.
+### Missing data types for PHP 7.1. Highly extendable, production tested.
 
 [![Monthly Downloads](https://poser.pugx.org/smartemailing/types/d/monthly)](https://packagist.org/packages/smartemailing/types)
 [![License](https://poser.pugx.org/smartemailing/types/license)](https://packagist.org/packages/smartemailing/types)
@@ -29,6 +29,7 @@ Your code will be unbreakable and your IDE will love it.
 ## Table of Contents
 
 - [SmartEmailing \ Types](#smartemailing---types)
+    + [Missing data types for PHP 7.1. Highly extendable, production tested.](#missing-data-types-for-php-71-highly-extendable--production-tested)
   * [Installation](#installation)
   * [How does it work](#how-does-it-work)
     + [Wrapping raw value](#wrapping-raw-value)
@@ -71,6 +72,8 @@ Your code will be unbreakable and your IDE will love it.
     + [Field of Application](#field-of-application)
     + [Time unit](#time-unit)
     + [Relation](#relation)
+  * [How to contribute?](#how-to-contribute)
+
 
 ## Installation
 
@@ -615,3 +618,23 @@ Time unit compatible with `\DateTime::modify()` argument format
 Represents Relation or Gate - AND / OR
 
 [Available values](./src/Relation.php)
+
+## How to contribute?
+
+*At first, thank you for your interest in improving Types!*
+
+Before you open new pull request, please, make sure you did not forget to write tests for it. 
+
+Then run following commands:
+
+1) `vendor/bin/tester tests`
+Run tests locally. It takes just two seconds :-)
+
+2) `bin/cbf`
+This will check the code and automatically fix some code style issues (like indentation, unnecessary phpdoc blocks, new lines, ...)
+
+3) `bin/cs`
+This will run another code style check and tell you about problems that could not be fixed automatically. Please, fix them, and rerun the command.
+
+4) `bin/stan`
+PHP Static analysis tool - this will check the code for some smelly constructions that should be refactored. Please, fix them, and rerun the command.
