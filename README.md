@@ -11,9 +11,11 @@
 [![CodeClimate](https://img.shields.io/codeclimate/maintainability/smartemailing/types.svg)](https://codeclimate.com/github/smartemailing/types/maintainability)
 
 
-Neverending data validation can be tiresome. Either you have to validate your data 
+Neverending data validation can be exhausting. Either you have to validate your data 
 over and over again in every function you use it, or you have to rely 
-it has already been validated somewhere else and risk potential errors. Smelly, right?
+it has already been validated somewhere else and risk potential problems. 
+
+Smelly, right?
 
 Replacing validation hell with **Types** will make 
 your code much more readable and less vulnerable to bugs.
