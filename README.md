@@ -72,8 +72,9 @@ Your code will be unbreakable and your IDE will love it.
     + [Field of Application](#field-of-application)
     + [Time unit](#time-unit)
     + [Relation](#relation)
-  * [How to contribute?](#how-to-contribute)
-
+  * [Primitive types](#primitive-types)
+  * [Writing your own types](#writing-your-own-types)
+  * [How to contribute](#how-to-contribute)
 
 ## Installation
 
@@ -679,7 +680,7 @@ You can see examples for every extractable-type below.
 
 One more thought - if you think your new type may be useful for others, please, contribute and open PR! 🖖
 
-## How to contribute?
+## How to contribute
 
 *At first, thank you for your interest in improving Types!*
 
