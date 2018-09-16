@@ -3,6 +3,11 @@
 	"description": "Lightweight collection of handy PHP value objects",
 	"type": "library",
 	"license": "MIT",
+	"keywords": [
+		"php",
+		"strict types",
+		"value objects"
+	],
 	"authors": [
 		{
 			"name": "Martin Strouhal",
