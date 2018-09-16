@@ -73,6 +73,7 @@ Your code will be unbreakable and your IDE will love it.
     + [Time unit](#time-unit)
     + [Relation](#relation)
   * [Primitive types](#primitive-types)
+  * [DateTimes](#datetimes)
   * [Writing your own types](#writing-your-own-types)
   * [How to contribute](#how-to-contribute)
 
@@ -663,6 +664,17 @@ PrimitiveTypes::extractArray($data, 'key');
 PrimitiveTypes::extractArrayOrNull($data, 'key');
 
 ```
+
+
+## DateTimes
+
+Types are able to get and extract `\DateTime` and `\DateTimeImmutable` 
+objects using `DateTimes` and `DateTimesImmutable` classes. 
+API is the same as for other types, so available methods are (shown for `DateTimes`):
+
+- `from(string $dateTime ) : \DateTime`
+- `extract(array $data, string $index) : \DateTime`
+- `extractOrNull(array $data, string $index, bool $getNullIfInvalid) : ?\DateTime`
 
 ## Writing your own types
 
