@@ -687,16 +687,17 @@ You can see examples for every extractable-type below.
 - [String-extractable types](./src/Hex32.php)
 - [Int-extractable types](./src/Port.php) 
 - [Float-extractable types](./src/Part.php) 
-- [Enum-extractable types](./src/CountryCode.php)) - You do not have to implement construcotr here, just add your `public static` members.
-- [Composite (Array-extractable)](./src/Address.php) - Composite types are very handy for forms-data or API requests validation
+- [Enum-extractable types](./src/CountryCode.php) - You do not have to implement constructor here, just add your `public static` members.
+- [Composite (Array-extractable)](./src/Address.php) - Handy for forms-data or API requests validation
 
-One more thought - if you think your new type may be useful for others, please, contribute and open PR! 🖖
+One more thought - if you think your new type may be useful for others, please, contribute! 🖖
 
 ## How to contribute
 
-*At first, thank you for your interest in improving Types!*
+*Thank you for your interest in improving Types!️* ❤
 
-Before you open new pull request, please, make sure you did not forget to write tests for it. 
+Before you open new pull request, please, make sure you 
+did not forget to **write tests** for it. 
 
 Then run following commands:
 
@@ -704,10 +705,15 @@ Then run following commands:
 Run tests locally. It takes just two seconds :-)
 
 2) `bin/cbf`
-This will check the code and automatically fix some code style issues (like indentation, unnecessary phpdoc blocks, new lines, ...)
+This will check the code and automatically fix some code style issues 
+like indentation or line breaks.
 
 3) `bin/cs`
-This will run another code style check and tell you about problems that could not be fixed automatically. Please, fix them, and rerun the command.
+This will run another code style check thaw will you about 
+problems that must be fixed manually. 
+Please, fix them, and re-run the command.
 
 4) `bin/stan`
-PHP Static analysis tool - this will check the code for some smelly constructions that should be refactored. Please, fix them, and rerun the command.
+PHP Static analysis tool - this will check the code for some 
+smelly constructions that should be refactored. 
+Please, fix them, and re-run the command.
