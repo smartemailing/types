@@ -2,8 +2,8 @@
 
 ### Missing data types for PHP 7.1. Highly extendable, production tested.
 
-[![License](https://poser.pugx.org/smartemailing/types/license)](https://packagist.org/packages/smartemailing/types)
-[![Latest Stable Version](https://poser.pugx.org/smartemailing/types/v/stable)](https://packagist.org/packages/smartemailing/types)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+[![Latest release](https://img.shields.io/github/release/smartemailing/types.svg)](https://github.com/smartemailing/types/releases/)
 [![Monthly Downloads](https://poser.pugx.org/smartemailing/types/d/monthly)](https://packagist.org/packages/smartemailing/types)
 
 [![CircleCI](https://circleci.com/gh/smartemailing/types.svg?style=shield)](https://circleci.com/gh/smartemailing/types)
