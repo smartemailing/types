@@ -406,6 +406,7 @@ Type-specific methods:
 - `getTo(): \DateTimeImmutable` returns `To` date and time as `\DateTimeImmutable` instance
 - `getDurationInSeconds(): int` returns number of seconds between `From` and `To` dates
 - `contains(\DateTimeInterface $dateTime): bool` returns `true` if provided `\DateTimeInterface` lies between `From` and `To` dates.
+- `getLengthInSeconds(): int` returns duration length in seconds
 
 ### Duration
 

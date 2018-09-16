@@ -27,6 +27,11 @@ final class Duration
 	private $unit;
 
 	/**
+	 * @var int
+	 */
+	private $lengthInSeconds;
+
+	/**
 	 * @param mixed[] $data
 	 */
 	private function __construct(
@@ -34,10 +39,17 @@ final class Duration
 	) {
 		$value = PrimitiveTypes::extractInt($data, 'value');
 		if (\abs($value) > self::MAX_VALUE) {
-			throw new InvalidTypeException('Value is out of range: [-' . self::MAX_VALUE . ', ' . self::MAX_VALUE . '].');
+			throw new InvalidTypeException(
+				'Value is out of range: [-' . self::MAX_VALUE . ', ' . self::MAX_VALUE . '].'
+			);
 		}
 		$this->value = $value;
 		$this->unit = TimeUnit::extract($data, 'unit');
+
+		$now = new \DateTimeImmutable();
+		$end = $now->modify('+' . $this->getDateTimeModify());
+		$diff = $end->getTimestamp() - $now->getTimestamp();
+		$this->lengthInSeconds = (int) \abs($diff);
 	}
 
 	public static function fromDateTimeModify(string $dateTimeModify): self
@@ -55,10 +67,12 @@ final class Duration
 			$value *= -1;
 		}
 
-		return new self([
-			'value' => $value,
-			'unit' => $unit->getValue(),
-		]);
+		return new self(
+			[
+				'value' => $value,
+				'unit' => $unit->getValue(),
+			]
+		);
 	}
 
 	public function getValue(): int
@@ -85,6 +99,11 @@ final class Duration
 			'value' => $this->value,
 			'unit' => $this->unit->getValue(),
 		];
+	}
+
+	public function getLengthInSeconds(): int
+	{
+		return $this->lengthInSeconds;
 	}
 
 }

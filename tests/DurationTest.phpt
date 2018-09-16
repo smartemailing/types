@@ -79,6 +79,25 @@ final class DurationTest extends TestCase
 		Assert::equal(1, $duration->getValue());
 	}
 
+
+	public function testLengthInSeconds(): void
+	{
+		$duration = Duration::from([
+			'value' => 3,
+			'unit' => TimeUnit::HOURS,
+		]);
+		Assert::type(Duration::class, $duration);
+		Assert::equal(10800, $duration->getLengthInSeconds());
+
+		$duration = Duration::from([
+			'value' => 10,
+			'unit' => TimeUnit::MINUTES,
+		]);
+		Assert::type(Duration::class, $duration);
+		Assert::equal(600, $duration->getLengthInSeconds());
+	}
+
+
 	public function testGetDateTimeModify(): void
 	{
 		foreach ($this->getTestDateTimeModifyData() as $data) {
@@ -111,7 +130,7 @@ final class DurationTest extends TestCase
 	/**
 	 * @return mixed[]
 	 */
-	public function getTestDateTimeModifyData(): array
+	private function getTestDateTimeModifyData(): array
 	{
 		return [
 			[Duration::fromDateTimeModify('-5 hours'), '-5 hours'],
@@ -137,7 +156,7 @@ final class DurationTest extends TestCase
 	/**
 	 * @return mixed[]
 	 */
-	public function getTestToArrayData(): array
+	private function getTestToArrayData(): array
 	{
 		return [
 			[Duration::fromDateTimeModify('-1 years'), ['value' => -1, 'unit' => TimeUnit::YEARS]],
