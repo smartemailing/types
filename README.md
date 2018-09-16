@@ -2,12 +2,12 @@
 
 ### Missing data types for PHP 7.1. Highly extendable, production tested.
 
-[![Monthly Downloads](https://poser.pugx.org/smartemailing/types/d/monthly)](https://packagist.org/packages/smartemailing/types)
 [![License](https://poser.pugx.org/smartemailing/types/license)](https://packagist.org/packages/smartemailing/types)
 [![Latest Stable Version](https://poser.pugx.org/smartemailing/types/v/stable)](https://packagist.org/packages/smartemailing/types)
+[![Monthly Downloads](https://poser.pugx.org/smartemailing/types/d/monthly)](https://packagist.org/packages/smartemailing/types)
 
-[![codecov](https://codecov.io/gh/smartemailing/types/branch/master/graph/badge.svg)](https://codecov.io/gh/smartemailing/types)
 [![CircleCI](https://circleci.com/gh/smartemailing/types.svg?style=shield)](https://circleci.com/gh/smartemailing/types)
+[![codecov](https://codecov.io/gh/smartemailing/types/branch/master/graph/badge.svg)](https://codecov.io/gh/smartemailing/types)
 [![CodeClimate](https://img.shields.io/codeclimate/maintainability/smartemailing/types.svg)](https://codeclimate.com/github/smartemailing/types/maintainability)
 
 
@@ -260,7 +260,7 @@ Whitespace-free phone number in international format for following countries:
 `CZ`, `SK`, `AT`, `BE`, `FR`, `HU`, `GB`, `DE`, `US`, `PL`, `IT`, `SE`, `SI`, `MH`, `NL`, `CY`, `IE`, `DK`, `FI`, `LU`, `TR`
 
 Type-specific methods:
-- `getCountry() : SmartEmailing\Types\Country` Originating country (`CZ`)
+- `getCountry() : SmartEmailing\Types\CountryCode` Originating country (`CZ`)
 
 
 ### ZIP code
@@ -298,7 +298,7 @@ Type-specific methods:
 
 Type-specific methods:
 - `getFormatted(string $type = SmartEmailing\Types\Iban::FORMAT_ELECTRONIC): string` returns formatted Iban string. Format types: `FORMAT_ELECTRONIC`, `FORMAT_PRINT`.
-- `getCountry(): SmartEmailing\Types\Country`
+- `getCountry(): SmartEmailing\Types\CountryCode`
 - `getChecksum(): int` 
 
 ### SwiftBic
@@ -618,6 +618,66 @@ Time unit compatible with `\DateTime::modify()` argument format
 Represents Relation or Gate - AND / OR
 
 [Available values](./src/Relation.php)
+
+## Primitive types
+
+Types are able to get and extract primitives using `PrimitiveTypes` class. See examples below:
+
+```php
+<?php
+
+declare(strict_types = 1);
+
+use SmartEmailing\Types\PrimitiveTypes;
+use SmartEmailing\Types\InvalidTypeException;
+
+PrimitiveTypes::getInt(666); // 666
+PrimitiveTypes::getInt('666'); // 666
+PrimitiveTypes::getInt(666.1); // throws InvalidTypeException
+PrimitiveTypes::getInt('abcd'); // throws InvalidTypeException
+PrimitiveTypes::getInt('abcd'); // throws InvalidTypeException
+
+PrimitiveTypes::getFloat(1.1); // 1.1
+PrimitiveTypes::getFloat('1.1'); // 1.1
+PrimitiveTypes::getFloat(1); // 1.0
+PrimitiveTypes::getFloat('1'); // 1.0
+PrimitiveTypes::getFloat('xxx'); // throws InvalidTypeException
+
+PrimitiveTypes::getString('xxx'); // 'xxx'
+PrimitiveTypes::getString(5); // '5'
+PrimitiveTypes::getString(5.0); // '5'
+PrimitiveTypes::getString(5.1); // '5.1'
+
+PrimitiveTypes::getArray([1, 2]); // [1, 2]
+PrimitiveTypes::getArray([1, 'abcd']); // [1, 'abcd']
+
+// All PrimitiveTypes::get* methods have their extract equivalent:
+
+PrimitiveTypes::extractInt($data, 'key');
+PrimitiveTypes::extractIntOrNull($data, 'key');
+PrimitiveTypes::extractString($data, 'key');
+PrimitiveTypes::extractStringOrNull($data, 'key');
+PrimitiveTypes::extractFloat($data, 'key');
+PrimitiveTypes::extractArray($data, 'key');
+PrimitiveTypes::extractArrayOrNull($data, 'key');
+
+```
+
+## Writing your own types
+
+Implementing your custom type is easy!
+At first you have to decide what extractable-type should your new custom type be and
+`use` particular extractable-trait in it's class to enhance it by all extractable features. 
+The only thing you have to do next is implement class construtor and throw InvalidTypeException in case of invalid data.
+You can see examples for every extractable-type below.
+
+- [String-extractable types](./src/Hex32.php)
+- [Int-extractable types](./src/Port.php) 
+- [Float-extractable types](./src/Part.php) 
+- [Enum-extractable types](./src/CountryCode.php)) - You do not have to implement construcotr here, just add your `public static` members.
+- [Composite (Array-extractable)](./src/Address.php) - Composite types are very handy for forms-data or API requests validation
+
+One more thought - if you think your new type may be useful for others, please, contribute and open PR! 🖖
 
 ## How to contribute?
 
