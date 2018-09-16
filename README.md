@@ -28,8 +28,6 @@ Your code will be unbreakable and your IDE will love it.
 
 ## Table of Contents
 
-- [SmartEmailing \ Types](#smartemailing---types)
-    + [Missing data types for PHP 7.1. Highly extendable, production tested.](#missing-data-types-for-php-71-highly-extendable--production-tested)
   * [Installation](#installation)
   * [How does it work](#how-does-it-work)
     + [Wrapping raw value](#wrapping-raw-value)
