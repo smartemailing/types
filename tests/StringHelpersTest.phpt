@@ -23,11 +23,11 @@ final class StringHelpersTest extends TestCase
 		Assert::equal('a b c ', StringHelpers::normalizeWhitespace($string));
 	}
 
-	public function testsanitizeOrNull(): void
+	public function testSanitizeOrNull(): void
 	{
-		$string = 'a     b  ' . \PHP_EOL . 'c' . \PHP_EOL;
+		$string = "čš \n\r\n a   ";
 
-		Assert::equal('a b c ', StringHelpers::sanitizeOrNull($string));
+		Assert::equal("čš \n\n a", StringHelpers::sanitizeOrNull($string));
 		Assert::equal(null, StringHelpers::sanitizeOrNull(null));
 	}
 
