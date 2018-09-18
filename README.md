@@ -658,8 +658,10 @@ PrimitiveTypes::getArray([1, 'abcd']); // [1, 'abcd']
 
 PrimitiveTypes::extractInt($data, 'key');
 PrimitiveTypes::extractIntOrNull($data, 'key');
+PrimitiveTypes::extractIntOrNull($data, 'key', true);
 PrimitiveTypes::extractString($data, 'key');
 PrimitiveTypes::extractStringOrNull($data, 'key');
+PrimitiveTypes::extractStringOrNull($data, 'key', true);
 PrimitiveTypes::extractFloat($data, 'key');
 PrimitiveTypes::extractArray($data, 'key');
 PrimitiveTypes::extractArrayOrNull($data, 'key');
@@ -691,14 +693,14 @@ You can see examples for every extractable-type below.
 - [Enum-extractable types](./src/CountryCode.php) - You do not have to implement constructor here, just add your `public static` members.
 - [Composite (Array-extractable)](./src/Address.php) - Handy for forms-data or API requests validation
 
-One more thought - if you think your new type may be useful for others, please, contribute! 🖖
+One more thought - if you think your new type will be useful for others, please, contribute!
 
 ## How to contribute
 
-*Thank you for your interest in improving Types!️* ❤
+Thank you for your interest in improving Types!️ ❤️ 🖖
 
-Before you open new pull request, please, make sure you 
-did not forget to **write tests** for it. 
+Before you open pull request, please, make sure you 
+did not forget to **write tests** for your code. 
 
 Then run following commands:
 

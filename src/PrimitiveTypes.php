@@ -77,60 +77,89 @@ abstract class PrimitiveTypes
 	/**
 	 * @param float[] $data
 	 * @param string $key
+	 * @param bool $nullIfInvalid
 	 * @return float
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractFloatOrNull(
 		array $data,
-		string $key
+		string $key,
+		bool $nullIfInvalid = false
 	): ?float {
 		if (!isset($data[$key])) {
 			return null;
 		}
-		return self::extractFloat($data, $key);
+		try {
+			return self::extractFloat($data, $key);
+		} catch (InvalidTypeException $e) {
+			if ($nullIfInvalid) {
+				return null;
+			}
+			throw $e;
+		}
 	}
 
 	/**
 	 * @param mixed[] $data
 	 * @param string $key
+	 * @param bool $nullIfInvalid
 	 * @return int
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractIntOrNull(
 		array $data,
-		string $key
+		string $key,
+		bool $nullIfInvalid = false
 	): ?int {
 		if (!isset($data[$key])) {
 			return null;
 		}
-		return self::extractInt($data, $key);
+		try {
+			return self::extractInt($data, $key);
+		} catch (InvalidTypeException $e) {
+			if ($nullIfInvalid) {
+				return null;
+			}
+			throw $e;
+		}
 	}
 
 	/**
 	 * @param mixed[] $data
 	 * @param string $key
+	 * @param bool $nullIfInvalid
 	 * @return bool|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractBoolOrNull(
 		array $data,
-		string $key
+		string $key,
+		bool $nullIfInvalid = false
 	): ?bool {
 		if (!isset($data[$key])) {
 			return null;
 		}
-		return self::extractBool($data, $key);
+		try {
+			return self::extractBool($data, $key);
+		} catch (InvalidTypeException $e) {
+			if ($nullIfInvalid) {
+				return null;
+			}
+			throw $e;
+		}
 	}
 
 	/**
 	 * @param mixed[] $data
 	 * @param string $key
+	 * @param bool $nullIfInvalid
 	 * @return string|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractStringOrNull(
 		array $data,
-		string $key
+		string $key,
+		bool $nullIfInvalid = false
 	): ?string {
 		if (
 			!isset($data[$key])
@@ -138,7 +167,14 @@ abstract class PrimitiveTypes
 		) {
 			return null;
 		}
-		return self::extractString($data, $key);
+		try {
+			return self::extractString($data, $key);
+		} catch (InvalidTypeException $e) {
+			if ($nullIfInvalid) {
+				return null;
+			}
+			throw $e;
+		}
 	}
 
 	/**
