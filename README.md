@@ -720,3 +720,7 @@ Please, fix them, and re-run the command.
 PHP Static analysis tool - this will check the code for some 
 smelly constructions that should be refactored. 
 Please, fix them, and re-run the command.
+
+## We are hiring
+
+Do you like our code? If you want to be part of SmartEmailing, [we are hiring](https://www.smartemailing.cz/kariera/programator).
