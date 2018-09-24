@@ -37,6 +37,7 @@ final class DateTimeRange implements ToArrayInterface
 		$this->from = DateTimesImmutable::extract($data, 'from');
 		$this->to = DateTimesImmutable::extract($data, 'to');
 		$this->durationInSeconds = $this->to->getTimestamp() - $this->from->getTimestamp();
+
 		if ($this->durationInSeconds < 0) {
 			throw new InvalidTypeException(self::class . ' cannot have negative duration');
 		}
@@ -61,6 +62,7 @@ final class DateTimeRange implements ToArrayInterface
 		\DateTimeInterface $dateTime
 	): bool {
 		$timestamp = $dateTime->getTimestamp();
+
 		return $timestamp >= $this->getFrom()->getTimestamp() &&
 			$timestamp <= $this->getTo()->getTimestamp();
 	}

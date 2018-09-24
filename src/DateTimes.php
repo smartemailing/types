@@ -30,6 +30,7 @@ abstract class DateTimes
 		if (\is_string($value) && \preg_match('#^\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d\z#', $value)) {
 			return \DateTime::createFromFormat(DateTimeFormat::DATETIME, $value);
 		}
+
 		throw new InvalidTypeException(
 			'Value ' . $value . ' must be string in ' . DateTimeFormat::DATETIME . ' format'
 		);
@@ -46,6 +47,7 @@ abstract class DateTimes
 		string $key
 	): \DateTime {
 		$value = Arrays::get($data, $key, '');
+
 		try {
 			return self::from($value);
 		} catch (InvalidTypeException $e) {
@@ -88,6 +90,7 @@ abstract class DateTimes
 		if (!isset($data[$key])) {
 			return null;
 		}
+
 		return self::extractDate($data, $key);
 	}
 
@@ -105,6 +108,7 @@ abstract class DateTimes
 		if (!isset($data[$key])) {
 			return null;
 		}
+
 		if ($getNullIfInvalid) {
 			try {
 				return self::extract($data, $key);
@@ -112,6 +116,7 @@ abstract class DateTimes
 				return null;
 			}
 		}
+
 		return self::extract($data, $key);
 	}
 

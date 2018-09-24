@@ -25,6 +25,7 @@ final class ReLUValue
 		if ($value < 0.0) {
 			throw new InvalidTypeException('Invalid ReLU value: ' . $value);
 		}
+
 		$this->value = $value;
 	}
 

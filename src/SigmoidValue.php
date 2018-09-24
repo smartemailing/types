@@ -25,6 +25,7 @@ final class SigmoidValue
 		if ($value < -1 || $value > 1) {
 			throw new InvalidTypeException('Invalid sigmoid value: ' . $value);
 		}
+
 		$this->value = $value;
 	}
 

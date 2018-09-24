@@ -19,6 +19,7 @@ abstract class DateTimesImmutable
 		$value
 	): \DateTimeImmutable {
 		$dateTime = DateTimes::from($value);
+
 		return self::immutate($dateTime);
 	}
 
@@ -36,6 +37,7 @@ abstract class DateTimesImmutable
 			$data,
 			$key
 		);
+
 		return self::immutate($dateTime);
 	}
 
@@ -53,6 +55,7 @@ abstract class DateTimesImmutable
 			$data,
 			$key
 		);
+
 		return self::immutate($dateTime);
 	}
 
@@ -69,9 +72,11 @@ abstract class DateTimesImmutable
 			$data,
 			$key
 		);
+
 		if ($dateTime === null) {
 			return null;
 		}
+
 		return self::immutate($dateTime);
 	}
 

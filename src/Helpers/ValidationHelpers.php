@@ -25,6 +25,7 @@ abstract class ValidationHelpers
 				return false;
 			}
 		}
+
 		return true;
 	}
 

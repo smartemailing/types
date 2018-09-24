@@ -23,7 +23,9 @@ trait FloatExtractableTrait
 		if ($data instanceof self) {
 			return $data;
 		}
+
 		$data = PrimitiveTypes::getFloat($data);
+
 		return new self($data);
 	}
 

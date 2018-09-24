@@ -108,12 +108,15 @@ final class VatId implements ToStringInterface
 
 	private static function parseVatNumber(?CountryCode $country, string $vatId): string
 	{
-		return $country ? Strings::substring($vatId, 2) : $vatId;
+		return $country
+			? Strings::substring($vatId, 2)
+			: $vatId;
 	}
 
 	public static function isValid(string $vatId): bool
 	{
 		[$country, $countryPrefix, $vatNumber] = self::extractCountryAndPrefixAndNumber($vatId);
+
 		return self::validate($country, $countryPrefix, $vatNumber);
 	}
 
@@ -131,16 +134,14 @@ final class VatId implements ToStringInterface
 		$pattern = Arrays::get(self::getPatternsByCountry(), $country->getValue());
 
 		$match = Strings::match($prefix . $vatNumber, '/^(' . $pattern . ')$/');
+
 		if (!$match) {
 			return false;
 		}
 
 		$modulo = Arrays::get(self::getDivisible(), $country->getValue(), 1);
-		if (Validators::isNumericInt($vatNumber) && ($vatNumber % $modulo !== 0)) {
-			return false;
-		}
 
-		return true;
+		return !Validators::isNumericInt($vatNumber) || ($vatNumber % $modulo === 0);
 	}
 
 	/**
@@ -168,12 +169,15 @@ final class VatId implements ToStringInterface
 	 */
 	private static function isValidForNonCountry(string $vatNumber): bool
 	{
-		return false; //todo
+		return false;
+
+		//todo
 	}
 
 	private static function preProcessVatId(string $vatId): string
 	{
 		$vatId = StringHelpers::removeWhitespace($vatId);
+
 		return Strings::upper($vatId);
 	}
 

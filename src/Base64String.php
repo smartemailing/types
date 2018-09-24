@@ -24,6 +24,7 @@ final class Base64String
 		if (!$this->isValid($value)) {
 			throw new InvalidTypeException('Invalid Base64 string');
 		}
+
 		$this->value = $value;
 	}
 

@@ -14,6 +14,7 @@ class InvalidTypeException extends \RuntimeException
 			. $key
 			. ': '
 			. $this->getMessage();
+
 		return new static($message);
 	}
 
@@ -27,11 +28,13 @@ class InvalidTypeException extends \RuntimeException
 		$value
 	): self {
 		$type = \gettype($value);
+
 		if (\in_array($type, ['double', 'real'], true)) {
 			$type = 'float';
 		}
 
 		$description = '';
+
 		if (\is_scalar($value)) {
 			$description = ' (' . (string) $value . ')';
 		} elseif (\is_object($value)) {

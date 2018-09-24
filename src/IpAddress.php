@@ -75,14 +75,17 @@ final class IpAddress implements ToStringInterface
 		if ($this->isValidIpV4($value)) {
 			$this->value = $value;
 			$this->version = 4;
+
 			return true;
 		}
 
 		if ($this->isValidIpV6($value)) {
 			$this->value = $value;
 			$this->version = 6;
+
 			return true;
 		}
+
 		throw new InvalidTypeException('Invalid IP address: ' . $value);
 	}
 

@@ -25,6 +25,7 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInt
 	private function __construct(array $data = [])
 	{
 		$this->valuesPresenceMap = [];
+
 		foreach ($data as $value) {
 			try {
 				$this->add(PrimitiveTypes::getInt($value));
@@ -47,9 +48,11 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInt
 			$data,
 			$key
 		);
+
 		if ($self->isEmpty()) {
 			throw InvalidTypeException::cannotBeEmptyError($key);
 		}
+
 		return $self;
 	}
 
@@ -87,8 +90,10 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInt
 	): bool {
 		if (!isset($this->valuesPresenceMap[$id])) {
 			$this->valuesPresenceMap[$id] = true;
+
 			return true;
 		}
+
 		return false;
 	}
 

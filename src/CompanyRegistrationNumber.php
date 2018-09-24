@@ -25,9 +25,11 @@ final class CompanyRegistrationNumber
 	) {
 		Strings::trim($value);
 		$value = (string) \preg_replace('/\s+/', '', $value);
+
 		if (!$this->isValid($value)) {
 			throw new InvalidTypeException('Invalid Company registration number: ' . $value);
 		}
+
 		$this->value = $value;
 	}
 
@@ -76,11 +78,13 @@ final class CompanyRegistrationNumber
 		}
 
 		$a = 0;
+
 		for ($i = 0; $i < 7; $i++) {
 			$a += $value[$i] * (8 - $i);
 		}
 
 		$a %= 11;
+
 		if ($a === 0) {
 			$c = 1;
 		} elseif ($a === 1) {

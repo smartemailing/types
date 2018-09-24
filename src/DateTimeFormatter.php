@@ -18,6 +18,7 @@ abstract class DateTimeFormatter
 		if ($dateTime === null) {
 			return null;
 		}
+
 		return self::format($dateTime, $format);
 	}
 

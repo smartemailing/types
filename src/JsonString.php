@@ -27,6 +27,7 @@ final class JsonString
 		if (!$this->isValid($value)) {
 			throw new InvalidTypeException('Invalid JSON string');
 		}
+
 		$this->value = $value;
 	}
 
@@ -34,6 +35,7 @@ final class JsonString
 	{
 		try {
 			Json::decode($value);
+
 			return true;
 		} catch (JsonException $e) {
 			return false;

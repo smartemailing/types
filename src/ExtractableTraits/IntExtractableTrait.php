@@ -23,7 +23,9 @@ trait IntExtractableTrait
 		if ($data instanceof self) {
 			return $data;
 		}
+
 		$data = PrimitiveTypes::getInt($data);
+
 		return new self($data);
 	}
 

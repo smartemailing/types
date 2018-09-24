@@ -39,6 +39,7 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 	private function __construct(array $data = [])
 	{
 		$this->objects = [];
+
 		foreach ($data as $value) {
 			if (!$value instanceof ToStringInterface) {
 				throw InvalidTypeException::typeError(
@@ -46,6 +47,7 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 					$value
 				);
 			}
+
 			$this->add($value);
 		}
 	}
@@ -88,10 +90,13 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 		}
 
 		$key = $valueObject->__toString();
+
 		if (!isset($this->objects[$key])) {
 			$this->objects[$key] = $valueObject;
+
 			return true;
 		}
+
 		return false;
 	}
 
@@ -111,6 +116,7 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 		ToStringInterface $valueObject
 	): bool {
 		$key = $valueObject->__toString();
+
 		return isset($this->objects[$key]);
 	}
 

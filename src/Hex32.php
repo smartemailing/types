@@ -26,6 +26,7 @@ final class Hex32
 		if (!$this->isValid($value)) {
 			throw new InvalidTypeException('Invalid hex string: ' . $value);
 		}
+
 		$this->value = Strings::lower($value);
 	}
 
@@ -39,6 +40,7 @@ final class Hex32
 		if (Strings::length($value) !== 32) {
 			return false;
 		}
+
 		return \ctype_xdigit($value);
 	}
 

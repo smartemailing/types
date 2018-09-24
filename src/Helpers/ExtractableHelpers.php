@@ -24,9 +24,11 @@ abstract class ExtractableHelpers
 		if (!\is_array($data)) {
 			throw InvalidTypeException::typeError('array', $data);
 		}
+
 		if (!\array_key_exists($key, $data)) {
 			throw InvalidTypeException::missingKey($key);
 		}
+
 		return $data[$key];
 	}
 

@@ -25,6 +25,7 @@ final class UniqueStringArray implements \Countable, \IteratorAggregate, ToArray
 	private function __construct(array $data = [])
 	{
 		$this->valuesPresenceMap = [];
+
 		foreach ($data as $value) {
 			try {
 				$this->add(PrimitiveTypes::getString($value));
@@ -80,8 +81,10 @@ final class UniqueStringArray implements \Countable, \IteratorAggregate, ToArray
 	): bool {
 		if (!isset($this->valuesPresenceMap[$id])) {
 			$this->valuesPresenceMap[$id] = true;
+
 			return true;
 		}
+
 		return false;
 	}
 

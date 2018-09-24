@@ -39,6 +39,7 @@ final class Emailaddress implements ToStringInterface
 		} catch (InvalidTypeException $e) {
 			$ok = false;
 		}
+
 		if (!$ok) {
 			throw new InvalidEmailaddressException('Invalid emailaddress: ' . $value);
 		}
@@ -54,6 +55,7 @@ final class Emailaddress implements ToStringInterface
 				)
 			)
 		);
+
 		return \strtr(
 			$sanitized,
 			[

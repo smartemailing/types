@@ -23,6 +23,7 @@ abstract class PrimitiveTypes
 		if (Validators::isNumericInt($value)) {
 			return (int) $value;
 		}
+
 		throw InvalidTypeException::typeError('int', $value);
 	}
 
@@ -37,6 +38,7 @@ abstract class PrimitiveTypes
 		string $key
 	): int {
 		$value = ExtractableHelpers::extractValue($data, $key);
+
 		try {
 			return self::getInt($value);
 		} catch (InvalidTypeException $e) {
@@ -54,6 +56,7 @@ abstract class PrimitiveTypes
 		if (\is_numeric($value)) {
 			return (float) $value;
 		}
+
 		throw InvalidTypeException::typeError('float', $value);
 	}
 
@@ -67,6 +70,7 @@ abstract class PrimitiveTypes
 		string $key
 	): float {
 		$value = ExtractableHelpers::extractValue($data, $key);
+
 		try {
 			return self::getFloat($value);
 		} catch (InvalidTypeException $e) {
@@ -89,12 +93,14 @@ abstract class PrimitiveTypes
 		if (!isset($data[$key])) {
 			return null;
 		}
+
 		try {
 			return self::extractFloat($data, $key);
 		} catch (InvalidTypeException $e) {
 			if ($nullIfInvalid) {
 				return null;
 			}
+
 			throw $e;
 		}
 	}
@@ -114,12 +120,14 @@ abstract class PrimitiveTypes
 		if (!isset($data[$key])) {
 			return null;
 		}
+
 		try {
 			return self::extractInt($data, $key);
 		} catch (InvalidTypeException $e) {
 			if ($nullIfInvalid) {
 				return null;
 			}
+
 			throw $e;
 		}
 	}
@@ -139,12 +147,14 @@ abstract class PrimitiveTypes
 		if (!isset($data[$key])) {
 			return null;
 		}
+
 		try {
 			return self::extractBool($data, $key);
 		} catch (InvalidTypeException $e) {
 			if ($nullIfInvalid) {
 				return null;
 			}
+
 			throw $e;
 		}
 	}
@@ -167,12 +177,14 @@ abstract class PrimitiveTypes
 		) {
 			return null;
 		}
+
 		try {
 			return self::extractString($data, $key);
 		} catch (InvalidTypeException $e) {
 			if ($nullIfInvalid) {
 				return null;
 			}
+
 			throw $e;
 		}
 	}
@@ -187,6 +199,7 @@ abstract class PrimitiveTypes
 		if (\is_scalar($value)) {
 			return (string) $value;
 		}
+
 		throw InvalidTypeException::typeError('string', $value);
 	}
 
@@ -201,6 +214,7 @@ abstract class PrimitiveTypes
 		string $key
 	): string {
 		$value = ExtractableHelpers::extractValue($data, $key);
+
 		try {
 			return self::getString($value);
 		} catch (InvalidTypeException $e) {
@@ -240,6 +254,7 @@ abstract class PrimitiveTypes
 		if (\is_array($value)) {
 			return $value;
 		}
+
 		throw InvalidTypeException::typeError('array', $value);
 	}
 
@@ -254,6 +269,7 @@ abstract class PrimitiveTypes
 		string $key
 	): bool {
 		$value = ExtractableHelpers::extractValue($data, $key);
+
 		try {
 			return self::getBool($value);
 		} catch (InvalidTypeException $e) {
@@ -272,12 +288,15 @@ abstract class PrimitiveTypes
 		string $key
 	): array {
 		$value = ExtractableHelpers::extractValue($data, $key);
+
 		try {
 			$stringArray = self::getArray($value);
 			$return = [];
+
 			foreach ($stringArray as $index => $item) {
 				$return[$index] = self::getString($item);
 			}
+
 			return $return;
 		} catch (InvalidTypeException $e) {
 			throw $e->wrap($key);
@@ -295,6 +314,7 @@ abstract class PrimitiveTypes
 	final public static function extractArray(array &$data, string $key): array
 	{
 		$value = ExtractableHelpers::extractValue($data, $key);
+
 		try {
 			return self::getArray($value);
 		} catch (InvalidTypeException $e) {

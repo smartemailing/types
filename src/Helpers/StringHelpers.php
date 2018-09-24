@@ -16,6 +16,7 @@ abstract class StringHelpers
 		$string = self::removeUtf8Mb4($string);
 		$string = Strings::trim($string);
 		$string = self::normalizeLineEndings($string);
+
 		return $string;
 	}
 
@@ -25,6 +26,7 @@ abstract class StringHelpers
 		if ($string === null) {
 			return null;
 		}
+
 		return self::sanitize($string);
 	}
 
@@ -47,6 +49,7 @@ abstract class StringHelpers
 			'',
 			$value
 		);
+
 		// removed unbreakable whitespace
 		return (string) \preg_replace(
 			'~\x{00a0}~',

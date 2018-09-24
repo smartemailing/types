@@ -23,6 +23,7 @@ abstract class ArrayHelpers
 		$toArrayCallback = static function (ToArrayInterface $toArray) {
 			return $toArray->toArray();
 		};
+
 		return \array_map(
 			$toArrayCallback,
 			$arrayableCollection
@@ -39,6 +40,7 @@ abstract class ArrayHelpers
 		$toArrayCallback = static function (ToStringInterface $toString) {
 			return (string) $toString;
 		};
+
 		return \array_map(
 			$toArrayCallback,
 			$stringableCollection

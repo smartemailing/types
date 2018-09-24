@@ -25,9 +25,11 @@ trait UniqueArrayFeatures
 			$data,
 			$key
 		);
+
 		if ($self) {
 			return $self;
 		}
+
 		return self::empty();
 	}
 
@@ -43,9 +45,11 @@ trait UniqueArrayFeatures
 			$this->getValues(),
 			$chunkSize
 		);
+
 		foreach ($chunks as $chunk) {
 			$return[] = self::from($chunk);
 		}
+
 		return $return;
 	}
 
@@ -54,9 +58,11 @@ trait UniqueArrayFeatures
 		self $toBeMerged
 	): self {
 		$dolly = clone $this;
+
 		foreach ($toBeMerged->getValues() as $value) {
 			$dolly->add($value);
 		}
+
 		return $dolly;
 	}
 
@@ -64,9 +70,11 @@ trait UniqueArrayFeatures
 		self $toBeDeducted
 	): self {
 		$dolly = clone $this;
+
 		foreach ($toBeDeducted->getValues() as $value) {
 			$dolly->remove($value);
 		}
+
 		return $dolly;
 	}
 

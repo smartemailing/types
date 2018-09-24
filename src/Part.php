@@ -25,6 +25,7 @@ final class Part
 		if ($value < 0 || $value > 1) {
 			throw new InvalidTypeException('Invalid part: ' . $value);
 		}
+
 		$this->value = $value;
 	}
 
@@ -46,9 +47,11 @@ final class Part
 				. ' given.'
 			);
 		}
+
 		if ($whole === 0.0) {
 			return new self(0.0);
 		}
+
 		return new self($value / $whole);
 	}
 

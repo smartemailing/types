@@ -25,6 +25,7 @@ final class Port
 		if ($value < 0 || $value > 65535) {
 			throw new InvalidTypeException('Invalid Port number: ' . $value);
 		}
+
 		$this->value = $value;
 	}
 

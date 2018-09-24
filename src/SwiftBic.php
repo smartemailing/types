@@ -23,6 +23,7 @@ final class SwiftBic implements ToStringInterface
 	public function __construct(string $value)
 	{
 		$this->value = $value;
+
 		if (!$this->isValid($this->value)) {
 			throw new InvalidTypeException('Invalid Swift/Bic: ' . $value);
 		}

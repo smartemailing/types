@@ -24,9 +24,11 @@ final class Domain implements ToStringInterface
 	{
 		$value = Strings::lower($value);
 		$value = Strings::trim($value);
+
 		if (!$this->isValid($value)) {
 			throw new InvalidTypeException('Invalid domain: ' . $value);
 		}
+
 		$this->value = $value;
 	}
 
@@ -47,10 +49,13 @@ final class Domain implements ToStringInterface
 	{
 		$parts = \explode('.', $this->value);
 		$numberOfKeptParts = 2;
+
 		if (\count($parts) > 2 && \end($parts) === 'uk') {
 			$numberOfKeptParts = 3;
 		}
+
 		$secondLevelParts = \array_slice($parts, -$numberOfKeptParts, $numberOfKeptParts);
+
 		return self::from(\implode('.', $secondLevelParts));
 	}
 

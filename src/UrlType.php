@@ -36,6 +36,7 @@ final class UrlType
 		if (!Validators::isUrl($value)) {
 			throw new InvalidTypeException('Invalid URL: ' . $value);
 		}
+
 		try {
 			$this->url = new Url($value);
 		} catch (InvalidArgumentException $e) {
@@ -105,6 +106,7 @@ final class UrlType
 		array $names
 	): bool {
 		$parameters = \array_keys($this->url->getQueryParameters());
+
 		foreach ($names as $name) {
 			if (!\in_array($name, $parameters, true)) {
 				return false;
@@ -136,6 +138,7 @@ final class UrlType
 			$name,
 			$value
 		);
+
 		return $dolly;
 	}
 

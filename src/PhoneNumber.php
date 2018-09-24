@@ -117,6 +117,7 @@ final class PhoneNumber
 			if ($match) {
 				$this->value = $value;
 				$this->country = CountryCode::from($matchingCountryCode);
+
 				return true;
 			}
 		}
@@ -154,14 +155,17 @@ final class PhoneNumber
 		string $value
 	): array {
 		$matching = [];
+
 		foreach (self::$countryCodesToPhoneCodes as $countryCode => $phoneCode) {
 			$prefix = '+' . $phoneCode;
+
 			if (!Strings::startsWith($value, $prefix)) {
 				continue;
 			}
 
 			$matching[] = $countryCode;
 		}
+
 		return $matching;
 	}
 

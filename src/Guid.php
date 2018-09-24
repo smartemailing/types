@@ -25,6 +25,7 @@ final class Guid
 		if (!\preg_match('/^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i', $value)) {
 			throw new InvalidTypeException('Invalid guid value');
 		}
+
 		$this->value = $value;
 	}
 

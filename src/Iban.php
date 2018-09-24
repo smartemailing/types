@@ -36,6 +36,7 @@ final class Iban implements ToStringInterface
 		if (!$validator->validate($this->iban)) {
 			throw new InvalidTypeException('Invalid Iban: ' . $value);
 		}
+
 		$this->value = $value;
 	}
 

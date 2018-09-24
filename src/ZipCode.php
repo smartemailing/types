@@ -26,9 +26,11 @@ final class ZipCode
 	) {
 		$value = StringHelpers::removeWhitespace($value);
 		$value = Strings::upper($value);
+
 		if (!$this->isValid($value)) {
 			throw new InvalidTypeException('Invalid ZIP code: ' . $value);
 		}
+
 		$this->value = $value;
 	}
 
@@ -44,11 +46,13 @@ final class ZipCode
 			'CZ_SK_US' => '/^[0-9]{5}$/',
 			'UK' => '/^[0-9A-B]{2,4}[\-\s]{1}[0-9A-B]{3,4}$/',
 		];
+
 		foreach ($patterns as $pattern) {
 			if (Strings::match($value, $pattern)) {
 				return true;
 			}
 		}
+
 		return false;
 	}
 

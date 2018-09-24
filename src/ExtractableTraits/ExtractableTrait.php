@@ -23,9 +23,11 @@ trait ExtractableTrait
 		string $key
 	): self {
 		$value = ExtractableHelpers::extractValue($data, $key);
+
 		if ($value instanceof self) {
 			return $value;
 		}
+
 		try {
 			return self::from($value);
 		} catch (InvalidTypeException $e) {
@@ -44,6 +46,7 @@ trait ExtractableTrait
 		string $key
 	): array {
 		$typedArray = PrimitiveTypes::extractArray($data, $key);
+
 		try {
 			return self::getArrayOf($typedArray);
 		} catch (InvalidTypeException $e) {
@@ -64,6 +67,7 @@ trait ExtractableTrait
 		if (!isset($data[$key])) {
 			return [];
 		}
+
 		return self::extractArrayOf($data, $key);
 	}
 
@@ -75,16 +79,17 @@ trait ExtractableTrait
 		array $array
 	): array {
 		$return = [];
+
 		if (ValidationHelpers::isTypedObjectArray($array, static::class)) {
 			return $array;
 		}
+
 		foreach ($array as $item) {
-			if ($item instanceof self) {
-				$return[] = $item;
-			} else {
-				$return[] = self::from($item);
-			}
+			$return[] = $item instanceof self
+				? $item
+				: self::from($item);
 		}
+
 		return $return;
 	}
 
@@ -109,12 +114,14 @@ trait ExtractableTrait
 		if ($value === null) {
 			return null;
 		}
+
 		try {
 			return self::from($value);
 		} catch (InvalidTypeException $e) {
 			if ($getNullIfInvalid) {
 				return null;
 			}
+
 			throw $e;
 		}
 	}
@@ -168,6 +175,7 @@ trait ExtractableTrait
 			if ($nullIfInvalid) {
 				return null;
 			}
+
 			throw $e;
 		}
 	}

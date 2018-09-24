@@ -26,7 +26,9 @@ trait ArrayExtractableTrait
 		if ($data instanceof self) {
 			return $data;
 		}
+
 		$data = PrimitiveTypes::getArray($data);
+
 		return new self($data);
 	}
 
