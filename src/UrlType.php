@@ -33,6 +33,15 @@ final class UrlType
 			]
 		);
 
+		// urlencode non-ascii chars
+		$value = (string) \preg_replace_callback(
+			'/[^\x20-\x7f]/',
+			static function ($match) {
+				return \urlencode($match[0]);
+			},
+			$value
+		);
+
 		if (!Validators::isUrl($value)) {
 			throw new InvalidTypeException('Invalid URL: ' . $value);
 		}

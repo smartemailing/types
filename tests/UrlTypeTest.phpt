@@ -99,6 +99,18 @@ final class UrlTypeTest extends TestCase
 		);
 	}
 
+	public function testNonAsciiChars(): void
+	{
+		$value = 'https://marketadanisova.cz/wp-content/uploads/2018/09/Snímek-obrazovky-2018-09-18-v-21.21.41.png';
+
+		$url = UrlType::from($value);
+
+		Assert::equal(
+			'https://marketadanisova.cz/wp-content/uploads/2018/09/Sni%CC%81mek-obrazovky-2018-09-18-v-21.21.41.png',
+			$url->getValue()
+		);
+	}
+
 }
 
 (new UrlTypeTest())->run();
