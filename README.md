@@ -62,6 +62,7 @@ Your code will be unbreakable and your IDE will love it.
     + [Duration](#duration)
     + [Address](#address)
     + [Price](#price)
+    + [Login credentials](#login-credentials)
   * [Array-types](#array-types)
     + [UniqueIntArray](#uniqueintarray)
     + [UniqueStringArray](#uniquestringarray)
