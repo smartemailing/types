@@ -234,6 +234,9 @@ Type-specific methods:
 
 URL based on `Nette\Http\Url` (`https://www.google.com/search?q=all+work+and+no+play+makes+jack+a+dull+boy`)
 
+- all spaces in string are urlencoded
+- all non-ascii characters are urlencoded
+
 Type-specific methods:
 - `getAuthority() : string` returns authority (`www.google.com`)
 - `getHost() : string` returns Host (`www.google.com`)
@@ -476,6 +479,27 @@ Type-specific methods:
 - `getWithoutVat(): float` returns price without VAT
 - `getWithVat(): float` returns price with VAT
 - `getCurrency(): CurrencyCode` returns CurrencyCode instance
+
+### Login credentials
+
+`SmartEmailing\Types\LoginCredentials`
+
+Value object containing login and *plain* password. 
+You should use it just in-memory in authentication process and than drop it.
+
+Can be created from:
+
+```php
+LoginCredentials::from(
+	[
+		'login' => 'admin',
+		'password' => 'BLzW75kJxEa7YXuqF9Di',
+	]
+);
+```
+Type-specific methods:
+- `getLogin(): string` returns login
+- `getPassword(): string` returns password
 
 ## Array-types
 
