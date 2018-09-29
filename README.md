@@ -737,7 +737,7 @@ This will check the code and automatically fix some code style issues
 like indentation or line breaks.
 
 3) `bin/cs`
-This will run another code style check thaw will you about 
+This will run another code style check that will notify you about 
 problems that must be fixed manually. 
 Please, fix them, and re-run the command.
 
