@@ -42,6 +42,19 @@ final class DateTimeRangeTest extends TestCase
 			3600 * 24,
 			$dateTimeRange->getDurationInSeconds()
 		);
+
+		Assert::equal(
+			'2100-01-01 00:00:00',
+			DateTimeFormatter::format($dateTimeRange->getFrom())
+		);
+
+		Assert::equal(
+			'2100-01-02 00:00:00',
+			DateTimeFormatter::format($dateTimeRange->getTo())
+		);
+
+		Assert::true($dateTimeRange->contains(new \DateTimeImmutable('2100-01-01 12:00:00')));
+		Assert::false($dateTimeRange->contains(new \DateTimeImmutable('2100-02-01 12:00:00')));
 	}
 
 }
