@@ -36,11 +36,23 @@ final class DateTimeRange implements ToArrayInterface
 	) {
 		$this->from = DateTimesImmutable::extract($data, 'from');
 		$this->to = DateTimesImmutable::extract($data, 'to');
-		$this->durationInSeconds = $this->to->getTimestamp() - $this->from->getTimestamp();
 
-		if ($this->durationInSeconds < 0) {
+		$compared = \strcmp(
+			DateTimeFormatter::format($this->from),
+			DateTimeFormatter::format($this->to)
+		);
+
+		if ($compared > 0) {
 			throw new InvalidTypeException(self::class . ' cannot have negative duration');
 		}
+
+		$interval = $this->to->diff($this->from);
+
+		$this->durationInSeconds
+			= $interval->days * 86400
+			+ $interval->h * 3600
+			+ $interval->i * 60
+			+ $interval->s;
 	}
 
 	public function getFrom(): \DateTimeImmutable

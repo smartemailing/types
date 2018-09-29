@@ -393,7 +393,7 @@ They are created from associative array. All Array-extractable types implement m
 
 `SmartEmailing\Types\DateTimeRange`
 
-Range between two `\DateTimeInterface`s
+Range between two `\DateTimeInterface`s. Safe for datetimes out of range of unix timestamp.
 
 Can be created from:
 
