@@ -4,11 +4,11 @@
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 [![Latest release](https://img.shields.io/github/release/smartemailing/types.svg)](https://github.com/smartemailing/types/releases/)
-[![Monthly Downloads](https://poser.pugx.org/smartemailing/types/d/monthly)](https://packagist.org/packages/smartemailing/types)
+[![Downloads](https://poser.pugx.org/smartemailing/types/d/total)](https://packagist.org/packages/smartemailing/types)
 
 [![CircleCI](https://circleci.com/gh/smartemailing/types.svg?style=shield)](https://circleci.com/gh/smartemailing/types)
 [![codecov](https://codecov.io/gh/smartemailing/types/branch/master/graph/badge.svg)](https://codecov.io/gh/smartemailing/types)
-[![CodeClimate](https://img.shields.io/codeclimate/maintainability/smartemailing/types.svg)](https://codeclimate.com/github/smartemailing/types/maintainability)
+[![CodeClimate](https://api.codeclimate.com/v1/badges/538fcbbeadb10c76fe14/maintainability)](https://codeclimate.com/github/smartemailing/types/maintainability)
 
 
 Neverending data validation can be exhausting. Either you have to validate your data 
