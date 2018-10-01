@@ -7,7 +7,7 @@ namespace SmartEmailing\Types;
 use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\FloatExtractableTrait;
 
-final class ReLUValue
+final class ReLUValue implements ToStringInterface
 {
 
 	use ObjectMixinTrait;

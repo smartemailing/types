@@ -8,7 +8,7 @@ use Consistence\Type\ObjectMixinTrait;
 use Nette\Utils\Strings;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
-final class CompanyRegistrationNumber
+final class CompanyRegistrationNumber implements ToStringInterface
 {
 
 	use ObjectMixinTrait;

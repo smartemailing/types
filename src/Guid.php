@@ -7,7 +7,7 @@ namespace SmartEmailing\Types;
 use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
-final class Guid
+final class Guid implements ToStringInterface
 {
 
 	use ObjectMixinTrait;

@@ -7,7 +7,7 @@ namespace SmartEmailing\Types;
 use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\EnumExtractableTrait;
 
-final class TimeUnit extends Enum
+final class TimeUnit extends Enum implements ToStringInterface
 {
 
 	use ObjectMixinTrait;

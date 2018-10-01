@@ -11,7 +11,7 @@ use Nette\Utils\Validators;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 use SmartEmailing\Types\Helpers\StringHelpers;
 
-final class UrlType
+final class UrlType implements ToStringInterface
 {
 
 	use ObjectMixinTrait;

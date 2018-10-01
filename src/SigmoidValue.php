@@ -7,7 +7,7 @@ namespace SmartEmailing\Types;
 use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\FloatExtractableTrait;
 
-final class SigmoidValue
+final class SigmoidValue implements ToStringInterface
 {
 
 	use ObjectMixinTrait;

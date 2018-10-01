@@ -7,7 +7,7 @@ namespace SmartEmailing\Types;
 use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\FloatExtractableTrait;
 
-final class Part
+final class Part implements ToStringInterface
 {
 
 	use ObjectMixinTrait;

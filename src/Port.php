@@ -7,7 +7,7 @@ namespace SmartEmailing\Types;
 use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\IntExtractableTrait;
 
-final class Port
+final class Port implements ToStringInterface
 {
 
 	use ObjectMixinTrait;

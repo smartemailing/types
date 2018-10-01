@@ -9,7 +9,7 @@ use Nette\Utils\Strings;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 use SmartEmailing\Types\Helpers\StringHelpers;
 
-final class PhoneNumber
+final class PhoneNumber implements ToStringInterface
 {
 
 	use ObjectMixinTrait;

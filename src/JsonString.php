@@ -9,7 +9,7 @@ use Nette\Utils\Json;
 use Nette\Utils\JsonException;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
-final class JsonString
+final class JsonString implements ToStringInterface
 {
 
 	use ObjectMixinTrait;

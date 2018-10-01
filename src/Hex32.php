@@ -8,7 +8,7 @@ use Consistence\Type\ObjectMixinTrait;
 use Nette\Utils\Strings;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
-final class Hex32
+final class Hex32 implements ToStringInterface
 {
 
 	use ObjectMixinTrait;
