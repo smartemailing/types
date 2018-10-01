@@ -15,6 +15,8 @@ final class CurrencyCodeTest extends TestCase
 	public function testDefault(): void
 	{
 		$currencyEur = CurrencyCode::from('EUR');
+		$currencyEur = CurrencyCode::from($currencyEur);
+
 		Assert::type(CurrencyCode::class, $currencyEur);
 		Assert::equal('EUR', $currencyEur->getValue());
 
