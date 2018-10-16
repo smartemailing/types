@@ -43,7 +43,8 @@ final class CompanyRegistrationNumber implements ToStringInterface
 	): bool {
 		return $this->isValidCZSK($value) ||
 			$this->isValidGB($value) ||
-			$this->isValidCY($value);
+			$this->isValidCY($value) ||
+			$this->isValidPL($value);
 	}
 
 	private function isValidCY(
@@ -94,6 +95,38 @@ final class CompanyRegistrationNumber implements ToStringInterface
 		}
 
 		return ((int) $value[7]) === $c;
+	}
+
+	private function isValidPL(
+		string $value
+	): bool {
+		$value = (string) \preg_replace(
+			'#\s+#',
+			'',
+			$value
+		);
+
+		if (!\preg_match('#^\d{9}$#', $value)) {
+			return false;
+		}
+
+		$digits = \str_split($value);
+		$checksum = (
+				8 * (int) $digits[0]
+				+ 9 * (int) $digits[1]
+				+ 2 * (int) $digits[2]
+				+ 3 * (int) $digits[3]
+				+ 4 * (int) $digits[4]
+				+ 5 * (int) $digits[5]
+				+ 6 * (int) $digits[6]
+				+ 7 * (int) $digits[7]
+			) % 11;
+
+		if ($checksum === 10) {
+			$checksum = 0;
+		}
+
+		return (int) $digits[8] === $checksum;
 	}
 
 }
