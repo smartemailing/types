@@ -31,6 +31,19 @@ final class StringHelpersTest extends TestCase
 		Assert::equal(null, StringHelpers::sanitizeOrNull(null));
 	}
 
+	public function testRemoveWhitespace(): void
+	{
+		// contains soft hyphens
+		$string = '+420 607 988 394' . \PHP_EOL;
+
+		$noWhitespace = StringHelpers::removeWhitespace($string);
+
+		Assert::equal(
+			'+420607988394',
+			$noWhitespace
+		);
+	}
+
 }
 
 (new StringHelpersTest())->run();
