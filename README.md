@@ -53,6 +53,7 @@ Your code will be unbreakable and your IDE will love it.
     + [CountryCode](#countrycode)
   * [Int-extractable types](#int-extractable-types)
     + [Port](#port)
+    + [Quantity](#quantity)
   * [Float-extractable types](#float-extractable-types)
     + [Part](#part)
     + [Sigmoid function value](#sigmoid-function-value)
@@ -347,6 +348,14 @@ They can be easily converted back to int by int-type casting or calling `$type->
 Port number
 
 Integer interval, `<0, 65535>`
+
+### Quantity
+
+`SmartEmailing\Types\Quantity`
+
+Quantity of items
+
+Integer interval, `<1, PHP_INT_MAX>`
 
 ## Float-extractable types
 
