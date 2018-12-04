@@ -136,4 +136,7 @@ final class CountryCode extends Enum implements ToStringInterface
 	// Guernsey
 	public const GG = 'GG';
 
+	// Russia
+	public const RU = 'RU';
+
 }
