@@ -34,6 +34,22 @@ final class PrimitiveTypesTest extends TestCase
 			'Expected int, got array'
 		);
 
+		Assert::equal(1, PrimitiveTypes::getIntOrNull(1, true));
+		Assert::equal(1, PrimitiveTypes::getIntOrNull(1, false));
+
+		Assert::null(PrimitiveTypes::getIntOrNull(null, true));
+		Assert::null(PrimitiveTypes::getIntOrNull(null, false));
+
+		Assert::null(PrimitiveTypes::getIntOrNull('xxx', true));
+
+		Assert::throws(
+			static function (): void {
+				PrimitiveTypes::getIntOrNull('xxx', false);
+			},
+			InvalidTypeException::class,
+			'Expected int, got string (xxx)'
+		);
+
 		Assert::equal(1, PrimitiveTypes::extractInt(['test' => 1], 'test'));
 		Assert::equal(1, PrimitiveTypes::extractIntOrNull(['test' => 1], 'test'));
 		Assert::equal(null, PrimitiveTypes::extractIntOrNull(['test' => 1], 'foo'));
@@ -87,6 +103,22 @@ final class PrimitiveTypesTest extends TestCase
 			'Expected float, got array'
 		);
 
+		Assert::equal(1.0, PrimitiveTypes::getFloatOrNull(1.0, true));
+		Assert::equal(1.0, PrimitiveTypes::getFloatOrNull(1.0, false));
+
+		Assert::null(PrimitiveTypes::getFloatOrNull(null, true));
+		Assert::null(PrimitiveTypes::getFloatOrNull(null, false));
+
+		Assert::null(PrimitiveTypes::getFloatOrNull('xxx', true));
+
+		Assert::throws(
+			static function (): void {
+				PrimitiveTypes::getFloatOrNull('xxx', false);
+			},
+			InvalidTypeException::class,
+			'Expected float, got string (xxx)'
+		);
+
 		Assert::equal(1.0, PrimitiveTypes::extractFloat(['test' => 1.0], 'test'));
 		Assert::equal(1.0, PrimitiveTypes::extractFloatOrNull(['test' => 1.0], 'test'));
 		Assert::equal(null, PrimitiveTypes::extractFloatOrNull(['test' => 1.0], 'foo'));
@@ -122,6 +154,22 @@ final class PrimitiveTypesTest extends TestCase
 		Assert::throws(
 			static function (): void {
 				PrimitiveTypes::getString([1, 2, 3]);
+			},
+			InvalidTypeException::class,
+			'Expected string, got array'
+		);
+
+		Assert::equal('abc', PrimitiveTypes::getStringOrNull('abc', true));
+		Assert::equal('abc', PrimitiveTypes::getStringOrNull('abc', false));
+
+		Assert::null(PrimitiveTypes::getStringOrNull(null, true));
+		Assert::null(PrimitiveTypes::getStringOrNull(null, false));
+
+		Assert::null(PrimitiveTypes::getStringOrNull([], true));
+
+		Assert::throws(
+			static function (): void {
+				PrimitiveTypes::getStringOrNull([], false);
 			},
 			InvalidTypeException::class,
 			'Expected string, got array'
@@ -198,6 +246,22 @@ final class PrimitiveTypesTest extends TestCase
 			},
 			InvalidTypeException::class,
 			'Expected bool, got array'
+		);
+
+		Assert::equal(true, PrimitiveTypes::getBoolOrNull(true, true));
+		Assert::equal(true, PrimitiveTypes::getBoolOrNull(true, false));
+
+		Assert::null(PrimitiveTypes::getBoolOrNull(null, true));
+		Assert::null(PrimitiveTypes::getBoolOrNull(null, false));
+
+		Assert::null(PrimitiveTypes::getBoolOrNull('xxx', true));
+
+		Assert::throws(
+			static function (): void {
+				PrimitiveTypes::getBoolOrNull('xxx', false);
+			},
+			InvalidTypeException::class,
+			'Expected bool, got string (xxx)'
 		);
 
 		$data = [
