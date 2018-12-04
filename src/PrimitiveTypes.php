@@ -28,6 +28,30 @@ abstract class PrimitiveTypes
 	}
 
 	/**
+	 * @param mixed $value
+	 * @param bool $nullIfInvalid
+	 * @return int|null
+	 */
+	final public static function getIntOrNull(
+		$value,
+		bool $nullIfInvalid = false
+	): ?int {
+		if ($value === null) {
+			return null;
+		}
+
+		try {
+			return self::getInt($value);
+		} catch (InvalidTypeException $e) {
+			if ($nullIfInvalid) {
+				return null;
+			}
+
+			throw $e;
+		}
+	}
+
+	/**
 	 * @param mixed[] $data
 	 * @param string $key
 	 * @return int
@@ -58,6 +82,30 @@ abstract class PrimitiveTypes
 		}
 
 		throw InvalidTypeException::typeError('float', $value);
+	}
+
+	/**
+	 * @param mixed $value
+	 * @param bool $nullIfInvalid
+	 * @return float|null
+	 */
+	final public static function getFloatOrNull(
+		$value,
+		bool $nullIfInvalid = false
+	): ?float {
+		if ($value === null) {
+			return null;
+		}
+
+		try {
+			return self::getFloat($value);
+		} catch (InvalidTypeException $e) {
+			if ($nullIfInvalid) {
+				return null;
+			}
+
+			throw $e;
+		}
 	}
 
 	/**
@@ -204,6 +252,30 @@ abstract class PrimitiveTypes
 	}
 
 	/**
+	 * @param mixed $value
+	 * @param bool $nullIfInvalid
+	 * @return string|null
+	 */
+	final public static function getStringOrNull(
+		$value,
+		bool $nullIfInvalid = false
+	): ?string {
+		if ($value === null) {
+			return null;
+		}
+
+		try {
+			return self::getString($value);
+		} catch (InvalidTypeException $e) {
+			if ($nullIfInvalid) {
+				return null;
+			}
+
+			throw $e;
+		}
+	}
+
+	/**
 	 * @param mixed[] $data
 	 * @param string $key
 	 * @return string
@@ -242,6 +314,30 @@ abstract class PrimitiveTypes
 		}
 
 		throw InvalidTypeException::typeError('bool', $value);
+	}
+
+	/**
+	 * @param mixed $value
+	 * @param bool $nullIfInvalid
+	 * @return bool|null
+	 */
+	final public static function getBoolOrNull(
+		$value,
+		bool $nullIfInvalid = false
+	): ?bool {
+		if ($value === null) {
+			return null;
+		}
+
+		try {
+			return self::getBool($value);
+		} catch (InvalidTypeException $e) {
+			if ($nullIfInvalid) {
+				return null;
+			}
+
+			throw $e;
+		}
 	}
 
 	/**

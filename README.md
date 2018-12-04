@@ -673,17 +673,29 @@ PrimitiveTypes::getInt('666'); // 666
 PrimitiveTypes::getInt(666.1); // throws InvalidTypeException
 PrimitiveTypes::getInt('abcd'); // throws InvalidTypeException
 PrimitiveTypes::getInt('abcd'); // throws InvalidTypeException
+PrimitiveTypes::getIntOrNull(null); // null
+PrimitiveTypes::getIntOrNull(1); // 1
+PrimitiveTypes::getIntOrNull('abcd'); // throws InvalidTypeException
+PrimitiveTypes::getIntOrNull('abcd', true); // null
 
 PrimitiveTypes::getFloat(1.1); // 1.1
 PrimitiveTypes::getFloat('1.1'); // 1.1
 PrimitiveTypes::getFloat(1); // 1.0
 PrimitiveTypes::getFloat('1'); // 1.0
 PrimitiveTypes::getFloat('xxx'); // throws InvalidTypeException
+PrimitiveTypes::getFloatOrNull(null); // null
+PrimitiveTypes::getFloatOrNull(1.0); // 1.0
+PrimitiveTypes::getFloatOrNull('abcd'); // throws InvalidTypeException
+PrimitiveTypes::getFloatOrNull('abcd', true); // null
 
 PrimitiveTypes::getString('xxx'); // 'xxx'
 PrimitiveTypes::getString(5); // '5'
 PrimitiveTypes::getString(5.0); // '5'
 PrimitiveTypes::getString(5.1); // '5.1'
+PrimitiveTypes::getStringOrNull(null); // null
+PrimitiveTypes::getStringOrNull('abcd'); // 'abcd'
+PrimitiveTypes::getStringOrNull([]); // throws InvalidTypeException
+PrimitiveTypes::getStringOrNull([], true); // null
 
 PrimitiveTypes::getArray([1, 2]); // [1, 2]
 PrimitiveTypes::getArray([1, 'abcd']); // [1, 'abcd']
