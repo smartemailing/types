@@ -44,7 +44,8 @@ final class CompanyRegistrationNumber implements ToStringInterface
 		return $this->isValidCZSK($value) ||
 			$this->isValidGB($value) ||
 			$this->isValidCY($value) ||
-			$this->isValidPL($value);
+			$this->isValidPL($value) ||
+			$this->isValidUS($value);
 	}
 
 	private function isValidCY(
@@ -127,6 +128,119 @@ final class CompanyRegistrationNumber implements ToStringInterface
 		}
 
 		return (int) $digits[8] === $checksum;
+	}
+
+	/**
+	 * @param string $value
+	 * @return bool
+	 * @see https://en.wikipedia.org/wiki/Employer_Identification_Number
+	 */
+	private function isValidUS(
+		string $value
+	): bool {
+		$value = (string) \preg_replace(
+			'#\s+#',
+			'',
+			$value
+		);
+
+		if (!\preg_match('#^(\d{2})\-(\d{7})$#', $value, $matches)) {
+			return false;
+		}
+
+		$prefix = (int) $matches[1];
+
+		$allowedPrefixes = [
+			10,
+			12,
+			60,
+			67,
+			50,
+			53,
+			01,
+			02,
+			03,
+			04,
+			05,
+			06,
+			11,
+			13,
+			14,
+			16,
+			21,
+			22,
+			23,
+			25,
+			34,
+			51,
+			52,
+			54,
+			55,
+			56,
+			57,
+			58,
+			59,
+			65,
+			30,
+			32,
+			35,
+			36,
+			37,
+			38,
+			61,
+			15,
+			24,
+			40,
+			44,
+			94,
+			95,
+			80,
+			90,
+			33,
+			39,
+			41,
+			42,
+			43,
+			48,
+			62,
+			63,
+			64,
+			66,
+			68,
+			71,
+			72,
+			73,
+			74,
+			75,
+			76,
+			77,
+			82,
+			83,
+			84,
+			85,
+			86,
+			87,
+			88,
+			91,
+			92,
+			93,
+			98,
+			99,
+			20,
+			26,
+			27,
+			45,
+			46,
+			47,
+			81,
+			31,
+		];
+
+		if (!\in_array($prefix, $allowedPrefixes, true)) {
+			return false;
+		}
+
+		return Strings::length($matches[2]) === 7;
 	}
 
 }

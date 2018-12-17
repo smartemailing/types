@@ -41,6 +41,7 @@ final class PhoneNumber implements ToStringInterface
 		CountryCode::DK => 45,
 		CountryCode::US => 1,
 		CountryCode::TR => 90,
+		CountryCode::IL => 972,
 	];
 
 	/**
@@ -68,6 +69,7 @@ final class PhoneNumber implements ToStringInterface
 		CountryCode::FI => [10],
 		CountryCode::LU => [9],
 		CountryCode::TR => [10],
+		CountryCode::IL => [9],
 	];
 
 	/**
