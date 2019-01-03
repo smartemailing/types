@@ -24,6 +24,24 @@ abstract class DateTimesImmutable
 	}
 
 	/**
+	 * @param mixed $value
+	 * @param bool $getNullIfInvalid
+	 * @return \DateTimeImmutable
+	 */
+	public static function fromOrNull(
+		$value,
+		bool $getNullIfInvalid = false
+	): ?\DateTimeImmutable {
+		$dateTime = DateTimes::fromOrNull($value, $getNullIfInvalid);
+
+		if ($dateTime === null) {
+			return null;
+		}
+
+		return self::immutate($dateTime);
+	}
+
+	/**
 	 * @param mixed[] $data
 	 * @param string $key
 	 * @return \DateTimeImmutable

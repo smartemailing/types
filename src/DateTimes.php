@@ -37,6 +37,30 @@ abstract class DateTimes
 	}
 
 	/**
+	 * @param mixed $value
+	 * @param bool $getNullIfInvalid
+	 * @return \DateTime
+	 */
+	public static function fromOrNull(
+		$value,
+		bool $getNullIfInvalid = false
+	): ?\DateTime {
+		if ($value === null) {
+			return null;
+		}
+
+		try {
+			return self::from($value);
+		} catch (InvalidTypeException $e) {
+			if ($getNullIfInvalid) {
+				return null;
+			}
+
+			throw $e;
+		}
+	}
+
+	/**
 	 * @param mixed[] $data
 	 * @param string $key
 	 * @return \DateTime
