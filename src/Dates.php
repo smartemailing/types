@@ -23,7 +23,7 @@ abstract class Dates
 			$value = $value->format('Y-m-d');
 		}
 
-		if (\is_string($value) && \preg_match('#^\d\d\d\d-\d\d-\d\d$#', $value)) {
+		if (\is_string($value) && \preg_match('#^\d\d\d\d-\d\d-\d\d\z#', $value)) {
 			return \DateTime::createFromFormat(DateTimeFormat::DATETIME, $value . ' 00:00:00');
 		}
 
