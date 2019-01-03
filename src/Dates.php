@@ -7,7 +7,7 @@ namespace SmartEmailing\Types;
 use Consistence\Type\ObjectMixinTrait;
 use Nette\Utils\Arrays;
 
-abstract class DateTimes
+abstract class Dates
 {
 
 	use ObjectMixinTrait;
@@ -19,20 +19,16 @@ abstract class DateTimes
 	final public static function from(
 		$value
 	): \DateTime {
-		if ($value instanceof \DateTime) {
-			return $value;
+		if ($value instanceof \DateTimeInterface) {
+			$value = $value->format('Y-m-d');
 		}
 
-		if ($value instanceof \DateTimeImmutable) {
-			$value = DateTimeFormatter::format($value);
-		}
-
-		if (\is_string($value) && \preg_match('#^\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d\z#', $value)) {
-			return \DateTime::createFromFormat(DateTimeFormat::DATETIME, $value);
+		if (\is_string($value) && \preg_match('#^\d\d\d\d-\d\d-\d\d$#', $value)) {
+			return \DateTime::createFromFormat(DateTimeFormat::DATETIME, $value . ' 00:00:00');
 		}
 
 		throw new InvalidTypeException(
-			'Value ' . $value . ' must be string in ' . DateTimeFormat::DATETIME . ' format'
+			'Value ' . $value . ' must be string in ' . DateTimeFormat::DATE . ' format'
 		);
 	}
 
@@ -77,33 +73,6 @@ abstract class DateTimes
 		} catch (InvalidTypeException $e) {
 			throw new InvalidTypeException($key . ' -- ' . $e->getMessage());
 		}
-	}
-
-	/**
-	 * @param mixed[] $data
-	 * @param string $key
-	 * @return \DateTime
-	 * @throws \SmartEmailing\Types\InvalidTypeException
-	 * @deprecated Use Dates::extract
-	 */
-	final public static function extractDate(
-		array &$data,
-		string $key
-	): \DateTime {
-		return Dates::extract($data, $key);
-	}
-
-	/**
-	 * @param mixed[] $data
-	 * @param string $key
-	 * @return \DateTime|null
-	 * @deprecated Use Dates::extractDateOrNull
-	 */
-	final public static function extractDateOrNull(
-		array &$data,
-		string $key
-	): ?\DateTime {
-		return Dates::extractOrNull($data, $key);
 	}
 
 	/**
