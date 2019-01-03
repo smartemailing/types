@@ -763,11 +763,23 @@ Arrays::extractArrayOrNull($data, 'key');
 ```
 
 
-## DateTimes
+## DateTimes and DateTimesImmutable
 
 Types are able to get and extract `\DateTime` and `\DateTimeImmutable` 
-objects using `DateTimes` and `DateTimesImmutable` classes. 
+objects using `DateTimes` and `DateTimesImmutable` classes.
+Supported format `Y-m-d H:s:i`. 
 API is the same as for other types, so available methods are (shown for `DateTimes`):
+
+- `from(string $dateTime ) : \DateTime`
+- `extract(array $data, string $index) : \DateTime`
+- `extractOrNull(array $data, string $index, bool $getNullIfInvalid) : ?\DateTime`
+
+## Dates and DatesImmutable
+
+Types are able to get and extract `\DateTime` and `\DateTimeImmutable` 
+objects using `Dates` and `DatesImmutable` classes. Dates are created with time  sets on `00:00:00`. 
+Supported format `Y-m-d`. 
+API is the same as for other types, so available methods are (shown for `Dates`):
 
 - `from(string $dateTime ) : \DateTime`
 - `extract(array $data, string $index) : \DateTime`
