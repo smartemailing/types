@@ -138,22 +138,6 @@ final class DateTimesTest extends TestCase
 		Assert::type(\DateTime::class, $d);
 	}
 
-	public function testFromDateOrNull(): void
-	{
-		$date = DateTimes::fromOrNull('2000-01-01 00:00:00');
-		Assert::type(\DateTime::class, $date);
-
-		$date = DateTimes::fromOrNull(null);
-		Assert::null($date);
-
-		Assert::exception(static function (): void {
-			DateTimesImmutable::fromOrNull('2000-01-01');
-		}, InvalidTypeException::class);
-
-		$date = DateTimes::fromOrNull('2000-01-01', true);
-		Assert::null($date);
-	}
-
 }
 
 (new DateTimesTest())->run();
