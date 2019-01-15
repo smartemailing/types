@@ -33,6 +33,27 @@ class ScalarLeavesArray implements ToArrayInterface
 	}
 
 	/**
+	 * @param mixed[] $data
+	 * @param string $key
+	 * @return self
+	 */
+	public static function extractOrEmpty(
+		array $data,
+		string $key
+	): self {
+		$self = self::extractOrNull(
+			$data,
+			$key
+		);
+
+		if ($self) {
+			return $self;
+		}
+
+		return new self([]);
+	}
+
+	/**
 	 * @return mixed[]
 	 */
 	public function toArray(): array

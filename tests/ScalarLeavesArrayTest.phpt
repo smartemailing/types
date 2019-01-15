@@ -55,6 +55,18 @@ final class ScalarLeavesArrayTest extends TestCase
 			},
 			InvalidTypeException::class
 		);
+
+		$data = [
+			'key' => $input,
+		];
+
+		$scalarArray = ScalarLeavesArray::extractOrEmpty($data, 'key');
+		Assert::type(ScalarLeavesArray::class, $scalarArray);
+		Assert::equal($input, $scalarArray->toArray());
+
+		$scalarArray = ScalarLeavesArray::extractOrEmpty($data, 'not_existing');
+		Assert::type(ScalarLeavesArray::class, $scalarArray);
+		Assert::equal([], $scalarArray->toArray());
 	}
 
 }

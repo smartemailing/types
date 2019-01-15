@@ -543,6 +543,10 @@ ScalarLeavesArray::from(
 );
 ```
 
+Array-types-specific extractors:
+- `static extractOrEmpty(array $data, string $key): self` Behaves like standard `::extract()` method, but returns empty ScalarLeavesArray when `$data[$key]` is `null` or not set.
+
+
 ## Array-types
 
 `Types` provide another kind of Array-extractable types: Unique primitive-type arrays.
