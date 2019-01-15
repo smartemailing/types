@@ -17,6 +17,8 @@ final class ScalarLeavesArrayTest extends TestCase
 		$scalarArray = ScalarLeavesArray::from([]);
 		Assert::type(ScalarLeavesArray::class, $scalarArray);
 
+		Assert::equal([], $scalarArray->toArray());
+
 		$input = [
 			[
 				'a',
@@ -38,6 +40,7 @@ final class ScalarLeavesArrayTest extends TestCase
 
 		$scalarArray = ScalarLeavesArray::from($input);
 		Assert::type(ScalarLeavesArray::class, $scalarArray);
+		Assert::equal($input, $scalarArray->toArray());
 
 		Assert::throws(
 			static function (): void {
