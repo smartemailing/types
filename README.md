@@ -74,7 +74,7 @@ Your code will be unbreakable and your IDE will love it.
     + [Field of Application](#field-of-application)
     + [Time unit](#time-unit)
     + [Relation](#relation)
-  * [Primitive types](#primitive-types)
+  * [Primitive types](#primitive-types-and-arrays)
   * [DateTimes](#datetimes)
   * [Writing your own types](#writing-your-own-types)
   * [How to contribute](#how-to-contribute)
@@ -656,7 +656,7 @@ Represents Relation or Gate - AND / OR
 
 [Available values](./src/Relation.php)
 
-## Primitive types
+## Primitive types and Arrays
 
 Types are able to get and extract primitives using `PrimitiveTypes` class. See examples below:
 
@@ -666,7 +666,7 @@ Types are able to get and extract primitives using `PrimitiveTypes` class. See e
 declare(strict_types = 1);
 
 use SmartEmailing\Types\PrimitiveTypes;
-use SmartEmailing\Types\InvalidTypeException;
+use SmartEmailing\Types\Arrays;
 
 PrimitiveTypes::getInt(666); // 666
 PrimitiveTypes::getInt('666'); // 666
@@ -697,8 +697,8 @@ PrimitiveTypes::getStringOrNull('abcd'); // 'abcd'
 PrimitiveTypes::getStringOrNull([]); // throws InvalidTypeException
 PrimitiveTypes::getStringOrNull([], true); // null
 
-PrimitiveTypes::getArray([1, 2]); // [1, 2]
-PrimitiveTypes::getArray([1, 'abcd']); // [1, 'abcd']
+Arrays::getArray([1, 2]); // [1, 2]
+Arrays::getArray([1, 'abcd']); // [1, 'abcd']
 
 // All PrimitiveTypes::get* methods have their extract equivalent:
 
@@ -709,8 +709,11 @@ PrimitiveTypes::extractString($data, 'key');
 PrimitiveTypes::extractStringOrNull($data, 'key');
 PrimitiveTypes::extractStringOrNull($data, 'key', true);
 PrimitiveTypes::extractFloat($data, 'key');
-PrimitiveTypes::extractArray($data, 'key');
-PrimitiveTypes::extractArrayOrNull($data, 'key');
+
+
+
+Arrays::extractArray($data, 'key');
+Arrays::extractArrayOrNull($data, 'key');
 
 ```
 
