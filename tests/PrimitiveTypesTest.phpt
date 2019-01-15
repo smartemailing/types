@@ -296,11 +296,11 @@ final class PrimitiveTypesTest extends TestCase
 
 	public function testArray(): void
 	{
-		Assert::equal([1, 2, 3], Arrays::getArray([1, 2, 3]));
+		Assert::equal([1, 2, 3], PrimitiveTypes::getArray([1, 2, 3]));
 
 		Assert::throws(
 			static function (): void {
-				Arrays::getArray('aaa');
+				PrimitiveTypes::getArray('aaa');
 			},
 			InvalidTypeException::class,
 			'Expected array, got string (aaa)'
@@ -315,12 +315,12 @@ final class PrimitiveTypesTest extends TestCase
 			'not_an_array' => 'hello!',
 		];
 
-		Assert::null(Arrays::extractArrayOrNull($data, 'test'));
-		Assert::null(Arrays::extractArrayOrNull($data, 'null'));
-		Assert::same([1, 2, 3], Arrays::extractArrayOrNull($data, 'non_empty_array'));
+		Assert::null(PrimitiveTypes::extractArrayOrNull($data, 'test'));
+		Assert::null(PrimitiveTypes::extractArrayOrNull($data, 'null'));
+		Assert::same([1, 2, 3], PrimitiveTypes::extractArrayOrNull($data, 'non_empty_array'));
 		Assert::exception(
 			static function () use ($data): void {
-				Arrays::extractArrayOrNull($data, 'not_an_array');
+				PrimitiveTypes::extractArrayOrNull($data, 'not_an_array');
 			},
 			InvalidTypeException::class
 		);
