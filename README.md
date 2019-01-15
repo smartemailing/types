@@ -511,6 +511,38 @@ Type-specific methods:
 - `getLogin(): string` returns login
 - `getPassword(): string` returns password
 
+
+### Scalar leaves array
+
+`SmartEmailing\Types\ScalarLeavesArray`
+
+Value object containing single or multi-dimensional array with only scalar or NULL values in it's leaves. Array keys stay untouched. 
+
+Can be created from:
+
+```php
+ScalarLeavesArray::from(
+	[
+		[
+			'a',
+		],
+		[
+			1,
+		],
+		[
+			'b',
+			[
+				true,
+				[
+					null,
+				],
+				[],
+			],
+		],
+	]
+);
+```
+
 ## Array-types
 
 `Types` provide another kind of Array-extractable types: Unique primitive-type arrays.
