@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types\ExtractableTraits;
 
+use SmartEmailing\Types\Arrays;
 use SmartEmailing\Types\Helpers\ExtractableHelpers;
 use SmartEmailing\Types\Helpers\ValidationHelpers;
 use SmartEmailing\Types\InvalidTypeException;
-use SmartEmailing\Types\PrimitiveTypes;
 
 trait ExtractableTrait
 {
@@ -45,7 +45,7 @@ trait ExtractableTrait
 		array & $data,
 		string $key
 	): array {
-		$typedArray = PrimitiveTypes::extractArray($data, $key);
+		$typedArray = Arrays::extractArray($data, $key);
 
 		try {
 			return self::getArrayOf($typedArray);

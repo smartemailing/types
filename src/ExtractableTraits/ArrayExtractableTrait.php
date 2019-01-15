@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types\ExtractableTraits;
 
-use SmartEmailing\Types\PrimitiveTypes;
+use SmartEmailing\Types\Arrays;
 
 trait ArrayExtractableTrait
 {
@@ -27,7 +27,7 @@ trait ArrayExtractableTrait
 			return $data;
 		}
 
-		$data = PrimitiveTypes::getArray($data);
+		$data = Arrays::getArray($data);
 
 		return new self($data);
 	}
