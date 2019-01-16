@@ -77,6 +77,15 @@ abstract class PrimitiveTypes
 	final public static function getFloat(
 		$value
 	): float {
+		if (\is_string($value)) {
+			$value = \strtr(
+				$value,
+				[
+					',' => '.',
+				]
+			);
+		}
+
 		if (\is_numeric($value)) {
 			return (float) $value;
 		}

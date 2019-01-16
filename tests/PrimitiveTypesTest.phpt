@@ -88,6 +88,7 @@ final class PrimitiveTypesTest extends TestCase
 		Assert::equal(1.0, PrimitiveTypes::getFloat(1.0));
 		Assert::equal(333.3, PrimitiveTypes::getFloat('333.3'));
 		Assert::equal(333.3, PrimitiveTypes::getFloat('00333.3'));
+		Assert::equal(333.3, PrimitiveTypes::getFloat('00333,3'));
 		Assert::throws(
 			static function (): void {
 				PrimitiveTypes::getFloat('ščščř');
