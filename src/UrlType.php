@@ -151,6 +151,28 @@ final class UrlType implements ToStringInterface
 		return $dolly;
 	}
 
+	public function withHost(
+		Domain $host
+	): self {
+		$dolly = clone $this;
+		$dolly->url->setHost(
+			$host->getValue()
+		);
+
+		return $dolly;
+	}
+
+	public function withScheme(
+		string $scheme
+	): self {
+		$dolly = clone $this;
+		$dolly->url->setScheme(
+			$scheme
+		);
+
+		return $dolly;
+	}
+
 	/**
 	 * @param string $name
 	 * @param mixed|null $default

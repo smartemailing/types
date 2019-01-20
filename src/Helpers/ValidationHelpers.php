@@ -29,4 +29,28 @@ abstract class ValidationHelpers
 		return true;
 	}
 
+	/**
+	 * Validates multidimensional array to have scalar or NULL leaves
+	 *
+	 * @param mixed[] $array
+	 * @return bool
+	 */
+	final public static function isScalarLeavesArray(
+		array $array
+	): bool {
+		foreach ($array as $item) {
+			if (\is_array($item)) {
+				$isScalar = self::isScalarLeavesArray($item);
+
+				if (!$isScalar) {
+					return false;
+				}
+			} elseif ($item !== null && !\is_scalar($item)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 }

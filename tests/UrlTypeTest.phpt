@@ -97,6 +97,18 @@ final class UrlTypeTest extends TestCase
 			},
 			InvalidTypeException::class
 		);
+
+		$url = $url->withHost(
+			Domain::from('atlas.cz')
+		);
+
+		Assert::equal('https://atlas.cz/?x=y', $url->getValue());
+
+		$url = $url->withScheme(
+			'ftp'
+		);
+
+		Assert::equal('ftp://atlas.cz/?x=y', $url->getValue());
 	}
 
 	public function testNonAsciiChars(): void

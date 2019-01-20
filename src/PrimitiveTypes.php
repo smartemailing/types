@@ -77,6 +77,15 @@ abstract class PrimitiveTypes
 	final public static function getFloat(
 		$value
 	): float {
+		if (\is_string($value)) {
+			$value = \strtr(
+				$value,
+				[
+					',' => '.',
+				]
+			);
+		}
+
 		if (\is_numeric($value)) {
 			return (float) $value;
 		}
@@ -343,15 +352,12 @@ abstract class PrimitiveTypes
 	/**
 	 * @param mixed $value
 	 * @return mixed[]
+	 * @deprecated use Arrays::getArray instead
 	 */
 	final public static function getArray(
 		$value
 	): array {
-		if (\is_array($value)) {
-			return $value;
-		}
-
-		throw InvalidTypeException::typeError('array', $value);
+		return Arrays::getArray($value);
 	}
 
 	/**
@@ -386,7 +392,7 @@ abstract class PrimitiveTypes
 		$value = ExtractableHelpers::extractValue($data, $key);
 
 		try {
-			$stringArray = self::getArray($value);
+			$stringArray = Arrays::getArray($value);
 			$return = [];
 
 			foreach ($stringArray as $index => $item) {
@@ -406,16 +412,14 @@ abstract class PrimitiveTypes
 	 * @param string $key
 	 * @return mixed[]
 	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 * @deprecated use Arrays::extractArray()
 	 */
 	final public static function extractArray(array &$data, string $key): array
 	{
-		$value = ExtractableHelpers::extractValue($data, $key);
-
-		try {
-			return self::getArray($value);
-		} catch (InvalidTypeException $e) {
-			throw $e->wrap($key);
-		}
+		return Arrays::extractArray(
+			$data,
+			$key
+		);
 	}
 
 	/**
@@ -425,14 +429,14 @@ abstract class PrimitiveTypes
 	 * @param string $key
 	 * @return mixed[]|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 * @deprecated use Arrays::extractArrayOrNull
 	 */
 	final public static function extractArrayOrNull(array &$data, string $key): ?array
 	{
-		if (!isset($data[$key]) || $data[$key] === null) {
-			return null;
-		}
-
-		return self::extractArray($data, $key);
+		return Arrays::extractArrayOrNull(
+			$data,
+			$key
+		);
 	}
 
 }
