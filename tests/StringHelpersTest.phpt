@@ -21,6 +21,12 @@ final class StringHelpersTest extends TestCase
 		$string = 'a     b  ' . \PHP_EOL . 'c' . \PHP_EOL;
 
 		Assert::equal('a b c ', StringHelpers::normalizeWhitespace($string));
+
+		$string = '!\"#$%&\'() * +,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^ _`abcdefghijklmnopqrstuvwxyz{|}~';
+
+		$result = StringHelpers::normalizeWhitespace($string);
+
+		Assert::equal($string, $result);
 	}
 
 	public function testSanitizeOrNull(): void
