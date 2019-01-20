@@ -58,6 +58,17 @@ abstract class StringHelpers
 	final public static function normalizeWhitespace(
 		string $value
 	): string {
+		$replaceTable = [];
+
+		foreach (InvisibleSpaceCharacterCodes::getCodes() as $charCode) {
+			$replaceTable[\chr($charCode)] = ' ';
+		}
+
+		$value = \strtr(
+			$value,
+			$replaceTable
+		);
+
 		return (string) \preg_replace(
 			'/\s+/',
 			' ',
