@@ -29,7 +29,7 @@ trait ArrayExtractableTrait
 
 		$data = Arrays::getArray($data);
 
-		return new self($data);
+		return new static($data);
 	}
 
 }

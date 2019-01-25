@@ -26,7 +26,7 @@ trait StringExtractableTrait
 
 		$data = PrimitiveTypes::getString($data);
 
-		return new self($data);
+		return new static($data);
 	}
 
 }

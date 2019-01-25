@@ -36,7 +36,7 @@ final class Base64String implements ToStringInterface
 	public static function encode(
 		string $value
 	): self {
-		return new self(
+		return new static(
 			\base64_encode($value)
 		);
 	}
