@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
+use SmartEmailing\Types\Helpers\StringHelpers;
+
 class InvalidTypeException extends \RuntimeException
 {
 
@@ -46,7 +48,7 @@ class InvalidTypeException extends \RuntimeException
 			. $expected
 			. ', got '
 			. $type
-			. $description
+			. StringHelpers::sanitize($description)
 		);
 	}
 
