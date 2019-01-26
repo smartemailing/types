@@ -50,7 +50,7 @@ class ScalarLeavesArray implements ToArrayInterface
 			return $self;
 		}
 
-		return new self([]);
+		return new static([]);
 	}
 
 	/**

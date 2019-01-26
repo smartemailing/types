@@ -69,7 +69,7 @@ final class Duration
 			$value *= -1;
 		}
 
-		return new self(
+		return new static(
 			[
 				'value' => $value,
 				'unit' => $unit->getValue(),

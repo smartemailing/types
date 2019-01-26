@@ -49,10 +49,10 @@ final class Part implements ToStringInterface
 		}
 
 		if ($whole === 0.0) {
-			return new self(0.0);
+			return new static(0.0);
 		}
 
-		return new self($value / $whole);
+		return new static($value / $whole);
 	}
 
 	public function getPercent(): float

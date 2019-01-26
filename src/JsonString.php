@@ -54,7 +54,7 @@ final class JsonString implements ToStringInterface
 		$value,
 		bool $oneLine = false
 	): self {
-		return new self(
+		return new static(
 			Json::encode(
 				$value,
 				$oneLine ? 0 : Json::PRETTY
