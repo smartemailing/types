@@ -38,7 +38,9 @@ class InvalidTypeException extends \RuntimeException
 		$description = '';
 
 		if (\is_scalar($value)) {
-			$description = ' (' . (string) $value . ')';
+			$stringValue = (string) $value;
+			$stringValue = StringHelpers::sanitize($stringValue);
+			$description = ' (' . $stringValue . ')';
 		} elseif (\is_object($value)) {
 			$description = ' (' . \get_class($value) . ')';
 		}
@@ -48,7 +50,7 @@ class InvalidTypeException extends \RuntimeException
 			. $expected
 			. ', got '
 			. $type
-			. StringHelpers::sanitize($description)
+			. $description
 		);
 	}
 
