@@ -54,6 +54,7 @@ Your code will be unbreakable and your IDE will love it.
   * [Int-extractable types](#int-extractable-types)
     + [Port](#port)
     + [Quantity](#quantity)
+    + [Unsigned Integer](#unsigned-integer)
   * [Float-extractable types](#float-extractable-types)
     + [Part](#part)
     + [Sigmoid function value](#sigmoid-function-value)
@@ -356,6 +357,14 @@ Integer interval, `<0, 65535>`
 Quantity of items
 
 Integer interval, `<1, PHP_INT_MAX>`
+
+### Unsigned Integer
+
+`SmartEmailing\Types\UnsignedInt`
+
+Usigned integer
+
+Integer interval, `<0, PHP_INT_MAX>`
 
 ## Float-extractable types
 
