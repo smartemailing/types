@@ -81,6 +81,7 @@ final class PrimitiveTypesTest extends TestCase
 			121,
 			112,
 			211,
+			111,
 		];
 
 		Assert::equal(
