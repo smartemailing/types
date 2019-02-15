@@ -91,7 +91,7 @@ final class PrimitiveTypesTest extends TestCase
 
 		Assert::throws(
 			static function (): void {
-				PrimitiveTypes::extractStringArray(['test' => [[]]], 'test');
+				PrimitiveTypes::extractIntArray(['test' => [[]]], 'test');
 			},
 			InvalidTypeException::class
 		);
