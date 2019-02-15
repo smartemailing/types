@@ -42,6 +42,7 @@ final class CompanyRegistrationNumberTest extends TestCase
 			'05847940', // CZ
 			'02948990', // CZ
 			'38-4094176', // US
+			'Y3899173C', // ES
 		];
 
 		foreach ($validValues as $validValue) {

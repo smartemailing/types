@@ -45,7 +45,34 @@ final class CompanyRegistrationNumber implements ToStringInterface
 			$this->isValidGB($value) ||
 			$this->isValidCY($value) ||
 			$this->isValidPL($value) ||
-			$this->isValidUS($value);
+			$this->isValidUS($value) ||
+			$this->isValidES($value);
+	}
+
+	private function isValidES(
+		string $value
+	): bool {
+		$valueRegEx = '/^\d{8}[A-Z]$/i';
+		$nieRegEx = '/^[XYZ]\d{7}[A-Z]$/i';
+		$letters = 'TRWAGMYFPDXBNJZSQVHLCKE';
+
+		if (\preg_match($valueRegEx, $value)) {
+			return $letters[\substr($value, 0, 8) % 23] === $value[8];
+		}
+
+		if (\preg_match($nieRegEx, $value)) {
+			if ($value[0] === 'X') {
+				$value[0] = '0';
+			} elseif ($value[0] === 'Y') {
+				$value[0] = '1';
+			} elseif ($value[0] === 'Z') {
+				$value[0] = '2';
+			}
+
+			return $letters[\substr($value, 0, 8) % 23] === $value[8];
+		}
+
+		return false;
 	}
 
 	private function isValidCY(
