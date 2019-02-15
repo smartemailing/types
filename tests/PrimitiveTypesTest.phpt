@@ -77,6 +77,17 @@ final class PrimitiveTypesTest extends TestCase
 			InvalidTypeException::class
 		);
 
+		$array = [
+			121,
+			112,
+			211,
+		];
+
+		Assert::equal(
+			$array,
+			PrimitiveTypes::extractIntArray(['test' => $array], 'test')
+		);
+
 		Assert::equal(10174, PrimitiveTypes::getInt('0010174'));
 
 		Assert::equal(0, PrimitiveTypes::getInt('0'));
