@@ -33,6 +33,8 @@ final class ZipCodeTest extends TestCase
 
 		$validValues = [
 			'39174',
+			'72528',
+			'E11DU',
 		];
 
 		foreach ($validValues as $validValue) {
@@ -40,6 +42,10 @@ final class ZipCodeTest extends TestCase
 			Assert::type(ZipCode::class, $zip);
 			Assert::equal($validValue, $zip->getValue());
 		}
+
+		Assert::equal('WC2N5DU', ZipCode::from('WC2N 5DU')->getValue());
+
+		Assert::equal('W22LW', ZipCode::from('w2 2lw')->getValue());
 	}
 
 }
