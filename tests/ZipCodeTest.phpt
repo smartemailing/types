@@ -34,6 +34,7 @@ final class ZipCodeTest extends TestCase
 		$validValues = [
 			'39174',
 			'72528',
+			'E11DU',
 		];
 
 		foreach ($validValues as $validValue) {
