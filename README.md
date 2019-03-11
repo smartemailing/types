@@ -38,6 +38,7 @@ Your code will be unbreakable and your IDE will love it.
     + [E-mail address](#e-mail-address)
     + [Domain](#domain)
     + [Hex 32](#hex-32)
+    + [Hex Color](#hex-color)
     + [GUID](#guid)
     + [IP address](#ip-address)
     + [URL](#url)
@@ -214,6 +215,12 @@ Type-specific methods:
 `SmartEmailing\Types\Hex32`
 
 Lowercased 32-characters long hexadecimal string useful as container for MD5 or UUID without dashes. (`741ecf779c9244358e6b85975bd13452`)
+
+### Hex color
+
+`SmartEmailing\Types\HexColor`
+
+Uppercased 7-characters long string useful as container for color. (`#006EDB`)
 
 
 ### GUID
