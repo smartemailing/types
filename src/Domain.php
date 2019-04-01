@@ -32,6 +32,13 @@ final class Domain implements ToStringInterface
 		$this->value = $value;
 	}
 
+	public function __destruct()
+	{
+		unset(
+			$this->value
+		);
+	}
+
 	private function isValid(
 		string $value
 	): bool {

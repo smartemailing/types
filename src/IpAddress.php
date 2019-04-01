@@ -31,6 +31,14 @@ final class IpAddress implements ToStringInterface
 		$this->initialize($value);
 	}
 
+	public function __destruct()
+	{
+		unset(
+			$this->value,
+			$this->version
+		);
+	}
+
 	private function isValidIpV4(
 		string $value
 	): bool {
