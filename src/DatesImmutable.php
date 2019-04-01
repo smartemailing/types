@@ -6,7 +6,7 @@ namespace SmartEmailing\Types;
 
 use Consistence\Type\ObjectMixinTrait;
 
-abstract class DateTimesImmutable
+abstract class DatesImmutable
 {
 
 	use ObjectMixinTrait;
@@ -18,7 +18,7 @@ abstract class DateTimesImmutable
 	final public static function from(
 		$value
 	): \DateTimeImmutable {
-		$dateTime = DateTimes::from($value);
+		$dateTime = Dates::from($value);
 
 		return self::immutate($dateTime);
 	}
@@ -32,7 +32,7 @@ abstract class DateTimesImmutable
 		$value,
 		bool $getNullIfInvalid = false
 	): ?\DateTimeImmutable {
-		$dateTime = DateTimes::fromOrNull($value, $getNullIfInvalid);
+		$dateTime = Dates::fromOrNull($value, $getNullIfInvalid);
 
 		if ($dateTime === null) {
 			return null;
@@ -51,39 +51,12 @@ abstract class DateTimesImmutable
 		array & $data,
 		string $key
 	): \DateTimeImmutable {
-		$dateTime = DateTimes::extract(
+		$dateTime = Dates::extract(
 			$data,
 			$key
 		);
 
 		return self::immutate($dateTime);
-	}
-
-	/**
-	 * @param mixed[] $data
-	 * @param string $key
-	 * @return \DateTimeImmutable
-	 * @throws \SmartEmailing\Types\InvalidTypeException
-	 * @deprecated Use DatesImmutable::extract
-	 */
-	final public static function extractDate(
-		array &$data,
-		string $key
-	): \DateTimeImmutable {
-		return DatesImmutable::extract($data, $key);
-	}
-
-	/**
-	 * @param mixed[] $data
-	 * @param string $key
-	 * @return \DateTimeImmutable|null
-	 * @deprecated Use DatesImmutable::extractDateOrNull
-	 */
-	final public static function extractDateOrNull(
-		array &$data,
-		string $key
-	): ?\DateTimeImmutable {
-		return DatesImmutable::extractOrNull($data, $key);
 	}
 
 	private static function immutate(
@@ -105,7 +78,7 @@ abstract class DateTimesImmutable
 		string $key,
 		bool $getNullIfInvalid = false
 	): ?\DateTimeImmutable {
-		$dateTime = DateTimes::extractOrNull(
+		$dateTime = Dates::extractOrNull(
 			$data,
 			$key,
 			$getNullIfInvalid
