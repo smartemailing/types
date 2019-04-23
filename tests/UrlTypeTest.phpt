@@ -35,8 +35,17 @@ final class UrlTypeTest extends TestCase
 		Assert::equal('https://www.seznam.cz/', $url->getBaseUrl());
 		Assert::equal('www.seznam.cz', $url->getAuthority());
 		Assert::equal('www.seznam.cz', $url->getHost());
+		Assert::equal('www.seznam.cz', $url->getHostAndPort());
 		Assert::equal('https', $url->getScheme());
 		Assert::equal('/', $url->getPath());
+		Assert::null($url->getPort());
+	}
+
+	public function testPort(): void
+	{
+		$url = UrlType::from('http://www.seznam.cz:8080/');
+		Assert::equal('www.seznam.cz:8080', $url->getHostAndPort());
+		Assert::equal(8080, $url->getPort());
 	}
 
 	public function testQueryParameters(): void

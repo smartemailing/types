@@ -86,7 +86,8 @@ final class UrlType implements ToStringInterface
 	public function getHostAndPort(): string
 	{
 		$port = $this->getPort();
-		return $this->getHost() . ($port === null ?: ':' . $port->getValue());
+
+		return $this->getHost() . ($port === null ? '' : ':' . $port->getValue());
 	}
 
 	/**
