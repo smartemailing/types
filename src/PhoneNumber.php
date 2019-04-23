@@ -140,7 +140,7 @@ final class PhoneNumber implements ToStringInterface
 			return false;
 		}
 
-		$lenght = Strings::length((string)$afterCountryCode);
+		$lenght = Strings::length((string) $afterCountryCode);
 
 		return \in_array(
 			$lenght,
