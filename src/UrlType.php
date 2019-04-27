@@ -85,7 +85,7 @@ final class UrlType implements ToStringInterface
 	 */
 	public function getParameter(string $name): ?string
 	{
-		return $this->url->getQueryParameter($name, null);
+		return $this->url->getQueryParameter($name) ?? null;
 	}
 
 	public function getBaseUrl(): string
@@ -182,7 +182,7 @@ final class UrlType implements ToStringInterface
 		string $name,
 		$default = null
 	) {
-		return $this->url->getQueryParameter($name, $default);
+		return $this->url->getQueryParameter($name) ?? $default;
 	}
 
 	public function getValue(): string
