@@ -43,13 +43,13 @@ final class UrlType implements ToStringInterface
 		);
 
 		if (!Validators::isUrl($value)) {
-			throw new InvalidTypeException('Invalid URL: ' . $value);
+			throw new InvalidTypeException('Invalid URL or missing protocol: ' . $value);
 		}
 
 		try {
 			$this->url = new Url($value);
 		} catch (InvalidArgumentException $e) {
-			throw new InvalidTypeException('Invalid URL: ' . $value);
+			throw new InvalidTypeException('Invalid URL or missing protocol: ' . $value);
 		}
 	}
 
