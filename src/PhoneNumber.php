@@ -131,7 +131,7 @@ final class PhoneNumber implements ToStringInterface
 		string $countryCode,
 		string $value
 	): bool {
-		$afterCountryCode = Strings::after(
+		$afterCountryCode = (string) Strings::after(
 			$value,
 			(string) self::$countryCodesToPhoneCodes[$countryCode]
 		);
