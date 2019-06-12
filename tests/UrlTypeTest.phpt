@@ -109,6 +109,12 @@ final class UrlTypeTest extends TestCase
 		);
 
 		Assert::equal('ftp://atlas.cz/?x=y', $url->getValue());
+
+		$url = UrlType::from('https://www.seznam.cz');
+
+		$url = $url->withPath('test');
+
+		Assert::equal('https://www.seznam.cz/test', $url->getValue());
 	}
 
 	public function testNonAsciiChars(): void

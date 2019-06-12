@@ -173,6 +173,17 @@ final class UrlType implements ToStringInterface
 		return $dolly;
 	}
 
+	public function withPath(
+		string $path
+	): self {
+		$dolly = clone $this;
+		$dolly->url->setPath(
+			$path
+		);
+
+		return $dolly;
+	}
+
 	/**
 	 * @param string $name
 	 * @param mixed|null $default
