@@ -14,8 +14,6 @@ final class Duration
 	use ObjectMixinTrait;
 	use ArrayExtractableTrait;
 
-	public const MAX_VALUE = 1000000;
-
 	/**
 	 * @var int
 	 */
@@ -38,12 +36,6 @@ final class Duration
 		array $data
 	) {
 		$value = PrimitiveTypes::extractInt($data, 'value');
-
-		if (\abs($value) > self::MAX_VALUE) {
-			throw new InvalidTypeException(
-				'Value is out of range: [-' . self::MAX_VALUE . ', ' . self::MAX_VALUE . '].'
-			);
-		}
 
 		$this->value = $value;
 		$this->unit = TimeUnit::extract($data, 'unit');

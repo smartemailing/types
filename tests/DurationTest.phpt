@@ -19,17 +19,6 @@ final class DurationTest extends TestCase
 		}, InvalidTypeException::class);
 
 		Assert::exception(static function (): void {
-			Duration::fromDateTimeModify('-99999999999999999999 months');
-		}, InvalidTypeException::class);
-
-		Assert::exception(static function (): void {
-			Duration::from([
-				'value' => 9999999999999999,
-				'unit' => TimeUnit::WEEKS,
-			]);
-		}, InvalidTypeException::class);
-
-		Assert::exception(static function (): void {
 			Duration::from([
 				'value' => 0,
 				'unit' => 'week',
