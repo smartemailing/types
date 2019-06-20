@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Enum\Enum;
 use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\EnumExtractableTrait;
 
