@@ -46,6 +46,10 @@ final class CurrencyCodeTest extends TestCase
 		$country = CurrencyCode::from('CZK');
 		Assert::type(CurrencyCode::class, $country);
 		Assert::type(CurrencyCode::class, $country);
+
+		Assert::exception(static function (): void {
+			CurrencyCode::from('test');
+		}, InvalidTypeException::class);
 	}
 
 }
