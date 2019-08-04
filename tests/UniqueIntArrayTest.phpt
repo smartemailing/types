@@ -144,6 +144,163 @@ final class UniqueIntArrayTest extends TestCase
 		);
 	}
 
+	public function testIntersect(): void
+	{
+		$arr1 = UniqueIntArray::from(
+			[
+				0,
+				1,
+				2,
+				3,
+			]
+		);
+
+		$arr2 = UniqueIntArray::from(
+			[
+				2,
+				3,
+				4,
+				5,
+			]
+		);
+
+		$result = UniqueIntArray::intersect(
+			[
+				$arr1,
+				$arr2,
+			]
+		);
+
+		Assert::equal(
+			[
+				2,
+				3,
+			],
+			$result->toArray()
+		);
+
+		///
+
+		$result = UniqueIntArray::intersect(
+			[
+				UniqueIntArray::from([]),
+				UniqueIntArray::from([]),
+			]
+		);
+
+		Assert::equal(
+			[],
+			$result->toArray()
+		);
+
+		///
+		$arr1 = UniqueIntArray::from(
+			[
+				0,
+			]
+		);
+
+		$arr2 = UniqueIntArray::from(
+			[
+				1,
+			]
+		);
+
+		$result = UniqueIntArray::intersect(
+			[
+				$arr1,
+				$arr2,
+			]
+		);
+
+		Assert::equal(
+			[],
+			$result->toArray()
+		);
+	}
+
+	public function testUnion(): void
+	{
+		$arr1 = UniqueIntArray::from(
+			[
+				0,
+				1,
+				2,
+				3,
+			]
+		);
+
+		$arr2 = UniqueIntArray::from(
+			[
+				2,
+				3,
+				4,
+				5,
+			]
+		);
+
+		$result = UniqueIntArray::union(
+			[
+				$arr1,
+				$arr2,
+			]
+		);
+
+		Assert::equal(
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+			],
+			$result->toArray()
+		);
+
+		///
+
+		$result = UniqueIntArray::union(
+			[
+				UniqueIntArray::from([]),
+				UniqueIntArray::from([]),
+			]
+		);
+
+		Assert::equal(
+			[],
+			$result->toArray()
+		);
+
+		///
+		$arr1 = UniqueIntArray::from(
+			[
+				333,
+			]
+		);
+
+		$arr2 = UniqueIntArray::from(
+			[
+				1,
+			]
+		);
+
+		$result = UniqueIntArray::union(
+			[
+				$arr1,
+				$arr2,
+			]
+		);
+
+		Assert::equal(
+			[
+				333,
+				1,
+			],
+			$result->toArray()
+		);
+	}
+
 }
 
 (new UniqueIntArrayTest())->run();

@@ -117,4 +117,48 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInt
 		\ksort($this->valuesPresenceMap);
 	}
 
+	/**
+	 * @param \SmartEmailing\Types\UniqueIntArray[] $uniqueIntArrays
+	 * @return \SmartEmailing\Types\UniqueIntArray
+	 */
+	public static function intersect(
+		array $uniqueIntArrays
+	): UniqueIntArray {
+		$plainIntArrays = [];
+
+		foreach ($uniqueIntArrays as $uniqueIntArray) {
+			$plainIntArrays[] = $uniqueIntArray->valuesPresenceMap;
+		}
+
+		$result = \array_intersect_key(
+			...$plainIntArrays
+		);
+
+		$output = new UniqueIntArray([]);
+		$output->valuesPresenceMap = $result;
+
+		return $output;
+	}
+
+	/**
+	 * @param \SmartEmailing\Types\UniqueIntArray[] $uniqueIntArrays
+	 * @return \SmartEmailing\Types\UniqueIntArray
+	 */
+	public static function union(
+		array $uniqueIntArrays
+	): UniqueIntArray {
+		$result = [];
+
+		foreach ($uniqueIntArrays as $uniqueIntArray) {
+			foreach ($uniqueIntArray->valuesPresenceMap as $key => $true) {
+				$result[$key] = $true;
+			}
+		}
+
+		$output = new UniqueIntArray([]);
+		$output->valuesPresenceMap = $result;
+
+		return $output;
+	}
+
 }
