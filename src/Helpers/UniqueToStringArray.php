@@ -135,6 +135,10 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 	public static function intersect(
 		array $uniqueToStringArrays
 	): self {
+		if (\count($uniqueToStringArrays) === 1) {
+			return \reset($uniqueToStringArrays);
+		}
+
 		$plainIntArrays = [];
 
 		foreach ($uniqueToStringArrays as $uniqueToStringArray) {

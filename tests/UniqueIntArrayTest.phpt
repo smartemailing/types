@@ -149,6 +149,20 @@ final class UniqueIntArrayTest extends TestCase
 		$arr1 = UniqueIntArray::from(
 			[
 				0,
+			]
+		);
+
+		UniqueIntArray::intersect(
+			[
+				$arr1,
+			]
+		);
+
+		///
+
+		$arr1 = UniqueIntArray::from(
+			[
+				0,
 				1,
 				2,
 				3,

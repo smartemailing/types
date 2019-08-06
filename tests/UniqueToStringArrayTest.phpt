@@ -175,6 +175,19 @@ final class UniqueToStringArrayTest extends TestCase
 		$arr1 = UniqueToStringArray::from(
 			[
 				Emailaddress::from('a@b.com'),
+			]
+		);
+		UniqueToStringArray::union(
+			[
+				$arr1,
+			]
+		);
+
+		///
+
+		$arr1 = UniqueToStringArray::from(
+			[
+				Emailaddress::from('a@b.com'),
 				Emailaddress::from('b@b.com'),
 				Emailaddress::from('c@b.com'),
 				Emailaddress::from('d@b.com'),

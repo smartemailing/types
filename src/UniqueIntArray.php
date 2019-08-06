@@ -124,6 +124,10 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInt
 	public static function intersect(
 		array $uniqueIntArrays
 	): UniqueIntArray {
+		if (\count($uniqueIntArrays) === 1) {
+			return \reset($uniqueIntArrays);
+		}
+
 		$plainIntArrays = [];
 
 		foreach ($uniqueIntArrays as $uniqueIntArray) {
