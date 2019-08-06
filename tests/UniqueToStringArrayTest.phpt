@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types;
 
 use Consistence\Type\ObjectMixinTrait;
+use SmartEmailing\Types\Helpers\ArrayHelpers;
 use SmartEmailing\Types\Helpers\UniqueToStringArray;
 use Tester\Assert;
 use Tester\TestCase;
@@ -148,7 +149,6 @@ final class UniqueToStringArrayTest extends TestCase
 		Assert::true($result->isEmpty());
 	}
 
-
 	public function testMerge(): void
 	{
 		$a = UniqueToStringArray::from(
@@ -168,6 +168,141 @@ final class UniqueToStringArrayTest extends TestCase
 		$c = $b->merge($a);
 
 		Assert::equal(3, \count($c->getValues()));
+	}
+
+	public function testIntersect(): void
+	{
+		$arr1 = UniqueToStringArray::from(
+			[
+				Emailaddress::from('a@b.com'),
+				Emailaddress::from('b@b.com'),
+				Emailaddress::from('c@b.com'),
+				Emailaddress::from('d@b.com'),
+			]
+		);
+
+		$arr2 = UniqueToStringArray::from(
+			[
+				Emailaddress::from('b@b.com'),
+				Emailaddress::from('c@b.com'),
+				Emailaddress::from('d@b.com'),
+				Emailaddress::from('e@b.com'),
+			]
+		);
+
+		$result = UniqueToStringArray::intersect(
+			[
+				$arr1,
+				$arr2,
+			]
+		);
+
+		$collection = ArrayHelpers::stringExtractableCollectionToArray(
+			$result->toArray()
+		);
+		Assert::equal(
+			[
+				'b@b.com',
+				'c@b.com',
+				'd@b.com',
+			],
+			$collection
+		);
+
+		///
+
+		$result = UniqueToStringArray::intersect(
+			[
+				UniqueToStringArray::from([]),
+				UniqueToStringArray::from([]),
+			]
+		);
+
+		Assert::equal(
+			[],
+			$result->toArray()
+		);
+
+		///
+		$arr1 = UniqueToStringArray::from(
+			[
+				Emailaddress::from('a@b.com'),
+			]
+		);
+
+		$arr2 = UniqueToStringArray::from(
+			[
+				Emailaddress::from('b@b.com'),
+			]
+		);
+
+		$result = UniqueToStringArray::intersect(
+			[
+				$arr1,
+				$arr2,
+			]
+		);
+
+		Assert::equal(
+			[],
+			$result->toArray()
+		);
+	}
+
+	public function testUnion(): void
+	{
+		$arr1 = UniqueToStringArray::from(
+			[
+				Emailaddress::from('a@b.com'),
+				Emailaddress::from('b@b.com'),
+				Emailaddress::from('c@b.com'),
+				Emailaddress::from('d@b.com'),
+			]
+		);
+
+		$arr2 = UniqueToStringArray::from(
+			[
+				Emailaddress::from('c@b.com'),
+				Emailaddress::from('d@b.com'),
+				Emailaddress::from('e@b.com'),
+			]
+		);
+
+		$result = UniqueToStringArray::union(
+			[
+				$arr1,
+				$arr2,
+			]
+		);
+
+		$collection = ArrayHelpers::stringExtractableCollectionToArray(
+			$result->toArray()
+		);
+		Assert::equal(
+			[
+				'a@b.com',
+				'b@b.com',
+				'c@b.com',
+				'd@b.com',
+				'e@b.com',
+			],
+			$collection
+		);
+
+		///
+
+		$result = UniqueToStringArray::union(
+			[
+				UniqueToStringArray::from([]),
+				UniqueToStringArray::from([]),
+			]
+		);
+
+		Assert::equal(
+			[],
+			$result->toArray()
+		);
+		///
 	}
 
 }
