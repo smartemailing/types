@@ -62,7 +62,7 @@ abstract class Arrays
 	 * @return mixed[]
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
-	final public static function extractArray(array &$data, string $key): array
+	final public static function extractArray(array $data, string $key): array
 	{
 		$value = ExtractableHelpers::extractValue($data, $key);
 
@@ -82,7 +82,7 @@ abstract class Arrays
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractArrayOrNull(
-		array &$data,
+		array $data,
 		string $key
 	): ?array {
 		if (!isset($data[$key]) || $data[$key] === null) {
