@@ -327,6 +327,23 @@ final class PrimitiveTypesTest extends TestCase
 		);
 	}
 
+	public function testExtractArray(): void
+	{
+		$data = [
+			'non_empty_array' => [1, 2, 3],
+			'not_an_array' => 'hello!',
+		];
+
+		Assert::same([1, 2, 3], PrimitiveTypes::extractArray($data, 'non_empty_array'));
+		Assert::exception(
+			static function () use ($data): void {
+				PrimitiveTypes::extractArrayOrNull($data, 'not_an_array');
+			},
+			InvalidTypeException::class,
+			'Problem at key not_an_array: Expected array, got string (hello!)'
+		);
+	}
+
 	public function testExtractArrayOrNull(): void
 	{
 		$data = [

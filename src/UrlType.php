@@ -81,7 +81,7 @@ final class UrlType implements ToStringInterface
 	/**
 	 * @param string $name
 	 * @return string|null
-	 * @deprecated use getQueryParameter() instead
+	 * @deprecated use getQueryParameter instead
 	 */
 	public function getParameter(string $name): ?string
 	{
@@ -95,7 +95,7 @@ final class UrlType implements ToStringInterface
 
 	/**
 	 * @return string
-	 * @deprecated use getValue() or (string) type cast
+	 * @deprecated use getValue or (string) type cast
 	 */
 	public function toString(): string
 	{

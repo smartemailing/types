@@ -29,25 +29,33 @@ class InvalidTypeException extends \RuntimeException
 		string $expected,
 		$value
 	): self {
-		$type = \gettype($value);
-
-		if (\in_array($type, ['double', 'real'], true)) {
-			$type = 'float';
-		}
-
-		$description = '';
-
-		if (\is_scalar($value)) {
-			$stringValue = (string) $value;
-			$stringValue = StringHelpers::sanitize($stringValue);
-			$description = ' (' . $stringValue . ')';
-		} elseif (\is_object($value)) {
-			$description = ' (' . \get_class($value) . ')';
-		}
+		$type = self::getType($value);
+		$description = self::getDescription($value);
 
 		return new static(
 			'Expected '
 			. $expected
+			. ', got '
+			. $type
+			. $description
+		);
+	}
+
+	/**
+	 * @param string[] $expected
+	 * @param mixed|mixed[] $value
+	 * @return \SmartEmailing\Types\InvalidTypeException
+	 */
+	public static function typesError(
+		array $expected,
+		$value
+	): self {
+		$type = self::getType($value);
+		$description = self::getDescription($value);
+
+		return new static(
+			'Expected types '
+			. '[' . \implode(', ', $expected) . ']'
 			. ', got '
 			. $type
 			. $description
@@ -64,6 +72,40 @@ class InvalidTypeException extends \RuntimeException
 		string $key
 	): self {
 		return new static('Array at key ' . $key . ' must not be empty.');
+	}
+
+	/**
+	 * @param mixed $value
+	 * @return string
+	 */
+	private static function getType($value): string
+	{
+		$type = \gettype($value);
+
+		if (\in_array($type, ['double', 'real'], true)) {
+			$type = 'float';
+		}
+
+		return $type;
+	}
+
+	/**
+	 * @param mixed $value
+	 * @return string
+	 */
+	private static function getDescription($value): string
+	{
+		$description = '';
+
+		if (\is_scalar($value)) {
+			$stringValue = (string) $value;
+			$stringValue = StringHelpers::sanitize($stringValue);
+			$description = ' (' . $stringValue . ')';
+		} elseif (\is_object($value)) {
+			$description = ' (' . \get_class($value) . ')';
+		}
+
+		return $description;
 	}
 
 }

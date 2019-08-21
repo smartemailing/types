@@ -27,6 +27,34 @@ abstract class Arrays
 	}
 
 	/**
+	 * @param mixed $value
+	 * @param bool $nullIfInvalid
+	 * @return mixed[]|null
+	 */
+	final public static function getArrayOrNull(
+		$value,
+		bool $nullIfInvalid = false
+	): ?array {
+		if (\is_array($value)) {
+			return $value;
+		}
+
+		if ($value === null) {
+			return null;
+		}
+
+		try {
+			return self::getArray($value);
+		} catch (InvalidTypeException $e) {
+			if ($nullIfInvalid) {
+				return null;
+			}
+
+			throw $e;
+		}
+	}
+
+	/**
 	 * Preserves keys
 	 *
 	 * @param mixed[] $data
@@ -62,6 +90,56 @@ abstract class Arrays
 		}
 
 		return self::extractArray($data, $key);
+	}
+
+	/**
+	 * @param mixed[] $data
+	 * @param string $key
+	 * @return int[]
+	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 */
+	final public static function extractIntArray(
+		array $data,
+		string $key
+	): array {
+		$stringArray = Arrays::extractArray($data, $key);
+
+		try {
+			$return = [];
+
+			foreach ($stringArray as $index => $item) {
+				$return[$index] = PrimitiveTypes::getInt($item);
+			}
+
+			return $return;
+		} catch (InvalidTypeException $e) {
+			throw $e->wrap($key);
+		}
+	}
+
+	/**
+	 * @param mixed[] $data
+	 * @param string $key
+	 * @return string[]
+	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 */
+	final public static function extractStringArray(
+		array $data,
+		string $key
+	): array {
+		$stringArray = Arrays::extractArray($data, $key);
+
+		try {
+			$return = [];
+
+			foreach ($stringArray as $index => $item) {
+				$return[$index] = PrimitiveTypes::getString($item);
+			}
+
+			return $return;
+		} catch (InvalidTypeException $e) {
+			throw $e->wrap($key);
+		}
 	}
 
 }
