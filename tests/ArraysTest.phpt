@@ -72,6 +72,26 @@ final class ArraysTest extends TestCase
 		}, InvalidTypeException::class, 'Problem at key data: Expected string, got object (stdClass)');
 	}
 
+	public function testGetIntArray(): void
+	{
+		$intArray = Arrays::getIntArray(['1', 2, '-55', -99]);
+		Assert::type('array', $intArray);
+
+		foreach ($intArray as $item) {
+			Assert::type('int', $item);
+		}
+	}
+
+	public function testGetStringArray(): void
+	{
+		$stringArray = Arrays::getStringArray(['1', 2, '-55', -99]);
+		Assert::type('array', $stringArray);
+
+		foreach ($stringArray as $item) {
+			Assert::type('string', $item);
+		}
+	}
+
 }
 
 (new ArraysTest())->run();

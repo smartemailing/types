@@ -93,6 +93,24 @@ abstract class Arrays
 	}
 
 	/**
+	 * @param mixed $value
+	 * @return int[]
+	 */
+	final public static function getIntArray(
+		$value
+	): array {
+		$array = self::getArray($value);
+
+		$return = [];
+
+		foreach ($array as $index => $item) {
+			$return[$index] = PrimitiveTypes::getInt($item);
+		}
+
+		return $return;
+	}
+
+	/**
 	 * @param mixed[] $data
 	 * @param string $key
 	 * @return int[]
@@ -102,19 +120,33 @@ abstract class Arrays
 		array $data,
 		string $key
 	): array {
-		$stringArray = Arrays::extractArray($data, $key);
+		$array = Arrays::extractArray($data, $key);
 
 		try {
-			$return = [];
-
-			foreach ($stringArray as $index => $item) {
-				$return[$index] = PrimitiveTypes::getInt($item);
-			}
-
-			return $return;
+			$array = Arrays::getIntArray($array);
 		} catch (InvalidTypeException $e) {
 			throw $e->wrap($key);
 		}
+
+		return $array;
+	}
+
+	/**
+	 * @param mixed $value
+	 * @return string[]
+	 */
+	final public static function getStringArray(
+		$value
+	): array {
+		$array = self::getArray($value);
+
+		$return = [];
+
+		foreach ($array as $index => $item) {
+			$return[$index] = PrimitiveTypes::getString($item);
+		}
+
+		return $return;
 	}
 
 	/**
@@ -127,19 +159,15 @@ abstract class Arrays
 		array $data,
 		string $key
 	): array {
-		$stringArray = Arrays::extractArray($data, $key);
+		$array = Arrays::extractArray($data, $key);
 
 		try {
-			$return = [];
-
-			foreach ($stringArray as $index => $item) {
-				$return[$index] = PrimitiveTypes::getString($item);
-			}
-
-			return $return;
+			$array = Arrays::getStringArray($array);
 		} catch (InvalidTypeException $e) {
 			throw $e->wrap($key);
 		}
+
+		return $array;
 	}
 
 }
