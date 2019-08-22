@@ -752,6 +752,8 @@ PrimitiveTypes::getStringOrNull([], true); // null
 
 Arrays::getArray([1, 2]); // [1, 2]
 Arrays::getArray([1, 'abcd']); // [1, 'abcd']
+Arrays::getIntArray([1, '2']); // [1, 2]
+Arrays::getStringArray([1, '2']); // ['1', '2']
 
 // All PrimitiveTypes::get* methods have their extract equivalent:
 
@@ -769,6 +771,8 @@ Arrays::extractArray($data, 'key');
 Arrays::extractArrayOrNull($data, 'key');
 Arrays::extractIntArray($data, 'key'); //returns int[]
 Arrays::extractStringArray($data, 'key'); //returns string[]
+Arrays::extractIntArrayOrNull($data, 'key'); //returns int[]|null
+Arrays::extractStringArrayOrNull($data, 'key'); //returns string[]|null
 
 ```
 

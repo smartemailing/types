@@ -132,6 +132,25 @@ abstract class Arrays
 	}
 
 	/**
+	 * @param mixed[] $data
+	 * @param string $key
+	 * @return int[]|null
+	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 */
+	final public static function extractIntArrayOrNull(
+		array $data,
+		string $key
+	): ?array {
+		$array = Arrays::extractArrayOrNull($data, $key);
+
+		if ($array === null) {
+			return null;
+		}
+
+		return self::getIntArray($array);
+	}
+
+	/**
 	 * @param mixed $value
 	 * @return string[]
 	 */
@@ -168,6 +187,25 @@ abstract class Arrays
 		}
 
 		return $array;
+	}
+
+	/**
+	 * @param mixed[] $data
+	 * @param string $key
+	 * @return string[]|null
+	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 */
+	final public static function extractStringArrayOrNull(
+		array $data,
+		string $key
+	): ?array {
+		$array = Arrays::extractArrayOrNull($data, $key);
+
+		if ($array === null) {
+			return null;
+		}
+
+		return self::getStringArray($array);
 	}
 
 }

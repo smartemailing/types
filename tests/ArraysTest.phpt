@@ -92,6 +92,20 @@ final class ArraysTest extends TestCase
 		}
 	}
 
+	public function testExtractIntArrayOrNull(): void
+	{
+		Assert::null(Arrays::extractIntArrayOrNull(['data' => null], 'data'));
+
+		Assert::type('array', Arrays::extractIntArrayOrNull(['data' => ['1']], 'data'));
+	}
+
+	public function testExtractStringArrayOrNull(): void
+	{
+		Assert::null(Arrays::extractStringArrayOrNull(['data' => null], 'data'));
+
+		Assert::type('array', Arrays::extractStringArrayOrNull(['data' => ['1']], 'data'));
+	}
+
 }
 
 (new ArraysTest())->run();
