@@ -15,43 +15,60 @@ final class JsonStringTest extends TestCase
 
 	use ObjectMixinTrait;
 
-	public function test1(): void
+	public function testValid(): void
 	{
-		$validValues = [
-			123,
-			'[]',
-			\json_encode(['hello', '123', 456]),
-		];
+		$json = JsonString::encode([1, 2, 3]);
+		Assert::type('string', $json->getValue());
 
-		foreach ($validValues as $value) {
-			$jsonString = JsonString::encode($value);
-			Assert::type(JsonString::class, $jsonString);
+		Assert::equal($json, JsonString::from($json));
 
-			Assert::equal(
-				$value,
-				$jsonString->getDecodedValue()
-			);
-		}
+		$json = JsonString::from([]);
+		Assert::equal('[]', $json->getValue());
+		Assert::equal([], $json->getDecodedValue());
 
-		$j = JsonString::encode([1, 2, 3]);
+		$json = JsonString::from(123);
+		Assert::equal('123', $json->getValue());
+		Assert::equal(123, $json->getDecodedValue());
 
-		Assert::type('string', $j->getValue());
+		$json = JsonString::from(['hello', '123', 456]);
+		Assert::equal('[
+    "hello",
+    "123",
+    456
+]', $json->getValue());
+		Assert::equal(['hello', '123', 456], $json->getDecodedValue());
+
+		$json = JsonString::from(['test' => new \stdClass()]);
+		Assert::equal('{
+    "test": {}
+}', $json->getValue());
+		Assert::equal(['test' => []], $json->getDecodedValue());
 	}
 
-	public function test2(): void
+	public function testInvalid(): void
 	{
 		Assert::throws(
 			static function (): void {
-				JsonString::from([]);
+				JsonString::from(new \stdClass());
 			},
-			InvalidTypeException::class
+			InvalidTypeException::class,
+			'Expected types [string, array], got object (stdClass)'
+		);
+
+		Assert::throws(
+			static function (): void {
+				JsonString::from('{"test": "test"');
+			},
+			InvalidTypeException::class,
+			'Invalid JSON string'
 		);
 
 		Assert::throws(
 			static function (): void {
 				JsonString::from('=');
 			},
-			InvalidTypeException::class
+			InvalidTypeException::class,
+			'Invalid JSON string'
 		);
 	}
 

@@ -293,7 +293,8 @@ Whitespace-free ZIP code valid in following countries:
 Valid JSON-encoded data as string
 
 Type-specific methods:
-- `static encode(mixed $data) : SmartEmailing\Types\JsonString` create JsonString from raw data
+- `static from(mixed $data) : SmartEmailing\Types\JsonString` Accepts string or array. Crates JsonString from valid json string or raw data (array)
+- `static encode(mixed $data) : SmartEmailing\Types\JsonString` create JsonString from raw data (array)
 - `getDecodedValue() : mixed` decode JsonString back to raw data
 
 ### Base 64
@@ -751,6 +752,8 @@ PrimitiveTypes::getStringOrNull([], true); // null
 
 Arrays::getArray([1, 2]); // [1, 2]
 Arrays::getArray([1, 'abcd']); // [1, 'abcd']
+Arrays::getIntArray([1, '2']); // [1, 2]
+Arrays::getStringArray([1, '2']); // ['1', '2']
 
 // All PrimitiveTypes::get* methods have their extract equivalent:
 
@@ -766,6 +769,10 @@ PrimitiveTypes::extractFloat($data, 'key');
 
 Arrays::extractArray($data, 'key');
 Arrays::extractArrayOrNull($data, 'key');
+Arrays::extractIntArray($data, 'key'); //returns int[]
+Arrays::extractStringArray($data, 'key'); //returns string[]
+Arrays::extractIntArrayOrNull($data, 'key'); //returns int[]|null
+Arrays::extractStringArrayOrNull($data, 'key'); //returns string[]|null
 
 ```
 

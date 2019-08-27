@@ -384,25 +384,16 @@ abstract class PrimitiveTypes
 	 * @param string $key
 	 * @return string[]
 	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 * @deprecated use Arrays::extractStringArray
 	 */
 	final public static function extractStringArray(
 		array $data,
 		string $key
 	): array {
-		$value = ExtractableHelpers::extractValue($data, $key);
-
-		try {
-			$stringArray = Arrays::getArray($value);
-			$return = [];
-
-			foreach ($stringArray as $index => $item) {
-				$return[$index] = self::getString($item);
-			}
-
-			return $return;
-		} catch (InvalidTypeException $e) {
-			throw $e->wrap($key);
-		}
+		return Arrays::extractStringArray(
+			$data,
+			$key
+		);
 	}
 
 	/**
@@ -410,25 +401,16 @@ abstract class PrimitiveTypes
 	 * @param string $key
 	 * @return int[]
 	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 * @deprecated use Arrays::extractIntArray
 	 */
 	final public static function extractIntArray(
 		array $data,
 		string $key
 	): array {
-		$value = ExtractableHelpers::extractValue($data, $key);
-
-		try {
-			$stringArray = Arrays::getArray($value);
-			$return = [];
-
-			foreach ($stringArray as $index => $item) {
-				$return[$index] = self::getInt($item);
-			}
-
-			return $return;
-		} catch (InvalidTypeException $e) {
-			throw $e->wrap($key);
-		}
+		return Arrays::extractIntArray(
+			$data,
+			$key
+		);
 	}
 
 	/**
@@ -438,7 +420,7 @@ abstract class PrimitiveTypes
 	 * @param string $key
 	 * @return mixed[]
 	 * @throws \SmartEmailing\Types\InvalidTypeException
-	 * @deprecated use Arrays::extractArray()
+	 * @deprecated use Arrays::extractArray
 	 */
 	final public static function extractArray(array &$data, string $key): array
 	{
