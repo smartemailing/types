@@ -37,6 +37,8 @@ final class SwiftBicTest extends TestCase
 	{
 		return [
 			'GIBACZPX',
+			'UNCRSKBXXXX',
+			'UNCRSKBX',
 		];
 	}
 
@@ -48,6 +50,7 @@ final class SwiftBicTest extends TestCase
 		return [
 			'GIBACZP',
 			'IBACZPX',
+			'UNCRSKBXX',
 		];
 	}
 
