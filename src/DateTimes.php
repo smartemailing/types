@@ -28,7 +28,7 @@ abstract class DateTimes
 		}
 
 		if (\is_string($value) && \preg_match('#^\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d(\.\d)?\z#', $value, $matches)) {
-			if (count($matches) > 1) {
+			if (\count($matches) > 1) {
 				return \DateTime::createFromFormat(DateTimeFormat::DATETIME . '.u', $value);
 			}
 
