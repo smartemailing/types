@@ -34,7 +34,7 @@ final class DateTimesTest extends TestCase
 		);
 
 		$d = DateTimes::from('2000-01-01 00:00:00.123456');
-		Assert::equal('2000-01-01 00:00:00.123456', DateTimeFormatter::format($d, DateTimeFormat::DATETIME . '.u'));
+		Assert::equal('2000-01-01 00:00:00', DateTimeFormatter::format($d));
 	}
 
 	public function testExtract(): void
