@@ -27,7 +27,11 @@ abstract class DateTimes
 			$value = DateTimeFormatter::format($value);
 		}
 
-		if (\is_string($value) && \preg_match('#^\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d\z#', $value)) {
+		if (\is_string($value) && \preg_match('#^\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d(\.\d)?\z#', $value, $matches)) {
+			if (count($matches) > 1) {
+				return \DateTime::createFromFormat(DateTimeFormat::DATETIME . '.u', $value);
+			}
+
 			return \DateTime::createFromFormat(DateTimeFormat::DATETIME, $value);
 		}
 
