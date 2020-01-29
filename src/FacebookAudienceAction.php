@@ -11,8 +11,8 @@ final class FacebookAudienceAction extends Enum
 
 	use EnumExtractableTrait;
 
-	public const UPDATE = 1;
+	public const UPDATE = 'update';
 
-	public const REMOVE = 2;
+	public const REMOVE = 'remove';
 
 }
