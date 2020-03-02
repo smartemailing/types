@@ -302,8 +302,6 @@ final class UniqueToStringArrayTest extends TestCase
 			$collection
 		);
 
-		///
-
 		$result = UniqueToStringArray::union(
 			[
 				UniqueToStringArray::from([]),
@@ -315,7 +313,6 @@ final class UniqueToStringArrayTest extends TestCase
 			[],
 			$result->toArray()
 		);
-		///
 	}
 
 }
