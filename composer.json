@@ -16,7 +16,7 @@
 	],
 	"require": {
 		"php": "~7.1",
-		"consistence/consistence": "^1.0",
+		"consistence/consistence": "^1.0 || ^2.0",
 		"nette/utils": "^3.0 || ^2.4",
 		"nette/http": "^3.0 || ^2.4",
 		"jschaedl/iban-validation": "^1.0"
