@@ -40,7 +40,7 @@ final class Duration
 		$this->value = $value;
 		$this->unit = TimeUnit::extract($data, 'unit');
 
-		$now = new \DateTimeImmutable();
+		$now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
 		$end = $now->modify('+' . $this->getDateTimeModify());
 		$diff = $end->getTimestamp() - $now->getTimestamp();
 		$this->lengthInSeconds = (int) \abs($diff);
