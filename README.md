@@ -66,6 +66,7 @@ Your code will be unbreakable and your IDE will love it.
     + [Address](#address)
     + [Price](#price)
     + [Login credentials](#login-credentials)
+    + [Key-Value pair](#key-value-pair)
   * [Array-types](#array-types)
     + [UniqueIntArray](#uniqueintarray)
     + [UniqueStringArray](#uniquestringarray)
@@ -527,6 +528,26 @@ LoginCredentials::from(
 Type-specific methods:
 - `getLogin(): string` returns login
 - `getPassword(): string` returns password
+
+### Key-Value pair
+
+`SmartEmailing\Types\KeyValue`
+
+Value object containing string key and string value. 
+
+Can be created from:
+
+```php
+KeyValuePair::from(
+	[
+		'key' => 'overlook',
+		'value' => 'all_work_and_no_play_makes_jack_a_dull_boy',
+	]
+);
+```
+Type-specific methods:
+- `getKey(): string` returns key
+- `getValue(): string` returns value
 
 
 ### Scalar leaves array
