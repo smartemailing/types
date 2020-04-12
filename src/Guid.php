@@ -29,6 +29,22 @@ final class Guid implements ToStringInterface
 		$this->value = $value;
 	}
 
+	public static function fromHex32(
+		Hex32 $hex32
+	): Guid {
+		$parts = \str_split(
+			$hex32->getValue(),
+			4
+		);
+
+		return self::from(
+			\sprintf(
+				'%s%s-%s-%s-%s-%s%s%s',
+				...$parts
+			)
+		);
+	}
+
 	public function getValue(): string
 	{
 		return $this->value;

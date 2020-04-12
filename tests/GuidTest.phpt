@@ -44,6 +44,16 @@ final class GuidTest extends TestCase
 		}
 	}
 
+	public function test2(): void
+	{
+		$hex32 = Hex32::from('d7c8539e089e11e8b1612edbc134be21');
+		Assert::type(Hex32::class, $hex32);
+
+		$guid = Guid::fromHex32($hex32);
+		Assert::type(Guid::class, $guid);
+		Assert::equal('d7c8539e-089e-11e8-b161-2edbc134be21', $guid->getValue());
+	}
+
 }
 
 (new GuidTest())->run();
