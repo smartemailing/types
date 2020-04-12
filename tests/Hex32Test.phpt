@@ -47,7 +47,7 @@ final class Hex32Test extends TestCase
 		Assert::type(Guid::class, $guid);
 
 		$hex32 = Hex32::fromGuid($guid);
-		Assert::type(Hex32::class, $hex32;
+		Assert::type(Hex32::class, $hex32);
 		Assert::equal('d7c8539e089e11e8b1612edbc134be21', $hex32->getValue());
 	}
 
