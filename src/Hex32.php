@@ -30,6 +30,14 @@ final class Hex32 implements ToStringInterface
 		$this->value = Strings::lower($value);
 	}
 
+	public static function fromGuid(
+		Guid $guid
+	): Hex32 {
+		return self::from(
+			Strings::replace($guid->getValue(), '/-/')
+		);
+	}
+
 	public function getValue(): string
 	{
 		return $this->value;
