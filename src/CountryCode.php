@@ -145,4 +145,7 @@ final class CountryCode extends Enum implements ToStringInterface
 	// Iceland
 	public const IS = 'IS';
 
+	// Liechtenstein
+	public const LI = 'LI';
+
 }
