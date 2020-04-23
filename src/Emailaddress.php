@@ -86,8 +86,7 @@ final class Emailaddress implements ToStringInterface
 		$emailaddress = self::preprocessEmailaddress($emailaddress);
 
 		if (
-			Strings::startsWith($emailaddress, '-')
-			|| !Strings::contains($emailaddress, '@')
+			!Strings::contains($emailaddress, '@')
 			|| Strings::contains($emailaddress, '"')
 			|| Strings::contains($emailaddress, ' ')
 			|| !Validators::isEmail($emailaddress)
