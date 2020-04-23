@@ -19,7 +19,6 @@ final class EmailaddressTest extends TestCase
 	{
 		$invalidValues = [
 			'12345',
-			'-testx@seznam.cz',
 			'test@seznam.teoiuoioiuoiuoiuuoiteuzt',
 			'test@seznam',
 			'test@' .
@@ -45,6 +44,7 @@ final class EmailaddressTest extends TestCase
 		$validValues = [
 			'íýžčíýžčýíčíýžč@seznam.cz',
 			'608024038@post.cz',
+			'-xyz-@seznam.cz',
 			'martin@smartemailing.cz',
 			'test-@seznam.cz',
 		];
