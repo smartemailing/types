@@ -18,6 +18,7 @@ final class EmailaddressTest extends TestCase
 	public function test1(): void
 	{
 		$invalidValues = [
+			\hex2bin('aaaaaa'),
 			'12345',
 			'test@seznam.teoiuoioiuoiuoiuuoiteuzt',
 			'test@seznam',
