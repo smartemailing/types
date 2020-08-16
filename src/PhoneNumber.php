@@ -63,7 +63,7 @@ final class PhoneNumber implements ToStringInterface
 		CountryCode::SI => [9],
 		CountryCode::MH => [7],
 		CountryCode::NL => [9],
-		CountryCode::CY => [6],
+		CountryCode::CY => [8],
 		CountryCode::IE => [9],
 		CountryCode::DK => [8],
 		CountryCode::FI => [10],
