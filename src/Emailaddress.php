@@ -36,7 +36,7 @@ final class Emailaddress implements ToStringInterface
 	) {
 		try {
 			$ok = $this->initialize($value);
-		} catch (InvalidTypeException $e) {
+		} catch (\Throwable $e) {
 			$ok = false;
 		}
 
