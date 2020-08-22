@@ -24,7 +24,10 @@ abstract class Dates
 		}
 
 		if (\is_string($value) && \preg_match('#^\d\d\d\d-\d\d-\d\d\z#', $value)) {
-			return \DateTime::createFromFormat(DateTimeFormat::DATETIME, $value . ' 00:00:00');
+			/** @var \DateTime $date */
+			$date = \DateTime::createFromFormat(DateTimeFormat::DATETIME, $value . ' 00:00:00');
+
+			return $date;
 		}
 
 		throw new InvalidTypeException(

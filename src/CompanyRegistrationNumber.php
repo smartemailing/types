@@ -119,7 +119,7 @@ final class CompanyRegistrationNumber implements ToStringInterface
 		$a = 0;
 
 		for ($i = 0; $i < 7; $i++) {
-			$a += $value[$i] * (8 - $i);
+			$a += ((int) $value[$i]) * (8 - $i);
 		}
 
 		$a %= 11;
