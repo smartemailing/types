@@ -85,7 +85,7 @@ abstract class Arrays
 		array $data,
 		string $key
 	): ?array {
-		if (!isset($data[$key]) || $data[$key] === null) {
+		if (!isset($data[$key])) {
 			return null;
 		}
 

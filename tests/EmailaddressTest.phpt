@@ -38,7 +38,18 @@ final class EmailaddressTest extends TestCase
 				static function () use ($invalidValue): void {
 					Emailaddress::from($invalidValue);
 				},
-				InvalidTypeException::class
+				InvalidEmailaddressException::class,
+				'Invalid emailaddress: ' . $invalidValue
+			);
+		}
+
+		foreach ($invalidValues as $invalidValue) {
+			Assert::throws(
+				static function () use ($invalidValue): void {
+					Emailaddress::extract(['email' => $invalidValue], 'email');
+				},
+				InvalidEmailaddressException::class,
+				'Problem at key email: Invalid emailaddress: ' . $invalidValue
 			);
 		}
 
