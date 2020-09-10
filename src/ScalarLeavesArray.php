@@ -8,7 +8,7 @@ use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 use SmartEmailing\Types\Helpers\ValidationHelpers;
 
-class ScalarLeavesArray implements ToArrayInterface
+final class ScalarLeavesArray implements ToArrayInterface
 {
 
 	use ObjectMixinTrait;
@@ -50,7 +50,7 @@ class ScalarLeavesArray implements ToArrayInterface
 			return $self;
 		}
 
-		return new static([]);
+		return new self([]);
 	}
 
 	/**

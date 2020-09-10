@@ -32,7 +32,10 @@ abstract class DateTimes
 				$value = \substr($value, 0, \strlen($value) - \strlen($matches[1]));
 			}
 
-			return \DateTime::createFromFormat(DateTimeFormat::DATETIME, $value);
+			/** @var \DateTime $date */
+			$date = \DateTime::createFromFormat(DateTimeFormat::DATETIME, $value);
+
+			return $date;
 		}
 
 		throw new InvalidTypeException(

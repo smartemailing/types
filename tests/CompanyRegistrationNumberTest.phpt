@@ -20,6 +20,7 @@ final class CompanyRegistrationNumberTest extends TestCase
 		$invalidValues = [
 			'12345',
 			'blabla',
+			'CHEE-266911092', //CH
 		];
 
 		foreach ($invalidValues as $invalidValue) {
@@ -44,6 +45,7 @@ final class CompanyRegistrationNumberTest extends TestCase
 			'02948990', // CZ
 			'38-4094176', // US
 			'Y3899173C', // ES
+			'CHE-266.911.092', //CH
 		];
 
 		foreach ($validValues as $validValue) {

@@ -15,6 +15,9 @@ use SmartEmailing\Types\UniqueArrayFeatures;
  * unique arrays of \SmartEmailing\Types\ToStringInterface.
  */
 
+/**
+ * @implements \IteratorAggregate<\SmartEmailing\Types\ToStringInterface>
+ */
 final class UniqueToStringArray implements \Countable, \IteratorAggregate
 {
 
@@ -33,7 +36,7 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 	private $type;
 
 	/**
-	 * @param \SmartEmailing\Types\ToStringTrait[] $data
+	 * @param \SmartEmailing\Types\ToStringInterface[] $data
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	private function __construct(array $data = [])

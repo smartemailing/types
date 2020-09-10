@@ -34,7 +34,7 @@ final class JsonString implements ToStringInterface
 	/**
 	 * @param string|mixed|mixed[] $data
 	 * @return self
-	 * @throws \SmartEmailing\Types\JsonString
+	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function from(
 		$data
