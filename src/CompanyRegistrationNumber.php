@@ -88,7 +88,7 @@ final class CompanyRegistrationNumber implements ToStringInterface
 		string $value
 	): bool {
 		return (bool) \preg_match(
-			'~^([1-9]\d{6,7}|\d{6,7}|(SC|NI|AC|FC|GE|GN|GS|IC|IP|LP|NA|NF|NL|NO|NP|NR|NZ|OC|R|RC|SA|SF|SI|SL|SO|SP|SR|SZ|ZC|)\d{6,8})$~',
+			'~^([1-9]\d{6,7}|\d{6,7}|\d{10}|(SC|NI|AC|FC|GE|GN|GS|IC|IP|LP|NA|NF|NL|NO|NP|NR|NZ|OC|R|RC|SA|SF|SI|SL|SO|SP|SR|SZ|ZC|)\d{6,8})$~',
 			$value
 		);
 	}

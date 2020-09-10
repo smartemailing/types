@@ -35,6 +35,7 @@ final class CompanyRegistrationNumberTest extends TestCase
 			'465 242 66', // SK
 			'6 3 8 4 5 9 1 1', // FR
 			'10675702', // GB
+			'4718132070', // GB
 			'73270091', // CZ
 			'368990747', // PL
 			'367090770', // PL
