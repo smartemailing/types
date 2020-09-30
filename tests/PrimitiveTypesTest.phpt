@@ -171,6 +171,8 @@ final class PrimitiveTypesTest extends TestCase
 	{
 		Assert::equal('1', PrimitiveTypes::getString(1.0));
 		Assert::equal('333.3', PrimitiveTypes::getString('333.3'));
+		Assert::equal('', PrimitiveTypes::getString(''));
+
 		Assert::throws(
 			static function (): void {
 				PrimitiveTypes::getString([1, 2, 3]);
@@ -197,6 +199,7 @@ final class PrimitiveTypesTest extends TestCase
 
 		Assert::equal('aaa', PrimitiveTypes::extractString(['test' => 'aaa'], 'test'));
 		Assert::equal('aaa', PrimitiveTypes::extractStringOrNull(['test' => 'aaa'], 'test'));
+		Assert::equal(null, PrimitiveTypes::extractStringOrNull(['test' => ''], 'test'));
 		Assert::equal(null, PrimitiveTypes::extractStringOrNull(['test' => 'aaa'], 'foo'));
 
 		Assert::throws(
