@@ -60,6 +60,7 @@ Your code will be unbreakable and your IDE will love it.
     + [Part](#part)
     + [Sigmoid function value](#sigmoid-function-value)
     + [Rectified Linear Unit function value](#rectified-linear-unit-function-value)
+    + [Unsigned Float](#unsigned-float)
   * [Array-extractable types](#array-extractable-types)
     + [DateTimeRange](#datetimerange)
     + [Duration](#duration)
@@ -408,6 +409,14 @@ Float interval `<-1.0, 1.0>`.
 Result of Rectified Linear Unit function, useful when building neural networks.
 
 Float interval `<0.0, Infinity)`. 
+
+### Unsigned Float
+
+`SmartEmailing\Types\UnsignedFloat`
+
+Usigned float
+
+Float interval, `<0, PHP_FLOAT_MAX>`
 
 
 ## Array-extractable types
