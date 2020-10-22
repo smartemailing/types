@@ -27,6 +27,20 @@ class InvalidTypeException extends \RuntimeException
 	}
 
 	/**
+	 * @param string[] $keys
+	 */
+	public function wraps(
+		array $keys
+	): self {
+		$message = 'Problem at keys '
+			. \implode(' -> ', $keys)
+			. ': '
+			. $this->getMessage();
+
+		return new static($message);
+	}
+
+	/**
 	 * @param string $expected
 	 * @param mixed|mixed[] $value
 	 * @return \SmartEmailing\Types\InvalidTypeException
@@ -72,6 +86,16 @@ class InvalidTypeException extends \RuntimeException
 		string $key
 	): self {
 		return new static('Missing key: ' . $key);
+	}
+
+
+	/**
+	 * @param string[] $processedKeys
+	 */
+	public static function missingKeys(
+		array $processedKeys
+	): self {
+		return new static('Missing key: ' . \implode(' -> ', $processedKeys));
 	}
 
 	public static function cannotBeEmptyError(

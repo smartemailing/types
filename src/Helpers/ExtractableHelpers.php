@@ -32,4 +32,40 @@ abstract class ExtractableHelpers
 		return $data[$key];
 	}
 
+	/**
+	 * @param mixed|mixed[] $data
+	 * @param string|string[] $keys
+	 * @return mixed
+	 */
+	final public static function extractValueVol2(
+		$data,
+		$keys
+	) {
+		if (!\is_array($data)) {
+			throw InvalidTypeException::typeError('array', $data);
+		}
+
+		if (\is_string($keys)) {
+			$keys = [$keys];
+		}
+
+		if ($keys === []) {
+			throw InvalidTypeException::typeError('array', $data); // todo
+		}
+
+		$processedKeys = [];
+
+		foreach ($keys as $key) {
+			$processedKeys[] = $key;
+
+			if (!\array_key_exists($key, $data)) {
+				throw InvalidTypeException::missingKeys($processedKeys);
+			}
+
+			$data = $data[$key];
+		}
+
+		return $data;
+	}
+
 }

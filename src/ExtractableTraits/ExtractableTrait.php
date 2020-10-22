@@ -36,6 +36,29 @@ trait ExtractableTrait
 	}
 
 	/**
+	 * @param mixed|mixed[] $data
+	 * @param string[] $keys
+	 * @return self
+	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 */
+	public static function deepExtract(
+		$data,
+		array $keys
+	): self {
+		$value = ExtractableHelpers::extractValueVol2($data, $keys);
+
+		if ($value instanceof self) {
+			return $value;
+		}
+
+		try {
+			return self::from($value);
+		} catch (InvalidTypeException $e) {
+			throw $e->wraps($keys);
+		}
+	}
+
+	/**
 	 * @param mixed[] $data
 	 * @param string $key
 	 * @return self[]

@@ -45,6 +45,48 @@ final class ExtractableTraitTest extends TestCase
 		);
 	}
 
+	public function testDeepExtract(): void
+	{
+		$emailaddress = Emailaddress::deepExtract(
+			[
+				'a' => [
+					'b' => [
+						'email' => 'test@test.cz',
+					],
+				],
+			],
+			['a', 'b', 'email']
+		);
+
+		Assert::type(Emailaddress::class, $emailaddress);
+
+		Assert::exception(static function (): void {
+			Emailaddress::deepExtract(
+				[
+					'a' => [
+						'b' => [
+							'email' => 'test@test.cz',
+						],
+					],
+				],
+				['a', 'b', 'a']
+			);
+		}, InvalidTypeException::class, 'Missing key: a -> b -> a');
+
+		Assert::exception(static function (): void {
+			Emailaddress::deepExtract(
+				[
+					'a' => [
+						'b' => [
+							'email' => 'test@test.',
+						],
+					],
+				],
+				['a', 'b', 'email']
+			);
+		}, InvalidTypeException::class, 'Problem at keys a -> b -> email: Invalid emailaddress: test@test.');
+	}
+
 	public function testExtractArrayOf(): void
 	{
 		$data = [
