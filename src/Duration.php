@@ -6,13 +6,13 @@ namespace SmartEmailing\Types;
 
 use Consistence\Type\ObjectMixinTrait;
 use Nette\Utils\Strings;
-use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
+use SmartEmailing\Types\ExtractableTraits\ExtractableTrait;
 
-final class Duration
+final class Duration implements ToStringInterface
 {
 
 	use ObjectMixinTrait;
-	use ArrayExtractableTrait;
+	use ExtractableTrait;
 
 	/**
 	 * @var int
@@ -35,9 +35,7 @@ final class Duration
 	private function __construct(
 		array $data
 	) {
-		$value = PrimitiveTypes::extractInt($data, 'value');
-
-		$this->value = $value;
+		$this->value = PrimitiveTypes::extractInt($data, 'value');
 		$this->unit = TimeUnit::extract($data, 'unit');
 
 		$now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
@@ -46,12 +44,38 @@ final class Duration
 		$this->lengthInSeconds = (int) \abs($diff);
 	}
 
+	/**
+	 * @param mixed $data
+	 * @return \SmartEmailing\Types\Duration
+	 */
+	public static function from(
+		$data
+	): Duration {
+		if ($data instanceof self) {
+			return $data;
+		}
+
+		$string = PrimitiveTypes::getStringOrNull($data, true);
+
+		if (\is_string($string)) {
+			return self::fromDateTimeModify($string);
+		}
+
+		$array = Arrays::getArrayOrNull($data, true);
+
+		if (\is_array($array)) {
+			return new self($data);
+		}
+
+		throw InvalidTypeException::typesError(['string', 'array'], $data);
+	}
+
 	public static function fromDateTimeModify(string $dateTimeModify): self
 	{
 		$matches = Strings::match($dateTimeModify, '/^(-?|\+?)(\d+)\s+(.+)/');
 
 		if (!$matches) {
-			throw new InvalidTypeException('Duration: ' . $dateTimeModify . '  is not in valid format.');
+			throw new InvalidTypeException('Duration: ' . $dateTimeModify . '  is not in valid duration format.');
 		}
 
 		$value = PrimitiveTypes::extractInt($matches, '2');
@@ -82,6 +106,11 @@ final class Duration
 	public function getDateTimeModify(): string
 	{
 		return $this->value . ' ' . $this->unit->getValue();
+	}
+
+	public function __toString(): string
+	{
+		return $this->getDateTimeModify();
 	}
 
 	/**

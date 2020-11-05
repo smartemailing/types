@@ -463,6 +463,10 @@ Duration::from(
 		'unit' => TimeUnit::HOURS,
 	]
 );
+
+Duration::from(
+	'1 hours'
+);
 ```
 Type-specific methods:
 - `getDateTimeModify(): string` returns string that is compatible with `\DateTime::modify()` and `\DateTimeImmutable::modify()`

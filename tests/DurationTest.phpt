@@ -6,6 +6,7 @@ namespace SmartEmailing\Types;
 
 use Tester\Assert;
 use Tester\TestCase;
+use stdClass;
 
 require_once __DIR__ . '/bootstrap.php';
 
@@ -14,16 +15,53 @@ final class DurationTest extends TestCase
 
 	public function testException(): void
 	{
-		Assert::exception(static function (): void {
-			Duration::fromDateTimeModify('test');
-		}, InvalidTypeException::class);
+		Assert::throws(
+			static function (): void {
+				Duration::fromDateTimeModify('test');
+			},
+			InvalidTypeException::class
+		);
 
-		Assert::exception(static function (): void {
-			Duration::from([
-				'value' => 0,
-				'unit' => 'week',
-			]);
-		}, InvalidTypeException::class);
+		Assert::throws(
+			static function (): void {
+				Duration::from([
+					'value' => 0,
+					'unit' => 'week',
+				]);
+			},
+			InvalidTypeException::class
+		);
+
+		Assert::throws(
+			static function (): void {
+				Duration::from('xxx');
+			},
+			InvalidTypeException::class
+		);
+
+		Assert::throws(
+			static function (): void {
+				Duration::extract(['duration' => 1], 'duration');
+			},
+			InvalidTypeException::class,
+			'Problem at key duration: Duration: 1  is not in valid duration format.'
+		);
+
+		Assert::throws(
+			static function (): void {
+				Duration::extract(['duration' => []], 'duration');
+			},
+			InvalidTypeException::class,
+			'Problem at key duration: Missing key: value'
+		);
+
+		Assert::throws(
+			static function (): void {
+				Duration::extract(['duration' => new stdClass()], 'duration');
+			},
+			InvalidTypeException::class,
+			'Problem at key duration: Expected types [string, array], got object (stdClass)'
+		);
 	}
 
 	public function testCreate(): void
@@ -40,9 +78,11 @@ final class DurationTest extends TestCase
 			],
 		], 'duration');
 
-		Duration::fromDateTimeModify('1 weeks');
+		Duration::from('1 weeks');
 
 		Duration::fromDateTimeModify('-10 months');
+
+		Duration::extract(['duration' => '1 days'], 'duration');
 	}
 
 	public function testGetUnit(): void
@@ -112,8 +152,11 @@ final class DurationTest extends TestCase
 	public function testSerialize(): void
 	{
 		$duration = Duration::fromDateTimeModify('1 weeks');
+
 		Assert::type(Duration::class, Duration::from($duration->toArray()));
 		Assert::type(Duration::class, Duration::extract(['duration' => $duration->toArray()], 'duration'));
+
+		Assert::type(Duration::class, Duration::from((string) $duration));
 	}
 
 	/**
