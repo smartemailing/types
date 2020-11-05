@@ -29,6 +29,20 @@ final class DatesImmutableTest extends TestCase
 			},
 			InvalidTypeException::class
 		);
+
+		Assert::throws(
+			static function (): void {
+				DatesImmutable::from('2000-01-52');
+			},
+			InvalidTypeException::class
+		);
+
+		Assert::throws(
+			static function (): void {
+				DatesImmutable::from('2000-13-01');
+			},
+			InvalidTypeException::class
+		);
 	}
 
 	public function testExtract(): void

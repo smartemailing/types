@@ -33,6 +33,20 @@ final class DateTimesTest extends TestCase
 			InvalidTypeException::class
 		);
 
+		Assert::throws(
+			static function (): void {
+				DateTimes::from('2000-01-50 00:99:00.22');
+			},
+			InvalidTypeException::class
+		);
+
+		Assert::throws(
+			static function (): void {
+				DateTimes::from('2000-01-50 00:99:00');
+			},
+			InvalidTypeException::class
+		);
+
 		$d = DateTimes::from('2000-01-01 00:00:00.123456');
 		Assert::equal('2000-01-01 00:00:00', DateTimeFormatter::format($d));
 	}

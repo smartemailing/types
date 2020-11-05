@@ -32,10 +32,11 @@ abstract class DateTimes
 				$value = \substr($value, 0, \strlen($value) - \strlen($matches[1]));
 			}
 
-			/** @var \DateTime $date */
 			$date = \DateTime::createFromFormat(DateTimeFormat::DATETIME, $value);
 
-			return $date;
+			if ($date instanceof \DateTime && DateTimeFormatter::format($date, DateTimeFormat::DATETIME) === $value) {
+				return $date;
+			}
 		}
 
 		throw new InvalidTypeException(
