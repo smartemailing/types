@@ -19,6 +19,20 @@ final class DateTimesImmutableTest extends TestCase
 	{
 		$d = DateTimesImmutable::from('2000-01-01 00:00:00');
 		Assert::type(\DateTimeImmutable::class, $d);
+
+		Assert::throws(
+			static function (): void {
+				DateTimesImmutable::from('2000-01-50 00:99:00.22');
+			},
+			InvalidTypeException::class
+		);
+
+		Assert::throws(
+			static function (): void {
+				DateTimesImmutable::from('2000-01-50 00:99:00');
+			},
+			InvalidTypeException::class
+		);
 	}
 
 	public function testExtract(): void

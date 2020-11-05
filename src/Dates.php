@@ -24,10 +24,11 @@ abstract class Dates
 		}
 
 		if (\is_string($value) && \preg_match('#^\d\d\d\d-\d\d-\d\d\z#', $value)) {
-			/** @var \DateTime $date */
 			$date = \DateTime::createFromFormat(DateTimeFormat::DATETIME, $value . ' 00:00:00');
 
-			return $date;
+			if ($date instanceof \DateTime && DateTimeFormatter::format($date, DateTimeFormat::DATE) === $value) {
+				return $date;
+			}
 		}
 
 		throw new InvalidTypeException(
