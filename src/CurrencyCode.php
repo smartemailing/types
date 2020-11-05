@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\EnumExtractableTrait;
 
 /**
@@ -14,7 +13,6 @@ final class CurrencyCode extends Enum implements ToStringInterface
 {
 
 	use EnumExtractableTrait;
-	use ObjectMixinTrait;
 	use ToStringTrait;
 
 	public const CZK = 'CZK';

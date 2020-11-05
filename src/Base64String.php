@@ -4,13 +4,11 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
 final class Base64String implements ToStringInterface
 {
 
-	use ObjectMixinTrait;
 	use StringExtractableTrait;
 	use ToStringTrait;
 

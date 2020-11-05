@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\EnumExtractableTrait;
 
 /**
@@ -15,7 +14,6 @@ use SmartEmailing\Types\ExtractableTraits\EnumExtractableTrait;
 final class CountryCode extends Enum implements ToStringInterface
 {
 
-	use ObjectMixinTrait;
 	use EnumExtractableTrait;
 	use ToStringTrait;
 
