@@ -8,7 +8,7 @@ use Consistence\Type\ObjectMixinTrait;
 use Nette\Utils\Strings;
 use SmartEmailing\Types\ExtractableTraits\ExtractableTrait;
 
-final class Duration implements ToStringInterface
+final class Duration implements ToStringInterface, ToArrayInterface
 {
 
 	use ObjectMixinTrait;
