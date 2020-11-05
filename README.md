@@ -479,7 +479,7 @@ Type-specific methods:
 
 `SmartEmailing\Types\Address`
 
-Location address cotaining street and number, town, zip code and country.
+Location address contains street and number, town, zip code and country.
 
 Can be created from:
 
