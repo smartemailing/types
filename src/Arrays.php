@@ -75,18 +75,28 @@ abstract class Arrays
 	 *
 	 * @param mixed[] $data
 	 * @param string $key
+	 * @param bool $nullIfInvalid
 	 * @return mixed[]|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractArrayOrNull(
 		array $data,
-		string $key
+		string $key,
+		bool $nullIfInvalid = false
 	): ?array {
 		if (!isset($data[$key])) {
 			return null;
 		}
 
-		return self::extractArray($data, $key);
+		try {
+			return self::extractArray($data, $key);
+		} catch (InvalidTypeException $e) {
+			if ($nullIfInvalid) {
+				return null;
+			}
+
+			throw $e;
+		}
 	}
 
 	/**
@@ -102,6 +112,38 @@ abstract class Arrays
 
 		foreach ($array as $index => $item) {
 			$return[$index] = PrimitiveTypes::getInt($item);
+		}
+
+		return $return;
+	}
+
+	/**
+	 * @param mixed $value
+	 * @param bool $nullIfInvalid
+	 * @return int[]|null
+	 */
+	final public static function getIntArrayOrNull(
+		$value,
+		bool $nullIfInvalid = false
+	): ?array {
+		$array = self::getArrayOrNull($value, $nullIfInvalid);
+
+		if ($array === null) {
+			return null;
+		}
+
+		$return = [];
+
+		try {
+			foreach ($array as $index => $item) {
+				$return[$index] = PrimitiveTypes::getInt($item);
+			}
+		} catch (InvalidTypeException $e) {
+			if ($nullIfInvalid) {
+				return null;
+			}
+
+			throw $e;
 		}
 
 		return $return;
@@ -131,20 +173,22 @@ abstract class Arrays
 	/**
 	 * @param mixed[] $data
 	 * @param string $key
+	 * @param bool $nullIfInvalid
 	 * @return int[]|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractIntArrayOrNull(
 		array $data,
-		string $key
+		string $key,
+		bool $nullIfInvalid = false
 	): ?array {
-		$array = Arrays::extractArrayOrNull($data, $key);
+		$array = Arrays::extractArrayOrNull($data, $key, $nullIfInvalid);
 
 		if ($array === null) {
 			return null;
 		}
 
-		return self::getIntArray($array);
+		return self::getIntArrayOrNull($array, $nullIfInvalid);
 	}
 
 	/**
@@ -160,6 +204,38 @@ abstract class Arrays
 
 		foreach ($array as $index => $item) {
 			$return[$index] = PrimitiveTypes::getString($item);
+		}
+
+		return $return;
+	}
+
+	/**
+	 * @param mixed $value
+	 * @param bool $nullIfInvalid
+	 * @return string[]|null
+	 */
+	final public static function getStringArrayOrNull(
+		$value,
+		bool $nullIfInvalid = false
+	): ?array {
+		$array = self::getArrayOrNull($value, $nullIfInvalid);
+
+		if ($array === null) {
+			return null;
+		}
+
+		$return = [];
+
+		try {
+			foreach ($array as $index => $item) {
+				$return[$index] = PrimitiveTypes::getString($item);
+			}
+		} catch (InvalidTypeException $e) {
+			if ($nullIfInvalid) {
+				return null;
+			}
+
+			throw $e;
 		}
 
 		return $return;
@@ -189,20 +265,22 @@ abstract class Arrays
 	/**
 	 * @param mixed[] $data
 	 * @param string $key
+	 * @param bool $nullIfInvalid
 	 * @return string[]|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractStringArrayOrNull(
 		array $data,
-		string $key
+		string $key,
+		bool $nullIfInvalid = false
 	): ?array {
-		$array = Arrays::extractArrayOrNull($data, $key);
+		$array = Arrays::extractArrayOrNull($data, $key, $nullIfInvalid);
 
 		if ($array === null) {
 			return null;
 		}
 
-		return self::getStringArray($array);
+		return self::getStringArrayOrNull($array, $nullIfInvalid);
 	}
 
 }
