@@ -4,12 +4,8 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types\Helpers;
 
-use Consistence\Type\ObjectMixinTrait;
-
 abstract class ValidationHelpers
 {
-
-	use ObjectMixinTrait;
 
 	/**
 	 * @param mixed[] $array

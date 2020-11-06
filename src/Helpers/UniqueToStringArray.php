@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types\Helpers;
 
-use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 use SmartEmailing\Types\InvalidTypeException;
 use SmartEmailing\Types\ToStringInterface;
@@ -21,7 +20,6 @@ use SmartEmailing\Types\UniqueArrayFeatures;
 final class UniqueToStringArray implements \Countable, \IteratorAggregate
 {
 
-	use ObjectMixinTrait;
 	use UniqueArrayFeatures;
 	use ArrayExtractableTrait;
 

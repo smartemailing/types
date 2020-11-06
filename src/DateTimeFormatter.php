@@ -4,12 +4,8 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
-
 abstract class DateTimeFormatter
 {
-
-	use ObjectMixinTrait;
 
 	final public static function formatOrNull(
 		?\DateTimeInterface $dateTime,

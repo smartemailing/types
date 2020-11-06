@@ -4,13 +4,11 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\EnumExtractableTrait;
 
 final class FieldOfApplication extends Enum
 {
 
-	use ObjectMixinTrait;
 	use EnumExtractableTrait;
 
 	public const CARS = 'cars';

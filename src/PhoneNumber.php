@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use Nette\Utils\Strings;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 use SmartEmailing\Types\Helpers\StringHelpers;
@@ -12,7 +11,6 @@ use SmartEmailing\Types\Helpers\StringHelpers;
 final class PhoneNumber implements ToStringInterface
 {
 
-	use ObjectMixinTrait;
 	use StringExtractableTrait;
 	use ToStringTrait;
 

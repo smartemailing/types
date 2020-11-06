@@ -4,13 +4,11 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\IntExtractableTrait;
 
 final class UnsignedInt implements ToStringInterface
 {
 
-	use ObjectMixinTrait;
 	use IntExtractableTrait;
 	use ToStringTrait;
 

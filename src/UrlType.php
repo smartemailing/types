@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use Nette\Http\Url;
 use Nette\InvalidArgumentException;
 use Nette\Utils\Validators;
@@ -14,7 +13,6 @@ use SmartEmailing\Types\Helpers\StringHelpers;
 final class UrlType implements ToStringInterface
 {
 
-	use ObjectMixinTrait;
 	use StringExtractableTrait;
 	use ToStringTrait;
 

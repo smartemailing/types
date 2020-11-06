@@ -4,14 +4,12 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 
 final class DateTimeRange implements ToArrayInterface
 {
 
 	use ArrayExtractableTrait;
-	use ObjectMixinTrait;
 
 	/**
 	 * @var \DateTimeImmutable
