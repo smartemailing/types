@@ -4,12 +4,8 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
-
 abstract class DateTimesImmutable
 {
-
-	use ObjectMixinTrait;
 
 	/**
 	 * @param mixed $value

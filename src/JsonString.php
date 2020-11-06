@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use Nette\Utils\Json;
 use Nette\Utils\JsonException;
 use SmartEmailing\Types\ExtractableTraits\ExtractableTrait;
@@ -12,7 +11,6 @@ use SmartEmailing\Types\ExtractableTraits\ExtractableTrait;
 final class JsonString implements ToStringInterface
 {
 
-	use ObjectMixinTrait;
 	use ExtractableTrait;
 	use ToStringTrait;
 

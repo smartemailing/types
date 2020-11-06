@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use Nette\Utils\Arrays;
 use Nette\Utils\Strings;
 use Nette\Utils\Validators;
@@ -14,7 +13,6 @@ use SmartEmailing\Types\Helpers\StringHelpers;
 final class VatId implements ToStringInterface
 {
 
-	use ObjectMixinTrait;
 	use ToStringTrait;
 	use StringExtractableTrait;
 

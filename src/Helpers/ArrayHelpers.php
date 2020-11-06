@@ -4,14 +4,11 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types\Helpers;
 
-use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ToArrayInterface;
 use SmartEmailing\Types\ToStringInterface;
 
 abstract class ArrayHelpers
 {
-
-	use ObjectMixinTrait;
 
 	/**
 	 * @param \SmartEmailing\Types\ToArrayInterface[] $arrayableCollection

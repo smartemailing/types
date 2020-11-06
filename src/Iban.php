@@ -4,14 +4,12 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use Iban\Validation\Validator;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
 final class Iban implements ToStringInterface
 {
 
-	use ObjectMixinTrait;
 	use StringExtractableTrait;
 	use ToStringTrait;
 

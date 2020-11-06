@@ -22,7 +22,7 @@ final class StringHelpersTest extends TestCase
 
 		Assert::equal('a b c ', StringHelpers::normalizeWhitespace($string));
 
-		$string = '!\"#$%&\'() * +,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^ _`abcdefghijklmnopqrstuvwxyz{|}~';
+		$string = '!\"#$%&\'() * +,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^ _`abcdefghijklmnopqrstuvwxyz{|}~ěščřžýáíéůúťď ĚŠČŘŽÝÁÍÉŮÚŤĎ';
 
 		$result = StringHelpers::normalizeWhitespace($string);
 

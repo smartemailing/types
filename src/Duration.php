@@ -4,14 +4,12 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use Nette\Utils\Strings;
 use SmartEmailing\Types\ExtractableTraits\ExtractableTrait;
 
 final class Duration implements ToStringInterface, ToArrayInterface
 {
 
-	use ObjectMixinTrait;
 	use ExtractableTrait;
 
 	/**
