@@ -463,6 +463,10 @@ Duration::from(
 		'unit' => TimeUnit::HOURS,
 	]
 );
+
+Duration::from(
+	'1 hours'
+);
 ```
 Type-specific methods:
 - `getDateTimeModify(): string` returns string that is compatible with `\DateTime::modify()` and `\DateTimeImmutable::modify()`
@@ -475,7 +479,7 @@ Type-specific methods:
 
 `SmartEmailing\Types\Address`
 
-Location address cotaining street and number, town, zip code and country.
+Location address contains street and number, town, zip code and country.
 
 Can be created from:
 
