@@ -6,6 +6,7 @@ namespace SmartEmailing\Types;
 
 use Tester\Assert;
 use Tester\TestCase;
+use stdClass;
 
 require_once __DIR__ . '/bootstrap.php';
 
@@ -19,6 +20,17 @@ final class ArraysTest extends TestCase
 
 		$data = ['data' => null];
 		Assert::null(Arrays::extractArrayOrNull($data, 'data'));
+
+		$data = ['data' => 'a'];
+		Assert::null(Arrays::extractArrayOrNull($data, 'data', true));
+
+		Assert::throws(
+			static function (): void {
+				$data = ['data' => 'a'];
+				Assert::null(Arrays::extractArrayOrNull($data, 'data'));
+			},
+			InvalidTypeException::class
+		);
 	}
 
 	public function testExtractIntArray(): void
@@ -52,6 +64,9 @@ final class ArraysTest extends TestCase
 		Assert::null(Arrays::getArrayOrNull($data));
 
 		$data = 'test';
+		Assert::null(Arrays::getArrayOrNull($data, true));
+
+		$data = 'test';
 		Assert::exception(
 			static function () use ($data): void {
 				Arrays::getArrayOrNull($data);
@@ -82,6 +97,25 @@ final class ArraysTest extends TestCase
 		}
 	}
 
+	public function testGetIntArrayOrNull(): void
+	{
+		$intArray = Arrays::getIntArrayOrNull(['1', 2, '-55', -99]);
+		Assert::type('array', $intArray);
+
+		$intArray = Arrays::getIntArrayOrNull(['x'], true);
+		Assert::null($intArray);
+
+		$intArray = Arrays::getIntArrayOrNull(null);
+		Assert::null($intArray);
+
+		Assert::throws(
+			static function (): void {
+				Arrays::getIntArrayOrNull(['a']);
+			},
+			InvalidTypeException::class
+		);
+	}
+
 	public function testGetStringArray(): void
 	{
 		$stringArray = Arrays::getStringArray(['1', 2, '-55', -99]);
@@ -90,6 +124,25 @@ final class ArraysTest extends TestCase
 		foreach ($stringArray as $item) {
 			Assert::type('string', $item);
 		}
+	}
+
+	public function testGetStringArrayOrNull(): void
+	{
+		$stringArray = Arrays::getStringArrayOrNull(['1', 2, '-55', -99]);
+		Assert::type('array', $stringArray);
+
+		$stringArray = Arrays::getStringArrayOrNull([new stdClass()], true);
+		Assert::null($stringArray);
+
+		$intArray = Arrays::getStringArrayOrNull(null);
+		Assert::null($intArray);
+
+		Assert::throws(
+			static function (): void {
+				Arrays::getStringArrayOrNull([new stdClass()]);
+			},
+			InvalidTypeException::class
+		);
 	}
 
 	public function testExtractIntArrayOrNull(): void
@@ -102,6 +155,8 @@ final class ArraysTest extends TestCase
 	public function testExtractStringArrayOrNull(): void
 	{
 		Assert::null(Arrays::extractStringArrayOrNull(['data' => null], 'data'));
+
+		Assert::null(Arrays::extractStringArrayOrNull(['data' => new stdClass()], 'data', true));
 
 		Assert::type('array', Arrays::extractStringArrayOrNull(['data' => ['1']], 'data'));
 	}
