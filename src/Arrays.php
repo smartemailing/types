@@ -4,13 +4,10 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\Helpers\ExtractableHelpers;
 
 abstract class Arrays
 {
-
-	use ObjectMixinTrait;
 
 	/**
 	 * @param mixed $value

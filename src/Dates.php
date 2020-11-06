@@ -4,13 +4,10 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use Nette\Utils\Arrays;
 
 abstract class Dates
 {
-
-	use ObjectMixinTrait;
 
 	/**
 	 * @param mixed $value

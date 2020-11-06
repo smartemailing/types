@@ -4,14 +4,12 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 use SmartEmailing\Types\Helpers\ValidationHelpers;
 
 final class ScalarLeavesArray implements ToArrayInterface
 {
 
-	use ObjectMixinTrait;
 	use ArrayExtractableTrait;
 
 	/**

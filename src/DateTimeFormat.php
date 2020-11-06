@@ -4,12 +4,8 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
-
 abstract class DateTimeFormat
 {
-
-	use ObjectMixinTrait;
 
 	public const DATE = 'Y-m-d';
 

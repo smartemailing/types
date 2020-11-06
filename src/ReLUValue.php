@@ -4,13 +4,11 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\ExtractableTraits\FloatExtractableTrait;
 
 final class ReLUValue implements ToStringInterface
 {
 
-	use ObjectMixinTrait;
 	use FloatExtractableTrait;
 	use ToStringTrait;
 

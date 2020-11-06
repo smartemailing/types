@@ -4,13 +4,10 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types\Helpers;
 
-use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\InvalidTypeException;
 
 abstract class ExtractableHelpers
 {
-
-	use ObjectMixinTrait;
 
 	/**
 	 * @param mixed|mixed[] $data
