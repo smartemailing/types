@@ -161,6 +161,72 @@ final class ArraysTest extends TestCase
 		Assert::type('array', Arrays::extractStringArrayOrNull(['data' => ['1']], 'data'));
 	}
 
+
+	public function testGetFloatArray(): void
+	{
+		Assert::same([1.0, 1.1, 2.5], Arrays::getFloatArray([1, '1.1', 2.5]));
+
+		Assert::throws(
+			static function (): void {
+				Arrays::getFloatArray([1, 'failed', 2.5]);
+			},
+			InvalidTypeException::class,
+			'Expected float, got string (failed)'
+		);
+	}
+
+	public function testGetFloatArrayOrNull(): void
+	{
+		Assert::same([1.0, 1.1, 2.5], Arrays::getFloatArrayOrNull([1, '1.1', 2.5]));
+
+		Assert::null(Arrays::getFloatArrayOrNull(null));
+
+		Assert::null(Arrays::getFloatArrayOrNull([1, 'failed', 2.5], true));
+
+		Assert::throws(
+			static function (): void {
+				Arrays::getFloatArrayOrNull([1, 'failed', 2.5]);
+			},
+			InvalidTypeException::class,
+			'Expected float, got string (failed)'
+		);
+	}
+
+	public function testExtractFloatArray(): void
+	{
+		Assert::same([1.0, 1.1, 2.5], Arrays::extractFloatArray(['floats' => [1, '1.1', 2.5]], 'floats'));
+
+		Assert::throws(
+			static function (): void {
+				Arrays::extractFloatArray(['floats' => null], 'floats');
+			},
+			InvalidTypeException::class
+		);
+
+		Assert::throws(
+			static function (): void {
+				Assert::null(Arrays::extractFloatArray(['floats' => [1, 'failed', 2.5]], 'floats'));
+			},
+			InvalidTypeException::class
+		);
+	}
+
+	public function testExtractFloatArrayOrNull(): void
+	{
+		Assert::same([1.0, 1.1, 2.5], Arrays::extractFloatArrayOrNull(['floats' => [1, '1.1', 2.5]], 'floats'));
+
+		Assert::null(Arrays::extractFloatArrayOrNull(['floats' => null], 'floats'));
+
+		Assert::null(Arrays::extractFloatArrayOrNull(['floats' => [1, 'failed', 2.5]], 'floats', true));
+
+		Assert::throws(
+			static function (): void {
+				Assert::null(Arrays::extractFloatArrayOrNull(['floats' => [1, 'failed', 2.5]], 'floats'));
+			},
+			InvalidTypeException::class
+		);
+	}
+
 }
 
 (new ArraysTest())->run();

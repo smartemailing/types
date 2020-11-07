@@ -191,6 +191,99 @@ abstract class Arrays
 		return self::getIntArrayOrNull($array, $nullIfInvalid);
 	}
 
+
+	/**
+	 * @param mixed $value
+	 * @return float[]
+	 */
+	final public static function getFloatArray(
+		$value
+	): array {
+		$array = self::getArray($value);
+
+		$return = [];
+
+		foreach ($array as $index => $item) {
+			$return[$index] = PrimitiveTypes::getFloat($item);
+		}
+
+		return $return;
+	}
+
+	/**
+	 * @param mixed $value
+	 * @param bool $nullIfInvalid
+	 * @return float[]|null
+	 */
+	final public static function getFloatArrayOrNull(
+		$value,
+		bool $nullIfInvalid = false
+	): ?array {
+		$array = self::getArrayOrNull($value, $nullIfInvalid);
+
+		if ($array === null) {
+			return null;
+		}
+
+		$return = [];
+
+		try {
+			foreach ($array as $index => $item) {
+				$return[$index] = PrimitiveTypes::getFloat($item);
+			}
+		} catch (InvalidTypeException $e) {
+			if ($nullIfInvalid) {
+				return null;
+			}
+
+			throw $e;
+		}
+
+		return $return;
+	}
+
+	/**
+	 * @param mixed[] $data
+	 * @param string $key
+	 * @return float[]
+	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 */
+	final public static function extractFloatArray(
+		array $data,
+		string $key
+	): array {
+		$array = Arrays::extractArray($data, $key);
+
+		try {
+			$array = Arrays::getFloatArray($array);
+		} catch (InvalidTypeException $e) {
+			throw $e->wrap($key);
+		}
+
+		return $array;
+	}
+
+	/**
+	 * @param mixed[] $data
+	 * @param string $key
+	 * @param bool $nullIfInvalid
+	 * @return float[]|null
+	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 */
+	final public static function extractFloatArrayOrNull(
+		array $data,
+		string $key,
+		bool $nullIfInvalid = false
+	): ?array {
+		$array = Arrays::extractArrayOrNull($data, $key, $nullIfInvalid);
+
+		if ($array === null) {
+			return null;
+		}
+
+		return self::getFloatArrayOrNull($array, $nullIfInvalid);
+	}
+
 	/**
 	 * @param mixed $value
 	 * @return string[]

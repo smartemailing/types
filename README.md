@@ -787,25 +787,36 @@ PrimitiveTypes::getStringOrNull([], true); // null
 Arrays::getArray([1, 2]); // [1, 2]
 Arrays::getArray([1, 'abcd']); // [1, 'abcd']
 Arrays::getIntArray([1, '2']); // [1, 2]
+Arrays::getIntArrayOrNull([1, '2']); // returns int[]|null
+Arrays::getFloatArray([1, '2']); // [1.0, 2.0]
+Arrays::getFloatArrayOrNull([1, '2']); // returns float[]|null
 Arrays::getStringArray([1, '2']); // ['1', '2']
+Arrays::getStringArrayOrNull([1, '2']); // returns string[]|null
 
 // All PrimitiveTypes::get* methods have their extract equivalent:
 
 PrimitiveTypes::extractInt($data, 'key');
 PrimitiveTypes::extractIntOrNull($data, 'key');
 PrimitiveTypes::extractIntOrNull($data, 'key', true);
+
 PrimitiveTypes::extractString($data, 'key');
 PrimitiveTypes::extractStringOrNull($data, 'key');
 PrimitiveTypes::extractStringOrNull($data, 'key', true);
+
 PrimitiveTypes::extractFloat($data, 'key');
+PrimitiveTypes::extractFloatOrNull($data, 'key');
+PrimitiveTypes::extractFloatOrNull($data, 'key', true);
 
+Arrays::extractArray($data, 'key'); //returns mixed[]
+Arrays::extractArrayOrNull($data, 'key'); //returns mixed[]|null
 
-
-Arrays::extractArray($data, 'key');
-Arrays::extractArrayOrNull($data, 'key');
 Arrays::extractIntArray($data, 'key'); //returns int[]
-Arrays::extractStringArray($data, 'key'); //returns string[]
 Arrays::extractIntArrayOrNull($data, 'key'); //returns int[]|null
+
+Arrays::extractFloatArray($data, 'key'); //returns float[]
+Arrays::extractFloatArrayOrNull($data, 'key'); //returns float[]|null
+
+Arrays::extractStringArray($data, 'key'); //returns string[]
 Arrays::extractStringArrayOrNull($data, 'key'); //returns string[]|null
 
 ```
