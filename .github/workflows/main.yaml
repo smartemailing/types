@@ -12,39 +12,120 @@ env:
   composer-install: 'composer update --no-interaction --no-progress --no-suggest --prefer-dist --prefer-stable'
 
 jobs:
-  coding_style:
-    name: 'Coding style'
-    runs-on: ubuntu-latest
+  qa:
+    name: 'Quality assurance'
+    runs-on: '${{ matrix.operating-system }}'
+
+    strategy:
+      matrix:
+        php-version: [ '7.4' ]
+        operating-system: [ 'ubuntu-latest' ]
+      fail-fast: false
+
     steps:
-      - name: 'Checkout repository'
-        uses: actions/checkout@v2
+      - name: 'Checkout'
+        uses: 'actions/checkout@v2'
 
-      - name: 'PHP setup'
-        uses: shivammathur/setup-php@v2
+      - name: 'Setup PHP cache environment'
+        id: 'extcache'
+        uses: 'shivammathur/cache-extensions@v1'
         with:
-          php-version: '7.4'
-          coverage: 'none'
+          php-version: '${{ matrix.php-version }}'
+          extensions: '${{ env.extensions }}'
+          key: '${{ env.cache-version }}'
 
-      - name: 'Coding style'
-        shell: bash
-        run: bin/cs
+      - name: 'Cache PHP extensions'
+        uses: 'actions/cache@v2'
+        with:
+          path: '${{ steps.extcache.outputs.dir }}'
+          key: '${{ steps.extcache.outputs.key }}'
+          restore-keys: '${{ steps.extcache.outputs.key }}'
 
-  php_stan:
-    name: 'PHP Stan'
-    runs-on: ubuntu-latest
+      - name: 'Install PHP'
+        uses: 'shivammathur/setup-php@v2'
+        with:
+          php-version: '${{ matrix.php-version }}'
+          extensions: '${{ env.extensions }}'
+          tools: 'composer:${{ env.composer-version }}'
+
+      - name: "Setup problem matchers for PHP"
+        run: 'echo "::add-matcher::${{ runner.tool_cache }}/php.json"'
+
+      - name: 'Get Composer cache directory'
+        id: 'composercache'
+        run: 'echo "::set-output name=dir::$(composer config cache-files-dir)"'
+
+      - name: 'Cache PHP dependencies'
+        uses: "actions/cache@v2"
+        with:
+          path: '${{ steps.composercache.outputs.dir }}'
+          key: '${{ runner.os }}-composer-${{ hashFiles("**/composer.json") }}'
+          restore-keys: '${{ runner.os }}-composer-'
+
+      - name: 'Validate Composer'
+        run: 'composer validate'
+
+      - name: 'Install dependencies'
+        run: '${{ env.composer-install }}'
+
+      - name: 'Coding Standard'
+        run: 'bin/cs'
+
+  static-analysis:
+    name: 'Static analysis'
+    runs-on: '${{ matrix.operating-system }}'
+
+    strategy:
+      matrix:
+        php-version: [ '7.4' ]
+        operating-system: [ 'ubuntu-latest' ]
+      fail-fast: false
+
     steps:
-      - name: 'Checkout repository'
-        uses: actions/checkout@v2
+      - name: 'Checkout'
+        uses: 'actions/checkout@v2'
 
-      - name: 'PHP setup'
-        uses: shivammathur/setup-php@v2
+      - name: 'Setup PHP cache environment'
+        id: 'extcache'
+        uses: 'shivammathur/cache-extensions@v1'
         with:
-          php-version: '7.4'
-          coverage: 'none'
+          php-version: '${{ matrix.php-version }}'
+          extensions: '${{ env.extensions }}'
+          key: '${{ env.cache-version }}'
 
-      - name: 'PHP Stan'
-        shell: bash
-        run: bin/stan
+      - name: 'Cache PHP extensions'
+        uses: 'actions/cache@v2'
+        with:
+          path: '${{ steps.extcache.outputs.dir }}'
+          key: '${{ steps.extcache.outputs.key }}'
+          restore-keys: '${{ steps.extcache.outputs.key }}'
+
+      - name: 'Install PHP'
+        uses: 'shivammathur/setup-php@v2'
+        with:
+          php-version: '${{ matrix.php-version }}'
+          extensions: '${{ env.extensions }}'
+          tools: 'composer:${{ env.composer-version }}'
+
+      - name: 'Setup problem matchers for PHP'
+        run: 'echo "::add-matcher::${{ runner.tool_cache }}/php.json"'
+
+      - name: 'Get Composer cache directory'
+        id: 'composercache'
+        run: 'echo "::set-output name=dir::$(composer config cache-files-dir)"'
+
+      - name: 'Cache PHP dependencies'
+        uses: 'actions/cache@v2'
+        with:
+          path: '${{ steps.composercache.outputs.dir }}'
+          key: '${{ runner.os }}-composer-${{ hashFiles("**/composer.json") }}'
+          restore-keys: '${{ runner.os }}-composer-'
+
+      - name: 'Install dependencies'
+        run: '${{ env.composer-install }}'
+
+      - name: 'PHPStan'
+        run: 'bin/stan'
 
   tests:
     name: 'Tests'
