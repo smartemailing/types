@@ -251,7 +251,7 @@ jobs:
         run: '${{ env.composer-install }}'
 
       - name: 'Tests'
-        run: 'make coverage'
+        run: 'vendor/bin/tester -d memory_limit=256M -s -p phpdbg --colors 1 -C --coverage ./coverage.xml --coverage-src ./src tests/Tests'
 
       - name: 'Coveralls.io'
         env:
