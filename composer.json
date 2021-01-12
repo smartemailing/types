@@ -1,44 +1,44 @@
 {
-	"name": "smartemailing/types",
-	"description": "Lightweight collection of handy PHP value objects",
-	"type": "library",
-	"license": "MIT",
-	"keywords": [
-		"php",
-		"strict types",
-		"value objects"
-	],
-	"authors": [
-		{
-			"name": "Martin Strouhal",
-			"email": "martin@smartemailing.cz"
-		}
-	],
-	"require": {
-		"php": "~7.1",
-		"consistence/consistence": "^1.0 || ^2.0",
-		"nette/utils": "^3.0 || ^2.4",
-		"nette/http": "^3.0 || ^2.4",
-		"jschaedl/iban-validation": "^1.0"
-	},
-	"require-dev": {
-		"nette/tester": "^2.3.0",
-		"slevomat/coding-standard": "^4.6.0",
-		"phpstan/phpstan-nette": "^0.12.8",
-		"consistence/coding-standard": "^3.4.0"
-	},
-	"autoload": {
-		"psr-4": {
-			"SmartEmailing\\Types\\": [
-				"src"
-			]
-		}
-	},
-	"autoload-dev": {
-		"psr-4": {
-			"SmartEmailing\\Types\\": [
-				"tests"
-			]
-		}
-	}
+  "name": "smartemailing/types",
+  "description": "Lightweight collection of handy PHP value objects",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "php",
+    "strict types",
+    "value objects"
+  ],
+  "authors": [
+    {
+      "name": "Martin Strouhal",
+      "email": "martin@smartemailing.cz"
+    }
+  ],
+  "require": {
+    "php": "^7.1|^8.0",
+    "consistence/consistence": "^1.0 || ^2.0",
+    "nette/utils": "^3.0 || ^2.4",
+    "nette/http": "^3.0 || ^2.4",
+    "jschaedl/iban-validation": "^1.0"
+  },
+  "require-dev": {
+    "nette/tester": "^2.3.0",
+    "slevomat/coding-standard": "^4.6.0",
+    "phpstan/phpstan-nette": "^0.12.8",
+    "consistence/coding-standard": "^3.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "SmartEmailing\\Types\\": [
+        "src"
+      ]
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SmartEmailing\\Types\\": [
+        "tests"
+      ]
+    }
+  }
 }
