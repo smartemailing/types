@@ -70,6 +70,14 @@ final class JsonStringTest extends TestCase
 			InvalidTypeException::class,
 			'Invalid JSON string'
 		);
+
+		Assert::throws(
+			static function (): void {
+				JsonString::encode(NAN);
+			},
+			InvalidTypeException::class,
+			'Inf and NaN cannot be JSON encoded'
+		);
 	}
 
 }
