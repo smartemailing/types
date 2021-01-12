@@ -59,7 +59,7 @@ jobs:
         uses: "actions/cache@v2"
         with:
           path: '${{ steps.composercache.outputs.dir }}'
-          key: '${{ runner.os }}-composer-${{ hashFiles("**/composer.json") }}'
+          key: "${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}"
           restore-keys: '${{ runner.os }}-composer-'
 
       - name: 'Validate Composer'
@@ -118,7 +118,7 @@ jobs:
         uses: 'actions/cache@v2'
         with:
           path: '${{ steps.composercache.outputs.dir }}'
-          key: '${{ runner.os }}-composer-${{ hashFiles("**/composer.json") }}'
+          key: "${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}"
           restore-keys: '${{ runner.os }}-composer-'
 
       - name: 'Install dependencies'
