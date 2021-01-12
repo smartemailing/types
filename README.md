@@ -6,7 +6,7 @@
 [![Latest release](https://img.shields.io/github/release/smartemailing/types.svg)](https://github.com/smartemailing/types/releases/)
 [![Downloads](https://poser.pugx.org/smartemailing/types/d/total)](https://packagist.org/packages/smartemailing/types)
 
-[![CircleCI](https://circleci.com/gh/smartemailing/types.svg?style=shield)](https://circleci.com/gh/smartemailing/types)
+[![GithubActions](https://github.com/smartemailing/types/workflows/build/badge.svg)](https://github.com/smartemailing/types/actions)
 [![codecov](https://codecov.io/gh/smartemailing/types/branch/master/graph/badge.svg)](https://codecov.io/gh/smartemailing/types)
 [![CodeClimate](https://api.codeclimate.com/v1/badges/538fcbbeadb10c76fe14/maintainability)](https://codeclimate.com/github/smartemailing/types/maintainability)
 
