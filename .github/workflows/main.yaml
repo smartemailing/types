@@ -189,4 +189,4 @@ jobs:
         run: 'echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"'
 
       - name: 'Tests'
-        run: 'vendor/bin/tester tests -c tests/php.ini --coverage coverage.xml --coverage-src src'
+        run: 'vendor/bin/tester tests'
