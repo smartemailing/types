@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
+use Nette\Utils\Strings;
 use Nette\Utils\Validators;
 use SmartEmailing\Types\Helpers\ExtractableHelpers;
 
@@ -309,6 +310,10 @@ abstract class PrimitiveTypes
 	): bool {
 		if (\is_bool($value)) {
 			return $value;
+		}
+
+		if (\is_string($value)) {
+			$value = Strings::lower($value);
 		}
 
 		if (\in_array($value, [false, 0, '0', 'false'], true)) {
