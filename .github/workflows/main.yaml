@@ -205,7 +205,7 @@ jobs:
         operating-system: [ 'ubuntu-latest' ]
       fail-fast: false
 
-    if: 'github.event_name == "push"'
+    if: "github.event_name == 'push'"
 
     steps:
       - name: 'Checkout'
