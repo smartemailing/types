@@ -7,7 +7,7 @@
 [![Downloads](https://poser.pugx.org/smartemailing/types/d/total)](https://packagist.org/packages/smartemailing/types)
 
 [![Build Status](https://github.com/smartemailing/types/workflows/build/badge.svg)](https://github.com/smartemailing/types/actions?query=workflow%3Abuild)
-[![Code coverage](https://coveralls.io/repos/github/smartemailing/translation/badge.svg?branch=master)](https://coveralls.io/github/smartemailing/types?branch=master)
+[![Code coverage](https://coveralls.io/repos/github/smartemailing/types/badge.svg?branch=master)](https://coveralls.io/github/smartemailing/types?branch=master)
 [![CodeClimate](https://api.codeclimate.com/v1/badges/538fcbbeadb10c76fe14/maintainability)](https://codeclimate.com/github/smartemailing/types/maintainability)
 
 
