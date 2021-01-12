@@ -1,13 +1,13 @@
 # SmartEmailing \ Types 
 
-### Missing data types for PHP 7.1. Highly extendable, production tested.
+### Missing data types for PHP 7.1, 7.2, 7.3, 7.4 and 8.0. Highly extendable, production tested.
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 [![Latest release](https://img.shields.io/github/release/smartemailing/types.svg)](https://github.com/smartemailing/types/releases/)
 [![Downloads](https://poser.pugx.org/smartemailing/types/d/total)](https://packagist.org/packages/smartemailing/types)
 
-[![CircleCI](https://circleci.com/gh/smartemailing/types.svg?style=shield)](https://circleci.com/gh/smartemailing/types)
-[![codecov](https://codecov.io/gh/smartemailing/types/branch/master/graph/badge.svg)](https://codecov.io/gh/smartemailing/types)
+[![Build Status](https://github.com/smartemailing/types/workflows/build/badge.svg)](https://github.com/smartemailing/types/actions?query=workflow%3Abuild)
+[![Code coverage](https://coveralls.io/repos/github/smartemailing/translation/badge.svg?branch=master)](https://coveralls.io/github/smartemailing/types?branch=master)
 [![CodeClimate](https://api.codeclimate.com/v1/badges/538fcbbeadb10c76fe14/maintainability)](https://codeclimate.com/github/smartemailing/types/maintainability)
 
 

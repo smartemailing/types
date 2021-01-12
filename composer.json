@@ -22,10 +22,10 @@
 		"jschaedl/iban-validation": "^1.0"
 	},
 	"require-dev": {
-		"nette/tester": "^2.0",
-		"slevomat/coding-standard": "^4.6",
+		"nette/tester": "^2.3.0",
+		"slevomat/coding-standard": "^4.6.0",
 		"phpstan/phpstan-nette": "^0.12.8",
-		"consistence/coding-standard": "^3.4"
+		"consistence/coding-standard": "^3.4.0"
 	},
 	"autoload": {
 		"psr-4": {
