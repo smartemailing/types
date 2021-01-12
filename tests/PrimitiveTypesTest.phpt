@@ -250,10 +250,14 @@ final class PrimitiveTypesTest extends TestCase
 		Assert::true(PrimitiveTypes::getBool(1));
 		Assert::true(PrimitiveTypes::getBool(true));
 		Assert::true(PrimitiveTypes::getBool('1'));
+		Assert::true(PrimitiveTypes::getBool('true'));
+		Assert::true(PrimitiveTypes::getBool('True'));
 
 		Assert::false(PrimitiveTypes::getBool(0));
 		Assert::false(PrimitiveTypes::getBool('0'));
 		Assert::false(PrimitiveTypes::getBool(false));
+		Assert::false(PrimitiveTypes::getBool('false'));
+		Assert::false(PrimitiveTypes::getBool('False'));
 
 		Assert::throws(
 			static function (): void {
