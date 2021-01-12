@@ -79,12 +79,16 @@ final class JsonString implements ToStringInterface
 		$value,
 		bool $oneLine = false
 	): self {
-		return new static(
-			Json::encode(
-				$value,
-				$oneLine ? 0 : Json::PRETTY
-			)
-		);
+		try {
+			return new static(
+				Json::encode(
+					$value,
+					$oneLine ? 0 : Json::PRETTY
+				)
+			);
+		} catch (JsonException $e) {
+			throw new InvalidTypeException($e->getMessage());
+		}
 	}
 
 	public function getValue(): string
