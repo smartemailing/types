@@ -27,7 +27,7 @@ jobs:
 
       - name: 'Coding style'
         shell: bash
-        run: bin/cs
+        run: /bin/cs
 
   php_stan:
     name: 'PHP Stan'
@@ -44,7 +44,7 @@ jobs:
 
       - name: 'PHP Stan'
         shell: bash
-        run: bin/stan
+        run: /bin/stan
 
   tests:
     name: 'Tests'
