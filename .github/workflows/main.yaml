@@ -72,9 +72,9 @@ jobs:
           coverage: 'none'
 
       - name: 'Run tests'
-          run: |
-            vendor/bin/tester tests -c tests/php.ini --coverage coverage.xml --coverage-src src
-            bash <(curl -s https://codecov.io/bash) -t ac780c13-20d5-4325-b8bc-e6f6f8c33c95
+        run: |
+          vendor/bin/tester tests -c tests/php.ini --coverage coverage.xml --coverage-src src
+          bash <(curl -s https://codecov.io/bash) -t ac780c13-20d5-4325-b8bc-e6f6f8c33c95
 
       - name: 'Upload log if failure'
         uses: actions/upload-artifact@v1
