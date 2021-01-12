@@ -189,4 +189,4 @@ jobs:
         run: 'echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"'
 
       - name: 'Tests'
-        run: 'vendor/bin/tester tests'
+        run: 'vendor/bin/tester tests -C'
