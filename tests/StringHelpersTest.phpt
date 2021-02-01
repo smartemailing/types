@@ -37,6 +37,14 @@ final class StringHelpersTest extends TestCase
 		Assert::equal(null, StringHelpers::sanitizeOrNull(null));
 	}
 
+	public function testSanitizeUtf8Mb4OrNull(): void
+	{
+		$string = "čš \n\r\n a 😊  ";
+
+		Assert::equal("čš \n\n a 😊", StringHelpers::sanitizeUtf8Mb4OrNull($string));
+		Assert::equal(null, StringHelpers::sanitizeUtf8Mb4OrNull(null));
+	}
+
 	public function testRemoveWhitespace(): void
 	{
 		// contains soft hyphens
