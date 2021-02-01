@@ -37,7 +37,7 @@ final class StringHelpersTest extends TestCase
 		Assert::equal(null, StringHelpers::sanitizeOrNull(null));
 	}
 
-	public function testSanitizeUtf8Mb4(): void
+	public function testSanitizeUtf8Mb4OrNull(): void
 	{
 		$string = "čš \n\r\n a 😊  ";
 
