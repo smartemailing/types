@@ -30,6 +30,26 @@ abstract class StringHelpers
 		return self::sanitize($string);
 	}
 
+	final public static function sanitizeUtf8Mb4(
+		string $string
+	): string {
+		$string = Strings::fixEncoding($string);
+		$string = Strings::trim($string);
+		$string = self::normalizeLineEndings($string);
+
+		return $string;
+	}
+
+	final public static function sanitizeUtf8Mb4OrNull(
+		?string $string
+	): ?string {
+		if ($string === null) {
+			return null;
+		}
+
+		return self::sanitizeUtf8Mb4($string);
+	}
+
 	final public static function removeUtf8Mb4(
 		string $value
 	): string {
