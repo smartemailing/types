@@ -11,7 +11,7 @@ abstract class Arrays
 
 	/**
 	 * @param mixed $value
-	 * @return mixed[]
+	 * @return array<mixed>
 	 */
 	final public static function getArray(
 		$value
@@ -26,7 +26,7 @@ abstract class Arrays
 	/**
 	 * @param mixed $value
 	 * @param bool $nullIfInvalid
-	 * @return mixed[]|null
+	 * @return array<mixed>|null
 	 */
 	final public static function getArrayOrNull(
 		$value,
@@ -54,12 +54,15 @@ abstract class Arrays
 	/**
 	 * Preserves keys
 	 *
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
-	 * @return mixed[]
+	 * @return array<mixed>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
-	final public static function extractArray(array $data, string $key): array
+	final public static function extractArray(
+		array $data,
+		string $key
+	): array
 	{
 		$value = ExtractableHelpers::extractValue($data, $key);
 
@@ -73,10 +76,10 @@ abstract class Arrays
 	/**
 	 * Preserves keys
 	 *
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
-	 * @return mixed[]|null
+	 * @return array<mixed>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractArrayOrNull(
@@ -101,7 +104,7 @@ abstract class Arrays
 
 	/**
 	 * @param mixed $value
-	 * @return int[]
+	 * @return array<int>
 	 */
 	final public static function getIntArray(
 		$value
@@ -120,7 +123,7 @@ abstract class Arrays
 	/**
 	 * @param mixed $value
 	 * @param bool $nullIfInvalid
-	 * @return int[]|null
+	 * @return array<int>|null
 	 */
 	final public static function getIntArrayOrNull(
 		$value,
@@ -150,9 +153,9 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
-	 * @return int[]
+	 * @return array<int>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractIntArray(
@@ -171,10 +174,10 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
-	 * @return int[]|null
+	 * @return array<int>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractIntArrayOrNull(
@@ -191,10 +194,9 @@ abstract class Arrays
 		return self::getIntArrayOrNull($array, $nullIfInvalid);
 	}
 
-
 	/**
 	 * @param mixed $value
-	 * @return float[]
+	 * @return array<float>
 	 */
 	final public static function getFloatArray(
 		$value
@@ -213,7 +215,7 @@ abstract class Arrays
 	/**
 	 * @param mixed $value
 	 * @param bool $nullIfInvalid
-	 * @return float[]|null
+	 * @return array<float>|null
 	 */
 	final public static function getFloatArrayOrNull(
 		$value,
@@ -243,9 +245,9 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
-	 * @return float[]
+	 * @return array<float>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractFloatArray(
@@ -264,10 +266,10 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
-	 * @return float[]|null
+	 * @return array<float>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractFloatArrayOrNull(
@@ -286,7 +288,7 @@ abstract class Arrays
 
 	/**
 	 * @param mixed $value
-	 * @return string[]
+	 * @return array<string>
 	 */
 	final public static function getStringArray(
 		$value
@@ -305,7 +307,7 @@ abstract class Arrays
 	/**
 	 * @param mixed $value
 	 * @param bool $nullIfInvalid
-	 * @return string[]|null
+	 * @return array<string>|null
 	 */
 	final public static function getStringArrayOrNull(
 		$value,
@@ -335,9 +337,9 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
-	 * @return string[]
+	 * @return array<string>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractStringArray(
@@ -356,10 +358,10 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
-	 * @return string[]|null
+	 * @return array<string>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractStringArrayOrNull(

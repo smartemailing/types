@@ -11,10 +11,12 @@ trait StringExtractableTrait
 
 	use ExtractableTrait;
 
-	abstract public function __construct(string $value);
+	abstract public function __construct(
+		string $value
+	);
 
 	/**
-	 * @param string|mixed|mixed[] $data
+	 * @param string|mixed|array<mixed> $data
 	 * @return self
 	 */
 	final public static function from(

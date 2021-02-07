@@ -6,7 +6,6 @@ namespace SmartEmailing\Types;
 
 use Nette\Utils\Strings;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
-use SmartEmailing\Types\Helpers\StringHelpers;
 
 final class PhoneNumber implements ToStringInterface
 {
@@ -15,7 +14,17 @@ final class PhoneNumber implements ToStringInterface
 	use ToStringTrait;
 
 	/**
-	 * @var int[]
+	 * @var \SmartEmailing\Types\CountryCode
+	 */
+	private $country;
+
+	/**
+	 * @var string
+	 */
+	private $value;
+
+	/**
+	 * @var array<int>
 	 */
 	private static $countryCodesToPhoneCodes = [
 		CountryCode::SI => 386,
@@ -43,7 +52,7 @@ final class PhoneNumber implements ToStringInterface
 	];
 
 	/**
-	 * @var int[][]
+	 * @var array<array<int>>
 	 */
 	private static $phoneNumberLengths = [
 		CountryCode::CZ => [9],
@@ -70,17 +79,9 @@ final class PhoneNumber implements ToStringInterface
 		CountryCode::IL => [9],
 	];
 
-	/**
-	 * @var \SmartEmailing\Types\CountryCode
-	 */
-	private $country;
-
-	/**
-	 * @var string
-	 */
-	private $value;
-
-	private function __construct(string $value)
+	private function __construct(
+		string $value
+	)
 	{
 		if (!$this->initilize($value)) {
 			throw new InvalidTypeException('Invalid phone number: ' . $value);
@@ -99,10 +100,25 @@ final class PhoneNumber implements ToStringInterface
 
 	private function initilize(
 		string $value
-	): bool {
-		$value = StringHelpers::removeWhitespace(
-			$value
+	): bool
+	{
+		$value = Strings::replace(
+			$value,
+			[
+				'~\(0\)~' => '',
+			]
 		);
+
+		$value = Strings::replace(
+			$value,
+			[
+				'~[^0-9\+]~' => '',
+			]
+		);
+
+		if (Strings::startsWith($value, '00')) {
+			$value = '+' . Strings::substring($value, 2);
+		}
 
 		$matchingCountryCodes = $this->getMatchingCountryCodes(
 			$value
@@ -128,7 +144,8 @@ final class PhoneNumber implements ToStringInterface
 	private function matchLengthForCountry(
 		string $countryCode,
 		string $value
-	): bool {
+	): bool
+	{
 		$afterCountryCode = (string) Strings::after(
 			$value,
 			(string) self::$countryCodesToPhoneCodes[$countryCode]
@@ -149,11 +166,12 @@ final class PhoneNumber implements ToStringInterface
 
 	/**
 	 * @param string $value
-	 * @return string[] matching country code constants
+	 * @return array<string> matching country code constants
 	 */
 	private function getMatchingCountryCodes(
 		string $value
-	): array {
+	): array
+	{
 		$matching = [];
 
 		foreach (self::$countryCodesToPhoneCodes as $countryCode => $phoneCode) {

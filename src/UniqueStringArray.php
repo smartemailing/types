@@ -16,14 +16,16 @@ final class UniqueStringArray implements \Countable, \IteratorAggregate, ToArray
 	use UniqueArrayFeatures;
 
 	/**
-	 * @var bool[]
+	 * @var array<bool>
 	 */
 	private $valuesPresenceMap;
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 */
-	private function __construct(array $data = [])
+	private function __construct(
+		array $data = []
+	)
 	{
 		$this->valuesPresenceMap = [];
 
@@ -37,7 +39,7 @@ final class UniqueStringArray implements \Countable, \IteratorAggregate, ToArray
 	}
 
 	/**
-	 * @return \Traversable|string[]
+	 * @return \Traversable<string>
 	 */
 	public function getIterator(): \Traversable
 	{
@@ -50,7 +52,7 @@ final class UniqueStringArray implements \Countable, \IteratorAggregate, ToArray
 	}
 
 	/**
-	 * @return string[]
+	 * @return array<string>
 	 */
 	public function getValues(): array
 	{
@@ -62,7 +64,7 @@ final class UniqueStringArray implements \Countable, \IteratorAggregate, ToArray
 	}
 
 	/**
-	 * @return string[]
+	 * @return array<string>
 	 */
 	public function toArray(): array
 	{
@@ -89,7 +91,9 @@ final class UniqueStringArray implements \Countable, \IteratorAggregate, ToArray
 		return false;
 	}
 
-	public function remove(string $id): void
+	public function remove(
+		string $id
+	): void
 	{
 		unset($this->valuesPresenceMap[$id]);
 	}

@@ -21,7 +21,9 @@ final class UrlType implements ToStringInterface
 	 */
 	private $url;
 
-	private function __construct(string $value)
+	private function __construct(
+		string $value
+	)
 	{
 		$value = StringHelpers::sanitize($value);
 		$value = \strtr(
@@ -81,7 +83,9 @@ final class UrlType implements ToStringInterface
 	 * @return string|null
 	 * @deprecated use getQueryParameter instead
 	 */
-	public function getParameter(string $name): ?string
+	public function getParameter(
+		string $name
+	): ?string
 	{
 		return $this->url->getQueryParameter($name) ?? null;
 	}
@@ -106,7 +110,7 @@ final class UrlType implements ToStringInterface
 	}
 
 	/**
-	 * @param string[] $names
+	 * @param array<string> $names
 	 * @return bool
 	 */
 	public function hasParameters(
@@ -124,7 +128,7 @@ final class UrlType implements ToStringInterface
 	}
 
 	/**
-	 * @return mixed[]
+	 * @return array<mixed>
 	 */
 	public function getParameters(): array
 	{

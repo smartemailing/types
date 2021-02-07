@@ -161,7 +161,6 @@ final class ArraysTest extends TestCase
 		Assert::type('array', Arrays::extractStringArrayOrNull(['data' => ['1']], 'data'));
 	}
 
-
 	public function testGetFloatArray(): void
 	{
 		Assert::same([1.0, 1.1, 2.5], Arrays::getFloatArray([1, '1.1', 2.5]));

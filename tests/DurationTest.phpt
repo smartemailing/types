@@ -108,7 +108,6 @@ final class DurationTest extends TestCase
 		Assert::equal(1, $duration->getValue());
 	}
 
-
 	public function testLengthInSeconds(): void
 	{
 		$duration = Duration::from([
@@ -125,7 +124,6 @@ final class DurationTest extends TestCase
 		Assert::type(Duration::class, $duration);
 		Assert::equal(600, $duration->getLengthInSeconds());
 	}
-
 
 	public function testGetDateTimeModify(): void
 	{
@@ -160,7 +158,7 @@ final class DurationTest extends TestCase
 	}
 
 	/**
-	 * @return mixed[]
+	 * @return array<mixed>
 	 */
 	private function getTestDateTimeModifyData(): array
 	{
@@ -186,7 +184,7 @@ final class DurationTest extends TestCase
 	}
 
 	/**
-	 * @return mixed[]
+	 * @return array<mixed>
 	 */
 	private function getTestToArrayData(): array
 	{

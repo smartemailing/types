@@ -8,7 +8,7 @@ interface ToArrayInterface
 {
 
 	/**
-	 * @return mixed[]
+	 * @return array<mixed>
 	 */
 	public function toArray(): array;
 

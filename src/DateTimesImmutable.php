@@ -38,13 +38,13 @@ abstract class DateTimesImmutable
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @return \DateTimeImmutable
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
-		array & $data,
+		array &$data,
 		string $key
 	): \DateTimeImmutable {
 		$dateTime = DateTimes::extract(
@@ -56,7 +56,7 @@ abstract class DateTimesImmutable
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @return \DateTimeImmutable
 	 * @throws \SmartEmailing\Types\InvalidTypeException
@@ -70,7 +70,7 @@ abstract class DateTimesImmutable
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @return \DateTimeImmutable|null
 	 * @deprecated Use DatesImmutable::extractDateOrNull
@@ -82,22 +82,14 @@ abstract class DateTimesImmutable
 		return DatesImmutable::extractOrNull($data, $key);
 	}
 
-	private static function immutate(
-		\DateTime $dateTime
-	): \DateTimeImmutable {
-		return \DateTimeImmutable::createFromMutable(
-			$dateTime
-		);
-	}
-
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @param bool $getNullIfInvalid
 	 * @return \DateTimeImmutable
 	 */
 	final public static function extractOrNull(
-		array & $data,
+		array &$data,
 		string $key,
 		bool $getNullIfInvalid = false
 	): ?\DateTimeImmutable {
@@ -112,6 +104,14 @@ abstract class DateTimesImmutable
 		}
 
 		return self::immutate($dateTime);
+	}
+
+	private static function immutate(
+		\DateTime $dateTime
+	): \DateTimeImmutable {
+		return \DateTimeImmutable::createFromMutable(
+			$dateTime
+		);
 	}
 
 }

@@ -12,6 +12,15 @@ trait EnumExtractableTrait
 	use ExtractableTrait;
 
 	/**
+	 * @param mixed $value
+	 * @return \Consistence\Enum\Enum
+	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
+	 */
+	abstract public static function get(
+		$value
+	): Enum;
+
+	/**
 	 * @param mixed $data
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
 	 * @return self
@@ -24,16 +33,6 @@ trait EnumExtractableTrait
 		}
 
 		return self::get($data);
-	}
-	/** @noinspection ReturnTypeCanBeDeclaredInspection */
-
-	/**
-	 * @param mixed $value
-	 * @return \Consistence\Enum\Enum
-	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
-	 */
-	abstract public static function get(
-		$value
-	): Enum;
+	}/** @noinspection ReturnTypeCanBeDeclaredInspection */
 
 }

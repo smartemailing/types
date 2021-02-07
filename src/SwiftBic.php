@@ -18,7 +18,9 @@ final class SwiftBic implements ToStringInterface
 	 */
 	private $value;
 
-	public function __construct(string $value)
+	public function __construct(
+		string $value
+	)
 	{
 		$this->value = $value;
 
@@ -32,7 +34,9 @@ final class SwiftBic implements ToStringInterface
 		return $this->value;
 	}
 
-	private function isValid(string $value): bool
+	private function isValid(
+		string $value
+	): bool
 	{
 		return (bool) Strings::match(
 			$value,

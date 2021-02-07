@@ -8,7 +8,7 @@ abstract class ValidationHelpers
 {
 
 	/**
-	 * @param mixed[] $array
+	 * @param array<mixed> $array
 	 * @param string $typeName
 	 * @return bool
 	 */
@@ -28,7 +28,7 @@ abstract class ValidationHelpers
 	/**
 	 * Validates multidimensional array to have scalar or NULL leaves
 	 *
-	 * @param mixed[] $array
+	 * @param array<mixed> $array
 	 * @return bool
 	 */
 	final public static function isScalarLeavesArray(

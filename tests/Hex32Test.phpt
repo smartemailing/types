@@ -19,7 +19,7 @@ final class Hex32Test extends TestCase
 	{
 		$invalidValues = [
 			'ed9c1bede86c497fbb2f782324d394e1/cz-detail-962282-green-coffee-forte-6000-60tablet.html',
-			'ed9c1bede86c497fbb2f782324d394e',  // too short
+			'ed9c1bede86c497fbb2f782324d394e', // too short
 			'ed9c1bede86c497fbb2f782324d394e1a', // too long
 			'gd9c1bede86c497fbb2f782324d394e1', // g letter
 			'test@seznam',

@@ -45,7 +45,7 @@ final class IbanTest extends TestCase
 	}
 
 	/**
-	 * @return string[]
+	 * @return array<string>
 	 */
 	private function getValidIbanValues(): array
 	{
@@ -55,7 +55,7 @@ final class IbanTest extends TestCase
 	}
 
 	/**
-	 * @return string[]
+	 * @return array<string>
 	 */
 	private function getInvalidIbanValues(): array
 	{

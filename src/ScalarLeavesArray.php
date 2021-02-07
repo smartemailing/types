@@ -13,12 +13,12 @@ final class ScalarLeavesArray implements ToArrayInterface
 	use ArrayExtractableTrait;
 
 	/**
-	 * @var mixed[]
+	 * @var array<mixed>
 	 */
 	private $data;
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 */
 	public function __construct(
 		array $data
@@ -31,7 +31,7 @@ final class ScalarLeavesArray implements ToArrayInterface
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @return self
 	 */
@@ -52,7 +52,7 @@ final class ScalarLeavesArray implements ToArrayInterface
 	}
 
 	/**
-	 * @return mixed[]
+	 * @return array<mixed>
 	 */
 	public function toArray(): array
 	{

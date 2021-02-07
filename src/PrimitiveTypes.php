@@ -50,7 +50,7 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @return int
 	 * @throws \SmartEmailing\Types\InvalidTypeException
@@ -116,7 +116,7 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @return float
 	 */
@@ -134,7 +134,7 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param float[] $data
+	 * @param array<float> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
 	 * @return float
@@ -161,7 +161,7 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
 	 * @return int
@@ -188,7 +188,7 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
 	 * @return bool|null
@@ -215,7 +215,7 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
 	 * @return string|null
@@ -283,7 +283,7 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @return string
 	 * @throws \SmartEmailing\Types\InvalidTypeException
@@ -353,7 +353,7 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param mixed $value
-	 * @return mixed[]
+	 * @return array<mixed>
 	 * @deprecated use Arrays::getArray instead
 	 */
 	final public static function getArray(
@@ -363,7 +363,7 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @return bool
 	 * @throws \SmartEmailing\Types\InvalidTypeException
@@ -382,9 +382,9 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
-	 * @return string[]
+	 * @return array<string>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use Arrays::extractStringArray
 	 */
@@ -399,9 +399,9 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
-	 * @return int[]
+	 * @return array<int>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use Arrays::extractIntArray
 	 */
@@ -418,13 +418,16 @@ abstract class PrimitiveTypes
 	/**
 	 * Preserves keys
 	 *
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
-	 * @return mixed[]
+	 * @return array<mixed>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use Arrays::extractArray
 	 */
-	final public static function extractArray(array &$data, string $key): array
+	final public static function extractArray(
+		array &$data,
+		string $key
+	): array
 	{
 		return Arrays::extractArray(
 			$data,
@@ -435,13 +438,16 @@ abstract class PrimitiveTypes
 	/**
 	 * Preserves keys
 	 *
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
-	 * @return mixed[]|null
+	 * @return array<mixed>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use Arrays::extractArrayOrNull
 	 */
-	final public static function extractArrayOrNull(array &$data, string $key): ?array
+	final public static function extractArrayOrNull(
+		array &$data,
+		string $key
+	): ?array
 	{
 		return Arrays::extractArrayOrNull(
 			$data,

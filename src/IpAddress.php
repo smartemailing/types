@@ -29,6 +29,16 @@ final class IpAddress implements ToStringInterface
 		$this->initialize($value);
 	}
 
+	public function getValue(): string
+	{
+		return $this->value;
+	}
+
+	public function getVersion(): int
+	{
+		return $this->version;
+	}
+
 	private function isValidIpV4(
 		string $value
 	): bool {
@@ -45,16 +55,6 @@ final class IpAddress implements ToStringInterface
 			'~^(((?=(?>.*?(::))(?!.+\3)))\3?|([\dA-F]{1,4}(\3|:(?!$)|$)|\2))(?4){5}((?4){2}|((2[0-4]|1\d|[1-9])?\d|25[0-5])(\.(?7)){3})\z~i',
 			$value
 		);
-	}
-
-	public function getValue(): string
-	{
-		return $this->value;
-	}
-
-	public function getVersion(): int
-	{
-		return $this->version;
 	}
 
 	private function initialize(

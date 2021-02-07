@@ -26,7 +26,9 @@ final class Iban implements ToStringInterface
 	 */
 	private $value;
 
-	public function __construct(string $value)
+	public function __construct(
+		string $value
+	)
 	{
 		$this->iban = new \Iban\Validation\Iban($value);
 		$validator = new Validator();
@@ -48,7 +50,9 @@ final class Iban implements ToStringInterface
 		return CountryCode::from($this->iban->getCountryCode());
 	}
 
-	public function getFormatted(string $type = self::FORMAT_ELECTRONIC): string
+	public function getFormatted(
+		string $type = self::FORMAT_ELECTRONIC
+	): string
 	{
 		return $this->iban->format($type);
 	}

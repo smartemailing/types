@@ -13,7 +13,15 @@ trait ExtractableTrait
 {
 
 	/**
-	 * @param mixed|mixed[] $data
+	 * @param string|mixed|array<mixed> $data
+	 * @return self
+	 */
+	abstract public static function from(
+		$data
+	): self;
+
+	/**
+	 * @param mixed|array<mixed> $data
 	 * @param string $key
 	 * @return self
 	 * @throws \SmartEmailing\Types\InvalidTypeException
@@ -34,72 +42,6 @@ trait ExtractableTrait
 			throw $e->wrap($key);
 		}
 	}
-
-	/**
-	 * @param mixed[] $data
-	 * @param string $key
-	 * @return self[]
-	 * @throws \SmartEmailing\Types\InvalidTypeException
-	 */
-	public static function extractArrayOf(
-		array & $data,
-		string $key
-	): array {
-		$typedArray = Arrays::extractArray($data, $key);
-
-		try {
-			return self::getArrayOf($typedArray);
-		} catch (InvalidTypeException $e) {
-			throw $e->wrap($key);
-		}
-	}
-
-	/**
-	 * @param mixed[] $data
-	 * @param string $key
-	 * @return self[]
-	 * @throws \SmartEmailing\Types\InvalidTypeException
-	 */
-	public static function extractArrayOfOrEmpty(
-		array & $data,
-		string $key
-	): array {
-		if (!isset($data[$key])) {
-			return [];
-		}
-
-		return self::extractArrayOf($data, $key);
-	}
-
-	/**
-	 * @param mixed[] $array
-	 * @return self[]
-	 */
-	public static function getArrayOf(
-		array $array
-	): array {
-		$return = [];
-
-		if (ValidationHelpers::isTypedObjectArray($array, static::class)) {
-			return $array;
-		}
-
-		foreach ($array as $item) {
-			$return[] = $item instanceof self
-				? $item
-				: self::from($item);
-		}
-
-		return $return;
-	}
-
-	/**
-	 * @param string|mixed|mixed[] $data
-	 * @return self
-	 */
-	abstract public static function from(
-		$data
-	): self;
 
 	/**
 	 * @param mixed $value
@@ -127,7 +69,7 @@ trait ExtractableTrait
 	}
 
 	/**
-	 * @param mixed|mixed[] $data
+	 * @param mixed|array<mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
 	 * @return self|null
@@ -158,7 +100,65 @@ trait ExtractableTrait
 	}
 
 	/**
-	 * @param mixed|mixed[] $data
+	 * @param array<mixed> $data
+	 * @param string $key
+	 * @return array<self>
+	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 */
+	public static function extractArrayOf(
+		array &$data,
+		string $key
+	): array {
+		$typedArray = Arrays::extractArray($data, $key);
+
+		try {
+			return self::getArrayOf($typedArray);
+		} catch (InvalidTypeException $e) {
+			throw $e->wrap($key);
+		}
+	}
+
+	/**
+	 * @param array<mixed> $data
+	 * @param string $key
+	 * @return array<self>
+	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 */
+	public static function extractArrayOfOrEmpty(
+		array &$data,
+		string $key
+	): array {
+		if (!isset($data[$key])) {
+			return [];
+		}
+
+		return self::extractArrayOf($data, $key);
+	}
+
+	/**
+	 * @param array<mixed> $array
+	 * @return array<self>
+	 */
+	public static function getArrayOf(
+		array $array
+	): array {
+		$return = [];
+
+		if (ValidationHelpers::isTypedObjectArray($array, static::class)) {
+			return $array;
+		}
+
+		foreach ($array as $item) {
+			$return[] = $item instanceof self
+				? $item
+				: self::from($item);
+		}
+
+		return $return;
+	}
+
+	/**
+	 * @param mixed|array<mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
 	 * @return self|null

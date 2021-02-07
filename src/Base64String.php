@@ -17,7 +17,9 @@ final class Base64String implements ToStringInterface
 	 */
 	private $value;
 
-	private function __construct(string $value)
+	private function __construct(
+		string $value
+	)
 	{
 		if (!$this->isValid($value)) {
 			throw new InvalidTypeException('Invalid Base64 string');
@@ -26,14 +28,10 @@ final class Base64String implements ToStringInterface
 		$this->value = $value;
 	}
 
-	private function isValid(string $value): bool
-	{
-		return \base64_decode($value, true) !== false;
-	}
-
 	public static function encode(
 		string $value
-	): self {
+	): self
+	{
 		return new static(
 			\base64_encode($value)
 		);
@@ -46,7 +44,20 @@ final class Base64String implements ToStringInterface
 
 	public function getDecodedValue(): string
 	{
-		return \base64_decode($this->value);
+		$value = \base64_decode($this->value, true);
+
+		if ($value === false) {
+			throw new InvalidTypeException('Unable to decode Base64');
+		}
+
+		return $value;
+	}
+
+	private function isValid(
+		string $value
+	): bool
+	{
+		return \base64_decode($value, true) !== false;
 	}
 
 }

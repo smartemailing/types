@@ -1,61 +1,128 @@
 <?xml version="1.0"?>
-<ruleset name="SmartEmailing\Types">
-    <rule ref="../../vendor/consistence/coding-standard/Consistence/ruleset.xml">
+<ruleset name="SmartEmailingCodingStandard">
+	<rule ref="vendor/consistence/coding-standard/Consistence/ruleset.xml">
+		<!-- because of exceptions.php -->
+		<exclude name="Squiz.Classes.ClassFileName.NoMatch"/>
+		<exclude name="PSR1.Classes.ClassDeclaration.MultipleClasses"/>
 
-        <!-- because of "@param int" over "@param integer" -->
-        <exclude name="Squiz.Commenting.FunctionComment.IncorrectParamVarName"/>
+		<!-- because of "@param int" over "@param integer" -->
+		<exclude name="Squiz.Commenting.FunctionComment.IncorrectParamVarName"/>
 
-        <!-- because of ") {" when arguments are on multiple lines -->
-        <exclude name="Generic.Functions.OpeningFunctionBraceBsdAllman.BraceOnSameLine"/>
+		<!-- because of functions without visibility in interfaces -->
+		<exclude name="Squiz.Scope.MethodScope.Missing"/>
 
-        <!-- because of *.phpt -->
-        <exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
+		<!-- because of ") {" when arguments are on multiple lines -->
+		<exclude name="Generic.Functions.OpeningFunctionBraceBsdAllman.BraceOnSameLine"/>
 
-        <!-- because of ::class -->
-        <exclude name="Squiz.Classes.SelfMemberReference.NotUsed"/>
+		<!-- because of *.phpt -->
+		<exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
 
-        <!-- because of $formControl->addCondition() -->
-        <exclude name="PEAR.WhiteSpace.ObjectOperatorIndent.Incorrect"/>
+		<!-- because of ::class -->
+		<exclude name="Squiz.Classes.SelfMemberReference.NotUsed"/>
 
-        <!-- because of Exceptions follows PSR-4 -->
-        <exclude name="Consistence.Exceptions.ExceptionDeclaration.IncorrectExceptionDirectory"/>
-    </rule>
-    <rule ref="../../vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml"><!-- relative path to your ruleset.xml -->
-        <!-- sniffs to exclude -->
-        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>
-        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions"/>
-        <exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces"/>
-        <exclude name="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment.MultiLinePropertyComment"/>
-        <exclude name="SlevomatCodingStandard.ControlStructures.RequireYodaComparison.RequiredYodaComparison"/>
-        <exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix"/>
-        <exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix"/>
-        <exclude name="SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostIncrementOperator"/>
-        <exclude name="SlevomatCodingStandard.ControlStructures.NewWithoutParentheses.UselessParentheses"/>
-        <!-- because of exceptions.php -->
-        <exclude name="SlevomatCodingStandard.Files.TypeNameMatchesFileName"/>
+		<!-- because of $formControl->addCondition() -->
+		<exclude name="PEAR.WhiteSpace.ObjectOperatorIndent.Incorrect"/>
 
-        <!-- because of \DateTime, \Iterator etc. -->
-        <exclude name="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly.ReferenceViaFullyQualifiedName"/>
+		<exclude name="Consistence.Exceptions.ExceptionDeclaration.IncorrectExceptionDirectory"/>
 
-        <!-- because of if ($match = Strings::match(...)) -->
-        <exclude name="SlevomatCodingStandard.ControlStructures.AssignmentInCondition"/>
+		<!-- conflicts with Nette Feamework and PHPStan combination -->
+		<exclude name="Consistence.Exceptions.ExceptionDeclaration.NotChainable"/>
 
-    </rule>
-    <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
-        <properties>
-            <property name="newlinesCountBetweenOpenTagAndDeclare" type="int" value="2"/>
-            <property name="spacesCountAroundEqualsSign" type="int" value="1"/>
-        </properties>
-    </rule>
-    <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
-        <properties>
-            <property name="rootNamespaces" type="array" value="libs/Mstrouhal=>Mstrouhal,tests/Mstrouhal=>Mstrouhal"/>
-            <property name="extensions" type="array" value="php,phpt"/>
-        </properties>
-    </rule>
+	</rule>
+	<rule ref="vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
+		<exclude name="SlevomatCodingStandard.ControlStructures.AssignmentInCondition"/>
+		<exclude name="SlevomatCodingStandard.Files.TypeNameMatchesFileName"/>
+		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>
+		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions"/>
+		<exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces"/>
+		<exclude name="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment.MultiLinePropertyComment"/>
+		<exclude name="SlevomatCodingStandard.Commenting.RequireOneLineDocComment.MultiLineDocComment"/>
+		<exclude name="SlevomatCodingStandard.ControlStructures.NewWithoutParentheses.UselessParentheses"/>
+		<exclude name="SlevomatCodingStandard.ControlStructures.RequireYodaComparison.RequiredYodaComparison"/>
+		<exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix"/>
+		<exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix"/>
+		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>
+		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions"/>
+		<exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces"/>
+		<exclude name="SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostIncrementOperator"/>
+		<exclude name="SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPreIncrementOperator"/>
+		<exclude name="SlevomatCodingStandard.ControlStructures.DisallowShortTernaryOperator.DisallowedShortTernaryOperator"/>
+		<exclude name="SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostDecrementOperator"/>
+		<exclude name="SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint"/>
+		<exclude name="SlevomatCodingStandard.Classes.RequireSingleLineMethodSignature"/>
+		<exclude name="SlevomatCodingStandard.Functions.RequireSingleLineCall.RequiredSingleLineCall"/>
+		<exclude name="SlevomatCodingStandard.Commenting.DisallowCommentAfterCode.DisallowedCommentAfterCode"/>
+		<exclude name="SlevomatCodingStandard.PHP.DisallowReference.DisallowedPassingByReference"/>
+		<exclude name="SlevomatCodingStandard.Classes.SuperfluousErrorNaming"/>
+		<exclude name="SlevomatCodingStandard.PHP.DisallowReference.DisallowedInheritingVariableByReference"/>
+		<exclude name="SlevomatCodingStandard.Classes.SuperfluousTraitNaming.SuperfluousSuffix"/>
+		<exclude name="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly.ReferenceViaFullyQualifiedName"/>
+		<exclude name="SlevomatCodingStandard.ControlStructures.RequireSingleLineCondition.RequiredSingleLineCondition"/>
+
+		<!-- TODO Enable after migration to PHP 7.4 -->
+		<exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint"/>
+		<exclude name="SlevomatCodingStandard.Functions.TrailingCommaInCall.MissingTrailingComma"/>
+		<exclude name="SlevomatCodingStandard.Numbers.RequireNumericLiteralSeparator.RequiredNumericLiteralSeparator"/>
+		<exclude name="SlevomatCodingStandard.Functions.RequireArrowFunction.RequiredArrowFunction"/>
+		<exclude name="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceEqualOperator.RequiredNullCoalesceEqualOperator"/>
+
+		<!-- TODO Enable carefuly, will cause problems -->
+		<exclude name="SlevomatCodingStandard.PHP.RequireExplicitAssertion.RequiredExplicitAssertion"/>
+		<exclude name="SlevomatCodingStandard.PHP.DisallowReference.DisallowedAssigningByReference"/>
+		<exclude name="SlevomatCodingStandard.ControlStructures.DisallowEmpty.DisallowedEmpty"/>
+
+		<!-- cannot be disabled for methods implementing interface -->
+		<exclude name="SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter"/>
 
 
-
-
-
+	</rule>
+	<rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
+		<properties>
+			<property name="searchAnnotations" type="boolean" value="true"/>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
+		<properties>
+			<property name="rootNamespaces" type="array" value="libs/SmartSelling=>SmartSelling"/>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly">
+		<properties>
+			<property name="allowFullyQualifiedExceptions" type="boolean" value="true"/>
+		</properties>
+	</rule>
+	<rule ref="Squiz.WhiteSpace.FunctionSpacing">
+		<properties>
+			<property name="spacing" value="1"/>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.Classes.RequireMultiLineMethodSignature">
+		<properties>
+			<property name="minLineLength" type="int" value="0"/>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.Functions.RequireMultiLineCall">
+		<properties>
+			<property name="minLineLength" type="int" value="200"/>
+			<property name="ignoreWithComplexParameter" type="boolean" value="true"/>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing">
+		<properties>
+			<property name="spacesCountBeforeColon" type="int" value="0"/>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.Files.LineLength">
+		<properties>
+			<property name="lineLengthLimit" type="int" value="200"/>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.ControlStructures.RequireTernaryOperator">
+		<properties>
+			<property name="ignoreMultiLine" type="boolean" value="true"/>
+		</properties>
+	</rule>
+	<exclude-pattern>app/config/environment.php</exclude-pattern>
+	<exclude-pattern>tests/bootstrap.php</exclude-pattern>
+	<exclude-pattern>libs/SE20/MTA/Messages/CustomNetteMail/*</exclude-pattern>
 </ruleset>

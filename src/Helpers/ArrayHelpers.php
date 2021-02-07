@@ -11,8 +11,8 @@ abstract class ArrayHelpers
 {
 
 	/**
-	 * @param \SmartEmailing\Types\ToArrayInterface[] $arrayableCollection
-	 * @return mixed[]
+	 * @param array<\SmartEmailing\Types\ToArrayInterface> $arrayableCollection
+	 * @return array<mixed>
 	 */
 	final public static function collectionItemsToArray(
 		array $arrayableCollection
@@ -28,8 +28,8 @@ abstract class ArrayHelpers
 	}
 
 	/**
-	 * @param \SmartEmailing\Types\ToStringInterface[] $stringableCollection
-	 * @return string[]
+	 * @param array<\SmartEmailing\Types\ToStringInterface> $stringableCollection
+	 * @return array<string>
 	 */
 	final public static function stringExtractableCollectionToArray(
 		array $stringableCollection

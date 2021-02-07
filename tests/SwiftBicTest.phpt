@@ -31,7 +31,7 @@ final class SwiftBicTest extends TestCase
 	}
 
 	/**
-	 * @return string[]
+	 * @return array<string>
 	 */
 	private function getValidIbanValues(): array
 	{
@@ -43,7 +43,7 @@ final class SwiftBicTest extends TestCase
 	}
 
 	/**
-	 * @return string[]
+	 * @return array<string>
 	 */
 	private function getInvalidIbanValues(): array
 	{

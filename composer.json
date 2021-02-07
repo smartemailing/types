@@ -23,9 +23,10 @@
   },
   "require-dev": {
     "nette/tester": "^2.3.0",
-    "slevomat/coding-standard": "^4.6.0",
     "phpstan/phpstan-nette": "^0.12.8",
-    "consistence/coding-standard": "^3.4.0"
+    "slevomat/coding-standard": "^6.4",
+    "consistence/coding-standard": "^3.10",
+    "tracy/tracy": "^2.8"
   },
   "autoload": {
     "psr-4": {

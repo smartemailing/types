@@ -22,7 +22,7 @@ final class KeyValuePair implements ToArrayInterface
 	private $value;
 
 	/**
-	 * @param string[] $data
+	 * @param array<string> $data
 	 */
 	private function __construct(
 		array $data
@@ -42,7 +42,7 @@ final class KeyValuePair implements ToArrayInterface
 	}
 
 	/**
-	 * @return mixed[]
+	 * @return array<mixed>
 	 */
 	public function toArray(): array
 	{

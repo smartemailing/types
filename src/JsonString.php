@@ -21,7 +21,8 @@ final class JsonString implements ToStringInterface
 
 	private function __construct(
 		string $value
-	) {
+	)
+	{
 		if (!$this->isValid($value)) {
 			throw new InvalidTypeException('Invalid JSON string');
 		}
@@ -30,13 +31,14 @@ final class JsonString implements ToStringInterface
 	}
 
 	/**
-	 * @param string|mixed|mixed[] $data
+	 * @param string|mixed|array<mixed> $data
 	 * @return self
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function from(
 		$data
-	): JsonString {
+	): JsonString
+	{
 		if ($data instanceof self) {
 			return $data;
 		}
@@ -56,29 +58,16 @@ final class JsonString implements ToStringInterface
 		throw InvalidTypeException::typesError(['string', 'array'], $data);
 	}
 
-	private function isValid(string $value): bool
-	{
-		try {
-			Json::decode($value);
-
-			return true;
-		} catch (JsonException $e) {
-			return false;
-		}
-	}
-
-	/** @noinspection PhpDocMissingThrowsInspection */
-
 	/**
-	 * @param mixed|mixed[] $value
+	 * @param mixed $value
 	 * @param bool $oneLine
 	 * @return \SmartEmailing\Types\JsonString
-	 * @throws \Nette\Utils\JsonException
 	 */
 	public static function encode(
 		$value,
 		bool $oneLine = false
-	): self {
+	): self
+	{
 		try {
 			return new static(
 				Json::encode(
@@ -96,14 +85,25 @@ final class JsonString implements ToStringInterface
 		return $this->value;
 	}
 
-	/** @noinspection PhpDocMissingThrowsInspection */
-
 	/**
-	 * @return mixed|mixed[]
+	 * @return mixed|array<mixed>
 	 */
 	public function getDecodedValue()
 	{
 		return Json::decode($this->value, Json::FORCE_ARRAY);
+	}
+
+	private function isValid(
+		string $value
+	): bool
+	{
+		try {
+			Json::decode($value);
+
+			return true;
+		} catch (JsonException $e) {
+			return false;
+		}
 	}
 
 }

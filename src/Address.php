@@ -32,7 +32,7 @@ final class Address
 	private $country;
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 */
 	private function __construct(
 		array $data
@@ -44,7 +44,7 @@ final class Address
 	}
 
 	/**
-	 * @return mixed[]
+	 * @return array<mixed>
 	 */
 	public function toArray(): array
 	{

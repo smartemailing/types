@@ -32,7 +32,7 @@ final class VatId implements ToStringInterface
 	private $vatNumber;
 
 	/**
-	 * @var string[]
+	 * @var array<string>
 	 */
 	private static $patternsByCountry = [
 		CountryCode::AT => 'ATU\d{8}',
@@ -67,116 +67,15 @@ final class VatId implements ToStringInterface
 		CountryCode::GG => 'GY\d{6}',
 	];
 
-	private function __construct(string $vatId)
+	private function __construct(
+		string $vatId
+	)
 	{
 		[$this->country, $this->prefix, $this->vatNumber] = self::extractCountryAndPrefixAndNumber($vatId);
 
 		if (!self::validate($this->country, $this->prefix, $this->vatNumber)) {
 			throw new InvalidTypeException('VatId: ' . $this->getValue() . ' is not valid.');
 		}
-	}
-
-	private static function parseCountryOrNull(string $vatId): ?CountryCode
-	{
-		$countryCode = Strings::substring($vatId, 0, 2);
-
-		if ($countryCode === 'EL') {
-			$countryCode = CountryCode::GR;
-		}
-
-		if ($countryCode === 'GY') {
-			$countryCode = CountryCode::GG;
-		}
-
-		try {
-			return CountryCode::from($countryCode);
-		} catch (InvalidTypeException $e) {
-			return null;
-		}
-	}
-
-	private static function parsePrefixOrNull(?CountryCode $country, string $vatId): ?string
-	{
-		if (!$country) {
-			return null;
-		}
-
-		return Strings::substring($vatId, 0, 2);
-	}
-
-	private static function parseVatNumber(?CountryCode $country, string $vatId): string
-	{
-		return $country
-			? Strings::substring($vatId, 2)
-			: $vatId;
-	}
-
-	public static function isValid(string $vatId): bool
-	{
-		[$country, $countryPrefix, $vatNumber] = self::extractCountryAndPrefixAndNumber($vatId);
-
-		return self::validate($country, $countryPrefix, $vatNumber);
-	}
-
-	private static function validate(?CountryCode $country, ?string $prefix, string $vatNumber): bool
-	{
-		if ($country) {
-			return self::isValidForCountry($country, $prefix, $vatNumber);
-		}
-
-		return self::isValidForNonCountry($vatNumber);
-	}
-
-	private static function isValidForCountry(CountryCode $country, ?string $prefix, string $vatNumber): bool
-	{
-		$pattern = Arrays::get(self::getPatternsByCountry(), $country->getValue());
-
-		$match = Strings::match($prefix . $vatNumber, '/^(' . $pattern . ')$/');
-
-		if (!$match) {
-			return false;
-		}
-
-		$modulo = Arrays::get(self::getDivisible(), $country->getValue(), 1);
-
-		return !Validators::isNumericInt($vatNumber) || ($vatNumber % $modulo === 0);
-	}
-
-	/**
-	 * @return string[]
-	 */
-	private static function getPatternsByCountry(): array
-	{
-		return self::$patternsByCountry;
-	}
-
-	/**
-	 * @return int[]
-	 */
-	private static function getDivisible(): array
-	{
-		return [
-			CountryCode::SK => 11,
-		];
-	}
-
-	/**
-	 * @param string $vatNumber
-	 * @return bool
-	 * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
-	 */
-	private static function isValidForNonCountry(string $vatNumber): bool
-	{
-		return false;
-
-		//todo
-	}
-
-	private static function preProcessVatId(string $vatId): string
-	{
-		$vatId = StringHelpers::removeWhitespace($vatId);
-
-		return Strings::upper($vatId);
 	}
 
 	public function getCountry(): ?CountryCode
@@ -199,9 +98,134 @@ final class VatId implements ToStringInterface
 		return $this->prefix . $this->vatNumber;
 	}
 
+	public static function isValid(
+		string $vatId
+	): bool
+	{
+		[$country, $countryPrefix, $vatNumber] = self::extractCountryAndPrefixAndNumber($vatId);
+
+		return self::validate($country, $countryPrefix, $vatNumber);
+	}
+
+	private static function parseCountryOrNull(
+		string $vatId
+	): ?CountryCode
+	{
+		$countryCode = Strings::substring($vatId, 0, 2);
+
+		if ($countryCode === 'EL') {
+			$countryCode = CountryCode::GR;
+		}
+
+		if ($countryCode === 'GY') {
+			$countryCode = CountryCode::GG;
+		}
+
+		try {
+			return CountryCode::from($countryCode);
+		} catch (InvalidTypeException $e) {
+			return null;
+		}
+	}
+
+	private static function parsePrefixOrNull(
+		?CountryCode $country,
+		string $vatId
+	): ?string
+	{
+		if (!$country) {
+			return null;
+		}
+
+		return Strings::substring($vatId, 0, 2);
+	}
+
+	private static function parseVatNumber(
+		?CountryCode $country,
+		string $vatId
+	): string
+	{
+		return $country
+			? Strings::substring($vatId, 2)
+			: $vatId;
+	}
+
+	private static function validate(
+		?CountryCode $country,
+		?string $prefix,
+		string $vatNumber
+	): bool
+	{
+		if ($country) {
+			return self::isValidForCountry($country, $prefix, $vatNumber);
+		}
+
+		return self::isValidForNonCountry($vatNumber);
+	}
+
+	private static function isValidForCountry(
+		CountryCode $country,
+		?string $prefix,
+		string $vatNumber
+	): bool
+	{
+		$pattern = Arrays::get(self::getPatternsByCountry(), $country->getValue());
+
+		$match = Strings::match($prefix . $vatNumber, '/^(' . $pattern . ')$/');
+
+		if (!$match) {
+			return false;
+		}
+
+		$modulo = Arrays::get(self::getDivisible(), $country->getValue(), 1);
+
+		return !Validators::isNumericInt($vatNumber) || ($vatNumber % $modulo === 0);
+	}
+
+	/**
+	 * @return array<string>
+	 */
+	private static function getPatternsByCountry(): array
+	{
+		return self::$patternsByCountry;
+	}
+
+	/**
+	 * @return array<int>
+	 */
+	private static function getDivisible(): array
+	{
+		return [
+			CountryCode::SK => 11,
+		];
+	}
+
+	/**
+	 * @param string $vatNumber
+	 * @return bool
+	 * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
+	 */
+	private static function isValidForNonCountry(
+		string $vatNumber
+	): bool
+	{
+		return false;
+
+		//todo
+	}
+
+	private static function preProcessVatId(
+		string $vatId
+	): string
+	{
+		$vatId = StringHelpers::removeWhitespace($vatId);
+
+		return Strings::upper($vatId);
+	}
+
 	/**
 	 * @param string $vatId
-	 * @return mixed[]
+	 * @return array<mixed>
 	 */
 	private static function extractCountryAndPrefixAndNumber(
 		string $vatId

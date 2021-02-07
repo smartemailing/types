@@ -8,7 +8,7 @@ abstract class InvisibleSpaceCharacterCodes
 {
 
 	/**
-	 * @var int[]
+	 * @var array<int>
 	 */
 	private static $codes = [
 		0x9,
@@ -40,7 +40,7 @@ abstract class InvisibleSpaceCharacterCodes
 	];
 
 	/**
-	 * @return int[]
+	 * @return array<int>
 	 */
 	final public static function getCodes(): array
 	{

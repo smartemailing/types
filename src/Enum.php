@@ -12,7 +12,9 @@ abstract class Enum extends \Consistence\Enum\Enum
 	/**
 	 * @param mixed $value
 	 */
-	public static function checkValue($value): void
+	public static function checkValue(
+		$value
+	): void
 	{
 		try {
 			parent::checkValue($value);

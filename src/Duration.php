@@ -28,7 +28,7 @@ final class Duration implements ToStringInterface, ToArrayInterface
 	private $lengthInSeconds;
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 */
 	private function __construct(
 		array $data
@@ -68,7 +68,9 @@ final class Duration implements ToStringInterface, ToArrayInterface
 		throw InvalidTypeException::typesError(['string', 'array'], $data);
 	}
 
-	public static function fromDateTimeModify(string $dateTimeModify): self
+	public static function fromDateTimeModify(
+		string $dateTimeModify
+	): self
 	{
 		$matches = Strings::match($dateTimeModify, '/^(-?|\+?)(\d+)\s+(.+)/');
 
@@ -106,13 +108,8 @@ final class Duration implements ToStringInterface, ToArrayInterface
 		return $this->value . ' ' . $this->unit->getValue();
 	}
 
-	public function __toString(): string
-	{
-		return $this->getDateTimeModify();
-	}
-
 	/**
-	 * @return mixed[]
+	 * @return array<mixed>
 	 */
 	public function toArray(): array
 	{
@@ -125,6 +122,11 @@ final class Duration implements ToStringInterface, ToArrayInterface
 	public function getLengthInSeconds(): int
 	{
 		return $this->lengthInSeconds;
+	}
+
+	public function __toString(): string
+	{
+		return $this->getDateTimeModify();
 	}
 
 }

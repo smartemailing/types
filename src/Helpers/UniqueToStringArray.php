@@ -24,7 +24,7 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 	use ArrayExtractableTrait;
 
 	/**
-	 * @var \SmartEmailing\Types\ToStringInterface[]
+	 * @var array<\SmartEmailing\Types\ToStringInterface>
 	 */
 	private $objects;
 
@@ -34,10 +34,12 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 	private $type;
 
 	/**
-	 * @param \SmartEmailing\Types\ToStringInterface[] $data
+	 * @param array<\SmartEmailing\Types\ToStringInterface> $data
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
-	private function __construct(array $data = [])
+	private function __construct(
+		array $data = []
+	)
 	{
 		$this->objects = [];
 
@@ -54,7 +56,55 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 	}
 
 	/**
-	 * @return \Traversable|\SmartEmailing\Types\ToStringInterface[]
+	 * @param array<\SmartEmailing\Types\Helpers\UniqueToStringArray> $uniqueToStringArrays
+	 * @return \SmartEmailing\Types\Helpers\UniqueToStringArray
+	 */
+	public static function intersect(
+		array $uniqueToStringArrays
+	): self {
+		if (\count($uniqueToStringArrays) === 1) {
+			return \reset($uniqueToStringArrays);
+		}
+
+		$plainIntArrays = [];
+
+		foreach ($uniqueToStringArrays as $uniqueToStringArray) {
+			$plainIntArrays[] = $uniqueToStringArray->objects;
+		}
+
+		$result = \array_intersect_key(
+			...$plainIntArrays
+		);
+
+		$output = new UniqueToStringArray([]);
+		$output->objects = $result;
+
+		return $output;
+	}
+
+	/**
+	 * @param array<\SmartEmailing\Types\Helpers\UniqueToStringArray> $uniqueIntArrays
+	 * @return \SmartEmailing\Types\Helpers\UniqueToStringArray
+	 */
+	public static function union(
+		array $uniqueIntArrays
+	): self {
+		$result = [];
+
+		foreach ($uniqueIntArrays as $uniqueIntArray) {
+			foreach ($uniqueIntArray->objects as $key => $object) {
+				$result[$key] = $object;
+			}
+		}
+
+		$output = new self([]);
+		$output->objects = $result;
+
+		return $output;
+	}
+
+	/**
+	 * @return \Traversable<\SmartEmailing\Types\ToStringInterface>
 	 */
 	public function getIterator(): \Traversable
 	{
@@ -67,7 +117,7 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 	}
 
 	/**
-	 * @return \SmartEmailing\Types\ToStringInterface[]
+	 * @return array<\SmartEmailing\Types\ToStringInterface>
 	 */
 	public function getValues(): array
 	{
@@ -75,7 +125,7 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 	}
 
 	/**
-	 * @return \SmartEmailing\Types\ToStringInterface[]
+	 * @return array<\SmartEmailing\Types\ToStringInterface>
 	 */
 	public function toArray(): array
 	{
@@ -127,54 +177,6 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 		$key = $valueObject->__toString();
 
 		return isset($this->objects[$key]);
-	}
-
-	/**
-	 * @param \SmartEmailing\Types\Helpers\UniqueToStringArray[] $uniqueToStringArrays
-	 * @return \SmartEmailing\Types\Helpers\UniqueToStringArray
-	 */
-	public static function intersect(
-		array $uniqueToStringArrays
-	): self {
-		if (\count($uniqueToStringArrays) === 1) {
-			return \reset($uniqueToStringArrays);
-		}
-
-		$plainIntArrays = [];
-
-		foreach ($uniqueToStringArrays as $uniqueToStringArray) {
-			$plainIntArrays[] = $uniqueToStringArray->objects;
-		}
-
-		$result = \array_intersect_key(
-			...$plainIntArrays
-		);
-
-		$output = new UniqueToStringArray([]);
-		$output->objects = $result;
-
-		return $output;
-	}
-
-	/**
-	 * @param \SmartEmailing\Types\Helpers\UniqueToStringArray[] $uniqueIntArrays
-	 * @return \SmartEmailing\Types\Helpers\UniqueToStringArray
-	 */
-	public static function union(
-		array $uniqueIntArrays
-	): self {
-		$result = [];
-
-		foreach ($uniqueIntArrays as $uniqueIntArray) {
-			foreach ($uniqueIntArray->objects as $key => $object) {
-				$result[$key] = $object;
-			}
-		}
-
-		$output = new self([]);
-		$output->objects = $result;
-
-		return $output;
 	}
 
 }

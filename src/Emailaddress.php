@@ -43,6 +43,21 @@ final class Emailaddress implements ToStringInterface
 		}
 	}
 
+	public function getLocalPart(): string
+	{
+		return $this->localPart;
+	}
+
+	public function getValue(): string
+	{
+		return $this->value;
+	}
+
+	public function getDomain(): Domain
+	{
+		return $this->domain;
+	}
+
 	public static function preprocessEmailaddress(
 		string $emailaddress
 	): string {
@@ -61,21 +76,6 @@ final class Emailaddress implements ToStringInterface
 				'<' => '',
 			]
 		);
-	}
-
-	public function getLocalPart(): string
-	{
-		return $this->localPart;
-	}
-
-	public function getValue(): string
-	{
-		return $this->value;
-	}
-
-	public function getDomain(): Domain
-	{
-		return $this->domain;
 	}
 
 	private function initialize(

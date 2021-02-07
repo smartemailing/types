@@ -58,13 +58,13 @@ abstract class Dates
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @return \DateTime
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
-		array & $data,
+		array &$data,
 		string $key
 	): \DateTime {
 		$value = Arrays::get($data, $key, '');
@@ -77,13 +77,13 @@ abstract class Dates
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @param bool $getNullIfInvalid
 	 * @return \DateTime
 	 */
 	final public static function extractOrNull(
-		array & $data,
+		array &$data,
 		string $key,
 		bool $getNullIfInvalid = false
 	): ?\DateTime {

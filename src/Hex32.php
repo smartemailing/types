@@ -41,7 +41,9 @@ final class Hex32 implements ToStringInterface
 		return $this->value;
 	}
 
-	private function isValid(string $value): bool
+	private function isValid(
+		string $value
+	): bool
 	{
 		if (Strings::length($value) !== 32) {
 			return false;

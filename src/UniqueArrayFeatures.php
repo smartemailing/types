@@ -13,7 +13,7 @@ trait UniqueArrayFeatures
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @return self
 	 */
@@ -35,7 +35,7 @@ trait UniqueArrayFeatures
 
 	/**
 	 * @param int $chunkSize
-	 * @return self[]
+	 * @return array<self>
 	 */
 	public function split(
 		int $chunkSize
@@ -52,7 +52,6 @@ trait UniqueArrayFeatures
 
 		return $return;
 	}
-
 
 	public function merge(
 		self $toBeMerged

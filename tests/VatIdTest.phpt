@@ -71,7 +71,7 @@ final class VatIdTest extends TestCase
 	}
 
 	/**
-	 * @return string[]
+	 * @return array<string>
 	 */
 	public function getValidVatIds(): array
 	{
@@ -185,7 +185,7 @@ final class VatIdTest extends TestCase
 	}
 
 	/**
-	 * @return string[]
+	 * @return array<string>
 	 */
 	public function getInvalidVatIds(): array
 	{

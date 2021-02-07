@@ -18,7 +18,9 @@ final class HexColor implements ToStringInterface
 	 */
 	private $value;
 
-	public function __construct(string $value)
+	public function __construct(
+		string $value
+	)
 	{
 		$value = $this->preProcess($value);
 
@@ -34,12 +36,16 @@ final class HexColor implements ToStringInterface
 		return $this->value;
 	}
 
-	private function isValid(string $value): bool
+	private function isValid(
+		string $value
+	): bool
 	{
 		return (bool) \preg_match('#^\#([A-F0-9]{3}){1,2}\z#', $value);
 	}
 
-	private function preProcess(string $value): string
+	private function preProcess(
+		string $value
+	): string
 	{
 		return Strings::upper($value);
 	}

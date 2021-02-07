@@ -27,7 +27,7 @@ final class DateTimeRange implements ToArrayInterface
 	private $durationInSeconds;
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 */
 	private function __construct(
 		array $data
@@ -78,7 +78,7 @@ final class DateTimeRange implements ToArrayInterface
 	}
 
 	/**
-	 * @return mixed[]
+	 * @return array<mixed>
 	 */
 	public function toArray(): array
 	{

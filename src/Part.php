@@ -27,11 +27,6 @@ final class Part implements ToStringInterface
 		$this->value = $value;
 	}
 
-	public function getValue(): float
-	{
-		return $this->value;
-	}
-
 	public static function fromRatio(
 		float $value,
 		float $whole
@@ -51,6 +46,11 @@ final class Part implements ToStringInterface
 		}
 
 		return new static($value / $whole);
+	}
+
+	public function getValue(): float
+	{
+		return $this->value;
 	}
 
 	public function getPercent(): float

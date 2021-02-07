@@ -12,12 +12,14 @@ trait ArrayExtractableTrait
 	use ExtractableTrait;
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 */
-	abstract public function __construct(array $data);
+	abstract public function __construct(
+		array $data
+	);
 
 	/**
-	 * @param string|mixed|mixed[] $data
+	 * @param string|mixed|array<mixed> $data
 	 * @return self
 	 */
 	final public static function from(

@@ -10,7 +10,7 @@ abstract class ExtractableHelpers
 {
 
 	/**
-	 * @param mixed|mixed[] $data
+	 * @param mixed|array<mixed> $data
 	 * @param string $key
 	 * @return mixed
 	 */

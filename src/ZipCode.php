@@ -8,6 +8,7 @@ use Nette\Utils\Strings;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 use SmartEmailing\Types\Helpers\StringHelpers;
 
+// phpcs:disable SlevomatCodingStandard.Files.LineLength.LineTooLong
 final class ZipCode implements ToStringInterface
 {
 
@@ -20,7 +21,7 @@ final class ZipCode implements ToStringInterface
 	private $value;
 
 	/**
-	 * @var string[]
+	 * @var array<string>
 	 */
 	private static $patternsByCountry = [
 		CountryCode::CZ => '#^\d{3}?\d{2}\z#',

@@ -16,14 +16,16 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInt
 	use UniqueArrayFeatures;
 
 	/**
-	 * @var bool[]
+	 * @var array<bool>
 	 */
 	private $valuesPresenceMap;
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 */
-	private function __construct(array $data = [])
+	private function __construct(
+		array $data = []
+	)
 	{
 		$this->valuesPresenceMap = [];
 
@@ -37,7 +39,7 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInt
 	}
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 * @param string $key
 	 * @return \SmartEmailing\Types\UniqueIntArray
 	 */
@@ -58,68 +60,7 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInt
 	}
 
 	/**
-	 * @return \Traversable|int[]
-	 */
-	public function getIterator(): \Traversable
-	{
-		return new \RecursiveArrayIterator($this->getValues());
-	}
-
-	public function count(): int
-	{
-		return \count($this->valuesPresenceMap);
-	}
-
-	/**
-	 * @return int[]
-	 */
-	public function getValues(): array
-	{
-		return \array_keys($this->valuesPresenceMap);
-	}
-
-	/**
-	 * @return int[]
-	 */
-	public function toArray(): array
-	{
-		return $this->getValues();
-	}
-
-	public function add(
-		int $id
-	): bool {
-		if (!isset($this->valuesPresenceMap[$id])) {
-			$this->valuesPresenceMap[$id] = true;
-
-			return true;
-		}
-
-		return false;
-	}
-
-	public function remove(int $id): void
-	{
-		unset($this->valuesPresenceMap[$id]);
-	}
-
-	public function contains(int $id): bool
-	{
-		return isset($this->valuesPresenceMap[$id]);
-	}
-
-	public function isEmpty(): bool
-	{
-		return $this->valuesPresenceMap === [];
-	}
-
-	public function orderASC(): void
-	{
-		\ksort($this->valuesPresenceMap);
-	}
-
-	/**
-	 * @param \SmartEmailing\Types\UniqueIntArray[] $uniqueIntArrays
+	 * @param array<\SmartEmailing\Types\UniqueIntArray> $uniqueIntArrays
 	 * @return \SmartEmailing\Types\UniqueIntArray
 	 */
 	public static function intersect(
@@ -146,7 +87,7 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInt
 	}
 
 	/**
-	 * @param \SmartEmailing\Types\UniqueIntArray[] $uniqueIntArrays
+	 * @param array<\SmartEmailing\Types\UniqueIntArray> $uniqueIntArrays
 	 * @return \SmartEmailing\Types\UniqueIntArray
 	 */
 	public static function union(
@@ -164,6 +105,71 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInt
 		$output->valuesPresenceMap = $result;
 
 		return $output;
+	}
+
+	/**
+	 * @return \Traversable<int>
+	 */
+	public function getIterator(): \Traversable
+	{
+		return new \RecursiveArrayIterator($this->getValues());
+	}
+
+	public function count(): int
+	{
+		return \count($this->valuesPresenceMap);
+	}
+
+	/**
+	 * @return array<int>
+	 */
+	public function getValues(): array
+	{
+		return \array_keys($this->valuesPresenceMap);
+	}
+
+	/**
+	 * @return array<int>
+	 */
+	public function toArray(): array
+	{
+		return $this->getValues();
+	}
+
+	public function add(
+		int $id
+	): bool {
+		if (!isset($this->valuesPresenceMap[$id])) {
+			$this->valuesPresenceMap[$id] = true;
+
+			return true;
+		}
+
+		return false;
+	}
+
+	public function remove(
+		int $id
+	): void
+	{
+		unset($this->valuesPresenceMap[$id]);
+	}
+
+	public function contains(
+		int $id
+	): bool
+	{
+		return isset($this->valuesPresenceMap[$id]);
+	}
+
+	public function isEmpty(): bool
+	{
+		return $this->valuesPresenceMap === [];
+	}
+
+	public function orderASC(): void
+	{
+		\ksort($this->valuesPresenceMap);
 	}
 
 }

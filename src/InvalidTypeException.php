@@ -9,26 +9,18 @@ use SmartEmailing\Types\Helpers\StringHelpers;
 class InvalidTypeException extends \RuntimeException
 {
 
-	final public function __construct(string $message = '', int $code = 0, ?\Throwable $previous = null)
+	final public function __construct(
+		string $message = '',
+		int $code = 0,
+		?\Throwable $previous = null
+	)
 	{
 		parent::__construct($message, $code, $previous);
 	}
 
-
-	public function wrap(
-		string $key
-	): self {
-		$message = 'Problem at key '
-			. $key
-			. ': '
-			. $this->getMessage();
-
-		return new static($message);
-	}
-
 	/**
 	 * @param string $expected
-	 * @param mixed|mixed[] $value
+	 * @param mixed|array<mixed> $value
 	 * @return \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function typeError(
@@ -48,8 +40,8 @@ class InvalidTypeException extends \RuntimeException
 	}
 
 	/**
-	 * @param string[] $expected
-	 * @param mixed|mixed[] $value
+	 * @param array<string> $expected
+	 * @param mixed|array<mixed> $value
 	 * @return \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function typesError(
@@ -80,11 +72,24 @@ class InvalidTypeException extends \RuntimeException
 		return new static('Array at key ' . $key . ' must not be empty.');
 	}
 
+	public function wrap(
+		string $key
+	): self {
+		$message = 'Problem at key '
+			. $key
+			. ': '
+			. $this->getMessage();
+
+		return new static($message);
+	}
+
 	/**
 	 * @param mixed $value
 	 * @return string
 	 */
-	private static function getType($value): string
+	private static function getType(
+		$value
+	): string
 	{
 		$type = \gettype($value);
 
@@ -99,7 +104,9 @@ class InvalidTypeException extends \RuntimeException
 	 * @param mixed $value
 	 * @return string
 	 */
-	private static function getDescription($value): string
+	private static function getDescription(
+		$value
+	): string
 	{
 		$description = '';
 

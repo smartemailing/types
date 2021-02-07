@@ -27,7 +27,7 @@ final class Price
 	private $currency;
 
 	/**
-	 * @param mixed[] $data
+	 * @param array<mixed> $data
 	 */
 	private function __construct(
 		array $data
@@ -53,7 +53,7 @@ final class Price
 	}
 
 	/**
-	 * @return mixed[]
+	 * @return array<mixed>
 	 */
 	public function toArray(): array
 	{
