@@ -83,7 +83,7 @@ final class PhoneNumber implements ToStringInterface
 		string $value
 	)
 	{
-		if (!$this->initilize($value)) {
+		if (!$this->initialize($value)) {
 			throw new InvalidTypeException('Invalid phone number: ' . $value);
 		}
 	}
@@ -123,7 +123,7 @@ final class PhoneNumber implements ToStringInterface
 		return $value;
 	}
 
-	private function initilize(
+	private function initialize(
 		string $value
 	): bool
 	{
