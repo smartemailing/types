@@ -98,9 +98,9 @@ final class PhoneNumber implements ToStringInterface
 		return $this->value;
 	}
 
-	private function initilize(
+	public static function preprocess(
 		string $value
-	): bool
+	): string
 	{
 		$value = Strings::replace(
 			$value,
@@ -119,6 +119,15 @@ final class PhoneNumber implements ToStringInterface
 		if (Strings::startsWith($value, '00')) {
 			$value = '+' . Strings::substring($value, 2);
 		}
+
+		return $value;
+	}
+
+	private function initilize(
+		string $value
+	): bool
+	{
+		$value = self::preprocess($value);
 
 		$matchingCountryCodes = $this->getMatchingCountryCodes(
 			$value
