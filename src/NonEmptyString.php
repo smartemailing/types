@@ -18,7 +18,9 @@ final class NonEmptyString implements ToStringInterface
 	 */
 	private $value;
 
-	public function __construct(string $value)
+	public function __construct(
+		string $value
+	)
 	{
 		$value = Strings::trim($value);
 
