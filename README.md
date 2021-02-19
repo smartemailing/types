@@ -36,6 +36,7 @@ Your code will be unbreakable and your IDE will love it.
     + [Extraction from array](#extraction-from-array)
   * [String-extractable types](#string-extractable-types)
     + [E-mail address](#e-mail-address)
+    + [Non-empty string](#non-empty-string)
     + [Domain](#domain)
     + [Hex 32](#hex-32)
     + [Hex Color](#hex-color)
@@ -201,6 +202,12 @@ Lowercased and ASCII-transformed e-mail address (`hello@gmail.com`)
 Type-specific methods:
 - `getLocalPart() : string` returns local part of e-mail address (`hello`)
 - `getDomain() : \SmartEmailing\Types\Domain` returns domain part (`gmail.com`, represented as `Types\Domain`)
+
+### Non-empty string
+
+`SmartEmailing\Types\NonEmptyString`
+
+Trimmed non-empty string.
 
 ### Domain
 
