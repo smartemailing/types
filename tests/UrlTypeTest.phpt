@@ -12,6 +12,17 @@ require __DIR__ . '/bootstrap.php';
 final class UrlTypeTest extends TestCase
 {
 
+	public function testNonsense(): void
+	{
+		Assert::throws(
+			static function (): void {
+				$value = 'éíáýžřčšě';
+				UrlType::from($value);
+			},
+			InvalidTypeException::class
+		);
+	}
+
 	public function testMissingPath(): void
 	{
 		$value = 'https://www.google.com?utm_source=Email&utm_medium=email&utm_campaign=xxx&utm_content=banner';
