@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use Tester\Assert;
 use Tester\TestCase;
 
@@ -13,7 +12,12 @@ require __DIR__ . '/bootstrap.php';
 final class UrlTypeTest extends TestCase
 {
 
-	use ObjectMixinTrait;
+	public function testMissingPath(): void
+	{
+		$value = 'https://www.google.com?utm_source=Email&utm_medium=email&utm_campaign=xxx&utm_content=banner';
+		$url = UrlType::from($value);
+		Assert::equal('/', $url->getPath());
+	}
 
 	public function test1(): void
 	{
