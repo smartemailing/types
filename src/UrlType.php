@@ -42,6 +42,9 @@ final class UrlType implements ToStringInterface
 			$value
 		);
 
+		// Nette\Utils 2.4 has a bug, URLs without slash in empty path are treated as invalid
+		$value = $this->addSlashToPathOrFail($value) ?? $value;
+
 		if (!Validators::isUrl($value)) {
 			throw new InvalidTypeException('Invalid URL or missing protocol: ' . $value);
 		}
@@ -115,7 +118,8 @@ final class UrlType implements ToStringInterface
 	 */
 	public function hasParameters(
 		array $names
-	): bool {
+	): bool
+	{
 		$parameters = \array_keys($this->url->getQueryParameters());
 
 		foreach ($names as $name) {
@@ -143,7 +147,8 @@ final class UrlType implements ToStringInterface
 	public function withQueryParameter(
 		string $name,
 		$value
-	): self {
+	): self
+	{
 		$dolly = clone $this;
 		$dolly->url->setQueryParameter(
 			$name,
@@ -155,7 +160,8 @@ final class UrlType implements ToStringInterface
 
 	public function withHost(
 		Domain $host
-	): self {
+	): self
+	{
 		$dolly = clone $this;
 		$dolly->url->setHost(
 			$host->getValue()
@@ -166,7 +172,8 @@ final class UrlType implements ToStringInterface
 
 	public function withScheme(
 		string $scheme
-	): self {
+	): self
+	{
 		$dolly = clone $this;
 		$dolly->url->setScheme(
 			$scheme
@@ -177,7 +184,8 @@ final class UrlType implements ToStringInterface
 
 	public function withPath(
 		string $path
-	): self {
+	): self
+	{
 		$dolly = clone $this;
 		$dolly->url->setPath(
 			$path
@@ -194,13 +202,51 @@ final class UrlType implements ToStringInterface
 	public function getQueryParameter(
 		string $name,
 		$default = null
-	) {
+	)
+	{
 		return $this->url->getQueryParameter($name) ?? $default;
 	}
 
 	public function getValue(): string
 	{
 		return $this->url->getAbsoluteUrl();
+	}
+
+	private function addSlashToPathOrFail(
+		string $value
+	): ?string
+	{
+		$url = \parse_url($value);
+
+		if ($url === false) {
+			return null;
+		}
+
+		$return = '';
+
+		if (isset($url['scheme']) && $url['scheme']) {
+			$return .= $url['scheme'] . '://';
+		}
+
+		if (isset($url['host']) && $url['host']) {
+			$return .= $url['host'];
+		}
+
+		if (isset($url['path']) && $url['path']) {
+			$return .= $url['path'];
+		} else {
+			$return .= '/';
+		}
+
+		if (isset($url['query']) && $url['query']) {
+			$return .= '?' . $url['query'];
+		}
+
+		if (isset($url['fragment']) && $url['fragment']) {
+			$return .= '#' . $url['fragment'];
+		}
+
+		return $return;
 	}
 
 	public function __clone()
