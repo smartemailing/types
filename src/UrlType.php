@@ -216,37 +216,46 @@ final class UrlType implements ToStringInterface
 		string $value
 	): ?string
 	{
-		$url = \parse_url($value);
+		$urlParts = \parse_url($value);
 
-		if ($url === false) {
+		if ($urlParts === false) {
 			return null;
 		}
 
-		$return = '';
+		return $this->buildUrl($urlParts);
+	}
 
-		if (isset($url['scheme']) && $url['scheme']) {
-			$return .= $url['scheme'] . '://';
-		}
+	/**
+	 * @param array<string, string|int> $urlParts
+	 * @return string
+	 */
+	private function buildUrl(
+		array $urlParts
+	): string
+	{
+		$scheme = isset($urlParts['scheme'])
+			? $urlParts['scheme'] . '://'
+			: '';
+		$host = $urlParts['host'] ?? '';
+		$port = isset($urlParts['port'])
+			? ':' . $urlParts['port']
+			: '';
+		$user = $urlParts['user'] ?? '';
+		$pass = isset($urlParts['pass'])
+			? ':' . $urlParts['pass']
+			: '';
+		$pass = $user || $pass
+			? $pass . '@'
+			: '';
+		$path = $urlParts['path'] ?? '/';
+		$query = isset($urlParts['query'])
+			? '?' . $urlParts['query']
+			: '';
+		$fragment = isset($urlParts['fragment'])
+			? '#' . $urlParts['fragment']
+			: '';
 
-		if (isset($url['host']) && $url['host']) {
-			$return .= $url['host'];
-		}
-
-		if (isset($url['path']) && $url['path']) {
-			$return .= $url['path'];
-		} else {
-			$return .= '/';
-		}
-
-		if (isset($url['query']) && $url['query']) {
-			$return .= '?' . $url['query'];
-		}
-
-		if (isset($url['fragment']) && $url['fragment']) {
-			$return .= '#' . $url['fragment'];
-		}
-
-		return $return;
+		return $scheme . $user . $pass . $host . $port . $path . $query . $fragment;
 	}
 
 	public function __clone()
