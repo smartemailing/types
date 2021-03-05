@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\RFCValidation;
 use Nette\Utils\Strings;
 use Nette\Utils\Validators;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
@@ -31,7 +33,8 @@ final class Emailaddress implements ToStringInterface
 
 	private function __construct(
 		string $value
-	) {
+	)
+	{
 		try {
 			$ok = $this->initialize($value);
 		} catch (\Throwable $e) {
@@ -60,7 +63,8 @@ final class Emailaddress implements ToStringInterface
 
 	public static function preprocessEmailaddress(
 		string $emailaddress
-	): string {
+	): string
+	{
 		$sanitized = Strings::lower(
 			Strings::toAscii(
 				Strings::trim(
@@ -80,7 +84,8 @@ final class Emailaddress implements ToStringInterface
 
 	private function initialize(
 		string $emailaddress
-	): bool {
+	): bool
+	{
 		$emailaddress = self::preprocessEmailaddress($emailaddress);
 
 		if (
@@ -89,6 +94,17 @@ final class Emailaddress implements ToStringInterface
 			|| Strings::contains($emailaddress, ' ')
 			|| !Validators::isEmail($emailaddress)
 		) {
+			return false;
+		}
+
+		$validator = new EmailValidator();
+
+		$isValid = $validator->isValid(
+			$emailaddress,
+			new RFCValidation()
+		);
+
+		if (!$isValid) {
 			return false;
 		}
 
