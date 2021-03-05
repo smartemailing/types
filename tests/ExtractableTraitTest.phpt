@@ -97,6 +97,23 @@ final class ExtractableTraitTest extends TestCase
 		Assert::equal(2, \count($arr));
 	}
 
+	public function testExtractArrayOfSkipInvalid(): void
+	{
+		$data = [
+			'a' => [
+				'martin+1@smartemailing.cz',
+				'martin+2@smartemailing.cz',
+				'1',
+				true,
+				null,
+				new \stdClass(),
+			],
+		];
+
+		$arr = Emailaddress::extractArrayOfSkipInvalid($data, 'a');
+		Assert::equal(2, \count($arr));
+	}
+
 	public function testFromOrNull(): void
 	{
 		$e = Emailaddress::fromOrNull(null);

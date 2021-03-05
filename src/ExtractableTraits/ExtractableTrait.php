@@ -29,7 +29,8 @@ trait ExtractableTrait
 	public static function extract(
 		$data,
 		string $key
-	): self {
+	): self
+	{
 		$value = ExtractableHelpers::extractValue($data, $key);
 
 		if ($value instanceof self) {
@@ -52,7 +53,8 @@ trait ExtractableTrait
 	public static function fromOrNull(
 		$value,
 		bool $getNullIfInvalid = false
-	): ?self {
+	): ?self
+	{
 		if ($value === null) {
 			return null;
 		}
@@ -79,7 +81,8 @@ trait ExtractableTrait
 		$data,
 		string $key,
 		bool $nullIfInvalid = false
-	): ?self {
+	): ?self
+	{
 		if (!\is_array($data)) {
 			throw InvalidTypeException::typeError('array', $data);
 		}
@@ -106,9 +109,10 @@ trait ExtractableTrait
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function extractArrayOf(
-		array &$data,
+		array $data,
 		string $key
-	): array {
+	): array
+	{
 		$typedArray = Arrays::extractArray($data, $key);
 
 		try {
@@ -125,9 +129,10 @@ trait ExtractableTrait
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function extractArrayOfOrEmpty(
-		array &$data,
+		array $data,
 		string $key
-	): array {
+	): array
+	{
 		if (!isset($data[$key])) {
 			return [];
 		}
@@ -141,7 +146,8 @@ trait ExtractableTrait
 	 */
 	public static function getArrayOf(
 		array $array
-	): array {
+	): array
+	{
 		$return = [];
 
 		if (ValidationHelpers::isTypedObjectArray($array, static::class)) {
@@ -158,6 +164,46 @@ trait ExtractableTrait
 	}
 
 	/**
+	 * @param array<mixed> $array
+	 * @return array<self>
+	 */
+	public static function getArrayOfSkipInvalid(
+		array $array
+	): array
+	{
+		$return = [];
+
+		if (ValidationHelpers::isTypedObjectArray($array, static::class)) {
+			return $array;
+		}
+
+		foreach ($array as $item) {
+			try {
+				$return[] = self::from($item);
+			} catch (InvalidTypeException $e) {
+				// exclude from result
+			}
+		}
+
+		return $return;
+	}
+
+	/**
+	 * @param array<mixed> $data
+	 * @param string $key
+	 * @return array<self>
+	 */
+	public static function extractArrayOfSkipInvalid(
+		array $data,
+		string $key
+	): array
+	{
+		$typedArray = Arrays::extractArray($data, $key);
+
+		return self::getArrayOfSkipInvalid($typedArray);
+	}
+
+	/**
 	 * @param mixed|array<mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
@@ -168,7 +214,8 @@ trait ExtractableTrait
 		$data,
 		string $key,
 		bool $nullIfInvalid
-	): ?self {
+	): ?self
+	{
 		try {
 			return self::extract($data, $key);
 		} catch (InvalidTypeException $e) {
