@@ -31,6 +31,7 @@ final class EmailaddressTest extends TestCase
 			'hufwiuefhiueznamsfhwiupokpkpkpppokpokhfwifhiwefhiwfehufwiuefhiiuojojoojoeznam.cz',
 			'"h. iveta"@atlas.cz',
 			'bce-se_n.16236.11.477_"h. xxx"-atlas.cz@se-acc-16236.se-bounce-0002.cz',
+			'realdruid@abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijk.com',
 		];
 
 		foreach ($invalidValues as $invalidValue) {
