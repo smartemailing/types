@@ -7,7 +7,12 @@ namespace SmartEmailing\Types;
 use Nette\Utils\Strings;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
-final class Domain implements ToStringInterface
+/**
+ * Class Domain
+ * @package SmartEmailing\Types
+ * @deprecated Deprecated by DomainName (RFC 2181, section 11, "Name syntax") / HostName (RFC 1123)
+ */
+class Domain implements ToStringInterface
 {
 
 	use StringExtractableTrait;
@@ -16,9 +21,9 @@ final class Domain implements ToStringInterface
 	/**
 	 * @var string
 	 */
-	private $value;
+	protected $value;
 
-	private function __construct(
+	protected function __construct(
 		string $value
 	)
 	{
@@ -51,7 +56,7 @@ final class Domain implements ToStringInterface
 		return self::from(\implode('.', $secondLevelParts));
 	}
 
-	private function isValid(
+	protected function isValid(
 		string $value
 	): bool {
 		return \preg_match('/^([a-z\\d](-*[a-z\\d])*)(\\.([a-z\\d](-*[a-z\\d])*))*$/i', $value) //valid chars check
