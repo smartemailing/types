@@ -9,6 +9,7 @@ use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
 /**
  * Class Domain
+ *
  * @package SmartEmailing\Types
  * @deprecated Deprecated by DomainName (RFC 2181, section 11, "Name syntax") / HostName (RFC 1123)
  */
@@ -23,7 +24,7 @@ class Domain implements ToStringInterface
 	 */
 	protected $value;
 
-	protected function __construct(
+	final protected function __construct(
 		string $value
 	)
 	{

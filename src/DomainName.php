@@ -6,6 +6,7 @@ namespace SmartEmailing\Types;
 
 final class DomainName extends Domain
 {
+
 	protected function isValid(
 		string $value
 	): bool {

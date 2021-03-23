@@ -6,5 +6,5 @@ namespace SmartEmailing\Types;
 
 final class HostName extends Domain
 {
-}
 
+}
