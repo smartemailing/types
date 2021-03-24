@@ -27,9 +27,9 @@ final class Emailaddress implements ToStringInterface
 	private $localPart;
 
 	/**
-	 * @var \SmartEmailing\Types\Domain
+	 * @var \SmartEmailing\Types\HostName
 	 */
-	private $domain;
+	private $hostName;
 
 	private function __construct(
 		string $value
@@ -56,9 +56,17 @@ final class Emailaddress implements ToStringInterface
 		return $this->value;
 	}
 
+	/**
+	 * @deprecated Use getHostName() instead
+	 */
 	public function getDomain(): Domain
 	{
-		return $this->domain;
+		return Domain::from($this->hostName->getValue());
+	}
+
+	public function getHostName(): HostName
+	{
+		return $this->hostName;
 	}
 
 	public static function preprocessEmailaddress(
@@ -110,9 +118,9 @@ final class Emailaddress implements ToStringInterface
 
 		$exploded = \explode('@', $emailaddress);
 
-		[$this->localPart, $domain] = $exploded;
+		[$this->localPart, $hostName] = $exploded;
 
-		$this->domain = Domain::from($domain);
+		$this->hostName = HostName::from($hostName);
 
 		$this->value = $emailaddress;
 

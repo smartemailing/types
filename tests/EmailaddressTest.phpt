@@ -70,6 +70,7 @@ final class EmailaddressTest extends TestCase
 		$e = Emailaddress::from('martin@smartemailing.cz');
 		Assert::equal('martin', $e->getLocalPart());
 		Assert::equal('smartemailing.cz', $e->getDomain()->getValue());
+		Assert::equal('smartemailing.cz', $e->getHostName()->getValue());
 	}
 
 }

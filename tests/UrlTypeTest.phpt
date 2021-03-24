@@ -113,6 +113,12 @@ final class UrlTypeTest extends TestCase
 			InvalidTypeException::class
 		);
 
+		$url = $url->withHostName(
+			HostName::from('test.cz')
+		);
+
+		Assert::equal('https://test.cz/?x=y', $url->getValue());
+
 		$url = $url->withHost(
 			Domain::from('atlas.cz')
 		);
