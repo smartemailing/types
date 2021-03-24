@@ -22,9 +22,9 @@ final class Domain implements ToStringInterface
 	/**
 	 * @var string
 	 */
-	protected $value;
+	private $value;
 
-	final protected function __construct(
+	private function __construct(
 		string $value
 	)
 	{
@@ -57,7 +57,7 @@ final class Domain implements ToStringInterface
 		return self::from(\implode('.', $secondLevelParts));
 	}
 
-	protected function isValid(
+	private function isValid(
 		string $value
 	): bool {
 		return \preg_match('/^([a-z\\d](-*[a-z\\d])*)(\\.([a-z\\d](-*[a-z\\d])*))*$/i', $value) //valid chars check

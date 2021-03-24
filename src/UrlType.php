@@ -159,7 +159,9 @@ final class UrlType implements ToStringInterface
 	}
 
 	/**
-	 * @deprected use withHostName instead
+	 * @param \SmartEmailing\Types\Domain $host
+	 * @return $this
+	 * @deprecated use withHostName
 	 */
 	public function withHost(
 		Domain $host
