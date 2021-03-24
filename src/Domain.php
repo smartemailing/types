@@ -13,7 +13,7 @@ use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
  * @package SmartEmailing\Types
  * @deprecated Deprecated by DomainName (RFC 2181, section 11, "Name syntax") / HostName (RFC 1123)
  */
-class Domain implements ToStringInterface
+final class Domain implements ToStringInterface
 {
 
 	use StringExtractableTrait;

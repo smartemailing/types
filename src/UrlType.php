@@ -158,8 +158,23 @@ final class UrlType implements ToStringInterface
 		return $dolly;
 	}
 
+	/**
+	 * @deprected use withHostName instead
+	 */
 	public function withHost(
 		Domain $host
+	): self
+	{
+		$dolly = clone $this;
+		$dolly->url->setHost(
+			$host->getValue()
+		);
+
+		return $dolly;
+	}
+
+	public function withHostName(
+		HostName $host
 	): self
 	{
 		$dolly = clone $this;
