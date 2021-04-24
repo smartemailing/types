@@ -31,10 +31,10 @@ final class EmailaddressTest extends TestCase
 			'hufwiuefhiueznamsfhwiupokpkpkpppokpokhfwifhiwefhiwfehufwiuefhiiuojojoojoeznam.cz',
 			'"h. iveta"@atlas.cz',
 			'bce-se_n.16236.11.477_"h. xxx"-atlas.cz@se-acc-16236.se-bounce-0002.cz',
-			'realdruid@abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijk.com',
 		];
 
 		foreach ($invalidValues as $invalidValue) {
+			echo 'Testing: ' . $invalidValue . \PHP_EOL;
 			Assert::throws(
 				static function () use ($invalidValue): void {
 					Emailaddress::from($invalidValue);
@@ -45,6 +45,7 @@ final class EmailaddressTest extends TestCase
 		}
 
 		foreach ($invalidValues as $invalidValue) {
+			echo 'Testing: ' . $invalidValue . \PHP_EOL;
 			Assert::throws(
 				static function () use ($invalidValue): void {
 					Emailaddress::extract(['email' => $invalidValue], 'email');
@@ -60,9 +61,11 @@ final class EmailaddressTest extends TestCase
 			'-xyz-@seznam.cz',
 			'martin@smartemailing.cz',
 			'test-@seznam.cz',
+			'realdruid@abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijk.com',
 		];
 
 		foreach ($validValues as $validValue) {
+			echo 'Testing: ' . $validValue . \PHP_EOL;
 			$emailaddress = Emailaddress::from($validValue);
 			Assert::type(Emailaddress::class, $emailaddress);
 		}
