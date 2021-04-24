@@ -158,8 +158,25 @@ final class UrlType implements ToStringInterface
 		return $dolly;
 	}
 
+	/**
+	 * @param \SmartEmailing\Types\Domain $host
+	 * @return $this
+	 * @deprecated use withHostName
+	 */
 	public function withHost(
 		Domain $host
+	): self
+	{
+		$dolly = clone $this;
+		$dolly->url->setHost(
+			$host->getValue()
+		);
+
+		return $dolly;
+	}
+
+	public function withHostName(
+		HostName $host
 	): self
 	{
 		$dolly = clone $this;

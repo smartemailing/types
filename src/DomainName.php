@@ -7,13 +7,7 @@ namespace SmartEmailing\Types;
 use Nette\Utils\Strings;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
-/**
- * Class Domain
- *
- * @package SmartEmailing\Types
- * @deprecated Deprecated by DomainName (RFC 2181, section 11, "Name syntax") / HostName (RFC 1123)
- */
-final class Domain implements ToStringInterface
+final class DomainName implements ToStringInterface
 {
 
 	use StringExtractableTrait;
@@ -43,7 +37,7 @@ final class Domain implements ToStringInterface
 		return $this->value;
 	}
 
-	public function getSecondLevelDomain(): Domain
+	public function getSecondLevelDomain(): DomainName
 	{
 		$parts = \explode('.', $this->value);
 		$numberOfKeptParts = 2;
@@ -60,7 +54,7 @@ final class Domain implements ToStringInterface
 	private function isValid(
 		string $value
 	): bool {
-		return \preg_match('/^([a-z\\d](-*[a-z\\d])*)(\\.([a-z\\d](-*[a-z\\d])*))*$/i', $value) //valid chars check
+		return \preg_match('/^([_a-z\\d](-*[_a-z\\d])*)(\\.([_a-z\\d](-*[_a-z\\d])*))*$/i', $value) //valid chars check
 			&& \preg_match('/^.{1,253}$/', $value)// overall length check
 			&& \preg_match('/^[^\\.]{1,63}(\\.[^\\.]{1,63})*$/', $value);
 	}

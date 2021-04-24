@@ -7,13 +7,7 @@ namespace SmartEmailing\Types;
 use Nette\Utils\Strings;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
-/**
- * Class Domain
- *
- * @package SmartEmailing\Types
- * @deprecated Deprecated by DomainName (RFC 2181, section 11, "Name syntax") / HostName (RFC 1123)
- */
-final class Domain implements ToStringInterface
+final class HostName implements ToStringInterface
 {
 
 	use StringExtractableTrait;
@@ -32,7 +26,7 @@ final class Domain implements ToStringInterface
 		$value = Strings::trim($value);
 
 		if (!$this->isValid($value)) {
-			throw new InvalidTypeException('Invalid domain: ' . $value);
+			throw new InvalidTypeException('Invalid hostname: ' . $value);
 		}
 
 		$this->value = $value;
@@ -43,7 +37,7 @@ final class Domain implements ToStringInterface
 		return $this->value;
 	}
 
-	public function getSecondLevelDomain(): Domain
+	public function getSecondLevelDomain(): HostName
 	{
 		$parts = \explode('.', $this->value);
 		$numberOfKeptParts = 2;
