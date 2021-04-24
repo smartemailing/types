@@ -198,6 +198,9 @@ jobs:
       - name: 'Tests'
         run: 'vendor/bin/tester tests -C'
 
+      - name: 'Email test'
+        run: 'php tests/EmailaddressTest.phpt'
+
   tests_code_coverage:
     name: 'Tests with code coverage'
     runs-on: '${{ matrix.operating-system }}'
