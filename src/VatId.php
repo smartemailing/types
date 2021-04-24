@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Nette\Utils\Arrays;
 use Nette\Utils\Strings;
 use Nette\Utils\Validators;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
@@ -169,7 +168,11 @@ final class VatId implements ToStringInterface
 		string $vatNumber
 	): bool
 	{
-		$pattern = Arrays::get(self::getPatternsByCountry(), $country->getValue());
+		$pattern = self::$patternsByCountry[$country->getValue()] ?? null;
+
+		if (!$pattern) {
+			return false;
+		}
 
 		$match = Strings::match($prefix . $vatNumber, '/^(' . $pattern . ')$/');
 
@@ -177,17 +180,9 @@ final class VatId implements ToStringInterface
 			return false;
 		}
 
-		$modulo = Arrays::get(self::getDivisible(), $country->getValue(), 1);
+		$modulo = self::getDivisible()[$country->getValue()] ?? 1;
 
 		return !Validators::isNumericInt($vatNumber) || ($vatNumber % $modulo === 0);
-	}
-
-	/**
-	 * @return array<string>
-	 */
-	private static function getPatternsByCountry(): array
-	{
-		return self::$patternsByCountry;
 	}
 
 	/**
@@ -210,7 +205,6 @@ final class VatId implements ToStringInterface
 	): bool
 	{
 		return false;
-
 		//todo
 	}
 
@@ -229,7 +223,8 @@ final class VatId implements ToStringInterface
 	 */
 	private static function extractCountryAndPrefixAndNumber(
 		string $vatId
-	): array {
+	): array
+	{
 		$vatId = self::preProcessVatId($vatId);
 		$country = self::parseCountryOrNull($vatId);
 		$prefix = self::parsePrefixOrNull($country, $vatId);

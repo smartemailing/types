@@ -291,6 +291,8 @@ final class VatIdTest extends TestCase
 			'GY1234567',
 
 			'123456789',
+
+			'JP374927467',
 		];
 	}
 
