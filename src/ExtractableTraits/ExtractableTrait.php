@@ -18,7 +18,6 @@ trait ExtractableTrait
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
-	 * @param string|int $key
 	 * @return static
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
@@ -40,9 +39,6 @@ trait ExtractableTrait
 	}
 
 	/**
-	 * @param mixed $value
-	 * @param bool $getNullIfInvalid
-	 * @return self|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function fromOrNull(
@@ -67,9 +63,6 @@ trait ExtractableTrait
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
-	 * @param string|int $key
-	 * @param bool $nullIfInvalid
-	 * @return self|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function extractOrNull(
@@ -99,7 +92,6 @@ trait ExtractableTrait
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
-	 * @param string|int $key
 	 * @return array<self>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
@@ -119,7 +111,6 @@ trait ExtractableTrait
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
-	 * @param string|int $key
 	 * @return array<self>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
@@ -175,7 +166,7 @@ trait ExtractableTrait
 		foreach ($array as $item) {
 			try {
 				$return[] = self::from($item);
-			} catch (InvalidTypeException $e) {
+			} catch (InvalidTypeException) {
 				// exclude from result
 			}
 		}
@@ -185,7 +176,6 @@ trait ExtractableTrait
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
-	 * @param string|int $key
 	 * @return array<self>
 	 */
 	public static function extractArrayOfSkipInvalid(
@@ -199,10 +189,6 @@ trait ExtractableTrait
 	}
 
 	/**
-	 * @param mixed|array<mixed> $data
-	 * @param string|int $key
-	 * @param bool $nullIfInvalid
-	 * @return self|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	private static function tryToExtract(

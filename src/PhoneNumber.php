@@ -35,9 +35,7 @@ final class PhoneNumber implements ToStringInterface
 
 		\uasort(
 			$input,
-			static function (int $a, int $b) {
-				return Strings::length((string) $b) <=> Strings::length((string) $a);
-			}
+			static fn (int $a, int $b): int => Strings::length((string) $b) <=> Strings::length((string) $a)
 		);
 
 		$justNumbers = Strings::replace(

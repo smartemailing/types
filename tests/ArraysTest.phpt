@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
+use stdClass;
 use Tester\Assert;
 use Tester\TestCase;
-use stdClass;
 
 require_once __DIR__ . '/bootstrap.php';
 

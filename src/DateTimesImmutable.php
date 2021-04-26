@@ -15,11 +15,6 @@ abstract class DateTimesImmutable
 		return self::immutate($dateTime);
 	}
 
-	/**
-	 * @param mixed $value
-	 * @param bool $getNullIfInvalid
-	 * @return \DateTimeImmutable|null
-	 */
 	public static function fromOrNull(
 		mixed $value,
 		bool $getNullIfInvalid = false
@@ -35,8 +30,6 @@ abstract class DateTimesImmutable
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
-	 * @param string $key
-	 * @return \DateTimeImmutable
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
@@ -53,8 +46,6 @@ abstract class DateTimesImmutable
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
-	 * @param string $key
-	 * @param bool $getNullIfInvalid
 	 * @return \DateTimeImmutable
 	 */
 	final public static function extractOrNull(

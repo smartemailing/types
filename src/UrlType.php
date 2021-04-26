@@ -33,9 +33,7 @@ final class UrlType implements ToStringInterface
 		// urlencode non-ascii chars
 		$value = (string) \preg_replace_callback(
 			'/[^\x20-\x7f]/',
-			static function ($match) {
-				return \urlencode($match[0]);
-			},
+			static fn ($match): string => \urlencode($match[0]),
 			$value
 		);
 
@@ -48,7 +46,7 @@ final class UrlType implements ToStringInterface
 
 		try {
 			$this->url = new Url($value);
-		} catch (InvalidArgumentException $e) {
+		} catch (InvalidArgumentException) {
 			throw new InvalidTypeException('Invalid URL or missing protocol: ' . $value);
 		}
 	}
@@ -90,7 +88,6 @@ final class UrlType implements ToStringInterface
 
 	/**
 	 * @param array<string> $names
-	 * @return bool
 	 */
 	public function hasParameters(
 		array $names
@@ -116,8 +113,6 @@ final class UrlType implements ToStringInterface
 	}
 
 	/**
-	 * @param string $name
-	 * @param mixed|null $value
 	 * @return \SmartEmailing\Types\UrlType
 	 */
 	public function withQueryParameter(
@@ -135,7 +130,6 @@ final class UrlType implements ToStringInterface
 	}
 
 	/**
-	 * @param \SmartEmailing\Types\Domain $host
 	 * @return $this
 	 * @deprecated use withHostName
 	 */
@@ -187,15 +181,10 @@ final class UrlType implements ToStringInterface
 		return $dolly;
 	}
 
-	/**
-	 * @param string $name
-	 * @param mixed|null $default
-	 * @return mixed
-	 */
 	public function getQueryParameter(
 		string $name,
 		mixed $default = null
-	)
+	): mixed
 	{
 		return $this->url->getQueryParameter($name) ?? $default;
 	}
@@ -220,7 +209,6 @@ final class UrlType implements ToStringInterface
 
 	/**
 	 * @param array<string, string|int> $urlParts
-	 * @return string
 	 */
 	private function buildUrl(
 		array $urlParts

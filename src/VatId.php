@@ -187,8 +187,6 @@ final class VatId implements ToStringInterface
 	}
 
 	/**
-	 * @param string $vatNumber
-	 * @return bool
 	 * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
 	 */
 	private static function isValidForNonCountry(
@@ -209,7 +207,6 @@ final class VatId implements ToStringInterface
 	}
 
 	/**
-	 * @param string $vatId
 	 * @return array<mixed>
 	 */
 	private static function extractCountryAndPrefixAndNumber(

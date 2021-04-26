@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
+use stdClass;
 use Tester\Assert;
 use Tester\TestCase;
-use stdClass;
 
 require_once __DIR__ . '/bootstrap.php';
 
@@ -128,9 +128,9 @@ final class DurationTest extends TestCase
 	public function testGetDateTimeModify(): void
 	{
 		foreach ($this->getTestDateTimeModifyData() as $data) {
-			/** @var \SmartEmailing\Types\Duration $duration */
-			/** @var string $expectedDateTimeModify */
 			[$duration, $expectedDateTimeModify] = $data;
+            \assert($duration instanceof \SmartEmailing\Types\Duration);
+            \assert(\is_string($expectedDateTimeModify));
 
 			Assert::equal($expectedDateTimeModify, $duration->getDateTimeModify());
 		}
@@ -139,9 +139,9 @@ final class DurationTest extends TestCase
 	public function testToArray(): void
 	{
 		foreach ($this->getTestToArrayData() as $data) {
-			/** @var \SmartEmailing\Types\Duration $duration */
-			/** @var array $expectedArray */
 			[$duration, $expectedArray] = $data;
+            \assert($duration instanceof \SmartEmailing\Types\Duration);
+            \assert(\is_array($expectedArray));
 
 			Assert::equal($expectedArray, $duration->toArray());
 		}

@@ -28,7 +28,6 @@ final class JsonString implements ToStringInterface
 	}
 
 	/**
-	 * @param string|mixed|array<mixed> $data
 	 * @return self
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
@@ -56,8 +55,6 @@ final class JsonString implements ToStringInterface
 	}
 
 	/**
-	 * @param mixed $value
-	 * @param bool $oneLine
 	 * @return \SmartEmailing\Types\JsonString
 	 */
 	public static function encode(
@@ -82,10 +79,7 @@ final class JsonString implements ToStringInterface
 		return $this->value;
 	}
 
-	/**
-	 * @return mixed|array<mixed>
-	 */
-	public function getDecodedValue()
+	public function getDecodedValue(): mixed
 	{
 		return Json::decode($this->value, Json::FORCE_ARRAY);
 	}

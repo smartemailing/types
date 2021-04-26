@@ -28,7 +28,7 @@ final class Emailaddress implements ToStringInterface
 	{
 		try {
 			$ok = $this->initialize($value);
-		} catch (\Throwable $e) {
+		} catch (\Throwable) {
 			$ok = false;
 		}
 

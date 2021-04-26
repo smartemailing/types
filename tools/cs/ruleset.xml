@@ -1,38 +1,9 @@
 <?xml version="1.0"?>
 <ruleset name="SmartEmailingCodingStandard">
-	<rule ref="./../vendor/consistence/coding-standard/Consistence/ruleset.xml">
-		<!-- because of exceptions.php -->
-		<exclude name="Squiz.Classes.ClassFileName.NoMatch"/>
-		<exclude name="PSR1.Classes.ClassDeclaration.MultipleClasses"/>
-
-		<!-- because of "@param int" over "@param integer" -->
-		<exclude name="Squiz.Commenting.FunctionComment.IncorrectParamVarName"/>
-
-		<!-- because of functions without visibility in interfaces -->
-		<exclude name="Squiz.Scope.MethodScope.Missing"/>
-
-		<!-- because of ") {" when arguments are on multiple lines -->
-		<exclude name="Generic.Functions.OpeningFunctionBraceBsdAllman.BraceOnSameLine"/>
-
-		<!-- because of *.phpt -->
-		<exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
-
-		<!-- because of ::class -->
-		<exclude name="Squiz.Classes.SelfMemberReference.NotUsed"/>
-
-		<!-- because of $formControl->addCondition() -->
-		<exclude name="PEAR.WhiteSpace.ObjectOperatorIndent.Incorrect"/>
-
-		<exclude name="Consistence.Exceptions.ExceptionDeclaration.IncorrectExceptionDirectory"/>
-
-		<!-- conflicts with Nette Feamework and PHPStan combination -->
-		<exclude name="Consistence.Exceptions.ExceptionDeclaration.NotChainable"/>
-
-	</rule>
-	<rule ref="./../vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
+	<rule ref="vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
 		<exclude name="SlevomatCodingStandard.ControlStructures.AssignmentInCondition"/>
 		<exclude name="SlevomatCodingStandard.Files.TypeNameMatchesFileName"/>
-		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>
+		<exclude name="SlevomatCodingStandard.Files.FunctionLength.FunctionLength"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces"/>
 		<exclude name="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment.MultiLinePropertyComment"/>
@@ -41,7 +12,6 @@
 		<exclude name="SlevomatCodingStandard.ControlStructures.RequireYodaComparison.RequiredYodaComparison"/>
 		<exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix"/>
 		<exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix"/>
-		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces"/>
 		<exclude name="SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostIncrementOperator"/>
@@ -58,23 +28,15 @@
 		<exclude name="SlevomatCodingStandard.Classes.SuperfluousTraitNaming.SuperfluousSuffix"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly.ReferenceViaFullyQualifiedName"/>
 		<exclude name="SlevomatCodingStandard.ControlStructures.RequireSingleLineCondition.RequiredSingleLineCondition"/>
+		<exclude name="SlevomatCodingStandard.Functions.DisallowArrowFunction.DisallowedArrowFunction"/>
+		<exclude name="SlevomatCodingStandard.Classes.ForbiddenPublicProperty.ForbiddenPublicProperty"/>
 
-		<!-- TODO Enable after migration to PHP 7.4 -->
-		<exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint"/>
-		<exclude name="SlevomatCodingStandard.Functions.TrailingCommaInCall.MissingTrailingComma"/>
+		<exclude name="SlevomatCodingStandard.Classes.RequireConstructorPropertyPromotion.RequiredConstructorPropertyPromotion"/>
+
+		<exclude name="SlevomatCodingStandard.Functions.RequireTrailingCommaInCall.MissingTrailingComma"/>
+		<exclude name="SlevomatCodingStandard.Functions.RequireTrailingCommaInDeclaration.MissingTrailingComma"/>
+
 		<exclude name="SlevomatCodingStandard.Numbers.RequireNumericLiteralSeparator.RequiredNumericLiteralSeparator"/>
-		<exclude name="SlevomatCodingStandard.Functions.RequireArrowFunction.RequiredArrowFunction"/>
-		<exclude name="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceEqualOperator.RequiredNullCoalesceEqualOperator"/>
-
-		<!-- TODO Enable carefuly, will cause problems -->
-		<exclude name="SlevomatCodingStandard.PHP.RequireExplicitAssertion.RequiredExplicitAssertion"/>
-		<exclude name="SlevomatCodingStandard.PHP.DisallowReference.DisallowedAssigningByReference"/>
-		<exclude name="SlevomatCodingStandard.ControlStructures.DisallowEmpty.DisallowedEmpty"/>
-
-		<!-- cannot be disabled for methods implementing interface -->
-		<exclude name="SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter"/>
-
-
 	</rule>
 	<rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
 		<properties>
@@ -122,7 +84,5 @@
 			<property name="ignoreMultiLine" type="boolean" value="true"/>
 		</properties>
 	</rule>
-	<exclude-pattern>app/config/environment.php</exclude-pattern>
 	<exclude-pattern>tests/bootstrap.php</exclude-pattern>
-	<exclude-pattern>libs/SE20/MTA/Messages/CustomNetteMail/*</exclude-pattern>
 </ruleset>

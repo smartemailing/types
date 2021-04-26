@@ -25,13 +25,13 @@ final class ExtractableHelpersTest extends TestCase
 		Assert::exception(
 			static fn () => ExtractableHelpers::extractValue($array, 'b'),
 			InvalidTypeException::class,
-			'Missing key: b',
+			'Missing key: b'
 		);
 
 		Assert::exception(
 			static fn () => ExtractableHelpers::extractValue($array, '2'),
 			InvalidTypeException::class,
-			'Missing key: 2',
+			'Missing key: 2'
 		);
 	}
 
@@ -46,13 +46,13 @@ final class ExtractableHelpersTest extends TestCase
 		Assert::exception(
 			static fn () => ExtractableHelpers::extractValue($arrayObject, 'b'),
 			InvalidTypeException::class,
-			'Missing key: b',
+			'Missing key: b'
 		);
 
 		Assert::exception(
 			static fn () => ExtractableHelpers::extractValue($arrayObject, '2'),
 			InvalidTypeException::class,
-			'Missing key: 2',
+			'Missing key: 2'
 		);
 	}
 

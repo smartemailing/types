@@ -15,10 +15,6 @@ trait FloatExtractableTrait
 		float $value
 	);
 
-	/**
-	 * @param string|mixed|array<mixed> $data
-	 * @return self
-	 */
 	final public static function from(
 		mixed $data
 	): self {

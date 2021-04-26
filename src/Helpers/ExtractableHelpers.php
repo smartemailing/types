@@ -11,8 +11,6 @@ abstract class ExtractableHelpers
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
-	 * @param string|int $key
-	 * @return mixed
 	 */
 	final public static function extractValue(
 		array | \ArrayAccess $data,

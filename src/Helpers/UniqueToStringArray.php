@@ -132,7 +132,7 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 	public function add(
 		ToStringInterface $valueObject
 	): bool {
-		$type = \get_class($valueObject);
+		$type = $valueObject::class;
 
 		if (!isset($this->type)) {
 			$this->type = $type;

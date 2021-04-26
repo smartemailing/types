@@ -163,8 +163,6 @@ final class CompanyRegistrationNumber implements ToStringInterface
 	}
 
 	/**
-	 * @param string $value
-	 * @return bool
 	 * @see https://en.wikipedia.org/wiki/Employer_Identification_Number
 	 */
 	private function isValidUS(

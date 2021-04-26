@@ -10,7 +10,6 @@ abstract class Arrays
 {
 
 	/**
-	 * @param mixed $value
 	 * @return array<mixed>
 	 */
 	final public static function getArray(
@@ -24,8 +23,6 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param mixed $value
-	 * @param bool $nullIfInvalid
 	 * @return array<mixed>|null
 	 */
 	final public static function getArrayOrNull(
@@ -55,7 +52,6 @@ abstract class Arrays
 	 * Preserves keys
 	 *
 	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
-	 * @param string|int $key
 	 * @return array<mixed>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
@@ -77,8 +73,6 @@ abstract class Arrays
 	 * Preserves keys
 	 *
 	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
-	 * @param string|int $key
-	 * @param bool $nullIfInvalid
 	 * @return array<mixed>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
@@ -103,7 +97,6 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param mixed $value
 	 * @return array<int>
 	 */
 	final public static function getIntArray(
@@ -121,8 +114,6 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param mixed $value
-	 * @param bool $nullIfInvalid
 	 * @return array<int>|null
 	 */
 	final public static function getIntArrayOrNull(
@@ -154,7 +145,6 @@ abstract class Arrays
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
-	 * @param string|int $key
 	 * @return array<int>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
@@ -175,8 +165,6 @@ abstract class Arrays
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
-	 * @param string|int $key
-	 * @param bool $nullIfInvalid
 	 * @return array<int>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
@@ -195,7 +183,6 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param mixed $value
 	 * @return array<float>
 	 */
 	final public static function getFloatArray(
@@ -213,8 +200,6 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param mixed $value
-	 * @param bool $nullIfInvalid
 	 * @return array<float>|null
 	 */
 	final public static function getFloatArrayOrNull(
@@ -246,7 +231,6 @@ abstract class Arrays
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
-	 * @param string|int $key
 	 * @return array<float>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
@@ -267,8 +251,6 @@ abstract class Arrays
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
-	 * @param string|int $key
-	 * @param bool $nullIfInvalid
 	 * @return array<float>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
@@ -287,7 +269,6 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param mixed $value
 	 * @return array<string>
 	 */
 	final public static function getStringArray(
@@ -305,8 +286,6 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param mixed $value
-	 * @param bool $nullIfInvalid
 	 * @return array<string>|null
 	 */
 	final public static function getStringArrayOrNull(
@@ -338,7 +317,6 @@ abstract class Arrays
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
-	 * @param string|int $key
 	 * @return array<string>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
@@ -359,8 +337,6 @@ abstract class Arrays
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
-	 * @param string|int $key
-	 * @param bool $nullIfInvalid
 	 * @return array<string>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */

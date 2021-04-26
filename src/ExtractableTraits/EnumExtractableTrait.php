@@ -12,16 +12,13 @@ trait EnumExtractableTrait
 	use ExtractableTrait;
 
 	/**
-	 * @param mixed $value
-	 * @return \Consistence\Enum\Enum
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
 	 */
 	abstract public static function get(
-		$value
+		mixed $value
 	): Enum;
 
 	/**
-	 * @param mixed $data
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
 	 * @return static
 	 */

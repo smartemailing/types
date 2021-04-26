@@ -19,8 +19,6 @@ class InvalidTypeException extends \RuntimeException
 	}
 
 	/**
-	 * @param string $expected
-	 * @param mixed|array<mixed> $value
 	 * @return \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function typeError(
@@ -41,7 +39,6 @@ class InvalidTypeException extends \RuntimeException
 
 	/**
 	 * @param array<string> $expected
-	 * @param mixed|array<mixed> $value
 	 * @return \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function typesError(
@@ -107,7 +104,7 @@ class InvalidTypeException extends \RuntimeException
 			$stringValue = StringHelpers::sanitize($stringValue);
 			$description = ' (' . $stringValue . ')';
 		} elseif (\is_object($value)) {
-			$description = ' (' . \get_class($value) . ')';
+			$description = ' (' . $value::class . ')';
 		}
 
 		return $description;

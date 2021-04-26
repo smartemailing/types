@@ -32,8 +32,6 @@ final class ScalarLeavesArray implements ToArrayInterface
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return self
 	 */
 	public static function extractOrEmpty(
 		array $data,

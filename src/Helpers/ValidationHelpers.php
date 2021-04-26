@@ -9,8 +9,6 @@ abstract class ValidationHelpers
 
 	/**
 	 * @param array<mixed> $array
-	 * @param string $typeName
-	 * @return bool
 	 */
 	final public static function isTypedObjectArray(
 		array $array,
@@ -29,7 +27,6 @@ abstract class ValidationHelpers
 	 * Validates multidimensional array to have scalar or NULL leaves
 	 *
 	 * @param array<mixed> $array
-	 * @return bool
 	 */
 	final public static function isScalarLeavesArray(
 		array $array

@@ -37,11 +37,6 @@ abstract class DateTimes
 		);
 	}
 
-	/**
-	 * @param mixed $value
-	 * @param bool $getNullIfInvalid
-	 * @return \DateTime|null
-	 */
 	public static function fromOrNull(
 		mixed $value,
 		bool $getNullIfInvalid = false
@@ -63,8 +58,6 @@ abstract class DateTimes
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
-	 * @param string $key
-	 * @return \DateTime
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
@@ -82,9 +75,6 @@ abstract class DateTimes
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
-	 * @param string $key
-	 * @param bool $getNullIfInvalid
-	 * @return \DateTime
 	 */
 	final public static function extractOrNull(
 		array | \ArrayAccess $data,
@@ -98,7 +88,7 @@ abstract class DateTimes
 		if ($getNullIfInvalid) {
 			try {
 				return self::extract($data, $key);
-			} catch (InvalidTypeException $e) {
+			} catch (InvalidTypeException) {
 				return null;
 			}
 		}
