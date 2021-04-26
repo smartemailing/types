@@ -12,25 +12,20 @@ use SmartEmailing\Types\InvalidTypeException;
 trait ExtractableTrait
 {
 
-	/**
-	 * @param string|mixed|array<mixed> $data
-	 * @return self
-	 */
 	abstract public static function from(
-		$data
+		mixed $data
 	): self;
 
 	/**
-	 * @param mixed|array<mixed> $data
-	 * @param string $key
-	 * @return self
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
+	 * @return static
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function extract(
-		$data,
-		string $key
-	): self
-	{
+		array | \ArrayAccess $data,
+		string | int $key
+	): static {
 		$value = ExtractableHelpers::extractValue($data, $key);
 
 		if ($value instanceof self) {
@@ -51,9 +46,9 @@ trait ExtractableTrait
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function fromOrNull(
-		$value,
+		mixed $value,
 		bool $getNullIfInvalid = false
-	): ?self
+	): self | null
 	{
 		if ($value === null) {
 			return null;
@@ -71,17 +66,17 @@ trait ExtractableTrait
 	}
 
 	/**
-	 * @param mixed|array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @param bool $nullIfInvalid
 	 * @return self|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function extractOrNull(
-		$data,
-		string $key,
+		array | \ArrayAccess $data,
+		string | int $key,
 		bool $nullIfInvalid = false
-	): ?self
+	): self | null
 	{
 		if (!\is_array($data)) {
 			throw InvalidTypeException::typeError('array', $data);
@@ -103,14 +98,14 @@ trait ExtractableTrait
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @return array<self>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function extractArrayOf(
-		array $data,
-		string $key
+		array | \ArrayAccess $data,
+		string | int $key
 	): array
 	{
 		$typedArray = Arrays::extractArray($data, $key);
@@ -123,14 +118,14 @@ trait ExtractableTrait
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @return array<self>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function extractArrayOfOrEmpty(
-		array $data,
-		string $key
+		array | \ArrayAccess $data,
+		string | int $key
 	): array
 	{
 		if (!isset($data[$key])) {
@@ -189,13 +184,13 @@ trait ExtractableTrait
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @return array<self>
 	 */
 	public static function extractArrayOfSkipInvalid(
-		array $data,
-		string $key
+		array | \ArrayAccess $data,
+		string | int $key
 	): array
 	{
 		$typedArray = Arrays::extractArray($data, $key);
@@ -205,16 +200,16 @@ trait ExtractableTrait
 
 	/**
 	 * @param mixed|array<mixed> $data
-	 * @param string $key
+	 * @param string|int $key
 	 * @param bool $nullIfInvalid
 	 * @return self|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	private static function tryToExtract(
-		$data,
-		string $key,
+		mixed $data,
+		string | int $key,
 		bool $nullIfInvalid
-	): ?self
+	): self | null
 	{
 		try {
 			return self::extract($data, $key);

@@ -15,7 +15,7 @@ final class ScalarLeavesArray implements ToArrayInterface
 	/**
 	 * @var array<mixed>
 	 */
-	private $data;
+	private array $data;
 
 	/**
 	 * @param array<mixed> $data

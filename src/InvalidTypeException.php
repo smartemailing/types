@@ -12,7 +12,7 @@ class InvalidTypeException extends \RuntimeException
 	final public function __construct(
 		string $message = '',
 		int $code = 0,
-		?\Throwable $previous = null
+		\Throwable | null $previous = null
 	)
 	{
 		parent::__construct($message, $code, $previous);
@@ -25,7 +25,7 @@ class InvalidTypeException extends \RuntimeException
 	 */
 	public static function typeError(
 		string $expected,
-		$value
+		mixed $value
 	): self {
 		$type = self::getType($value);
 		$description = self::getDescription($value);
@@ -46,7 +46,7 @@ class InvalidTypeException extends \RuntimeException
 	 */
 	public static function typesError(
 		array $expected,
-		$value
+		mixed $value
 	): self {
 		$type = self::getType($value);
 		$description = self::getDescription($value);
@@ -61,19 +61,19 @@ class InvalidTypeException extends \RuntimeException
 	}
 
 	public static function missingKey(
-		string $key
+		string | int $key
 	): self {
 		return new static('Missing key: ' . $key);
 	}
 
 	public static function cannotBeEmptyError(
-		string $key
+		string | int $key
 	): self {
 		return new static('Array at key ' . $key . ' must not be empty.');
 	}
 
 	public function wrap(
-		string $key
+		string | int $key
 	): self {
 		$message = 'Problem at key '
 			. $key
@@ -83,12 +83,8 @@ class InvalidTypeException extends \RuntimeException
 		return new static($message);
 	}
 
-	/**
-	 * @param mixed $value
-	 * @return string
-	 */
 	private static function getType(
-		$value
+		mixed $value
 	): string
 	{
 		$type = \gettype($value);
@@ -100,12 +96,8 @@ class InvalidTypeException extends \RuntimeException
 		return $type;
 	}
 
-	/**
-	 * @param mixed $value
-	 * @return string
-	 */
 	private static function getDescription(
-		$value
+		mixed $value
 	): string
 	{
 		$description = '';

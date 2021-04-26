@@ -12,10 +12,7 @@ final class Port implements ToStringInterface
 	use IntExtractableTrait;
 	use ToStringTrait;
 
-	/**
-	 * @var int
-	 */
-	private $value;
+	private int $value;
 
 	public function __construct(
 		int $value

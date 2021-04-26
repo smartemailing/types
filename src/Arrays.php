@@ -14,7 +14,7 @@ abstract class Arrays
 	 * @return array<mixed>
 	 */
 	final public static function getArray(
-		$value
+		mixed $value
 	): array {
 		if (\is_array($value)) {
 			return $value;
@@ -29,9 +29,9 @@ abstract class Arrays
 	 * @return array<mixed>|null
 	 */
 	final public static function getArrayOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
-	): ?array {
+	): array | null {
 		if (\is_array($value)) {
 			return $value;
 		}
@@ -54,14 +54,14 @@ abstract class Arrays
 	/**
 	 * Preserves keys
 	 *
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @return array<mixed>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractArray(
-		array $data,
-		string $key
+		array | \ArrayAccess $data,
+		string | int $key
 	): array
 	{
 		$value = ExtractableHelpers::extractValue($data, $key);
@@ -76,17 +76,17 @@ abstract class Arrays
 	/**
 	 * Preserves keys
 	 *
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @param bool $nullIfInvalid
 	 * @return array<mixed>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractArrayOrNull(
-		array $data,
-		string $key,
+		array | \ArrayAccess $data,
+		string | int $key,
 		bool $nullIfInvalid = false
-	): ?array {
+	): array | null {
 		if (!isset($data[$key])) {
 			return null;
 		}
@@ -107,7 +107,7 @@ abstract class Arrays
 	 * @return array<int>
 	 */
 	final public static function getIntArray(
-		$value
+		mixed $value
 	): array {
 		$array = self::getArray($value);
 
@@ -126,9 +126,9 @@ abstract class Arrays
 	 * @return array<int>|null
 	 */
 	final public static function getIntArrayOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
-	): ?array {
+	): array | null {
 		$array = self::getArrayOrNull($value, $nullIfInvalid);
 
 		if ($array === null) {
@@ -153,14 +153,14 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @return array<int>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractIntArray(
-		array $data,
-		string $key
+		array | \ArrayAccess $data,
+		string | int $key
 	): array {
 		$array = Arrays::extractArray($data, $key);
 
@@ -174,17 +174,17 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @param bool $nullIfInvalid
 	 * @return array<int>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractIntArrayOrNull(
-		array $data,
-		string $key,
+		array | \ArrayAccess $data,
+		string | int $key,
 		bool $nullIfInvalid = false
-	): ?array {
+	): array | null {
 		$array = Arrays::extractArrayOrNull($data, $key, $nullIfInvalid);
 
 		if ($array === null) {
@@ -199,7 +199,7 @@ abstract class Arrays
 	 * @return array<float>
 	 */
 	final public static function getFloatArray(
-		$value
+		mixed $value
 	): array {
 		$array = self::getArray($value);
 
@@ -218,9 +218,9 @@ abstract class Arrays
 	 * @return array<float>|null
 	 */
 	final public static function getFloatArrayOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
-	): ?array {
+	): array | null {
 		$array = self::getArrayOrNull($value, $nullIfInvalid);
 
 		if ($array === null) {
@@ -245,14 +245,14 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @return array<float>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractFloatArray(
-		array $data,
-		string $key
+		array | \ArrayAccess $data,
+		string | int $key
 	): array {
 		$array = Arrays::extractArray($data, $key);
 
@@ -266,17 +266,17 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @param bool $nullIfInvalid
 	 * @return array<float>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractFloatArrayOrNull(
-		array $data,
-		string $key,
+		array | \ArrayAccess $data,
+		string | int $key,
 		bool $nullIfInvalid = false
-	): ?array {
+	): array | null {
 		$array = Arrays::extractArrayOrNull($data, $key, $nullIfInvalid);
 
 		if ($array === null) {
@@ -291,7 +291,7 @@ abstract class Arrays
 	 * @return array<string>
 	 */
 	final public static function getStringArray(
-		$value
+		mixed $value
 	): array {
 		$array = self::getArray($value);
 
@@ -310,9 +310,9 @@ abstract class Arrays
 	 * @return array<string>|null
 	 */
 	final public static function getStringArrayOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
-	): ?array {
+	): array | null {
 		$array = self::getArrayOrNull($value, $nullIfInvalid);
 
 		if ($array === null) {
@@ -337,14 +337,14 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @return array<string>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractStringArray(
-		array $data,
-		string $key
+		array | \ArrayAccess $data,
+		string | int $key
 	): array {
 		$array = Arrays::extractArray($data, $key);
 
@@ -358,17 +358,17 @@ abstract class Arrays
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @param bool $nullIfInvalid
 	 * @return array<string>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractStringArrayOrNull(
-		array $data,
-		string $key,
+		array | \ArrayAccess $data,
+		string | int $key,
 		bool $nullIfInvalid = false
-	): ?array {
+	): array | null {
 		$array = Arrays::extractArrayOrNull($data, $key, $nullIfInvalid);
 
 		if ($array === null) {

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="SmartEmailingCodingStandard">
-	<rule ref="vendor/consistence/coding-standard/Consistence/ruleset.xml">
+	<rule ref="./../vendor/consistence/coding-standard/Consistence/ruleset.xml">
 		<!-- because of exceptions.php -->
 		<exclude name="Squiz.Classes.ClassFileName.NoMatch"/>
 		<exclude name="PSR1.Classes.ClassDeclaration.MultipleClasses"/>
@@ -29,7 +29,7 @@
 		<exclude name="Consistence.Exceptions.ExceptionDeclaration.NotChainable"/>
 
 	</rule>
-	<rule ref="vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
+	<rule ref="./../vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
 		<exclude name="SlevomatCodingStandard.ControlStructures.AssignmentInCondition"/>
 		<exclude name="SlevomatCodingStandard.Files.TypeNameMatchesFileName"/>
 		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>

@@ -11,12 +11,8 @@ use SmartEmailing\Types\Helpers\ExtractableHelpers;
 abstract class PrimitiveTypes
 {
 
-	/**
-	 * @param mixed $value
-	 * @return int
-	 */
 	final public static function getInt(
-		$value
+		mixed $value
 	): int {
 		if (Validators::isNumericInt($value)) {
 			return (int) $value;
@@ -31,9 +27,9 @@ abstract class PrimitiveTypes
 	 * @return int|null
 	 */
 	final public static function getIntOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
-	): ?int {
+	): int | null {
 		if ($value === null) {
 			return null;
 		}
@@ -50,14 +46,14 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @return int
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractInt(
-		array $data,
-		string $key
+		array | \ArrayAccess $data,
+		string | int $key
 	): int {
 		$value = ExtractableHelpers::extractValue($data, $key);
 
@@ -73,7 +69,7 @@ abstract class PrimitiveTypes
 	 * @return float
 	 */
 	final public static function getFloat(
-		$value
+		mixed $value
 	): float {
 		if (\is_string($value)) {
 			$value = \strtr(
@@ -97,9 +93,9 @@ abstract class PrimitiveTypes
 	 * @return float|null
 	 */
 	final public static function getFloatOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
-	): ?float {
+	): float | null {
 		if ($value === null) {
 			return null;
 		}
@@ -116,13 +112,13 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @return float
 	 */
 	final public static function extractFloat(
-		array $data,
-		string $key
+		array | \ArrayAccess $data,
+		string | int $key
 	): float {
 		$value = ExtractableHelpers::extractValue($data, $key);
 
@@ -134,17 +130,17 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param array<float> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @param bool $nullIfInvalid
-	 * @return float
+	 * @return float|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractFloatOrNull(
-		array $data,
-		string $key,
+		array | \ArrayAccess $data,
+		string | int $key,
 		bool $nullIfInvalid = false
-	): ?float {
+	): float | null {
 		if (!isset($data[$key])) {
 			return null;
 		}
@@ -161,17 +157,17 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @param bool $nullIfInvalid
-	 * @return int
+	 * @return int|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractIntOrNull(
-		array $data,
-		string $key,
+		array | \ArrayAccess $data,
+		string | int $key,
 		bool $nullIfInvalid = false
-	): ?int {
+	): int | null {
 		if (!isset($data[$key])) {
 			return null;
 		}
@@ -188,15 +184,15 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @param bool $nullIfInvalid
 	 * @return bool|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractBoolOrNull(
-		array $data,
-		string $key,
+		array | \ArrayAccess $data,
+		string | int $key,
 		bool $nullIfInvalid = false
 	): ?bool {
 		if (!isset($data[$key])) {
@@ -215,17 +211,17 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @param bool $nullIfInvalid
 	 * @return string|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractStringOrNull(
-		array $data,
-		string $key,
+		array | \ArrayAccess $data,
+		string | int $key,
 		bool $nullIfInvalid = false
-	): ?string {
+	): string | null {
 		if (
 			!isset($data[$key])
 			|| $data[$key] === ''
@@ -244,12 +240,8 @@ abstract class PrimitiveTypes
 		}
 	}
 
-	/**
-	 * @param mixed $value
-	 * @return string
-	 */
 	final public static function getString(
-		$value
+		mixed $value
 	): string {
 		if (\is_scalar($value)) {
 			return (string) $value;
@@ -264,9 +256,9 @@ abstract class PrimitiveTypes
 	 * @return string|null
 	 */
 	final public static function getStringOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
-	): ?string {
+	): string | null {
 		if ($value === null) {
 			return null;
 		}
@@ -283,14 +275,14 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @return string
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractString(
-		array $data,
-		string $key
+		array | \ArrayAccess $data,
+		string | int$key
 	): string {
 		$value = ExtractableHelpers::extractValue($data, $key);
 
@@ -301,12 +293,8 @@ abstract class PrimitiveTypes
 		}
 	}
 
-	/**
-	 * @param mixed $value
-	 * @return bool
-	 */
 	final public static function getBool(
-		$value
+		mixed $value
 	): bool {
 		if (\is_bool($value)) {
 			return $value;
@@ -333,9 +321,9 @@ abstract class PrimitiveTypes
 	 * @return bool|null
 	 */
 	final public static function getBoolOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
-	): ?bool {
+	): bool | null {
 		if ($value === null) {
 			return null;
 		}
@@ -352,25 +340,14 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param mixed $value
-	 * @return array<mixed>
-	 * @deprecated use Arrays::getArray instead
-	 */
-	final public static function getArray(
-		$value
-	): array {
-		return Arrays::getArray($value);
-	}
-
-	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @param string|int $key
 	 * @return bool
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractBool(
-		array $data,
-		string $key
+		array | \ArrayAccess $data,
+		string | int $key
 	): bool {
 		$value = ExtractableHelpers::extractValue($data, $key);
 
@@ -379,80 +356,6 @@ abstract class PrimitiveTypes
 		} catch (InvalidTypeException $e) {
 			throw $e->wrap($key);
 		}
-	}
-
-	/**
-	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return array<string>
-	 * @throws \SmartEmailing\Types\InvalidTypeException
-	 * @deprecated use Arrays::extractStringArray
-	 */
-	final public static function extractStringArray(
-		array $data,
-		string $key
-	): array {
-		return Arrays::extractStringArray(
-			$data,
-			$key
-		);
-	}
-
-	/**
-	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return array<int>
-	 * @throws \SmartEmailing\Types\InvalidTypeException
-	 * @deprecated use Arrays::extractIntArray
-	 */
-	final public static function extractIntArray(
-		array $data,
-		string $key
-	): array {
-		return Arrays::extractIntArray(
-			$data,
-			$key
-		);
-	}
-
-	/**
-	 * Preserves keys
-	 *
-	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return array<mixed>
-	 * @throws \SmartEmailing\Types\InvalidTypeException
-	 * @deprecated use Arrays::extractArray
-	 */
-	final public static function extractArray(
-		array &$data,
-		string $key
-	): array
-	{
-		return Arrays::extractArray(
-			$data,
-			$key
-		);
-	}
-
-	/**
-	 * Preserves keys
-	 *
-	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return array<mixed>|null
-	 * @throws \SmartEmailing\Types\InvalidTypeException
-	 * @deprecated use Arrays::extractArrayOrNull
-	 */
-	final public static function extractArrayOrNull(
-		array &$data,
-		string $key
-	): ?array
-	{
-		return Arrays::extractArrayOrNull(
-			$data,
-			$key
-		);
 	}
 
 }

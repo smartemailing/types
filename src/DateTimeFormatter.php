@@ -8,9 +8,9 @@ abstract class DateTimeFormatter
 {
 
 	final public static function formatOrNull(
-		?\DateTimeInterface $dateTime,
+		\DateTimeInterface | null $dateTime,
 		string $format = DateTimeFormat::DATETIME
-	): ?string {
+	): string | null {
 		if ($dateTime === null) {
 			return null;
 		}

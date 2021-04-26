@@ -4,17 +4,13 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Nette\Utils\Arrays;
+use SmartEmailing\Types\Helpers\ExtractableHelpers;
 
 abstract class Dates
 {
 
-	/**
-	 * @param mixed $value
-	 * @return \DateTime
-	 */
 	final public static function from(
-		$value
+		mixed $value
 	): \DateTime {
 		if ($value instanceof \DateTimeInterface) {
 			$value = $value->format('Y-m-d');
@@ -36,12 +32,12 @@ abstract class Dates
 	/**
 	 * @param mixed $value
 	 * @param bool $getNullIfInvalid
-	 * @return \DateTime
+	 * @return \DateTime|null
 	 */
 	public static function fromOrNull(
-		$value,
+		mixed $value,
 		bool $getNullIfInvalid = false
-	): ?\DateTime {
+	): \DateTime | null {
 		if ($value === null) {
 			return null;
 		}
@@ -58,16 +54,16 @@ abstract class Dates
 	}
 
 	/**
-	 * @param array<mixed> $data
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
 	 * @param string $key
 	 * @return \DateTime
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
-		array &$data,
+		array | \ArrayAccess $data,
 		string $key
 	): \DateTime {
-		$value = Arrays::get($data, $key, '');
+		$value = ExtractableHelpers::extractValue($data, $key);
 
 		try {
 			return self::from($value);
@@ -77,16 +73,16 @@ abstract class Dates
 	}
 
 	/**
-	 * @param array<mixed> $data
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
 	 * @param string $key
 	 * @param bool $getNullIfInvalid
-	 * @return \DateTime
+	 * @return \DateTime|null
 	 */
 	final public static function extractOrNull(
-		array &$data,
+		array | \ArrayAccess $data,
 		string $key,
 		bool $getNullIfInvalid = false
-	): ?\DateTime {
+	): \DateTime | null {
 		if (!isset($data[$key])) {
 			return null;
 		}

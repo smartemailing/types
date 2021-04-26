@@ -14,10 +14,7 @@ final class PhoneNumber implements ToStringInterface
 	use StringExtractableTrait;
 	use ToStringTrait;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
 	private function __construct(
 		string $value
@@ -30,15 +27,6 @@ final class PhoneNumber implements ToStringInterface
 		}
 
 		$this->value = $preprocessed;
-	}
-
-	/**
-	 * @return \SmartEmailing\Types\CountryCode
-	 * @deprecated use PhoneNumber::guessCountry()
-	 */
-	public function getCountry(): ?CountryCode
-	{
-		return $this->guessCountry();
 	}
 
 	public function guessCountry(): ?CountryCode
@@ -100,7 +88,7 @@ final class PhoneNumber implements ToStringInterface
 
 	private function initialize(
 		string $value
-	): ?string
+	): string | null
 	{
 		$value = self::preprocess($value);
 

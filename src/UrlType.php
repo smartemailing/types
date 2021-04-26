@@ -16,10 +16,7 @@ final class UrlType implements ToStringInterface
 	use StringExtractableTrait;
 	use ToStringTrait;
 
-	/**
-	 * @var \Nette\Http\Url
-	 */
-	private $url;
+	private Url $url;
 
 	private function __construct(
 		string $value
@@ -81,30 +78,9 @@ final class UrlType implements ToStringInterface
 		return $this->getValue();
 	}
 
-	/**
-	 * @param string $name
-	 * @return string|null
-	 * @deprecated use getQueryParameter instead
-	 */
-	public function getParameter(
-		string $name
-	): ?string
-	{
-		return $this->url->getQueryParameter($name) ?? null;
-	}
-
 	public function getBaseUrl(): string
 	{
 		return $this->url->getBaseUrl();
-	}
-
-	/**
-	 * @return string
-	 * @deprecated use getValue or (string) type cast
-	 */
-	public function toString(): string
-	{
-		return (string) $this->url;
 	}
 
 	public function getScheme(): string
@@ -146,7 +122,7 @@ final class UrlType implements ToStringInterface
 	 */
 	public function withQueryParameter(
 		string $name,
-		$value
+		mixed $value
 	): self
 	{
 		$dolly = clone $this;
@@ -218,7 +194,7 @@ final class UrlType implements ToStringInterface
 	 */
 	public function getQueryParameter(
 		string $name,
-		$default = null
+		mixed $default = null
 	)
 	{
 		return $this->url->getQueryParameter($name) ?? $default;
@@ -231,7 +207,7 @@ final class UrlType implements ToStringInterface
 
 	private function addSlashToPathOrFail(
 		string $value
-	): ?string
+	): string | null
 	{
 		$urlParts = \parse_url($value);
 

@@ -16,15 +16,9 @@ final class Iban implements ToStringInterface
 	public const FORMAT_ELECTRONIC = 'electronic';
 	public const FORMAT_PRINT = 'print';
 
-	/**
-	 * @var \Iban\Validation\Iban
-	 */
-	private $iban;
+	private \Iban\Validation\Iban $iban;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
 	public function __construct(
 		string $value
@@ -47,7 +41,7 @@ final class Iban implements ToStringInterface
 
 	public function getCountry(): CountryCode
 	{
-		return CountryCode::from($this->iban->getCountryCode());
+		return CountryCode::from($this->iban->countryCode());
 	}
 
 	public function getFormatted(
@@ -59,7 +53,7 @@ final class Iban implements ToStringInterface
 
 	public function getChecksum(): int
 	{
-		return (int) $this->iban->getChecksum();
+		return (int) $this->iban->checksum();
 	}
 
 }

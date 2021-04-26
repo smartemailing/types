@@ -13,10 +13,7 @@ final class SwiftBic implements ToStringInterface
 	use ToStringTrait;
 	use StringExtractableTrait;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
 	public function __construct(
 		string $value

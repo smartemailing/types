@@ -18,7 +18,7 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInt
 	/**
 	 * @var array<bool>
 	 */
-	private $valuesPresenceMap;
+	private array $valuesPresenceMap;
 
 	/**
 	 * @param array<mixed> $data
@@ -32,7 +32,7 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInt
 		foreach ($data as $value) {
 			try {
 				$this->add(PrimitiveTypes::getInt($value));
-			} catch (InvalidTypeException $e) {
+			} catch (InvalidTypeException) {
 				throw InvalidTypeException::typeError('all members of array to be int', $value);
 			}
 		}

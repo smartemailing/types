@@ -16,20 +16,11 @@ final class Emailaddress implements ToStringInterface
 	use StringExtractableTrait;
 	use ToStringTrait;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
-	/**
-	 * @var string
-	 */
-	private $localPart;
+	private string $localPart;
 
-	/**
-	 * @var \SmartEmailing\Types\HostName
-	 */
-	private $hostName;
+	private HostName $hostName;
 
 	private function __construct(
 		string $value

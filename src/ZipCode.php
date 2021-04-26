@@ -15,15 +15,12 @@ final class ZipCode implements ToStringInterface
 	use StringExtractableTrait;
 	use ToStringTrait;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
 	/**
-	 * @var array<string>
+	 * @var array<string, string>
 	 */
-	private static $patternsByCountry = [
+	private static array $patternsByCountry = [
 		CountryCode::CZ => '#^\d{3}?\d{2}\z#',
 		CountryCode::SK => '#^\d{3}?\d{2}\z#',
 		CountryCode::AT => '#^\d{4}\z#',

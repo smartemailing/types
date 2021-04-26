@@ -12,10 +12,7 @@ final class UnsignedFloat implements ToStringInterface
 	use FloatExtractableTrait;
 	use ToStringTrait;
 
-	/**
-	 * @var float
-	 */
-	private $value;
+	private float $value;
 
 	public function __construct(
 		float $value

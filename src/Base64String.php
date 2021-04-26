@@ -12,10 +12,7 @@ final class Base64String implements ToStringInterface
 	use StringExtractableTrait;
 	use ToStringTrait;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
 	private function __construct(
 		string $value
@@ -32,7 +29,7 @@ final class Base64String implements ToStringInterface
 		string $value
 	): self
 	{
-		return new static(
+		return new self(
 			\base64_encode($value)
 		);
 	}

@@ -11,20 +11,11 @@ final class DateTimeRange implements ToArrayInterface
 
 	use ArrayExtractableTrait;
 
-	/**
-	 * @var \DateTimeImmutable
-	 */
-	private $from;
+	private \DateTimeImmutable $from;
 
-	/**
-	 * @var \DateTimeImmutable
-	 */
-	private $to;
+	private \DateTimeImmutable $to;
 
-	/**
-	 * @var int
-	 */
-	private $durationInSeconds;
+	private int $durationInSeconds;
 
 	/**
 	 * @param array<mixed> $data

@@ -23,16 +23,16 @@ trait EnumExtractableTrait
 	/**
 	 * @param mixed $data
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
-	 * @return self
+	 * @return static
 	 */
 	final public static function from(
-		$data
-	): self {
+		mixed $data
+	): static {
 		if ($data instanceof self) {
 			return $data;
 		}
 
-		return self::get($data);
+		return static::get($data);
 	}/** @noinspection ReturnTypeCanBeDeclaredInspection */
 
 }

@@ -11,15 +11,9 @@ final class LoginCredentials
 
 	use ArrayExtractableTrait;
 
-	/**
-	 * @var string
-	 */
-	private $login;
+	private string $login;
 
-	/**
-	 * @var string
-	 */
-	private $password;
+	private string $password;
 
 	/**
 	 * @param array<string> $data

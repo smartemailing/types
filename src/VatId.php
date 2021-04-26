@@ -15,25 +15,16 @@ final class VatId implements ToStringInterface
 	use ToStringTrait;
 	use StringExtractableTrait;
 
-	/**
-	 * @var \SmartEmailing\Types\CountryCode|null
-	 */
-	private $country;
+	private CountryCode | null $country;
 
-	/**
-	 * @var string|null
-	 */
-	private $prefix;
+	private string | null $prefix;
 
-	/**
-	 * @var string
-	 */
-	private $vatNumber;
+	private string $vatNumber;
 
 	/**
 	 * @var array<string>
 	 */
-	private static $patternsByCountry = [
+	private static array $patternsByCountry = [
 		CountryCode::AT => 'ATU\d{8}',
 		CountryCode::BE => 'BE[0-1]\d{9}',
 		CountryCode::BG => 'BG\d{9,10}',
@@ -77,12 +68,12 @@ final class VatId implements ToStringInterface
 		}
 	}
 
-	public function getCountry(): ?CountryCode
+	public function getCountry(): CountryCode | null
 	{
 		return $this->country;
 	}
 
-	public function getPrefix(): ?string
+	public function getPrefix(): string | null
 	{
 		return $this->prefix;
 	}
@@ -122,15 +113,15 @@ final class VatId implements ToStringInterface
 
 		try {
 			return CountryCode::from($countryCode);
-		} catch (InvalidTypeException $e) {
+		} catch (InvalidTypeException) {
 			return null;
 		}
 	}
 
 	private static function parsePrefixOrNull(
-		?CountryCode $country,
+		CountryCode | null $country,
 		string $vatId
-	): ?string
+	): string | null
 	{
 		if (!$country) {
 			return null;
@@ -140,7 +131,7 @@ final class VatId implements ToStringInterface
 	}
 
 	private static function parseVatNumber(
-		?CountryCode $country,
+		CountryCode | null $country,
 		string $vatId
 	): string
 	{
@@ -150,8 +141,8 @@ final class VatId implements ToStringInterface
 	}
 
 	private static function validate(
-		?CountryCode $country,
-		?string $prefix,
+		CountryCode | null $country,
+		string | null $prefix,
 		string $vatNumber
 	): bool
 	{
@@ -164,7 +155,7 @@ final class VatId implements ToStringInterface
 
 	private static function isValidForCountry(
 		CountryCode $country,
-		?string $prefix,
+		string | null $prefix,
 		string $vatNumber
 	): bool
 	{
