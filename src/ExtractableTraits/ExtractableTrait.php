@@ -13,7 +13,8 @@ trait ExtractableTrait
 {
 
 	abstract public static function from(
-		mixed $data
+		mixed $data,
+		mixed ...$params
 	): self;
 
 	/**
@@ -23,7 +24,8 @@ trait ExtractableTrait
 	 */
 	public static function extract(
 		array | \ArrayAccess $data,
-		string | int $key
+		string | int $key,
+		mixed ...$params
 	): static {
 		$value = ExtractableHelpers::extractValue($data, $key);
 
@@ -32,7 +34,7 @@ trait ExtractableTrait
 		}
 
 		try {
-			return self::from($value);
+			return self::from($value, $params);
 		} catch (InvalidTypeException $e) {
 			throw $e->wrap($key);
 		}

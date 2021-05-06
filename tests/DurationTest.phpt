@@ -24,10 +24,12 @@ final class DurationTest extends TestCase
 
 		Assert::throws(
 			static function (): void {
-				Duration::from([
-					'value' => 0,
-					'unit' => 'week',
-				]);
+				Duration::from(
+					[
+						'value' => 0,
+						'unit' => 'week',
+					]
+				);
 			},
 			InvalidTypeException::class
 		);
@@ -66,10 +68,12 @@ final class DurationTest extends TestCase
 
 	public function testCreate(): void
 	{
-		Duration::from([
-			'value' => 1,
-			'unit' => TimeUnit::HOURS,
-		]);
+		Duration::from(
+			[
+				'value' => 1,
+				'unit' => TimeUnit::HOURS,
+			]
+		);
 
 		Duration::extract([
 			'duration' => [
@@ -87,10 +91,12 @@ final class DurationTest extends TestCase
 
 	public function testGetUnit(): void
 	{
-		$duration = Duration::from([
-			'value' => 1,
-			'unit' => TimeUnit::YEARS,
-		]);
+		$duration = Duration::from(
+			[
+				'value' => 1,
+				'unit' => TimeUnit::YEARS,
+			]
+		);
 
 		Assert::type(Duration::class, $duration);
 		Assert::type(TimeUnit::class, $duration->getUnit());
@@ -98,10 +104,12 @@ final class DurationTest extends TestCase
 
 	public function testGetValue(): void
 	{
-		$duration = Duration::from([
-			'value' => 1,
-			'unit' => TimeUnit::DAYS,
-		]);
+		$duration = Duration::from(
+			[
+				'value' => 1,
+				'unit' => TimeUnit::DAYS,
+			]
+		);
 
 		Assert::type(Duration::class, $duration);
 		Assert::type('int', $duration->getValue());
@@ -110,17 +118,21 @@ final class DurationTest extends TestCase
 
 	public function testLengthInSeconds(): void
 	{
-		$duration = Duration::from([
-			'value' => 3,
-			'unit' => TimeUnit::HOURS,
-		]);
+		$duration = Duration::from(
+			[
+				'value' => 3,
+				'unit' => TimeUnit::HOURS,
+			]
+		);
 		Assert::type(Duration::class, $duration);
 		Assert::equal(10800, $duration->getLengthInSeconds());
 
-		$duration = Duration::from([
-			'value' => 10,
-			'unit' => TimeUnit::MINUTES,
-		]);
+		$duration = Duration::from(
+			[
+				'value' => 10,
+				'unit' => TimeUnit::MINUTES,
+			]
+		);
 		Assert::type(Duration::class, $duration);
 		Assert::equal(600, $duration->getLengthInSeconds());
 	}

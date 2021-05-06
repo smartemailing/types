@@ -27,8 +27,8 @@ final class Address
 	) {
 		$this->streetAndNumber = PrimitiveTypes::extractString($data, 'street_and_number');
 		$this->town = PrimitiveTypes::extractString($data, 'town');
-		$this->zipCode = ZipCode::extract($data, 'zip_code');
 		$this->country = CountryCode::extract($data, 'country');
+		$this->zipCode = ZipCode::extract($data, 'zip_code', countryCode: $this->country);
 	}
 
 	/**

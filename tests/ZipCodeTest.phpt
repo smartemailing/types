@@ -46,6 +46,8 @@ final class ZipCodeTest extends TestCase
 		Assert::equal('WC2N5DU', ZipCode::from('WC2N 5DU')->getValue());
 
 		Assert::equal('W22LW', ZipCode::from('w2 2lw')->getValue());
+
+		Assert::equal('WC2N5DU', ZipCode::from('WC2N 5DU', countryCode: CountryCode::from(CountryCode::GB))->getValue());
 	}
 
 }
