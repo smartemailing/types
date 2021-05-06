@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use Tester\Assert;
 use Tester\TestCase;
 
@@ -12,8 +11,6 @@ require_once __DIR__ . '/bootstrap.php';
 
 final class ExtractableTraitTest extends TestCase
 {
-
-	use ObjectMixinTrait;
 
 	public function testExtract(): void
 	{

@@ -4,19 +4,10 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types\ExtractableTraits;
 
-use Consistence\Enum\Enum;
-
 trait EnumExtractableTrait
 {
 
 	use ExtractableTrait;
-
-	/**
-	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
-	 */
-	abstract public static function get(
-		mixed $value
-	): Enum;
 
 	/**
 	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
