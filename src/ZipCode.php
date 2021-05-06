@@ -45,12 +45,13 @@ final class ZipCode implements ToStringInterface
 	];
 
 	private function __construct(
-		string $value
+		string $value,
+		?CountryCode $countryCode = null
 	) {
 		$value = StringHelpers::removeWhitespace($value);
 		$value = Strings::upper($value);
 
-		if (!$this->isValid($value)) {
+		if (!$this->isValid($value, $countryCode)) {
 			throw new InvalidTypeException('Invalid ZIP code: ' . $value);
 		}
 
@@ -63,15 +64,32 @@ final class ZipCode implements ToStringInterface
 	}
 
 	private function isValid(
-		string $value
+		string $value,
+		?CountryCode $countryCode
 	): bool {
+		if ($countryCode !== null) {
+			$pattern = self::$patternsByCountry[(string) $countryCode] ?? null;
+
+			if ($pattern !== null) {
+				return $this->validate($value, $pattern);
+			}
+		}
+
 		foreach (self::$patternsByCountry as $pattern) {
-			if (Strings::match($value, $pattern)) {
+			if ($this->validate($value, $pattern)) {
 				return true;
 			}
 		}
 
 		return false;
+	}
+
+	private function validate(
+        string $value,
+        string $pattern
+    ): bool
+	{
+		return Strings::match($value, $pattern) !== null;
 	}
 
 }
