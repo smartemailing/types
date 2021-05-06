@@ -13,7 +13,8 @@ trait ExtractableTrait
 {
 
 	abstract public static function from(
-		mixed $data
+		mixed $data,
+		mixed ...$params
 	): self;
 
 	/**
@@ -23,7 +24,8 @@ trait ExtractableTrait
 	 */
 	public static function extract(
 		array | \ArrayAccess $data,
-		string | int $key
+		string | int $key,
+		mixed ...$params
 	): static {
 		$value = ExtractableHelpers::extractValue($data, $key);
 
@@ -32,7 +34,7 @@ trait ExtractableTrait
 		}
 
 		try {
-			return self::from($value);
+			return self::from($value, ...$params);
 		} catch (InvalidTypeException $e) {
 			throw $e->wrap($key);
 		}
@@ -43,7 +45,8 @@ trait ExtractableTrait
 	 */
 	public static function fromOrNull(
 		mixed $value,
-		bool $getNullIfInvalid = false
+		bool $getNullIfInvalid = false,
+		mixed ...$params
 	): self | null
 	{
 		if ($value === null) {
@@ -51,7 +54,7 @@ trait ExtractableTrait
 		}
 
 		try {
-			return self::from($value);
+			return self::from($value, ...$params);
 		} catch (InvalidTypeException $e) {
 			if ($getNullIfInvalid) {
 				return null;
@@ -68,7 +71,8 @@ trait ExtractableTrait
 	public static function extractOrNull(
 		array | \ArrayAccess $data,
 		string | int $key,
-		bool $nullIfInvalid = false
+		bool $nullIfInvalid = false,
+		mixed ...$params
 	): self | null
 	{
 		if (!\is_array($data)) {
@@ -86,7 +90,8 @@ trait ExtractableTrait
 		return self::tryToExtract(
 			$data,
 			$key,
-			$nullIfInvalid
+			$nullIfInvalid,
+			...$params
 		);
 	}
 
@@ -194,11 +199,12 @@ trait ExtractableTrait
 	private static function tryToExtract(
 		mixed $data,
 		string | int $key,
-		bool $nullIfInvalid
+		bool $nullIfInvalid,
+		mixed ...$params
 	): self | null
 	{
 		try {
-			return self::extract($data, $key);
+			return self::extract($data, $key, ...$params);
 		} catch (InvalidTypeException $e) {
 			if ($nullIfInvalid) {
 				return null;

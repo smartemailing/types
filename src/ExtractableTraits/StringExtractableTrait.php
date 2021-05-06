@@ -16,7 +16,8 @@ trait StringExtractableTrait
 	);
 
 	final public static function from(
-		mixed $data
+		mixed $data,
+		mixed ...$params
 	): self {
 		if ($data instanceof self) {
 			return $data;

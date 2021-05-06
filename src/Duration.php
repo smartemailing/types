@@ -34,7 +34,8 @@ final class Duration implements ToStringInterface, ToArrayInterface
 	}
 
 	public static function from(
-		mixed $data
+		mixed $data,
+		mixed ...$params
 	): Duration {
 		if ($data instanceof self) {
 			return $data;

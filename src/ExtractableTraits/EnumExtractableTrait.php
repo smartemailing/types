@@ -23,7 +23,8 @@ trait EnumExtractableTrait
 	 * @return static
 	 */
 	final public static function from(
-		mixed $data
+		mixed $data,
+		mixed ...$params
 	): static {
 		if ($data instanceof self) {
 			return $data;

@@ -32,7 +32,8 @@ final class JsonString implements ToStringInterface
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function from(
-		mixed $data
+		mixed $data,
+		mixed ...$params
 	): JsonString
 	{
 		if ($data instanceof self) {
