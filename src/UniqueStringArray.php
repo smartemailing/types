@@ -18,7 +18,7 @@ final class UniqueStringArray implements \Countable, \IteratorAggregate, ToArray
 	/**
 	 * @var array<bool>
 	 */
-	private $valuesPresenceMap;
+	private array $valuesPresenceMap;
 
 	/**
 	 * @param array<mixed> $data
@@ -32,7 +32,7 @@ final class UniqueStringArray implements \Countable, \IteratorAggregate, ToArray
 		foreach ($data as $value) {
 			try {
 				$this->add(PrimitiveTypes::getString($value));
-			} catch (InvalidTypeException $e) {
+			} catch (InvalidTypeException) {
 				throw InvalidTypeException::typeError('all members of array to be string', $value);
 			}
 		}
@@ -69,14 +69,6 @@ final class UniqueStringArray implements \Countable, \IteratorAggregate, ToArray
 	public function toArray(): array
 	{
 		return $this->getValues();
-	}
-
-	/**
-	 * @deprecated This method does nothing because array is already unique
-	 */
-	public function removeDuplicities(): void
-	{
-		$this->valuesPresenceMap = \array_unique($this->valuesPresenceMap);
 	}
 
 	public function add(

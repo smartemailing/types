@@ -15,18 +15,17 @@
     }
   ],
   "require": {
-    "php": "^7.2|^8.0",
-    "consistence/consistence": "^1.0 || ^2.0",
+    "php": "^8.0",
+    "consistence-community/consistence": "^2.1",
     "nette/utils": "^3.0 || ^2.4",
     "nette/http": "^3.0 || ^2.4",
     "jschaedl/iban-validation": "^1.0",
-    "egulias/email-validator": "^3.1.1"
+    "egulias/email-validator": "^3.1"
   },
   "require-dev": {
     "nette/tester": "^2.3.0",
     "phpstan/phpstan-nette": "^0.12.8",
-    "slevomat/coding-standard": "^6.4",
-    "consistence/coding-standard": "^3.10",
+    "slevomat/coding-standard": "^7.0",
     "tracy/tracy": "^2.8"
   },
   "autoload": {

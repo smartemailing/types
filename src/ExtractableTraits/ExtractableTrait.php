@@ -12,25 +12,21 @@ use SmartEmailing\Types\InvalidTypeException;
 trait ExtractableTrait
 {
 
-	/**
-	 * @param string|mixed|array<mixed> $data
-	 * @return self
-	 */
 	abstract public static function from(
-		$data
+		mixed $data,
+		mixed ...$params
 	): self;
 
 	/**
-	 * @param mixed|array<mixed> $data
-	 * @param string $key
-	 * @return self
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
+	 * @return static
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function extract(
-		$data,
-		string $key
-	): self
-	{
+		array | \ArrayAccess $data,
+		string | int $key,
+		mixed ...$params
+	): static {
 		$value = ExtractableHelpers::extractValue($data, $key);
 
 		if ($value instanceof self) {
@@ -38,29 +34,27 @@ trait ExtractableTrait
 		}
 
 		try {
-			return self::from($value);
+			return self::from($value, ...$params);
 		} catch (InvalidTypeException $e) {
 			throw $e->wrap($key);
 		}
 	}
 
 	/**
-	 * @param mixed $value
-	 * @param bool $getNullIfInvalid
-	 * @return self|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function fromOrNull(
-		$value,
-		bool $getNullIfInvalid = false
-	): ?self
+		mixed $value,
+		bool $getNullIfInvalid = false,
+		mixed ...$params
+	): self | null
 	{
 		if ($value === null) {
 			return null;
 		}
 
 		try {
-			return self::from($value);
+			return self::from($value, ...$params);
 		} catch (InvalidTypeException $e) {
 			if ($getNullIfInvalid) {
 				return null;
@@ -71,17 +65,15 @@ trait ExtractableTrait
 	}
 
 	/**
-	 * @param mixed|array<mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
-	 * @return self|null
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function extractOrNull(
-		$data,
-		string $key,
-		bool $nullIfInvalid = false
-	): ?self
+		array | \ArrayAccess $data,
+		string | int $key,
+		bool $nullIfInvalid = false,
+		mixed ...$params
+	): self | null
 	{
 		if (!\is_array($data)) {
 			throw InvalidTypeException::typeError('array', $data);
@@ -98,19 +90,19 @@ trait ExtractableTrait
 		return self::tryToExtract(
 			$data,
 			$key,
-			$nullIfInvalid
+			$nullIfInvalid,
+			...$params
 		);
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
 	 * @return array<self>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function extractArrayOf(
-		array $data,
-		string $key
+		array | \ArrayAccess $data,
+		string | int $key
 	): array
 	{
 		$typedArray = Arrays::extractArray($data, $key);
@@ -123,14 +115,13 @@ trait ExtractableTrait
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
 	 * @return array<self>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function extractArrayOfOrEmpty(
-		array $data,
-		string $key
+		array | \ArrayAccess $data,
+		string | int $key
 	): array
 	{
 		if (!isset($data[$key])) {
@@ -180,7 +171,7 @@ trait ExtractableTrait
 		foreach ($array as $item) {
 			try {
 				$return[] = self::from($item);
-			} catch (InvalidTypeException $e) {
+			} catch (InvalidTypeException) {
 				// exclude from result
 			}
 		}
@@ -189,13 +180,12 @@ trait ExtractableTrait
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
 	 * @return array<self>
 	 */
 	public static function extractArrayOfSkipInvalid(
-		array $data,
-		string $key
+		array | \ArrayAccess $data,
+		string | int $key
 	): array
 	{
 		$typedArray = Arrays::extractArray($data, $key);
@@ -204,20 +194,17 @@ trait ExtractableTrait
 	}
 
 	/**
-	 * @param mixed|array<mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
-	 * @return self|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	private static function tryToExtract(
-		$data,
-		string $key,
-		bool $nullIfInvalid
-	): ?self
+		mixed $data,
+		string | int $key,
+		bool $nullIfInvalid,
+		mixed ...$params
+	): self | null
 	{
 		try {
-			return self::extract($data, $key);
+			return self::extract($data, $key, ...$params);
 		} catch (InvalidTypeException $e) {
 			if ($nullIfInvalid) {
 				return null;

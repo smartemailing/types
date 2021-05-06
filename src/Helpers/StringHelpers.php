@@ -41,8 +41,8 @@ abstract class StringHelpers
 	}
 
 	final public static function sanitizeUtf8Mb4OrNull(
-		?string $string
-	): ?string {
+		string | null $string
+	): string | null {
 		if ($string === null) {
 			return null;
 		}

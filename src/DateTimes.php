@@ -4,17 +4,13 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Nette\Utils\Arrays;
+use SmartEmailing\Types\Helpers\ExtractableHelpers;
 
 abstract class DateTimes
 {
 
-	/**
-	 * @param mixed $value
-	 * @return \DateTime
-	 */
 	final public static function from(
-		$value
+		mixed $value
 	): \DateTime {
 		if ($value instanceof \DateTime) {
 			return $value;
@@ -41,15 +37,10 @@ abstract class DateTimes
 		);
 	}
 
-	/**
-	 * @param mixed $value
-	 * @param bool $getNullIfInvalid
-	 * @return \DateTime
-	 */
 	public static function fromOrNull(
-		$value,
+		mixed $value,
 		bool $getNullIfInvalid = false
-	): ?\DateTime {
+	): \DateTime | null {
 		if ($value === null) {
 			return null;
 		}
@@ -66,16 +57,14 @@ abstract class DateTimes
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return \DateTime
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
-		array &$data,
+		array | \ArrayAccess $data,
 		string $key
 	): \DateTime {
-		$value = Arrays::get($data, $key, '');
+		$value = ExtractableHelpers::extractValue($data, $key);
 
 		try {
 			return self::from($value);
@@ -85,40 +74,10 @@ abstract class DateTimes
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return \DateTime
-	 * @throws \SmartEmailing\Types\InvalidTypeException
-	 * @deprecated Use Dates::extract
-	 */
-	final public static function extractDate(
-		array &$data,
-		string $key
-	): \DateTime {
-		return Dates::extract($data, $key);
-	}
-
-	/**
-	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return \DateTime|null
-	 * @deprecated Use Dates::extractDateOrNull
-	 */
-	final public static function extractDateOrNull(
-		array &$data,
-		string $key
-	): ?\DateTime {
-		return Dates::extractOrNull($data, $key);
-	}
-
-	/**
-	 * @param array<mixed> $data
-	 * @param string $key
-	 * @param bool $getNullIfInvalid
-	 * @return \DateTime
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
 	 */
 	final public static function extractOrNull(
-		array &$data,
+		array | \ArrayAccess $data,
 		string $key,
 		bool $getNullIfInvalid = false
 	): ?\DateTime {
@@ -129,7 +88,7 @@ abstract class DateTimes
 		if ($getNullIfInvalid) {
 			try {
 				return self::extract($data, $key);
-			} catch (InvalidTypeException $e) {
+			} catch (InvalidTypeException) {
 				return null;
 			}
 		}

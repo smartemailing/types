@@ -13,10 +13,7 @@ final class CompanyRegistrationNumber implements ToStringInterface
 	use StringExtractableTrait;
 	use ToStringTrait;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
 	private function __construct(
 		string $value
@@ -166,8 +163,6 @@ final class CompanyRegistrationNumber implements ToStringInterface
 	}
 
 	/**
-	 * @param string $value
-	 * @return bool
 	 * @see https://en.wikipedia.org/wiki/Employer_Identification_Number
 	 */
 	private function isValidUS(

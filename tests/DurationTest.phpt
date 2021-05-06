@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
+use stdClass;
 use Tester\Assert;
 use Tester\TestCase;
-use stdClass;
 
 require_once __DIR__ . '/bootstrap.php';
 
@@ -24,10 +24,12 @@ final class DurationTest extends TestCase
 
 		Assert::throws(
 			static function (): void {
-				Duration::from([
-					'value' => 0,
-					'unit' => 'week',
-				]);
+				Duration::from(
+					[
+						'value' => 0,
+						'unit' => 'week',
+					]
+				);
 			},
 			InvalidTypeException::class
 		);
@@ -66,10 +68,12 @@ final class DurationTest extends TestCase
 
 	public function testCreate(): void
 	{
-		Duration::from([
-			'value' => 1,
-			'unit' => TimeUnit::HOURS,
-		]);
+		Duration::from(
+			[
+				'value' => 1,
+				'unit' => TimeUnit::HOURS,
+			]
+		);
 
 		Duration::extract([
 			'duration' => [
@@ -87,10 +91,12 @@ final class DurationTest extends TestCase
 
 	public function testGetUnit(): void
 	{
-		$duration = Duration::from([
-			'value' => 1,
-			'unit' => TimeUnit::YEARS,
-		]);
+		$duration = Duration::from(
+			[
+				'value' => 1,
+				'unit' => TimeUnit::YEARS,
+			]
+		);
 
 		Assert::type(Duration::class, $duration);
 		Assert::type(TimeUnit::class, $duration->getUnit());
@@ -98,10 +104,12 @@ final class DurationTest extends TestCase
 
 	public function testGetValue(): void
 	{
-		$duration = Duration::from([
-			'value' => 1,
-			'unit' => TimeUnit::DAYS,
-		]);
+		$duration = Duration::from(
+			[
+				'value' => 1,
+				'unit' => TimeUnit::DAYS,
+			]
+		);
 
 		Assert::type(Duration::class, $duration);
 		Assert::type('int', $duration->getValue());
@@ -110,17 +118,21 @@ final class DurationTest extends TestCase
 
 	public function testLengthInSeconds(): void
 	{
-		$duration = Duration::from([
-			'value' => 3,
-			'unit' => TimeUnit::HOURS,
-		]);
+		$duration = Duration::from(
+			[
+				'value' => 3,
+				'unit' => TimeUnit::HOURS,
+			]
+		);
 		Assert::type(Duration::class, $duration);
 		Assert::equal(10800, $duration->getLengthInSeconds());
 
-		$duration = Duration::from([
-			'value' => 10,
-			'unit' => TimeUnit::MINUTES,
-		]);
+		$duration = Duration::from(
+			[
+				'value' => 10,
+				'unit' => TimeUnit::MINUTES,
+			]
+		);
 		Assert::type(Duration::class, $duration);
 		Assert::equal(600, $duration->getLengthInSeconds());
 	}
@@ -128,9 +140,9 @@ final class DurationTest extends TestCase
 	public function testGetDateTimeModify(): void
 	{
 		foreach ($this->getTestDateTimeModifyData() as $data) {
-			/** @var \SmartEmailing\Types\Duration $duration */
-			/** @var string $expectedDateTimeModify */
 			[$duration, $expectedDateTimeModify] = $data;
+            \assert($duration instanceof \SmartEmailing\Types\Duration);
+            \assert(\is_string($expectedDateTimeModify));
 
 			Assert::equal($expectedDateTimeModify, $duration->getDateTimeModify());
 		}
@@ -139,9 +151,9 @@ final class DurationTest extends TestCase
 	public function testToArray(): void
 	{
 		foreach ($this->getTestToArrayData() as $data) {
-			/** @var \SmartEmailing\Types\Duration $duration */
-			/** @var array $expectedArray */
 			[$duration, $expectedArray] = $data;
+            \assert($duration instanceof \SmartEmailing\Types\Duration);
+            \assert(\is_array($expectedArray));
 
 			Assert::equal($expectedArray, $duration->toArray());
 		}

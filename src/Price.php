@@ -11,20 +11,11 @@ final class Price
 
 	use ArrayExtractableTrait;
 
-	/**
-	 * @var float
-	 */
-	private $withoutVat;
+	private float $withoutVat;
 
-	/**
-	 * @var float
-	 */
-	private $withVat;
+	private float $withVat;
 
-	/**
-	 * @var \SmartEmailing\Types\CurrencyCode
-	 */
-	private $currency;
+	private CurrencyCode $currency;
 
 	/**
 	 * @param array<mixed> $data

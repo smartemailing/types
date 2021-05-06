@@ -14,8 +14,6 @@ trait UniqueArrayFeatures
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return self
 	 */
 	public static function extractOrEmpty(
 		array $data,
@@ -34,7 +32,6 @@ trait UniqueArrayFeatures
 	}
 
 	/**
-	 * @param int $chunkSize
 	 * @return array<self>
 	 */
 	public function split(

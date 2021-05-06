@@ -12,18 +12,17 @@ use SmartEmailing\Types\Helpers\StringHelpers;
 final class ZipCode implements ToStringInterface
 {
 
-	use StringExtractableTrait;
+	use StringExtractableTrait {
+		extract as traitExtract;
+	}
 	use ToStringTrait;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
 	/**
-	 * @var array<string>
+	 * @var array<string, string>
 	 */
-	private static $patternsByCountry = [
+	private static array $patternsByCountry = [
 		CountryCode::CZ => '#^\d{3}?\d{2}\z#',
 		CountryCode::SK => '#^\d{3}?\d{2}\z#',
 		CountryCode::AT => '#^\d{4}\z#',
@@ -48,16 +47,32 @@ final class ZipCode implements ToStringInterface
 	];
 
 	private function __construct(
-		string $value
+		string $value,
+		?CountryCode $countryCode = null
 	) {
 		$value = StringHelpers::removeWhitespace($value);
 		$value = Strings::upper($value);
 
-		if (!$this->isValid($value)) {
+		if (!$this->isValid($value, $countryCode)) {
 			throw new InvalidTypeException('Invalid ZIP code: ' . $value);
 		}
 
 		$this->value = $value;
+	}
+
+	/**
+	 * @param \ArrayAccess<string|int, mixed>|array<mixed> $data
+	 * @param int|string $key
+	 * @param \SmartEmailing\Types\CountryCode|null $countryCode
+	 * @return self
+	 */
+	public static function extract(
+        \ArrayAccess|array $data,
+        int|string $key,
+        ?CountryCode $countryCode = null
+    ): self
+	{
+		return self::traitextract($data, $key, $countryCode);
 	}
 
 	public function getValue(): string
@@ -66,15 +81,32 @@ final class ZipCode implements ToStringInterface
 	}
 
 	private function isValid(
-		string $value
+		string $value,
+		?CountryCode $countryCode
 	): bool {
+		if ($countryCode !== null) {
+			$pattern = self::$patternsByCountry[(string) $countryCode] ?? null;
+
+			if ($pattern !== null) {
+				return $this->validate($value, $pattern);
+			}
+		}
+
 		foreach (self::$patternsByCountry as $pattern) {
-			if (Strings::match($value, $pattern)) {
+			if ($this->validate($value, $pattern)) {
 				return true;
 			}
 		}
 
 		return false;
+	}
+
+	private function validate(
+        string $value,
+        string $pattern
+    ): bool
+	{
+		return Strings::match($value, $pattern) !== null;
 	}
 
 }

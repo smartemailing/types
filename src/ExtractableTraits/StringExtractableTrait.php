@@ -15,12 +15,9 @@ trait StringExtractableTrait
 		string $value
 	);
 
-	/**
-	 * @param string|mixed|array<mixed> $data
-	 * @return self
-	 */
 	final public static function from(
-		$data
+		mixed $data,
+		mixed ...$params
 	): self {
 		if ($data instanceof self) {
 			return $data;
@@ -28,7 +25,7 @@ trait StringExtractableTrait
 
 		$data = PrimitiveTypes::getString($data);
 
-		return new static($data);
+		return new static($data, ...$params);
 	}
 
 }

@@ -12,10 +12,7 @@ final class UnsignedInt implements ToStringInterface
 	use IntExtractableTrait;
 	use ToStringTrait;
 
-	/**
-	 * @var int
-	 */
-	private $value;
+	private int $value;
 
 	public function __construct(
 		int $value

@@ -12,20 +12,11 @@ final class Duration implements ToStringInterface, ToArrayInterface
 
 	use ExtractableTrait;
 
-	/**
-	 * @var int
-	 */
-	private $value;
+	private int $value;
 
-	/**
-	 * @var \SmartEmailing\Types\TimeUnit
-	 */
-	private $unit;
+	private TimeUnit $unit;
 
-	/**
-	 * @var int
-	 */
-	private $lengthInSeconds;
+	private int $lengthInSeconds;
 
 	/**
 	 * @param array<mixed> $data
@@ -42,12 +33,9 @@ final class Duration implements ToStringInterface, ToArrayInterface
 		$this->lengthInSeconds = (int) \abs($diff);
 	}
 
-	/**
-	 * @param mixed $data
-	 * @return \SmartEmailing\Types\Duration
-	 */
 	public static function from(
-		$data
+		mixed $data,
+		mixed ...$params
 	): Duration {
 		if ($data instanceof self) {
 			return $data;
@@ -85,7 +73,7 @@ final class Duration implements ToStringInterface, ToArrayInterface
 			$value *= -1;
 		}
 
-		return new static(
+		return new Duration(
 			[
 				'value' => $value,
 				'unit' => $unit->getValue(),

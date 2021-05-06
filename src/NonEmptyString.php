@@ -13,10 +13,7 @@ final class NonEmptyString implements ToStringInterface
 	use StringExtractableTrait;
 	use ToStringTrait;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
 	public function __construct(
 		string $value

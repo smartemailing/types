@@ -7,27 +7,18 @@ namespace SmartEmailing\Types;
 abstract class DatesImmutable
 {
 
-	/**
-	 * @param mixed $value
-	 * @return \DateTimeImmutable
-	 */
 	final public static function from(
-		$value
+		mixed $value
 	): \DateTimeImmutable {
 		$dateTime = Dates::from($value);
 
 		return self::immutate($dateTime);
 	}
 
-	/**
-	 * @param mixed $value
-	 * @param bool $getNullIfInvalid
-	 * @return \DateTimeImmutable
-	 */
 	public static function fromOrNull(
-		$value,
+		mixed $value,
 		bool $getNullIfInvalid = false
-	): ?\DateTimeImmutable {
+	): \DateTimeImmutable | null {
 		$dateTime = Dates::fromOrNull($value, $getNullIfInvalid);
 
 		if ($dateTime === null) {
@@ -38,13 +29,11 @@ abstract class DatesImmutable
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return \DateTimeImmutable
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
-		array &$data,
+		array | \ArrayAccess $data,
 		string $key
 	): \DateTimeImmutable {
 		$dateTime = Dates::extract(
@@ -56,16 +45,13 @@ abstract class DatesImmutable
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
-	 * @param bool $getNullIfInvalid
-	 * @return \DateTimeImmutable
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
 	 */
 	final public static function extractOrNull(
-		array &$data,
+		array | \ArrayAccess $data,
 		string $key,
 		bool $getNullIfInvalid = false
-	): ?\DateTimeImmutable {
+	): \DateTimeImmutable | null {
 		$dateTime = Dates::extractOrNull(
 			$data,
 			$key,

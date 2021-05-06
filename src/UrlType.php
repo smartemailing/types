@@ -16,10 +16,7 @@ final class UrlType implements ToStringInterface
 	use StringExtractableTrait;
 	use ToStringTrait;
 
-	/**
-	 * @var \Nette\Http\Url
-	 */
-	private $url;
+	private Url $url;
 
 	private function __construct(
 		string $value
@@ -36,9 +33,7 @@ final class UrlType implements ToStringInterface
 		// urlencode non-ascii chars
 		$value = (string) \preg_replace_callback(
 			'/[^\x20-\x7f]/',
-			static function ($match) {
-				return \urlencode($match[0]);
-			},
+			static fn ($match): string => \urlencode($match[0]),
 			$value
 		);
 
@@ -51,7 +46,7 @@ final class UrlType implements ToStringInterface
 
 		try {
 			$this->url = new Url($value);
-		} catch (InvalidArgumentException $e) {
+		} catch (InvalidArgumentException) {
 			throw new InvalidTypeException('Invalid URL or missing protocol: ' . $value);
 		}
 	}
@@ -81,30 +76,9 @@ final class UrlType implements ToStringInterface
 		return $this->getValue();
 	}
 
-	/**
-	 * @param string $name
-	 * @return string|null
-	 * @deprecated use getQueryParameter instead
-	 */
-	public function getParameter(
-		string $name
-	): ?string
-	{
-		return $this->url->getQueryParameter($name) ?? null;
-	}
-
 	public function getBaseUrl(): string
 	{
 		return $this->url->getBaseUrl();
-	}
-
-	/**
-	 * @return string
-	 * @deprecated use getValue or (string) type cast
-	 */
-	public function toString(): string
-	{
-		return (string) $this->url;
 	}
 
 	public function getScheme(): string
@@ -114,7 +88,6 @@ final class UrlType implements ToStringInterface
 
 	/**
 	 * @param array<string> $names
-	 * @return bool
 	 */
 	public function hasParameters(
 		array $names
@@ -140,13 +113,11 @@ final class UrlType implements ToStringInterface
 	}
 
 	/**
-	 * @param string $name
-	 * @param mixed|null $value
 	 * @return \SmartEmailing\Types\UrlType
 	 */
 	public function withQueryParameter(
 		string $name,
-		$value
+		mixed $value
 	): self
 	{
 		$dolly = clone $this;
@@ -159,7 +130,6 @@ final class UrlType implements ToStringInterface
 	}
 
 	/**
-	 * @param \SmartEmailing\Types\Domain $host
 	 * @return $this
 	 * @deprecated use withHostName
 	 */
@@ -211,15 +181,10 @@ final class UrlType implements ToStringInterface
 		return $dolly;
 	}
 
-	/**
-	 * @param string $name
-	 * @param mixed|null $default
-	 * @return mixed
-	 */
 	public function getQueryParameter(
 		string $name,
-		$default = null
-	)
+		mixed $default = null
+	): mixed
 	{
 		return $this->url->getQueryParameter($name) ?? $default;
 	}
@@ -231,7 +196,7 @@ final class UrlType implements ToStringInterface
 
 	private function addSlashToPathOrFail(
 		string $value
-	): ?string
+	): string | null
 	{
 		$urlParts = \parse_url($value);
 
@@ -244,7 +209,6 @@ final class UrlType implements ToStringInterface
 
 	/**
 	 * @param array<string, string|int> $urlParts
-	 * @return string
 	 */
 	private function buildUrl(
 		array $urlParts

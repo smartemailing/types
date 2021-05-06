@@ -7,27 +7,18 @@ namespace SmartEmailing\Types;
 abstract class DateTimesImmutable
 {
 
-	/**
-	 * @param mixed $value
-	 * @return \DateTimeImmutable
-	 */
 	final public static function from(
-		$value
+		mixed $value
 	): \DateTimeImmutable {
 		$dateTime = DateTimes::from($value);
 
 		return self::immutate($dateTime);
 	}
 
-	/**
-	 * @param mixed $value
-	 * @param bool $getNullIfInvalid
-	 * @return \DateTimeImmutable
-	 */
 	public static function fromOrNull(
-		$value,
+		mixed $value,
 		bool $getNullIfInvalid = false
-	): ?\DateTimeImmutable {
+	): \DateTimeImmutable | null {
 		$dateTime = DateTimes::fromOrNull($value, $getNullIfInvalid);
 
 		if ($dateTime === null) {
@@ -38,13 +29,11 @@ abstract class DateTimesImmutable
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return \DateTimeImmutable
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
-		array &$data,
+		array | \ArrayAccess $data,
 		string $key
 	): \DateTimeImmutable {
 		$dateTime = DateTimes::extract(
@@ -56,43 +45,14 @@ abstract class DateTimesImmutable
 	}
 
 	/**
-	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return \DateTimeImmutable
-	 * @throws \SmartEmailing\Types\InvalidTypeException
-	 * @deprecated Use DatesImmutable::extract
-	 */
-	final public static function extractDate(
-		array &$data,
-		string $key
-	): \DateTimeImmutable {
-		return DatesImmutable::extract($data, $key);
-	}
-
-	/**
-	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return \DateTimeImmutable|null
-	 * @deprecated Use DatesImmutable::extractDateOrNull
-	 */
-	final public static function extractDateOrNull(
-		array &$data,
-		string $key
-	): ?\DateTimeImmutable {
-		return DatesImmutable::extractOrNull($data, $key);
-	}
-
-	/**
-	 * @param array<mixed> $data
-	 * @param string $key
-	 * @param bool $getNullIfInvalid
+	 * @param array<mixed>|\ArrayAccess<string|int, mixed> $data
 	 * @return \DateTimeImmutable
 	 */
 	final public static function extractOrNull(
-		array &$data,
+		array | \ArrayAccess $data,
 		string $key,
 		bool $getNullIfInvalid = false
-	): ?\DateTimeImmutable {
+	): \DateTimeImmutable | null {
 		$dateTime = DateTimes::extractOrNull(
 			$data,
 			$key,

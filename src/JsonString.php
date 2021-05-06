@@ -14,10 +14,7 @@ final class JsonString implements ToStringInterface
 	use ExtractableTrait;
 	use ToStringTrait;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
 	private function __construct(
 		string $value
@@ -31,12 +28,12 @@ final class JsonString implements ToStringInterface
 	}
 
 	/**
-	 * @param string|mixed|array<mixed> $data
 	 * @return self
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function from(
-		$data
+		mixed $data,
+		mixed ...$params
 	): JsonString
 	{
 		if ($data instanceof self) {
@@ -59,12 +56,10 @@ final class JsonString implements ToStringInterface
 	}
 
 	/**
-	 * @param mixed $value
-	 * @param bool $oneLine
 	 * @return \SmartEmailing\Types\JsonString
 	 */
 	public static function encode(
-		$value,
+		mixed $value,
 		bool $oneLine = false
 	): self
 	{
@@ -85,10 +80,7 @@ final class JsonString implements ToStringInterface
 		return $this->value;
 	}
 
-	/**
-	 * @return mixed|array<mixed>
-	 */
-	public function getDecodedValue()
+	public function getDecodedValue(): mixed
 	{
 		return Json::decode($this->value, Json::FORCE_ARRAY);
 	}
@@ -101,7 +93,7 @@ final class JsonString implements ToStringInterface
 			Json::decode($value);
 
 			return true;
-		} catch (JsonException $e) {
+		} catch (JsonException) {
 			return false;
 		}
 	}

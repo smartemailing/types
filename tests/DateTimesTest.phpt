@@ -81,51 +81,6 @@ final class DateTimesTest extends TestCase
 		Assert::type(\DateTime::class, $d);
 	}
 
-	public function testExtractDate(): void
-	{
-		$d = DateTimes::from('2010-01-01 10:00:00');
-		$data = [
-			'a' => 'xx',
-			'b' => '2000-01-01',
-			'c' => $d,
-		];
-
-		Assert::throws(
-			static function () use ($data): void {
-				DateTimes::extractDate($data, 'a');
-			},
-			InvalidTypeException::class
-		);
-
-		Assert::throws(
-			static function () use ($data): void {
-				DateTimes::extractDate($data, 'not-key');
-			},
-			InvalidTypeException::class
-		);
-
-		$d = DateTimes::extractDate($data, 'b');
-		Assert::type(\DateTime::class, $d);
-		Assert::equal('2000-01-01 00:00:00', DateTimeFormatter::format($d));
-
-		$d = DateTimes::extractDate($data, 'c');
-		Assert::type(\DateTime::class, $d);
-		Assert::equal('2010-01-01 00:00:00', DateTimeFormatter::format($d));
-	}
-
-	public function testExtractDateOrNull(): void
-	{
-		$data = [
-			'b' => '2000-01-01',
-		];
-
-		$d = DateTimes::extractDateOrNull($data, 'not-a-key');
-		Assert::null($d);
-
-		$d = DateTimes::extractDateOrNull($data, 'b');
-		Assert::type(\DateTime::class, $d);
-	}
-
 	public function testExtractOrNull(): void
 	{
 		$d = DateTimes::from('2010-01-01 10:00:00');

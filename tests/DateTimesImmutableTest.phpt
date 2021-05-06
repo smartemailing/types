@@ -45,28 +45,6 @@ final class DateTimesImmutableTest extends TestCase
 		Assert::type(\DateTimeImmutable::class, $d);
 	}
 
-	public function testExtractDate(): void
-	{
-		$data = [
-			'b' => '2000-01-01',
-		];
-		$d = DateTimesImmutable::extractDate($data, 'b');
-		Assert::type(\DateTimeImmutable::class, $d);
-	}
-
-	public function testExtractDateOrNull(): void
-	{
-		$data = [
-			'b' => '2000-01-01',
-		];
-
-		$d = DateTimesImmutable::extractDateOrNull($data, 'not-a-key');
-		Assert::null($d);
-
-		$d = DateTimesImmutable::extractDateOrNull($data, 'b');
-		Assert::type(\DateTimeImmutable::class, $d);
-	}
-
 	public function testExtractOrNull(): void
 	{
 		$data = [

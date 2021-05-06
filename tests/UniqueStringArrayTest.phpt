@@ -127,8 +127,6 @@ final class UniqueStringArrayTest extends TestCase
 			$result->toArray()
 		);
 
-		$result->removeDuplicities();
-
 		foreach ($result as $item) {
 			Assert::type('string', $item);
 		}
