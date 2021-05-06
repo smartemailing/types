@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use Tester\Assert;
 use Tester\TestCase;
 
@@ -12,8 +11,6 @@ require __DIR__ . '/bootstrap.php';
 
 final class ZipCodeTest extends TestCase
 {
-
-	use ObjectMixinTrait;
 
 	public function test1(): void
 	{
@@ -46,6 +43,8 @@ final class ZipCodeTest extends TestCase
 		Assert::equal('WC2N5DU', ZipCode::from('WC2N 5DU')->getValue());
 
 		Assert::equal('W22LW', ZipCode::from('w2 2lw')->getValue());
+
+		Assert::equal('WC2N5DU', ZipCode::from('WC2N 5DU')->getValue());
 	}
 
 }

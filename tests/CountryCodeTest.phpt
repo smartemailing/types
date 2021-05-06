@@ -23,6 +23,7 @@ Assert::false($countryPL->equals($countryGB));
 
 $enums = CountryCode::getAvailableEnums();
 Assert::type('array', $enums);
+\print_r($enums);
 
 $values = CountryCode::getAvailableValues();
 Assert::type('array', $values);
