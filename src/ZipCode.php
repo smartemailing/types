@@ -12,7 +12,9 @@ use SmartEmailing\Types\Helpers\StringHelpers;
 final class ZipCode implements ToStringInterface
 {
 
-	use StringExtractableTrait;
+	use StringExtractableTrait {
+		extract as traitExtract;
+	}
 	use ToStringTrait;
 
 	private string $value;
@@ -56,6 +58,21 @@ final class ZipCode implements ToStringInterface
 		}
 
 		$this->value = $value;
+	}
+
+	/**
+	 * @param \ArrayAccess<string|int, mixed>|array<mixed> $data
+	 * @param int|string $key
+	 * @param \SmartEmailing\Types\CountryCode|null $countryCode
+	 * @return self
+	 */
+	public static function extract(
+        \ArrayAccess|array $data,
+        int|string $key,
+        ?CountryCode $countryCode = null
+    ): self
+	{
+		return self::traitextract($data, $key, $countryCode);
 	}
 
 	public function getValue(): string
