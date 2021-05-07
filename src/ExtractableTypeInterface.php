@@ -11,7 +11,7 @@ interface ExtractableTypeInterface
 	 * @param mixed $value
 	 * @return mixed
 	 */
-	public static function get(
+	public static function from(
 		$value
 	);
 
@@ -20,7 +20,7 @@ interface ExtractableTypeInterface
 	 * @param bool $nullIfInvalid
 	 * @return mixed
 	 */
-	public static function getOrNull(
+	public static function fromOrNull(
 		$value,
 		bool $nullIfInvalid
 	);

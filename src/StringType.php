@@ -13,7 +13,7 @@ abstract class StringType implements ExtractableTypeInterface
 	 * @param mixed $value
 	 * @return string
 	 */
-	final public static function get(
+	final public static function from(
 		$value
 	): string {
 		if (\is_scalar($value)) {
@@ -28,7 +28,7 @@ abstract class StringType implements ExtractableTypeInterface
 	 * @param bool $nullIfInvalid
 	 * @return string|null
 	 */
-	final public static function getOrNull(
+	final public static function fromOrNull(
 		$value,
 		bool $nullIfInvalid = false
 	): ?string {
@@ -37,7 +37,7 @@ abstract class StringType implements ExtractableTypeInterface
 		}
 
 		try {
-			return self::get($value);
+			return self::from($value);
 		} catch (InvalidTypeException $e) {
 			if ($nullIfInvalid) {
 				return null;
@@ -60,7 +60,7 @@ abstract class StringType implements ExtractableTypeInterface
 		$value = ExtractableHelpers::extractValue($data, $key);
 
 		try {
-			return self::get($value);
+			return self::from($value);
 		} catch (InvalidTypeException $e) {
 			throw $e->wrap($key);
 		}

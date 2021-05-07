@@ -13,7 +13,7 @@ abstract class FloatType implements ExtractableTypeInterface
 	 * @param mixed $value
 	 * @return float
 	 */
-	final public static function get(
+	final public static function from(
 		$value
 	): float {
 		if (\is_string($value)) {
@@ -37,7 +37,7 @@ abstract class FloatType implements ExtractableTypeInterface
 	 * @param bool $nullIfInvalid
 	 * @return float|null
 	 */
-	final public static function getOrNull(
+	final public static function fromOrNull(
 		$value,
 		bool $nullIfInvalid = false
 	): ?float {
@@ -46,7 +46,7 @@ abstract class FloatType implements ExtractableTypeInterface
 		}
 
 		try {
-			return self::get($value);
+			return self::from($value);
 		} catch (InvalidTypeException $e) {
 			if ($nullIfInvalid) {
 				return null;
@@ -68,7 +68,7 @@ abstract class FloatType implements ExtractableTypeInterface
 		$value = ExtractableHelpers::extractValue($data, $key);
 
 		try {
-			return self::get($value);
+			return self::from($value);
 		} catch (InvalidTypeException $e) {
 			throw $e->wrap($key);
 		}

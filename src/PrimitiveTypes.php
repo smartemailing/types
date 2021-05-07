@@ -13,25 +13,25 @@ abstract class PrimitiveTypes
 	/**
 	 * @param mixed $value
 	 * @return int
-	 * @deprecated use IntType::get
+	 * @deprecated use IntType::from
 	 */
 	final public static function getInt(
 		$value
 	): int {
-		return IntType::get($value);
+		return IntType::from($value);
 	}
 
 	/**
 	 * @param mixed $value
 	 * @param bool $nullIfInvalid
 	 * @return int|null
-	 * @deprecated use IntType::getOrNull
+	 * @deprecated use IntType::fromOrNull
 	 */
 	final public static function getIntOrNull(
 		$value,
 		bool $nullIfInvalid = false
 	): ?int {
-		return IntType::getOrNull($value, $nullIfInvalid);
+		return IntType::fromOrNull($value, $nullIfInvalid);
 	}
 
 	/**
@@ -67,25 +67,25 @@ abstract class PrimitiveTypes
 	/**
 	 * @param mixed $value
 	 * @return float
-	 * @deprecated use FloatType::get
+	 * @deprecated use FloatType::from
 	 */
 	final public static function getFloat(
 		$value
 	): float {
-		return FloatType::get($value);
+		return FloatType::from($value);
 	}
 
 	/**
 	 * @param mixed $value
 	 * @param bool $nullIfInvalid
 	 * @return float|null
-	 * @deprecated use FloatType::getOrNull
+	 * @deprecated use FloatType::fromOrNull
 	 */
 	final public static function getFloatOrNull(
 		$value,
 		bool $nullIfInvalid = false
 	): ?float {
-		return FloatType::getOrNull($value, $nullIfInvalid);
+		return FloatType::fromOrNull($value, $nullIfInvalid);
 	}
 
 	/**
@@ -120,25 +120,25 @@ abstract class PrimitiveTypes
 	/**
 	 * @param mixed $value
 	 * @return string
-	 * @deprecated use StringType::get
+	 * @deprecated use StringType::from
 	 */
 	final public static function getString(
 		$value
 	): string {
-		return StringType::get($value);
+		return StringType::from($value);
 	}
 
 	/**
 	 * @param mixed $value
 	 * @param bool $nullIfInvalid
 	 * @return string|null
-	 * @deprecated use StringType::getOrNull
+	 * @deprecated use StringType::fromOrNull
 	 */
 	final public static function getStringOrNull(
 		$value,
 		bool $nullIfInvalid = false
 	): ?string {
-		return StringType::getOrNull($value, $nullIfInvalid);
+		return StringType::fromOrNull($value, $nullIfInvalid);
 	}
 
 	/**
@@ -174,25 +174,25 @@ abstract class PrimitiveTypes
 	/**
 	 * @param mixed $value
 	 * @return bool
-	 * @deprecated use BoolType::get
+	 * @deprecated use BoolType::from
 	 */
 	final public static function getBool(
 		$value
 	): bool {
-		return BoolType::get($value);
+		return BoolType::from($value);
 	}
 
 	/**
 	 * @param mixed $value
 	 * @param bool $nullIfInvalid
 	 * @return bool|null
-	 * @deprecated use BoolType::getOrNull
+	 * @deprecated use BoolType::fromOrNull
 	 */
 	final public static function getBoolOrNull(
 		$value,
 		bool $nullIfInvalid = false
 	): ?bool {
-		return BoolType::getOrNull($value, $nullIfInvalid);
+		return BoolType::fromOrNull($value, $nullIfInvalid);
 	}
 
 	/**
@@ -228,12 +228,12 @@ abstract class PrimitiveTypes
 	/**
 	 * @param mixed $value
 	 * @return array<mixed>
-	 * @deprecated use Arrays::get instead
+	 * @deprecated use Arrays::from instead
 	 */
 	final public static function getArray(
 		$value
 	): array {
-		return Arrays::get($value);
+		return Arrays::from($value);
 	}
 
 	/**

@@ -16,12 +16,12 @@ final class BoolArrayTest extends TestCase
 	{
 		Assert::same(
 			[true, false, true, false],
-			BoolArray::get([1, 0, 'true', 'false'])
+			BoolArray::from([1, 0, 'true', 'false'])
 		);
 
 		Assert::exception(
 			static function (): void {
-				BoolArray::get([1, 0, 'true', 'not false']);
+				BoolArray::from([1, 0, 'true', 'not false']);
 			},
 			InvalidTypeException::class
 		);
@@ -29,18 +29,18 @@ final class BoolArrayTest extends TestCase
 
 	public function testGetOrNull(): void
 	{
-		Assert::same(null, BoolArray::getOrNull(null));
+		Assert::same(null, BoolArray::fromOrNull(null));
 
-		Assert::same(null, BoolArray::getOrNull(['not true'], true));
+		Assert::same(null, BoolArray::fromOrNull(['not true'], true));
 
 		Assert::same(
 			[true, false, true, false],
-			BoolArray::getOrNull([1, 0, 'true', 'false'])
+			BoolArray::fromOrNull([1, 0, 'true', 'false'])
 		);
 
 		Assert::exception(
 			static function (): void {
-				BoolArray::getOrNull([1, 0, 'true', 'not false']);
+				BoolArray::fromOrNull([1, 0, 'true', 'not false']);
 			},
 			InvalidTypeException::class
 		);

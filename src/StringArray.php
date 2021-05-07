@@ -11,15 +11,15 @@ abstract class StringArray implements ExtractableTypeInterface
 	 * @param mixed $value
 	 * @return array<string>
 	 */
-	final public static function get(
+	final public static function from(
 		$value
 	): array {
-		$array = Arrays::get($value);
+		$array = Arrays::from($value);
 
 		$return = [];
 
 		foreach ($array as $index => $item) {
-			$return[$index] = StringType::get($item);
+			$return[$index] = StringType::from($item);
 		}
 
 		return $return;
@@ -30,11 +30,11 @@ abstract class StringArray implements ExtractableTypeInterface
 	 * @param bool $nullIfInvalid
 	 * @return array<string>|null
 	 */
-	final public static function getOrNull(
+	final public static function fromOrNull(
 		$value,
 		bool $nullIfInvalid = false
 	): ?array {
-		$array = Arrays::getOrNull($value, $nullIfInvalid);
+		$array = Arrays::fromOrNull($value, $nullIfInvalid);
 
 		if ($array === null) {
 			return null;
@@ -44,7 +44,7 @@ abstract class StringArray implements ExtractableTypeInterface
 
 		try {
 			foreach ($array as $index => $item) {
-				$return[$index] = StringType::get($item);
+				$return[$index] = StringType::from($item);
 			}
 		} catch (InvalidTypeException $e) {
 			if ($nullIfInvalid) {
@@ -70,7 +70,7 @@ abstract class StringArray implements ExtractableTypeInterface
 		$array = Arrays::extract($data, $key);
 
 		try {
-			$array = self::get($array);
+			$array = self::from($array);
 		} catch (InvalidTypeException $e) {
 			throw $e->wrap($key);
 		}
@@ -96,7 +96,7 @@ abstract class StringArray implements ExtractableTypeInterface
 			return null;
 		}
 
-		return self::getOrNull($array, $nullIfInvalid);
+		return self::fromOrNull($array, $nullIfInvalid);
 	}
 
 }

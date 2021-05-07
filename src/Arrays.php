@@ -13,7 +13,7 @@ abstract class Arrays implements ExtractableTypeInterface
 	 * @param mixed $value
 	 * @return array<mixed>
 	 */
-	public static function get(
+	public static function from(
 		$value
 	): array
 	{
@@ -29,7 +29,7 @@ abstract class Arrays implements ExtractableTypeInterface
 	 * @param bool $nullIfInvalid
 	 * @return array<mixed>
 	 */
-	public static function getOrNull(
+	public static function fromOrNull(
 		$value,
 		bool $nullIfInvalid
 	): ?array
@@ -66,7 +66,7 @@ abstract class Arrays implements ExtractableTypeInterface
 		$value = ExtractableHelpers::extractValue($data, $key);
 
 		try {
-			return self::get($value);
+			return self::from($value);
 		} catch (InvalidTypeException $e) {
 			throw $e->wrap($key);
 		}
@@ -107,7 +107,7 @@ abstract class Arrays implements ExtractableTypeInterface
 	final public static function getArray(
 		$value
 	): array {
-		return self::get($value);
+		return self::from($value);
 	}
 
 	/**
@@ -120,7 +120,7 @@ abstract class Arrays implements ExtractableTypeInterface
 		$value,
 		bool $nullIfInvalid = false
 	): ?array {
-		return self::getOrNull($value, $nullIfInvalid);
+		return self::fromOrNull($value, $nullIfInvalid);
 	}
 
 	/**
@@ -166,7 +166,7 @@ abstract class Arrays implements ExtractableTypeInterface
 	final public static function getIntArray(
 		$value
 	): array {
-		return IntArray::get($value);
+		return IntArray::from($value);
 	}
 
 	/**
@@ -179,7 +179,7 @@ abstract class Arrays implements ExtractableTypeInterface
 		$value,
 		bool $nullIfInvalid = false
 	): ?array {
-		return IntArray::getOrNull($value, $nullIfInvalid);
+		return IntArray::fromOrNull($value, $nullIfInvalid);
 	}
 
 	/**
@@ -220,7 +220,7 @@ abstract class Arrays implements ExtractableTypeInterface
 	final public static function getFloatArray(
 		$value
 	): array {
-		return FloatArray::get($value);
+		return FloatArray::from($value);
 	}
 
 	/**
@@ -233,7 +233,7 @@ abstract class Arrays implements ExtractableTypeInterface
 		$value,
 		bool $nullIfInvalid = false
 	): ?array {
-		return FloatArray::getOrNull($value, $nullIfInvalid);
+		return FloatArray::fromOrNull($value, $nullIfInvalid);
 	}
 
 	/**
@@ -274,7 +274,7 @@ abstract class Arrays implements ExtractableTypeInterface
 	final public static function getStringArray(
 		$value
 	): array {
-		return StringArray::get($value);
+		return StringArray::from($value);
 	}
 
 	/**
@@ -287,7 +287,7 @@ abstract class Arrays implements ExtractableTypeInterface
 		$value,
 		bool $nullIfInvalid = false
 	): ?array {
-		return StringArray::getOrNull($value, $nullIfInvalid);
+		return StringArray::fromOrNull($value, $nullIfInvalid);
 	}
 
 	/**

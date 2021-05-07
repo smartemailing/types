@@ -14,7 +14,7 @@ abstract class BoolType implements ExtractableTypeInterface
 	 * @param mixed $value
 	 * @return bool
 	 */
-	final public static function get(
+	final public static function from(
 		$value
 	): bool {
 		if (\is_bool($value)) {
@@ -41,7 +41,7 @@ abstract class BoolType implements ExtractableTypeInterface
 	 * @param bool $nullIfInvalid
 	 * @return bool|null
 	 */
-	final public static function getOrNull(
+	final public static function fromOrNull(
 		$value,
 		bool $nullIfInvalid = false
 	): ?bool {
@@ -50,7 +50,7 @@ abstract class BoolType implements ExtractableTypeInterface
 		}
 
 		try {
-			return self::get($value);
+			return self::from($value);
 		} catch (InvalidTypeException $e) {
 			if ($nullIfInvalid) {
 				return null;
@@ -73,7 +73,7 @@ abstract class BoolType implements ExtractableTypeInterface
 		$value = ExtractableHelpers::extractValue($data, $key);
 
 		try {
-			return self::get($value);
+			return self::from($value);
 		} catch (InvalidTypeException $e) {
 			throw $e->wrap($key);
 		}

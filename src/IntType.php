@@ -14,7 +14,7 @@ abstract class IntType implements ExtractableTypeInterface
 	 * @param mixed $value
 	 * @return int
 	 */
-	final public static function get(
+	final public static function from(
 		$value
 	): int {
 		if (Validators::isNumericInt($value)) {
@@ -29,7 +29,7 @@ abstract class IntType implements ExtractableTypeInterface
 	 * @param bool $nullIfInvalid
 	 * @return int|null
 	 */
-	final public static function getOrNull(
+	final public static function fromOrNull(
 		$value,
 		bool $nullIfInvalid = false
 	): ?int {
@@ -38,7 +38,7 @@ abstract class IntType implements ExtractableTypeInterface
 		}
 
 		try {
-			return self::get($value);
+			return self::from($value);
 		} catch (InvalidTypeException $e) {
 			if ($nullIfInvalid) {
 				return null;
@@ -61,7 +61,7 @@ abstract class IntType implements ExtractableTypeInterface
 		$value = ExtractableHelpers::extractValue($data, $key);
 
 		try {
-			return self::get($value);
+			return self::from($value);
 		} catch (InvalidTypeException $e) {
 			throw $e->wrap($key);
 		}
