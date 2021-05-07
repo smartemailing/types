@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types;
 
 /**
- * @deprecated use StringType, IntType, FloatType, BoolType instead
+ * @deprecated use StringType, IntType, FloatType, BoolType, StringArray, IntArray, FloatArray, BoolArray instead
  */
 abstract class PrimitiveTypes
 {

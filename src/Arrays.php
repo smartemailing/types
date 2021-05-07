@@ -43,7 +43,7 @@ abstract class Arrays implements ExtractableTypeInterface
 		}
 
 		try {
-			return self::getArray($value);
+			return self::from($value);
 		} catch (InvalidTypeException $e) {
 			if ($nullIfInvalid) {
 				return null;

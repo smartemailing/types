@@ -20,7 +20,7 @@ trait ArrayExtractableTrait
 
 	/**
 	 * @param string|mixed|array<mixed> $data
-	 * @return self
+	 * @return static
 	 */
 	final public static function from(
 		$data
@@ -29,7 +29,7 @@ trait ArrayExtractableTrait
 			return $data;
 		}
 
-		$data = Arrays::getArray($data);
+		$data = Arrays::from($data);
 
 		return new static($data);
 	}

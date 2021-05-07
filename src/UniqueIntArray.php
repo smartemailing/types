@@ -31,7 +31,7 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInt
 
 		foreach ($data as $value) {
 			try {
-				$this->add(PrimitiveTypes::getInt($value));
+				$this->add(IntType::from($value));
 			} catch (InvalidTypeException $e) {
 				throw InvalidTypeException::typeError('all members of array to be int', $value);
 			}

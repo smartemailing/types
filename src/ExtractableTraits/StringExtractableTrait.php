@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types\ExtractableTraits;
 
-use SmartEmailing\Types\PrimitiveTypes;
+use SmartEmailing\Types\StringType;
 
 trait StringExtractableTrait
 {
@@ -17,7 +17,7 @@ trait StringExtractableTrait
 
 	/**
 	 * @param string|mixed|array<mixed> $data
-	 * @return self
+	 * @return static
 	 */
 	final public static function from(
 		$data
@@ -26,7 +26,7 @@ trait StringExtractableTrait
 			return $data;
 		}
 
-		$data = PrimitiveTypes::getString($data);
+		$data = StringType::from($data);
 
 		return new static($data);
 	}

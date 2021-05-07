@@ -6,7 +6,7 @@ namespace SmartEmailing\Types;
 
 use Nette\Utils\Arrays;
 
-abstract class Dates
+abstract class Dates implements ExtractableTypeInterface
 {
 
 	/**
@@ -35,12 +35,12 @@ abstract class Dates
 
 	/**
 	 * @param mixed $value
-	 * @param bool $getNullIfInvalid
+	 * @param bool $nullIfInvalid
 	 * @return \DateTime
 	 */
 	public static function fromOrNull(
 		$value,
-		bool $getNullIfInvalid = false
+		bool $nullIfInvalid = false
 	): ?\DateTime {
 		if ($value === null) {
 			return null;
@@ -49,7 +49,7 @@ abstract class Dates
 		try {
 			return self::from($value);
 		} catch (InvalidTypeException $e) {
-			if ($getNullIfInvalid) {
+			if ($nullIfInvalid) {
 				return null;
 			}
 
@@ -64,7 +64,7 @@ abstract class Dates
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
-		array &$data,
+		array $data,
 		string $key
 	): \DateTime {
 		$value = Arrays::get($data, $key, '');
@@ -79,19 +79,19 @@ abstract class Dates
 	/**
 	 * @param array<mixed> $data
 	 * @param string $key
-	 * @param bool $getNullIfInvalid
+	 * @param bool $nullIfInvalid
 	 * @return \DateTime
 	 */
 	final public static function extractOrNull(
-		array &$data,
+		array $data,
 		string $key,
-		bool $getNullIfInvalid = false
+		bool $nullIfInvalid = false
 	): ?\DateTime {
 		if (!isset($data[$key])) {
 			return null;
 		}
 
-		if ($getNullIfInvalid) {
+		if ($nullIfInvalid) {
 			try {
 				return self::extract($data, $key);
 			} catch (InvalidTypeException $e) {

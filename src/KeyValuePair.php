@@ -27,8 +27,8 @@ final class KeyValuePair implements ToArrayInterface
 	private function __construct(
 		array $data
 	) {
-		$this->key = PrimitiveTypes::extractString($data, 'key');
-		$this->value = PrimitiveTypes::extractString($data, 'value');
+		$this->key = StringType::extract($data, 'key');
+		$this->value = StringType::extract($data, 'value');
 	}
 
 	public function getKey(): string
