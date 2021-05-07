@@ -102,7 +102,7 @@ abstract class Arrays implements ExtractableTypeInterface
 	/**
 	 * @param mixed $value
 	 * @return array<mixed>
-	 * @deprecated use Arrays::get
+	 * @deprecated use Arrays::from
 	 */
 	final public static function getArray(
 		$value
@@ -114,7 +114,7 @@ abstract class Arrays implements ExtractableTypeInterface
 	 * @param mixed $value
 	 * @param bool $nullIfInvalid
 	 * @return array<mixed>|null
-	 * @deprecated use Arrays::getOrNull
+	 * @deprecated use Arrays::::fromOrNull
 	 */
 	final public static function getArrayOrNull(
 		$value,
@@ -161,7 +161,7 @@ abstract class Arrays implements ExtractableTypeInterface
 	/**
 	 * @param mixed $value
 	 * @return array<int>
-	 * @deprecated use IntArray::get
+	 * @deprecated use IntArray::from
 	 */
 	final public static function getIntArray(
 		$value
@@ -173,7 +173,7 @@ abstract class Arrays implements ExtractableTypeInterface
 	 * @param mixed $value
 	 * @param bool $nullIfInvalid
 	 * @return array<int>|null
-	 * @deprecated use IntArray::getOrNull
+	 * @deprecated use IntArray::::fromOrNull
 	 */
 	final public static function getIntArrayOrNull(
 		$value,
@@ -215,7 +215,7 @@ abstract class Arrays implements ExtractableTypeInterface
 	/**
 	 * @param mixed $value
 	 * @return array<float>
-	 * @deprecated use FloatArray::get
+	 * @deprecated use FloatArray::from
 	 */
 	final public static function getFloatArray(
 		$value
@@ -227,7 +227,7 @@ abstract class Arrays implements ExtractableTypeInterface
 	 * @param mixed $value
 	 * @param bool $nullIfInvalid
 	 * @return array<float>|null
-	 * @deprecated use FloatArray::getOrNull
+	 * @deprecated use FloatArray::::fromOrNull
 	 */
 	final public static function getFloatArrayOrNull(
 		$value,
@@ -269,7 +269,7 @@ abstract class Arrays implements ExtractableTypeInterface
 	/**
 	 * @param mixed $value
 	 * @return array<string>
-	 * @deprecated use StringArray::get
+	 * @deprecated use StringArray::from
 	 */
 	final public static function getStringArray(
 		$value
@@ -281,7 +281,7 @@ abstract class Arrays implements ExtractableTypeInterface
 	 * @param mixed $value
 	 * @param bool $nullIfInvalid
 	 * @return array<string>|null
-	 * @deprecated use StringArray::getOrNull
+	 * @deprecated use StringArray::::fromOrNull
 	 */
 	final public static function getStringArrayOrNull(
 		$value,
