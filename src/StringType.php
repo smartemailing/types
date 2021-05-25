@@ -48,13 +48,13 @@ abstract class StringType implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
 	 * @param string $key
 	 * @return string
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
-		array $data,
+		$data,
 		string $key
 	): string {
 		$value = ExtractableHelpers::extractValue($data, $key);
@@ -67,32 +67,27 @@ abstract class StringType implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed> $data
+	 * @param \ArrayAccess<mixed,mixed>|array<mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
 	 * @return string|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractOrNull(
-		array $data,
+		$data,
 		string $key,
 		bool $nullIfInvalid = false
 	): ?string {
-		if (
-			!isset($data[$key])
-			|| $data[$key] === ''
-		) {
+		$value = ExtractableHelpers::extractValueOrNull($data, $key);
+
+		if ($value === null || $value === '') {
 			return null;
 		}
 
 		try {
-			return self::extract($data, $key);
-		} catch (InvalidTypeException $e) {
-			if ($nullIfInvalid) {
-				return null;
-			}
-
-			throw $e;
+			return self::fromOrNull($value, $nullIfInvalid);
+		} catch (InvalidTypeException $exception) {
+			throw $exception->wrap($key);
 		}
 	}
 

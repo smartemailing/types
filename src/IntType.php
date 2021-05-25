@@ -49,13 +49,13 @@ abstract class IntType implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
 	 * @param string $key
 	 * @return int
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
-		array $data,
+		$data,
 		string $key
 	): int {
 		$value = ExtractableHelpers::extractValue($data, $key);
@@ -68,29 +68,27 @@ abstract class IntType implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
 	 * @return int
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractOrNull(
-		array $data,
+		$data,
 		string $key,
 		bool $nullIfInvalid = false
 	): ?int {
-		if (!isset($data[$key])) {
+		$value = ExtractableHelpers::extractValueOrNull($data, $key);
+
+		if ($value === null) {
 			return null;
 		}
 
 		try {
-			return self::extract($data, $key);
-		} catch (InvalidTypeException $e) {
-			if ($nullIfInvalid) {
-				return null;
-			}
-
-			throw $e;
+			return self::fromOrNull($value, $nullIfInvalid);
+		} catch (InvalidTypeException $exception) {
+			throw $exception->wrap($key);
 		}
 	}
 

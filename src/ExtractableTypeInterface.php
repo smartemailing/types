@@ -26,23 +26,23 @@ interface ExtractableTypeInterface
 	);
 
 	/**
-	 * @param array<mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @return mixed
 	 */
 	public static function extract(
-		array $data,
+		$data,
 		string $key
 	);
 
 	/**
-	 * @param array<mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
 	 * @return mixed
 	 */
 	public static function extractOrNull(
-		array $data,
+		$data,
 		string $key,
 		bool $nullIfInvalid
 	);

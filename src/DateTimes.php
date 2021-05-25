@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Nette\Utils\Arrays;
+use SmartEmailing\Types\Helpers\ExtractableHelpers;
 
 abstract class DateTimes implements ExtractableTypeInterface
 {
@@ -66,48 +66,46 @@ abstract class DateTimes implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
 	 * @param string $key
 	 * @return \DateTime
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
-		array $data,
+		$data,
 		string $key
 	): \DateTime {
-		$value = Arrays::get($data, $key, '');
+		$value = ExtractableHelpers::extractValue($data, $key);
 
 		try {
 			return self::from($value);
-		} catch (InvalidTypeException $e) {
-			throw new InvalidTypeException($key . ' -- ' . $e->getMessage());
+		} catch (InvalidTypeException $exception) {
+			throw $exception->wrap($key);
 		}
 	}
 
 	/**
-	 * @param array<mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
 	 * @return \DateTime
 	 */
 	final public static function extractOrNull(
-		array $data,
+		$data,
 		string $key,
 		bool $nullIfInvalid = false
 	): ?\DateTime {
-		if (!isset($data[$key])) {
+		$value = ExtractableHelpers::extractValueOrNull($data, $key);
+
+		if ($value === null) {
 			return null;
 		}
 
-		if ($nullIfInvalid) {
-			try {
-				return self::extract($data, $key);
-			} catch (InvalidTypeException $e) {
-				return null;
-			}
+		try {
+			return self::fromOrNull($value, $nullIfInvalid);
+		} catch (InvalidTypeException $exception) {
+			throw $exception->wrap($key);
 		}
-
-		return self::extract($data, $key);
 	}
 
 	/**

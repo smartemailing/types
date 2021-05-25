@@ -58,45 +58,49 @@ abstract class FloatArray implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
 	 * @param string $key
 	 * @return array<float>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
-		array $data,
+		$data,
 		string $key
 	): array {
-		$array = Arrays::extract($data, $key);
+		$value = Arrays::extract($data, $key);
 
 		try {
-			$array = self::from($array);
+			$value = self::from($value);
 		} catch (InvalidTypeException $e) {
 			throw $e->wrap($key);
 		}
 
-		return $array;
+		return $value;
 	}
 
 	/**
-	 * @param array<mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
 	 * @return array<float>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractOrNull(
-		array $data,
+		$data,
 		string $key,
 		bool $nullIfInvalid = false
 	): ?array {
-		$array = Arrays::extractOrNull($data, $key, $nullIfInvalid);
+		$value = Arrays::extractOrNull($data, $key, $nullIfInvalid);
 
-		if ($array === null) {
+		if ($value === null) {
 			return null;
 		}
 
-		return self::fromOrNull($array, $nullIfInvalid);
+		try {
+			return self::fromOrNull($value, $nullIfInvalid);
+		} catch (InvalidTypeException $exception) {
+			throw $exception->wrap($key);
+		}
 	}
 
 }

@@ -54,12 +54,12 @@ abstract class Arrays implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
 	 * @param string $key
 	 * @return array<mixed>
 	 */
 	public static function extract(
-		array $data,
+		$data,
 		string $key
 	): array
 	{
@@ -73,29 +73,27 @@ abstract class Arrays implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
 	 * @return array<mixed>|null
 	 */
 	public static function extractOrNull(
-		array $data,
+		$data,
 		string $key,
 		bool $nullIfInvalid = false
 	): ?array
 	{
-		if (!isset($data[$key])) {
+		$value = ExtractableHelpers::extractValueOrNull($data, $key);
+
+		if ($value === null) {
 			return null;
 		}
 
 		try {
-			return self::extract($data, $key);
-		} catch (InvalidTypeException $e) {
-			if ($nullIfInvalid) {
-				return null;
-			}
-
-			throw $e;
+			return self::fromOrNull($value, $nullIfInvalid);
+		} catch (InvalidTypeException $exception) {
+			throw $exception->wrap($key);
 		}
 	}
 
