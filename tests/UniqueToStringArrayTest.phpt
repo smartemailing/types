@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use SmartEmailing\Types\Helpers\ArrayHelpers;
 use SmartEmailing\Types\Helpers\UniqueToStringArray;
 use Tester\Assert;
@@ -14,8 +13,6 @@ require __DIR__ . '/bootstrap.php';
 
 final class UniqueToStringArrayTest extends TestCase
 {
-
-	use ObjectMixinTrait;
 
 	public function test1(): void
 	{
