@@ -13,7 +13,7 @@ trait ExtractableTrait
 {
 
 	/**
-	 * @param |mixed $data
+	 * @param mixed $data
 	 * @return static
 	 */
 	abstract public static function from(
