@@ -31,7 +31,8 @@ final class Price
 	 */
 	private function __construct(
 		array $data
-	) {
+	)
+	{
 		$this->withoutVat = PrimitiveTypes::extractFloat($data, 'without_vat');
 		$this->withVat = PrimitiveTypes::extractFloat($data, 'with_vat');
 		$this->currency = CurrencyCode::extract($data, 'currency');
@@ -50,6 +51,11 @@ final class Price
 	public function getCurrency(): CurrencyCode
 	{
 		return $this->currency;
+	}
+
+	public function calculateVatRatePercent(): float
+	{
+		return \round(($this->withVat / $this->withoutVat - 1) * 100, 3);
 	}
 
 	/**
