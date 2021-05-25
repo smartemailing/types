@@ -57,7 +57,7 @@ abstract class FloatType implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @return float
 	 */

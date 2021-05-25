@@ -54,7 +54,7 @@ abstract class Arrays implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @return array<mixed>
 	 */

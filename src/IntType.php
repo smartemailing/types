@@ -49,7 +49,7 @@ abstract class IntType implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @return int
 	 * @throws \SmartEmailing\Types\InvalidTypeException

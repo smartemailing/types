@@ -21,7 +21,7 @@ trait ExtractableTrait
 	): self;
 
 	/**
-	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @return static
 	 * @throws \SmartEmailing\Types\InvalidTypeException
@@ -71,7 +71,7 @@ trait ExtractableTrait
 	}
 
 	/**
-	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
 	 * @return static|null

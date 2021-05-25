@@ -48,7 +48,7 @@ abstract class StringType implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @return string
 	 * @throws \SmartEmailing\Types\InvalidTypeException

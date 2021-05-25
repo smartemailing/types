@@ -38,7 +38,7 @@ abstract class DatesImmutable implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @return \DateTimeImmutable
 	 * @throws \SmartEmailing\Types\InvalidTypeException
@@ -56,7 +56,7 @@ abstract class DatesImmutable implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
 	 * @return \DateTimeImmutable

@@ -58,7 +58,7 @@ abstract class FloatArray implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @return array<float>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
@@ -77,7 +77,7 @@ abstract class FloatArray implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
 	 * @return array<float>|null

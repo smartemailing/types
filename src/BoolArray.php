@@ -58,7 +58,7 @@ abstract class BoolArray implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @return array<bool>
 	 * @throws \SmartEmailing\Types\InvalidTypeException

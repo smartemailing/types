@@ -77,7 +77,7 @@ abstract class Dates implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
 	 * @return \DateTime

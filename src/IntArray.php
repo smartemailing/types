@@ -58,7 +58,7 @@ abstract class IntArray implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed>|\ArrayAccess<mixed,mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @return array<int>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
