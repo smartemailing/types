@@ -4,12 +4,15 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
+use SmartEmailing\Types\Comparable\ArrayComparableTrait;
+use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 
-final class DateTimeRange implements ToArrayInterface
+final class DateTimeRange implements ToArrayInterface, ComparableInterface
 {
 
 	use ArrayExtractableTrait;
+	use ArrayComparableTrait;
 
 	/**
 	 * @var \DateTimeImmutable

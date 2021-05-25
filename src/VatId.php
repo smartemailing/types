@@ -6,14 +6,17 @@ namespace SmartEmailing\Types;
 
 use Nette\Utils\Strings;
 use Nette\Utils\Validators;
+use SmartEmailing\Types\Comparable\ComparableInterface;
+use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 use SmartEmailing\Types\Helpers\StringHelpers;
 
-final class VatId implements ToStringInterface
+final class VatId implements ToStringInterface, ComparableInterface
 {
 
 	use ToStringTrait;
 	use StringExtractableTrait;
+	use StringComparableTrait;
 
 	/**
 	 * @var \SmartEmailing\Types\CountryCode|null

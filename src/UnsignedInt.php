@@ -4,13 +4,16 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
+use SmartEmailing\Types\Comparable\ComparableInterface;
+use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\IntExtractableTrait;
 
-final class UnsignedInt implements ToStringInterface
+final class UnsignedInt implements ToStringInterface, ComparableInterface
 {
 
 	use IntExtractableTrait;
 	use ToStringTrait;
+	use StringComparableTrait;
 
 	/**
 	 * @var int

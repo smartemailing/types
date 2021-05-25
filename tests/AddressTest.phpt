@@ -33,6 +33,14 @@ final class AddressTest extends TestCase
 			InvalidTypeException::class
 		);
 
+		Assert::true($address->equals(Address::from($data)));
+		Assert::false($address->equals(Address::from([
+			'street_and_number' => 'Netestovací 11',
+			'town' => 'Želeč',
+			'zip_code' => '391 74',
+			'country' => 'CZ',
+		])));
+
 		$address = Address::from($data);
 		Assert::type('array', $address->toArray());
 

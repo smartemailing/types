@@ -5,12 +5,15 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types;
 
 use Nette\Utils\Strings;
+use SmartEmailing\Types\Comparable\ArrayComparableTrait;
+use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\ExtractableTraits\ExtractableTrait;
 
-final class Duration implements ToStringInterface, ToArrayInterface
+final class Duration implements ToStringInterface, ToArrayInterface, ComparableInterface
 {
 
 	use ExtractableTrait;
+	use ArrayComparableTrait;
 
 	/**
 	 * @var int

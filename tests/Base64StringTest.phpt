@@ -44,6 +44,9 @@ final class Base64StringTest extends TestCase
 		$b = Base64String::encode('hello');
 		Assert::type('string', $b->getValue());
 		Assert::equal('hello', $b->getDecodedValue());
+
+		Assert::true($b->equals(Base64String::encode('hello')));
+		Assert::false($b->equals(Base64String::encode('1234')));
 	}
 
 }

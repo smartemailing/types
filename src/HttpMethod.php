@@ -4,13 +4,16 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
+use SmartEmailing\Types\Comparable\ComparableInterface;
+use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\EnumExtractableTrait;
 
-final class HttpMethod extends Enum implements ToStringInterface
+final class HttpMethod extends Enum implements ToStringInterface, ComparableInterface
 {
 
 	use EnumExtractableTrait;
 	use ToStringTrait;
+	use StringComparableTrait;
 
 	public const GET = 'GET';
 

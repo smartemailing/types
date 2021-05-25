@@ -4,16 +4,19 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
+use SmartEmailing\Types\Comparable\ArrayComparableTrait;
+use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 
 /**
  * @implements \IteratorAggregate<int>
  */
-final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInterface
+final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInterface, ComparableInterface
 {
 
 	use ArrayExtractableTrait;
 	use UniqueArrayFeatures;
+	use ArrayComparableTrait;
 
 	/**
 	 * @var array<bool>

@@ -4,12 +4,15 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
+use SmartEmailing\Types\Comparable\ArrayComparableTrait;
+use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 
-final class Price
+final class Price implements ToArrayInterface, ComparableInterface
 {
 
 	use ArrayExtractableTrait;
+	use ArrayComparableTrait;
 
 	/**
 	 * @var float

@@ -4,13 +4,16 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
+use SmartEmailing\Types\Comparable\ComparableInterface;
+use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
-final class Guid implements ToStringInterface
+final class Guid implements ToStringInterface, ComparableInterface
 {
 
 	use StringExtractableTrait;
 	use ToStringTrait;
+	use StringComparableTrait;
 
 	/**
 	 * @var string
