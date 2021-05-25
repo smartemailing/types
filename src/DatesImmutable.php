@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-abstract class DatesImmutable
+abstract class DatesImmutable implements ExtractableTypeInterface
 {
 
 	/**
@@ -21,14 +21,14 @@ abstract class DatesImmutable
 
 	/**
 	 * @param mixed $value
-	 * @param bool $getNullIfInvalid
+	 * @param bool $nullIfInvalid
 	 * @return \DateTimeImmutable
 	 */
 	public static function fromOrNull(
 		$value,
-		bool $getNullIfInvalid = false
+		bool $nullIfInvalid = false
 	): ?\DateTimeImmutable {
-		$dateTime = Dates::fromOrNull($value, $getNullIfInvalid);
+		$dateTime = Dates::fromOrNull($value, $nullIfInvalid);
 
 		if ($dateTime === null) {
 			return null;
@@ -44,7 +44,7 @@ abstract class DatesImmutable
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
-		array &$data,
+		array $data,
 		string $key
 	): \DateTimeImmutable {
 		$dateTime = Dates::extract(
@@ -58,18 +58,18 @@ abstract class DatesImmutable
 	/**
 	 * @param array<mixed> $data
 	 * @param string $key
-	 * @param bool $getNullIfInvalid
+	 * @param bool $nullIfInvalid
 	 * @return \DateTimeImmutable
 	 */
 	final public static function extractOrNull(
-		array &$data,
+		array $data,
 		string $key,
-		bool $getNullIfInvalid = false
+		bool $nullIfInvalid = false
 	): ?\DateTimeImmutable {
 		$dateTime = Dates::extractOrNull(
 			$data,
 			$key,
-			$getNullIfInvalid
+			$nullIfInvalid
 		);
 
 		if ($dateTime === null) {

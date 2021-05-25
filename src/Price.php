@@ -33,8 +33,8 @@ final class Price
 		array $data
 	)
 	{
-		$this->withoutVat = PrimitiveTypes::extractFloat($data, 'without_vat');
-		$this->withVat = PrimitiveTypes::extractFloat($data, 'with_vat');
+		$this->withoutVat = FloatType::extract($data, 'without_vat');
+		$this->withVat = FloatType::extract($data, 'with_vat');
 		$this->currency = CurrencyCode::extract($data, 'currency');
 	}
 

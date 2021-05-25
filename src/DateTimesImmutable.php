@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-abstract class DateTimesImmutable
+abstract class DateTimesImmutable implements ExtractableTypeInterface
 {
 
 	/**
@@ -21,14 +21,14 @@ abstract class DateTimesImmutable
 
 	/**
 	 * @param mixed $value
-	 * @param bool $getNullIfInvalid
+	 * @param bool $nullIfInvalid
 	 * @return \DateTimeImmutable
 	 */
 	public static function fromOrNull(
 		$value,
-		bool $getNullIfInvalid = false
+		bool $nullIfInvalid = false
 	): ?\DateTimeImmutable {
-		$dateTime = DateTimes::fromOrNull($value, $getNullIfInvalid);
+		$dateTime = DateTimes::fromOrNull($value, $nullIfInvalid);
 
 		if ($dateTime === null) {
 			return null;
@@ -44,13 +44,37 @@ abstract class DateTimesImmutable
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
-		array &$data,
+		array $data,
 		string $key
 	): \DateTimeImmutable {
 		$dateTime = DateTimes::extract(
 			$data,
 			$key
 		);
+
+		return self::immutate($dateTime);
+	}
+
+	/**
+	 * @param array<mixed> $data
+	 * @param string $key
+	 * @param bool $nullIfInvalid
+	 * @return \DateTimeImmutable
+	 */
+	final public static function extractOrNull(
+		array $data,
+		string $key,
+		bool $nullIfInvalid = false
+	): ?\DateTimeImmutable {
+		$dateTime = DateTimes::extractOrNull(
+			$data,
+			$key,
+			$nullIfInvalid
+		);
+
+		if ($dateTime === null) {
+			return null;
+		}
 
 		return self::immutate($dateTime);
 	}
@@ -80,30 +104,6 @@ abstract class DateTimesImmutable
 		string $key
 	): ?\DateTimeImmutable {
 		return DatesImmutable::extractOrNull($data, $key);
-	}
-
-	/**
-	 * @param array<mixed> $data
-	 * @param string $key
-	 * @param bool $getNullIfInvalid
-	 * @return \DateTimeImmutable
-	 */
-	final public static function extractOrNull(
-		array &$data,
-		string $key,
-		bool $getNullIfInvalid = false
-	): ?\DateTimeImmutable {
-		$dateTime = DateTimes::extractOrNull(
-			$data,
-			$key,
-			$getNullIfInvalid
-		);
-
-		if ($dateTime === null) {
-			return null;
-		}
-
-		return self::immutate($dateTime);
 	}
 
 	private static function immutate(

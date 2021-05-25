@@ -43,13 +43,13 @@ final class JsonString implements ToStringInterface
 			return $data;
 		}
 
-		$string = PrimitiveTypes::getStringOrNull($data, true);
+		$string = StringType::fromOrNull($data, true);
 
 		if (\is_string($string)) {
 			return new static($string);
 		}
 
-		$array = Arrays::getArrayOrNull($data, true);
+		$array = Arrays::fromOrNull($data, true);
 
 		if (\is_array($array)) {
 			return self::encode($data);

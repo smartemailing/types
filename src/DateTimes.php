@@ -6,7 +6,7 @@ namespace SmartEmailing\Types;
 
 use Nette\Utils\Arrays;
 
-abstract class DateTimes
+abstract class DateTimes implements ExtractableTypeInterface
 {
 
 	/**
@@ -43,12 +43,12 @@ abstract class DateTimes
 
 	/**
 	 * @param mixed $value
-	 * @param bool $getNullIfInvalid
+	 * @param bool $nullIfInvalid
 	 * @return \DateTime
 	 */
 	public static function fromOrNull(
 		$value,
-		bool $getNullIfInvalid = false
+		bool $nullIfInvalid = false
 	): ?\DateTime {
 		if ($value === null) {
 			return null;
@@ -57,7 +57,7 @@ abstract class DateTimes
 		try {
 			return self::from($value);
 		} catch (InvalidTypeException $e) {
-			if ($getNullIfInvalid) {
+			if ($nullIfInvalid) {
 				return null;
 			}
 
@@ -72,7 +72,7 @@ abstract class DateTimes
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
-		array &$data,
+		array $data,
 		string $key
 	): \DateTime {
 		$value = Arrays::get($data, $key, '');
@@ -82,6 +82,32 @@ abstract class DateTimes
 		} catch (InvalidTypeException $e) {
 			throw new InvalidTypeException($key . ' -- ' . $e->getMessage());
 		}
+	}
+
+	/**
+	 * @param array<mixed> $data
+	 * @param string $key
+	 * @param bool $nullIfInvalid
+	 * @return \DateTime
+	 */
+	final public static function extractOrNull(
+		array $data,
+		string $key,
+		bool $nullIfInvalid = false
+	): ?\DateTime {
+		if (!isset($data[$key])) {
+			return null;
+		}
+
+		if ($nullIfInvalid) {
+			try {
+				return self::extract($data, $key);
+			} catch (InvalidTypeException $e) {
+				return null;
+			}
+		}
+
+		return self::extract($data, $key);
 	}
 
 	/**
@@ -109,32 +135,6 @@ abstract class DateTimes
 		string $key
 	): ?\DateTime {
 		return Dates::extractOrNull($data, $key);
-	}
-
-	/**
-	 * @param array<mixed> $data
-	 * @param string $key
-	 * @param bool $getNullIfInvalid
-	 * @return \DateTime
-	 */
-	final public static function extractOrNull(
-		array &$data,
-		string $key,
-		bool $getNullIfInvalid = false
-	): ?\DateTime {
-		if (!isset($data[$key])) {
-			return null;
-		}
-
-		if ($getNullIfInvalid) {
-			try {
-				return self::extract($data, $key);
-			} catch (InvalidTypeException $e) {
-				return null;
-			}
-		}
-
-		return self::extract($data, $key);
 	}
 
 }

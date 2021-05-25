@@ -31,7 +31,7 @@ final class UniqueStringArray implements \Countable, \IteratorAggregate, ToArray
 
 		foreach ($data as $value) {
 			try {
-				$this->add(PrimitiveTypes::getString($value));
+				$this->add(StringType::from($value));
 			} catch (InvalidTypeException $e) {
 				throw InvalidTypeException::typeError('all members of array to be string', $value);
 			}

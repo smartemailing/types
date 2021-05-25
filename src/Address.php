@@ -37,8 +37,8 @@ final class Address
 	private function __construct(
 		array $data
 	) {
-		$this->streetAndNumber = PrimitiveTypes::extractString($data, 'street_and_number');
-		$this->town = PrimitiveTypes::extractString($data, 'town');
+		$this->streetAndNumber = StringType::extract($data, 'street_and_number');
+		$this->town = StringType::extract($data, 'town');
 		$this->zipCode = ZipCode::extract($data, 'zip_code');
 		$this->country = CountryCode::extract($data, 'country');
 	}

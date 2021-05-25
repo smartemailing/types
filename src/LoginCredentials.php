@@ -27,8 +27,8 @@ final class LoginCredentials
 	private function __construct(
 		array $data
 	) {
-		$this->login = PrimitiveTypes::extractString($data, 'login');
-		$this->password = PrimitiveTypes::extractString($data, 'password');
+		$this->login = StringType::extract($data, 'login');
+		$this->password = StringType::extract($data, 'password');
 	}
 
 	public function getLogin(): string

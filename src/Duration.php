@@ -33,7 +33,7 @@ final class Duration implements ToStringInterface, ToArrayInterface
 	private function __construct(
 		array $data
 	) {
-		$this->value = PrimitiveTypes::extractInt($data, 'value');
+		$this->value = IntType::extract($data, 'value');
 		$this->unit = TimeUnit::extract($data, 'unit');
 
 		$now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
@@ -53,13 +53,13 @@ final class Duration implements ToStringInterface, ToArrayInterface
 			return $data;
 		}
 
-		$string = PrimitiveTypes::getStringOrNull($data, true);
+		$string = StringType::fromOrNull($data, true);
 
 		if (\is_string($string)) {
 			return self::fromDateTimeModify($string);
 		}
 
-		$array = Arrays::getArrayOrNull($data, true);
+		$array = Arrays::fromOrNull($data, true);
 
 		if (\is_array($array)) {
 			return new self($data);
@@ -78,7 +78,7 @@ final class Duration implements ToStringInterface, ToArrayInterface
 			throw new InvalidTypeException('Duration: ' . $dateTimeModify . '  is not in valid duration format.');
 		}
 
-		$value = PrimitiveTypes::extractInt($matches, '2');
+		$value = IntType::extract($matches, '2');
 		$unit = TimeUnit::extract($matches, '3');
 
 		if ($matches[1] === '-') {
