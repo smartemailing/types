@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Consistence\Type\ObjectMixinTrait;
 use Tester\Assert;
 use Tester\TestCase;
 
@@ -12,8 +11,6 @@ require __DIR__ . '/bootstrap.php';
 
 final class PriceTest extends TestCase
 {
-
-	use ObjectMixinTrait;
 
 	public function test1(): void
 	{
@@ -38,6 +35,21 @@ final class PriceTest extends TestCase
 			},
 			InvalidTypeException::class
 		);
+	}
+
+	public function test2(): void
+	{
+		$data = [
+			'with_vat' => 242,
+			'without_vat' => 200,
+			'currency' => CurrencyCode::CZK,
+		];
+
+		$price = Price::from($data);
+
+		$vatRate = $price->calculateVatRatePercent();
+
+		Assert::equal(21.0, $vatRate);
 	}
 
 }
