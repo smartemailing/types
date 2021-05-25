@@ -70,12 +70,10 @@ abstract class FloatArray implements ExtractableTypeInterface
 		$value = Arrays::extract($data, $key);
 
 		try {
-			$value = self::from($value);
+			return self::from($value);
 		} catch (InvalidTypeException $e) {
 			throw $e->wrap($key);
 		}
-
-		return $value;
 	}
 
 	/**
