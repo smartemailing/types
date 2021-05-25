@@ -81,7 +81,7 @@ abstract class Arrays implements ExtractableTypeInterface
 	public static function extractOrNull(
 		array $data,
 		string $key,
-		bool $nullIfInvalid
+		bool $nullIfInvalid = false
 	): ?array
 	{
 		if (!isset($data[$key])) {

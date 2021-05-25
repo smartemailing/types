@@ -752,79 +752,104 @@ Represents Relation or Gate - AND / OR
 
 ## Primitive types and Arrays
 
-Types are able to get and extract primitives using `PrimitiveTypes` class. See examples below:
+Types are able to get and extract primitives using `IntType`, `IntArray`, `FloatType`, `FloatArray`, `StringType`, `StringArray`, `BoolType`, `BoolArray` and `Array` classes. See examples below:
 
 ```php
 <?php
 
 declare(strict_types = 1);
 
-use SmartEmailing\Types\PrimitiveTypes;
 use SmartEmailing\Types\Arrays;
+use SmartEmailing\Types\BoolArray;
+use SmartEmailing\Types\BoolType;
+use SmartEmailing\Types\FloatArray;
+use SmartEmailing\Types\FloatType;
+use SmartEmailing\Types\IntArray;
+use SmartEmailing\Types\IntType;
+use SmartEmailing\Types\StringArray;
+use SmartEmailing\Types\StringType;
 
-PrimitiveTypes::getInt(666); // 666
-PrimitiveTypes::getInt('666'); // 666
-PrimitiveTypes::getInt(666.1); // throws InvalidTypeException
-PrimitiveTypes::getInt('abcd'); // throws InvalidTypeException
-PrimitiveTypes::getInt('abcd'); // throws InvalidTypeException
-PrimitiveTypes::getIntOrNull(null); // null
-PrimitiveTypes::getIntOrNull(1); // 1
-PrimitiveTypes::getIntOrNull('abcd'); // throws InvalidTypeException
-PrimitiveTypes::getIntOrNull('abcd', true); // null
+IntType::from(666); // 666
+IntType::from('666'); // 666
+IntType::from(666.1); // throws InvalidTypeException
+IntType::from('abcd'); // throws InvalidTypeException
+IntType::from('abcd'); // throws InvalidTypeException
+IntType::fromOrNull(null); // null
+IntType::fromOrNull(1); // 1
+IntType::fromOrNull('abcd'); // throws InvalidTypeException
+IntType::fromOrNull('abcd', true); // null
 
-PrimitiveTypes::getFloat(1.1); // 1.1
-PrimitiveTypes::getFloat('1.1'); // 1.1
-PrimitiveTypes::getFloat(1); // 1.0
-PrimitiveTypes::getFloat('1'); // 1.0
-PrimitiveTypes::getFloat('xxx'); // throws InvalidTypeException
-PrimitiveTypes::getFloatOrNull(null); // null
-PrimitiveTypes::getFloatOrNull(1.0); // 1.0
-PrimitiveTypes::getFloatOrNull('abcd'); // throws InvalidTypeException
-PrimitiveTypes::getFloatOrNull('abcd', true); // null
+FloatType::from(1.1); // 1.1
+FloatType::from('1.1'); // 1.1
+FloatType::from(1); // 1.0
+FloatType::from('1'); // 1.0
+FloatType::from('xxx'); // throws InvalidTypeException
+FloatType::fromOrNull(null); // null
+FloatType::fromOrNull(1.0); // 1.0
+FloatType::fromOrNull('abcd'); // throws InvalidTypeException
+FloatType::fromOrNull('abcd', true); // null
 
-PrimitiveTypes::getString('xxx'); // 'xxx'
-PrimitiveTypes::getString(5); // '5'
-PrimitiveTypes::getString(5.0); // '5'
-PrimitiveTypes::getString(5.1); // '5.1'
-PrimitiveTypes::getStringOrNull(null); // null
-PrimitiveTypes::getStringOrNull('abcd'); // 'abcd'
-PrimitiveTypes::getStringOrNull([]); // throws InvalidTypeException
-PrimitiveTypes::getStringOrNull([], true); // null
+StringType::from('xxx'); // 'xxx'
+StringType::from(5); // '5'
+StringType::from(5.0); // '5'
+StringType::from(5.1); // '5.1'
+StringType::fromOrNull(null); // null
+StringType::fromOrNull('abcd'); // 'abcd'
+StringType::fromOrNull([]); // throws InvalidTypeException
+StringType::fromOrNull([], true); // null
 
-Arrays::getArray([1, 2]); // [1, 2]
-Arrays::getArray([1, 'abcd']); // [1, 'abcd']
-Arrays::getIntArray([1, '2']); // [1, 2]
-Arrays::getIntArrayOrNull([1, '2']); // returns int[]|null
-Arrays::getFloatArray([1, '2']); // [1.0, 2.0]
-Arrays::getFloatArrayOrNull([1, '2']); // returns float[]|null
-Arrays::getStringArray([1, '2']); // ['1', '2']
-Arrays::getStringArrayOrNull([1, '2']); // returns string[]|null
+BoolType::from(true); // true
+BoolType::from(false); // false
+BoolType::from(1); // true
+BoolType::from(0); // false
+BoolType::from('1'); // true
+BoolType::from('0'); // false
+BoolType::from('true'); // true
+BoolType::from('false'); // false
 
-// All PrimitiveTypes::get* methods have their extract equivalent:
+Arrays::from([1, 2]); // [1, 2]
+Arrays::from([1, 'abcd']); // [1, 'abcd']
 
-PrimitiveTypes::extractInt($data, 'key');
-PrimitiveTypes::extractIntOrNull($data, 'key');
-PrimitiveTypes::extractIntOrNull($data, 'key', true);
+IntArray::from([1, '2']); // [1, 2]
+IntArray::fromOrNull([1, '2']); // returns int[]|null
 
-PrimitiveTypes::extractString($data, 'key');
-PrimitiveTypes::extractStringOrNull($data, 'key');
-PrimitiveTypes::extractStringOrNull($data, 'key', true);
+FloatArray::from([1, '2']); // [1.0, 2.0]
+FloatArray::fromOrNull([1, '2']); // returns float[]|null
 
-PrimitiveTypes::extractFloat($data, 'key');
-PrimitiveTypes::extractFloatOrNull($data, 'key');
-PrimitiveTypes::extractFloatOrNull($data, 'key', true);
+StringArray::from([1, '2']); // ['1', '2']
+StringArray::fromOrNull([1, '2']); // returns string[]|null
 
-Arrays::extractArray($data, 'key'); //returns mixed[]
-Arrays::extractArrayOrNull($data, 'key'); //returns mixed[]|null
+BoolArray::from([1, '1']); // [true, true]
+BoolArray::fromOrNull([1, '1']); // returns bool[]|null
 
-Arrays::extractIntArray($data, 'key'); //returns int[]
-Arrays::extractIntArrayOrNull($data, 'key'); //returns int[]|null
+// All primitive types have their extract equivalent:
 
-Arrays::extractFloatArray($data, 'key'); //returns float[]
-Arrays::extractFloatArrayOrNull($data, 'key'); //returns float[]|null
+IntType::extract($data, 'key');
+IntType::extractOrNull($data, 'key');
+IntType::extractOrNull($data, 'key', true);
 
-Arrays::extractStringArray($data, 'key'); //returns string[]
-Arrays::extractStringArrayOrNull($data, 'key'); //returns string[]|null
+StringType::extract($data, 'key');
+StringType::extractOrNull($data, 'key');
+StringType::extractOrNull($data, 'key', true);
+
+FloatType::extract($data, 'key');
+FloatType::extractOrNull($data, 'key');
+FloatType::extractOrNull($data, 'key', true);
+
+Arrays::extract($data, 'key'); //returns mixed[]
+Arrays::extractOrNull($data, 'key'); //returns mixed[]|null
+
+IntArray::extract($data, 'key'); //returns int[]
+IntArray::extractOrNull($data, 'key'); //returns int[]|null
+
+FloatArray::extract($data, 'key'); //returns float[]
+FloatArray::extractOrNull($data, 'key'); //returns float[]|null
+
+StringArray::extract($data, 'key'); //returns string[]
+StringArray::extractOrNull($data, 'key'); //returns string[]|null
+
+BoolArray::extract($data, 'key'); //returns bool[]
+BoolArray::extractOrNull($data, 'key'); //returns bool[]|null
 
 ```
 
