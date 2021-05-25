@@ -183,8 +183,6 @@ $emailaddress
 	= Emailaddress::extractOrNull($input, 'not_existing_key', true) 
 	?? Emailaddress::from('default@domain.com'); 
 	// uses null coalescing operator to assign default value if key not present or null or invalid
-
-
 ```
 
 ## String-extractable types
@@ -692,6 +690,7 @@ All Enum-extractable types share following features:
 - `equalsValue(string $value): self` Returns `true` if parent contains the same value as `$value`.
 
 Enums can be created using standard extractors or using their constants:
+
 ```php
 CurrencyCode::from(
 	CurrencyCode::EUR
@@ -768,6 +767,7 @@ use SmartEmailing\Types\IntArray;
 use SmartEmailing\Types\IntType;
 use SmartEmailing\Types\StringArray;
 use SmartEmailing\Types\StringType;
+use SmartEmailing\Types\InvalidTypeException;
 
 IntType::from(666); // 666
 IntType::from('666'); // 666
