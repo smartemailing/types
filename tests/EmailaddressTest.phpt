@@ -31,7 +31,6 @@ final class EmailaddressTest extends TestCase
 		];
 
 		foreach ($invalidValues as $invalidValue) {
-			echo 'Testing: ' . $invalidValue . \PHP_EOL;
 			Assert::throws(
 				static function () use ($invalidValue): void {
 					Emailaddress::from($invalidValue);
@@ -42,7 +41,6 @@ final class EmailaddressTest extends TestCase
 		}
 
 		foreach ($invalidValues as $invalidValue) {
-			echo 'Testing: ' . $invalidValue . \PHP_EOL;
 			Assert::throws(
 				static function () use ($invalidValue): void {
 					Emailaddress::extract(['email' => $invalidValue], 'email');
@@ -62,7 +60,6 @@ final class EmailaddressTest extends TestCase
 		];
 
 		foreach ($validValues as $validValue) {
-			echo 'Testing: ' . $validValue . \PHP_EOL;
 			$emailaddress = Emailaddress::from($validValue);
 			Assert::type(Emailaddress::class, $emailaddress);
 		}
