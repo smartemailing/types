@@ -5,28 +5,39 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types;
 
 use Tester\Assert;
+use Tester\TestCase;
 
 require_once __DIR__ . '/bootstrap.php';
 
-$countrySK = CountryCode::from('SK');
-Assert::equal('SK', $countrySK->getValue());
+class CountryCodeTest extends TestCase
+{
 
-$countryGB = CountryCode::extractOrNull(['currency_code' => 'GB'], 'currency_code');
-Assert::equal('GB', $countryGB->getValue());
+	public function testDefaults(): void
+	{
+		$countrySK = CountryCode::from('SK');
+		Assert::equal('SK', $countrySK->getValue());
 
-$countryPL = CountryCode::extract(['currency_code' => 'PL'], 'currency_code');
-Assert::equal('PL', $countryPL->getValue());
-Assert::equal('PL', (string) $countryPL);
+		$countryGB = CountryCode::extractOrNull(['currency_code' => 'GB'], 'currency_code');
+		Assert::equal('GB', $countryGB->getValue());
 
-Assert::true($countryPL->equalsValue(CountryCode::PL));
-Assert::false($countryPL->equals($countryGB));
+		$countryPL = CountryCode::extract(['currency_code' => 'PL'], 'currency_code');
+		Assert::equal('PL', $countryPL->getValue());
+		Assert::equal('PL', (string) $countryPL);
 
-$enums = CountryCode::getAvailableEnums();
-Assert::type('array', $enums);
+		Assert::true($countryPL->equalsValue(CountryCode::PL));
+		Assert::false($countryPL->equals($countryGB));
 
-$values = CountryCode::getAvailableValues();
-Assert::type('array', $values);
+		$enums = CountryCode::getAvailableEnums();
+		Assert::type('array', $enums);
 
-$country = CountryCode::from('CZ');
-Assert::type(CountryCode::class, $country);
-Assert::type(CountryCode::class, $country);
+		$values = CountryCode::getAvailableValues();
+		Assert::type('array', $values);
+
+		$country = CountryCode::from('CZ');
+		Assert::type(CountryCode::class, $country);
+		Assert::type(CountryCode::class, $country);
+	}
+
+}
+
+(new CountryCodeTest())->run();
