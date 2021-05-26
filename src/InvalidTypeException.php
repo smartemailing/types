@@ -80,7 +80,7 @@ class InvalidTypeException extends \RuntimeException
 			. ': '
 			. $this->getMessage();
 
-		return new static($message);
+		return new static($message, $this->code, $this);
 	}
 
 	/**
