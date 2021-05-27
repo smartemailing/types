@@ -151,7 +151,7 @@ abstract class Enum
 		$value
 	): bool
 	{
-		return \in_array($value, self::getAvailableValues(), true);
+		return \in_array($value, static::getAvailableValues(), true);
 	}
 
 	protected function checkSameEnum(
