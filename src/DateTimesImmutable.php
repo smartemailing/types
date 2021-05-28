@@ -38,13 +38,13 @@ abstract class DateTimesImmutable implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @return \DateTimeImmutable
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
-		array $data,
+		$data,
 		string $key
 	): \DateTimeImmutable {
 		$dateTime = DateTimes::extract(
@@ -56,13 +56,13 @@ abstract class DateTimesImmutable implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param array<mixed> $data
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 * @param string $key
 	 * @param bool $nullIfInvalid
 	 * @return \DateTimeImmutable
 	 */
 	final public static function extractOrNull(
-		array $data,
+		$data,
 		string $key,
 		bool $nullIfInvalid = false
 	): ?\DateTimeImmutable {
