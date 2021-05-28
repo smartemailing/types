@@ -7,14 +7,17 @@ namespace SmartEmailing\Types;
 use Nette\Http\Url;
 use Nette\InvalidArgumentException;
 use Nette\Utils\Validators;
+use SmartEmailing\Types\Comparable\ComparableInterface;
+use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 use SmartEmailing\Types\Helpers\StringHelpers;
 
-final class UrlType implements ToStringInterface
+final class UrlType implements ToStringInterface, ComparableInterface
 {
 
 	use StringExtractableTrait;
 	use ToStringTrait;
+	use StringComparableTrait;
 
 	/**
 	 * @var \Nette\Http\Url

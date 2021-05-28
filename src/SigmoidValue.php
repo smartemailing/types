@@ -4,13 +4,16 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
+use SmartEmailing\Types\Comparable\ComparableInterface;
+use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\FloatExtractableTrait;
 
-final class SigmoidValue implements ToStringInterface
+final class SigmoidValue implements ToStringInterface, ComparableInterface
 {
 
 	use FloatExtractableTrait;
 	use ToStringTrait;
+	use StringComparableTrait;
 
 	/**
 	 * @var float

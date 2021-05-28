@@ -6,13 +6,16 @@ namespace SmartEmailing\Types;
 
 use Nette\Utils\Json;
 use Nette\Utils\JsonException;
+use SmartEmailing\Types\Comparable\ComparableInterface;
+use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\ExtractableTrait;
 
-final class JsonString implements ToStringInterface
+final class JsonString implements ToStringInterface, ComparableInterface
 {
 
 	use ExtractableTrait;
 	use ToStringTrait;
+	use StringComparableTrait;
 
 	/**
 	 * @var string

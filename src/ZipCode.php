@@ -5,15 +5,18 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types;
 
 use Nette\Utils\Strings;
+use SmartEmailing\Types\Comparable\ComparableInterface;
+use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 use SmartEmailing\Types\Helpers\StringHelpers;
 
 // phpcs:disable SlevomatCodingStandard.Files.LineLength.LineTooLong
-final class ZipCode implements ToStringInterface
+final class ZipCode implements ToStringInterface, ComparableInterface
 {
 
 	use StringExtractableTrait;
 	use ToStringTrait;
+	use StringComparableTrait;
 
 	/**
 	 * @var string

@@ -5,13 +5,16 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types;
 
 use Nette\Utils\Strings;
+use SmartEmailing\Types\Comparable\ComparableInterface;
+use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
-final class SwiftBic implements ToStringInterface
+final class SwiftBic implements ToStringInterface, ComparableInterface
 {
 
 	use ToStringTrait;
 	use StringExtractableTrait;
+	use StringComparableTrait;
 
 	/**
 	 * @var string

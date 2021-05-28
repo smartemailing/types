@@ -8,13 +8,16 @@ use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\RFCValidation;
 use Nette\Utils\Strings;
 use Nette\Utils\Validators;
+use SmartEmailing\Types\Comparable\ComparableInterface;
+use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
-final class Emailaddress implements ToStringInterface
+final class Emailaddress implements ToStringInterface, ComparableInterface
 {
 
 	use StringExtractableTrait;
 	use ToStringTrait;
+	use StringComparableTrait;
 
 	/**
 	 * @var string
