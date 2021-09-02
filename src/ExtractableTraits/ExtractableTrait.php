@@ -18,7 +18,7 @@ trait ExtractableTrait
 	 */
 	abstract public static function from(
 		$data
-	): self;
+	);
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
@@ -29,8 +29,7 @@ trait ExtractableTrait
 	public static function extract(
 		$data,
 		string $key
-	): self
-	{
+	) {
 		$value = ExtractableHelpers::extractValue($data, $key);
 
 		if ($value instanceof self) {
@@ -53,8 +52,7 @@ trait ExtractableTrait
 	public static function fromOrNull(
 		$value,
 		bool $getNullIfInvalid = false
-	): ?self
-	{
+	) {
 		if ($value === null) {
 			return null;
 		}
@@ -81,8 +79,7 @@ trait ExtractableTrait
 		$data,
 		string $key,
 		bool $nullIfInvalid = false
-	): ?self
-	{
+	) {
 		$value = ExtractableHelpers::extractValueOrNull($data, $key);
 
 		if ($value === null) {

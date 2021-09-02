@@ -15,7 +15,7 @@ trait EnumExtractableTrait
 	 */
 	final public static function from(
 		$data
-	): self {
+	) {
 		if ($data instanceof self) {
 			return $data;
 		}

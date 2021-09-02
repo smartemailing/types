@@ -24,7 +24,7 @@ trait ArrayExtractableTrait
 	 */
 	final public static function from(
 		$data
-	): self {
+	) {
 		if ($data instanceof self) {
 			return $data;
 		}
