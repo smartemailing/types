@@ -102,8 +102,7 @@ abstract class Enum
 
 			throw new InvalidTypeException(
 				\sprintf(
-					'%s [%s] is not a valid value for %s, accepted values: %s',
-					$value,
+					'[%s] is not a valid value for %s, accepted values: %s',
 					\gettype($value),
 					static::class,
 					\implode(', ', $availableValues)
