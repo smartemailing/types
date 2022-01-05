@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
+use Nette\Utils\Json;
 use ReflectionClass;
 use ReflectionClassConstant;
 
@@ -44,6 +45,8 @@ abstract class Enum
 		$value
 	): self
 	{
+		self::checkValue($value);
+
 		$index = \sprintf('%s::%s', static::class, self::getValueIndex($value));
 
 		if (!isset(self::$instances[$index])) {
@@ -102,7 +105,8 @@ abstract class Enum
 
 			throw new InvalidTypeException(
 				\sprintf(
-					'[%s] is not a valid value for %s, accepted values: %s',
+					'%s [%s] is not a valid value for %s, accepted values: %s',
+					\is_object($value) ? \get_class($value) : Json::encode($value),
 					\gettype($value),
 					static::class,
 					\implode(', ', $availableValues)
