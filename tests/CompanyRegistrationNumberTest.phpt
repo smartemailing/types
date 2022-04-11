@@ -43,6 +43,9 @@ final class CompanyRegistrationNumberTest extends TestCase
 			'38-4094176', // US
 			'Y3899173C', // ES
 			'CHE-266.911.092', //CH
+			'12/345/67890', //DE
+			'181/815/08155', //DE
+			'133/8150/8159', //DE
 		];
 
 		foreach ($validValues as $validValue) {
