@@ -46,6 +46,9 @@ final class CompanyRegistrationNumberTest extends TestCase
 			'12/345/67890', //DE
 			'181/815/08155', //DE
 			'133/8150/8159', //DE
+			'34562345678', //HR
+			'67845678934', //HR
+			'32145678934', //HR
 		];
 
 		foreach ($validValues as $validValue) {

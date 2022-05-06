@@ -49,7 +49,8 @@ final class CompanyRegistrationNumber implements ToStringInterface, ComparableIn
 			$this->isValidUS($value) ||
 			$this->isValidES($value) ||
 			$this->isValidCH($value) ||
-			$this->isValidDE($value);
+			$this->isValidDE($value) ||
+			$this->isValidHR($value);
 	}
 
 	private function isValidCH(
@@ -292,6 +293,18 @@ final class CompanyRegistrationNumber implements ToStringInterface, ComparableIn
 		);
 
 		return (bool) \preg_match('#^\d{2,3}\/\d{3,4}\/\d{4,5}$#', $value);
+	}
+
+	private function isValidHR(
+		string $value
+	): bool {
+		$value = (string) \preg_replace(
+			'#\s+#',
+			'',
+			$value
+		);
+
+		return (bool) \preg_match('#^\d{11}$#', $value);
 	}
 
 }
