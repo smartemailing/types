@@ -136,16 +136,13 @@ jobs:
 
     strategy:
       matrix:
-        php-version: [ '7.2', '7.3', '7.4' ]
+        php-version: [ '7.4', '8.0', '8.1' ]
         operating-system: [ 'ubuntu-latest' ]
         composer-args: [ '' ]
         include:
-          - php-version: '7.2'
+          - php-version: '7.4'
             operating-system: 'ubuntu-latest'
             composer-args: '--prefer-lowest'
-          - php-version: '8.0'
-            operating-system: 'ubuntu-latest'
-            composer-args: '--ignore-platform-reqs'
 
       fail-fast: false
 
