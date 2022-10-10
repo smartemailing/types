@@ -22,7 +22,7 @@
     "egulias/email-validator": "^3.1.1"
   },
   "require-dev": {
-    "nette/tester": "^2.3.0",
+    "nette/tester": "^2.4",
     "phpstan/phpstan": "^1.8",
     "phpstan/phpstan-nette": "^1.1",
     "slevomat/coding-standard": "^8.5",
