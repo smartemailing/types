@@ -37,6 +37,10 @@ trait UniqueArrayFeatures
 	public function split(
 		int $chunkSize
 	): array {
+		if ($chunkSize < 1) {
+			throw new \Exception('Parameter $chunkSize must be greater than 0.');
+		}
+
 		$return = [];
 		$chunks = \array_chunk(
 			$this->getValues(),

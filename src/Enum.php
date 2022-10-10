@@ -203,21 +203,20 @@ abstract class Enum
 			return;
 		}
 
-			$valueType = \gettype($value);
-			$printableValue = $value;
-
 		if (\is_object($value)) {
 			$valueType = \get_class($value);
 			$printableValue = \get_class($value);
-		}
-
-		if (\is_array($value)) {
+		} elseif (\is_array($value)) {
 			$valueType = '';
+			$printableValue = Json::encode($value);
+		} else {
+			$valueType = \gettype($value);
+			$printableValue = Json::encode($value);
 		}
 
-			throw new InvalidTypeException(
-				\sprintf('%s expected, %s [%s] given', 'int|string|float|bool|null', $printableValue, $valueType)
-			);
+		throw new InvalidTypeException(
+			\sprintf('%s expected, %s [%s] given', 'int|string|float|bool|null', $printableValue, $valueType)
+		);
 	}
 
 	/**
