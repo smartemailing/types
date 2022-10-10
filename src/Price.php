@@ -14,20 +14,11 @@ final class Price implements ToArrayInterface, ComparableInterface
 	use ArrayExtractableTrait;
 	use ArrayComparableTrait;
 
-	/**
-	 * @var float
-	 */
-	private $withoutVat;
+	private float $withoutVat;
 
-	/**
-	 * @var float
-	 */
-	private $withVat;
+	private float $withVat;
 
-	/**
-	 * @var \SmartEmailing\Types\CurrencyCode
-	 */
-	private $currency;
+	private CurrencyCode $currency;
 
 	/**
 	 * @param array<mixed> $data

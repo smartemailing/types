@@ -21,7 +21,7 @@ final class UniqueStringArray implements \Countable, \IteratorAggregate, ToArray
 	/**
 	 * @var array<bool>
 	 */
-	private $valuesPresenceMap;
+	private array $valuesPresenceMap;
 
 	/**
 	 * @param array<mixed> $data

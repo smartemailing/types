@@ -16,10 +16,7 @@ final class DomainName implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
 	private function __construct(
 		string $value

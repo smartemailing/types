@@ -17,10 +17,7 @@ final class PhoneNumber implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
 	private function __construct(
 		string $value
@@ -36,7 +33,6 @@ final class PhoneNumber implements ToStringInterface, ComparableInterface
 	}
 
 	/**
-	 * @return \SmartEmailing\Types\CountryCode
 	 * @deprecated use PhoneNumber::guessCountry()
 	 */
 	public function getCountry(): ?CountryCode
@@ -50,9 +46,7 @@ final class PhoneNumber implements ToStringInterface, ComparableInterface
 
 		\uasort(
 			$input,
-			static function (int $a, int $b) {
-				return Strings::length((string) $b) <=> Strings::length((string) $a);
-			}
+			static fn (int $a, int $b): int => Strings::length((string) $b) <=> Strings::length((string) $a)
 		);
 
 		$justNumbers = Strings::replace(

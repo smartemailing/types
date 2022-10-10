@@ -22,7 +22,6 @@ trait ExtractableTrait
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
 	 * @return static
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
@@ -45,7 +44,6 @@ trait ExtractableTrait
 
 	/**
 	 * @param mixed $value
-	 * @param bool $getNullIfInvalid
 	 * @return static|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
@@ -70,8 +68,6 @@ trait ExtractableTrait
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
 	 * @return static|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
@@ -103,7 +99,6 @@ trait ExtractableTrait
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
 	 * @return array<static>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
@@ -123,7 +118,6 @@ trait ExtractableTrait
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
 	 * @return array<static>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
@@ -189,7 +183,6 @@ trait ExtractableTrait
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
 	 * @return array<static>
 	 */
 	public static function extractArrayOfSkipInvalid(

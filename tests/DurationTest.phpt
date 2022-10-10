@@ -128,8 +128,6 @@ final class DurationTest extends TestCase
 	public function testGetDateTimeModify(): void
 	{
 		foreach ($this->getTestDateTimeModifyData() as $data) {
-			/** @var \SmartEmailing\Types\Duration $duration */
-			/** @var string $expectedDateTimeModify */
 			[$duration, $expectedDateTimeModify] = $data;
 
 			Assert::equal($expectedDateTimeModify, $duration->getDateTimeModify());
@@ -139,8 +137,6 @@ final class DurationTest extends TestCase
 	public function testToArray(): void
 	{
 		foreach ($this->getTestToArrayData() as $data) {
-			/** @var \SmartEmailing\Types\Duration $duration */
-			/** @var array $expectedArray */
 			[$duration, $expectedArray] = $data;
 
 			Assert::equal($expectedArray, $duration->toArray());
@@ -158,7 +154,10 @@ final class DurationTest extends TestCase
 	}
 
 	/**
-	 * @return array<mixed>
+	 * @return array<array{
+	 *     0: \SmartEmailing\Types\Duration,
+	 *     1: string
+	 * }>
 	 */
 	private function getTestDateTimeModifyData(): array
 	{
@@ -184,7 +183,13 @@ final class DurationTest extends TestCase
 	}
 
 	/**
-	 * @return array<mixed>
+	 * @return array<array{
+	 *     0: \SmartEmailing\Types\Duration,
+	 *     1: array{
+	 *         value: int,
+	 *         unit: string
+	 *     }
+	 * }>
 	 */
 	private function getTestToArrayData(): array
 	{

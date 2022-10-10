@@ -15,10 +15,7 @@ final class Part implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	/**
-	 * @var float
-	 */
-	private $value;
+	private float $value;
 
 	public function __construct(
 		float $value

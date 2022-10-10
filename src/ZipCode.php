@@ -18,15 +18,12 @@ final class ZipCode implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
 	/**
 	 * @var array<string>
 	 */
-	private static $patternsByCountry = [
+	private static array $patternsByCountry = [
 		CountryCode::CZ => '#^\d{3}?\d{2}\z#',
 		CountryCode::SK => '#^\d{3}?\d{2}\z#',
 		CountryCode::AT => '#^\d{4}\z#',

@@ -19,9 +19,7 @@ class InvalidTypeException extends \RuntimeException
 	}
 
 	/**
-	 * @param string $expected
 	 * @param mixed|array<mixed> $value
-	 * @return \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function typeError(
 		string $expected,
@@ -42,7 +40,6 @@ class InvalidTypeException extends \RuntimeException
 	/**
 	 * @param array<string> $expected
 	 * @param mixed|array<mixed> $value
-	 * @return \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function typesError(
 		array $expected,
@@ -85,7 +82,6 @@ class InvalidTypeException extends \RuntimeException
 
 	/**
 	 * @param mixed $value
-	 * @return string
 	 */
 	private static function getType(
 		$value
@@ -102,7 +98,6 @@ class InvalidTypeException extends \RuntimeException
 
 	/**
 	 * @param mixed $value
-	 * @return string
 	 */
 	private static function getDescription(
 		$value

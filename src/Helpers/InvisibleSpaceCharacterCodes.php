@@ -10,7 +10,7 @@ abstract class InvisibleSpaceCharacterCodes
 	/**
 	 * @var array<int>
 	 */
-	private static $codes = [
+	private static array $codes = [
 		0x9,
 		0xA,
 		0xB,

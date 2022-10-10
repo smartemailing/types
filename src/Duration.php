@@ -15,20 +15,11 @@ final class Duration implements ToStringInterface, ToArrayInterface, ComparableI
 	use ExtractableTrait;
 	use ArrayComparableTrait;
 
-	/**
-	 * @var int
-	 */
-	private $value;
+	private int $value;
 
-	/**
-	 * @var \SmartEmailing\Types\TimeUnit
-	 */
-	private $unit;
+	private TimeUnit $unit;
 
-	/**
-	 * @var int
-	 */
-	private $lengthInSeconds;
+	private int $lengthInSeconds;
 
 	/**
 	 * @param array<mixed> $data
@@ -47,7 +38,6 @@ final class Duration implements ToStringInterface, ToArrayInterface, ComparableI
 
 	/**
 	 * @param mixed $data
-	 * @return \SmartEmailing\Types\Duration
 	 */
 	public static function from(
 		$data

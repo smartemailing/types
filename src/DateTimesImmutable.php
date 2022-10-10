@@ -9,7 +9,6 @@ abstract class DateTimesImmutable implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @return \DateTimeImmutable
 	 */
 	final public static function from(
 		$value
@@ -21,8 +20,6 @@ abstract class DateTimesImmutable implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
-	 * @return \DateTimeImmutable
 	 */
 	public static function fromOrNull(
 		$value,
@@ -39,8 +36,6 @@ abstract class DateTimesImmutable implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
-	 * @return \DateTimeImmutable
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
@@ -57,9 +52,6 @@ abstract class DateTimesImmutable implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
-	 * @return \DateTimeImmutable
 	 */
 	final public static function extractOrNull(
 		$data,
@@ -81,8 +73,6 @@ abstract class DateTimesImmutable implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return \DateTimeImmutable
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated Use DatesImmutable::extract
 	 */
@@ -95,8 +85,6 @@ abstract class DateTimesImmutable implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return \DateTimeImmutable|null
 	 * @deprecated Use DatesImmutable::extractDateOrNull
 	 */
 	final public static function extractDateOrNull(

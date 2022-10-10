@@ -19,12 +19,12 @@ abstract class Enum
 	/**
 	 * @var array<static> indexed by enum and value
 	 */
-	private static $instances = [];
+	private static array $instances = [];
 
 	/**
 	 * @var array<string, mixed>
 	 */
-	private static $availableValues = [];
+	private static array $availableValues = [];
 
 	/**
 	 * @param mixed $value
@@ -75,7 +75,6 @@ abstract class Enum
 
 	/**
 	 * @param mixed $value
-	 * @return bool
 	 */
 	public function equalsValue(
 		$value
@@ -148,7 +147,6 @@ abstract class Enum
 
 	/**
 	 * @param mixed $value
-	 * @return bool
 	 */
 	public static function isValidValue(
 		$value
@@ -235,15 +233,12 @@ abstract class Enum
 
 		return \array_filter(
 			$constants,
-			static function (ReflectionClassConstant $constant) use ($className): bool {
-				return $constant->getDeclaringClass()->getName() === $className;
-			}
+			static fn (ReflectionClassConstant $constant): bool => $constant->getDeclaringClass()->getName() === $className
 		);
 	}
 
 	/**
 	 * @param mixed $value
-	 * @return string
 	 */
 	private static function getValueIndex(
 		$value
@@ -263,9 +258,7 @@ abstract class Enum
 		$declaredConstants = self::getDeclaredConstants($classReflection);
 		$declaredPublicConstants = \array_filter(
 			$declaredConstants,
-			static function (ReflectionClassConstant $constant): bool {
-				return $constant->isPublic();
-			}
+			static fn (ReflectionClassConstant $constant): bool => $constant->isPublic()
 		);
 
 		$out = [];

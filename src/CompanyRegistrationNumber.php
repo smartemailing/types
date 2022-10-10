@@ -16,10 +16,7 @@ final class CompanyRegistrationNumber implements ToStringInterface, ComparableIn
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
 	private function __construct(
 		string $value
@@ -171,8 +168,6 @@ final class CompanyRegistrationNumber implements ToStringInterface, ComparableIn
 	}
 
 	/**
-	 * @param string $value
-	 * @return bool
 	 * @see https://en.wikipedia.org/wiki/Employer_Identification_Number
 	 */
 	private function isValidUS(

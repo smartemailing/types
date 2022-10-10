@@ -18,25 +18,16 @@ final class VatId implements ToStringInterface, ComparableInterface
 	use StringExtractableTrait;
 	use StringComparableTrait;
 
-	/**
-	 * @var \SmartEmailing\Types\CountryCode|null
-	 */
-	private $country;
+	private ?CountryCode $country;
 
-	/**
-	 * @var string|null
-	 */
-	private $prefix;
+	private ?string $prefix;
 
-	/**
-	 * @var string
-	 */
-	private $vatNumber;
+	private string $vatNumber;
 
 	/**
 	 * @var array<string>
 	 */
-	private static $patternsByCountry = [
+	private static array $patternsByCountry = [
 		CountryCode::AT => 'ATU\d{8}',
 		CountryCode::BE => 'BE[0-1]\d{9}',
 		CountryCode::BG => 'BG\d{9,10}',
@@ -199,8 +190,6 @@ final class VatId implements ToStringInterface, ComparableInterface
 	}
 
 	/**
-	 * @param string $vatNumber
-	 * @return bool
 	 * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
 	 */
 	private static function isValidForNonCountry(
@@ -221,7 +210,6 @@ final class VatId implements ToStringInterface, ComparableInterface
 	}
 
 	/**
-	 * @param string $vatId
 	 * @return array<mixed>
 	 */
 	private static function extractCountryAndPrefixAndNumber(

@@ -11,7 +11,6 @@ abstract class Dates implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @return \DateTime
 	 */
 	final public static function from(
 		$value
@@ -35,8 +34,6 @@ abstract class Dates implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
-	 * @return \DateTime
 	 */
 	public static function fromOrNull(
 		$value,
@@ -59,8 +56,6 @@ abstract class Dates implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
-	 * @return \DateTime
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
@@ -78,9 +73,6 @@ abstract class Dates implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
-	 * @return \DateTime
 	 */
 	final public static function extractOrNull(
 		$data,

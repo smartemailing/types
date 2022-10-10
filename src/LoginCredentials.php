@@ -14,15 +14,9 @@ final class LoginCredentials implements ToArrayInterface, ComparableInterface
 	use ArrayExtractableTrait;
 	use ArrayComparableTrait;
 
-	/**
-	 * @var string
-	 */
-	private $login;
+	private string $login;
 
-	/**
-	 * @var string
-	 */
-	private $password;
+	private string $password;
 
 	/**
 	 * @param array<string> $data

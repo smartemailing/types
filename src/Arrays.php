@@ -26,7 +26,6 @@ abstract class Arrays implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
 	 * @return array<mixed>
 	 */
 	public static function fromOrNull(
@@ -55,7 +54,6 @@ abstract class Arrays implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
 	 * @return array<mixed>
 	 */
 	public static function extract(
@@ -74,8 +72,6 @@ abstract class Arrays implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
 	 * @return array<mixed>|null
 	 */
 	public static function extractOrNull(
@@ -110,7 +106,6 @@ abstract class Arrays implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
 	 * @return array<mixed>|null
 	 * @deprecated use Arrays::::fromOrNull
 	 */
@@ -125,7 +120,6 @@ abstract class Arrays implements ExtractableTypeInterface
 	 * Preserves keys
 	 *
 	 * @param array<mixed> $data
-	 * @param string $key
 	 * @return array<mixed>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use Arrays::extract
@@ -142,8 +136,6 @@ abstract class Arrays implements ExtractableTypeInterface
 	 * Preserves keys
 	 *
 	 * @param array<mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
 	 * @return array<mixed>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use Arrays::extractOrNull
@@ -169,7 +161,6 @@ abstract class Arrays implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
 	 * @return array<int>|null
 	 * @deprecated use IntArray::::fromOrNull
 	 */
@@ -182,7 +173,6 @@ abstract class Arrays implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
 	 * @return array<int>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use IntArray::extract
@@ -196,8 +186,6 @@ abstract class Arrays implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
 	 * @return array<int>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use IntArray::extractOrNull
@@ -223,7 +211,6 @@ abstract class Arrays implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
 	 * @return array<float>|null
 	 * @deprecated use FloatArray::::fromOrNull
 	 */
@@ -236,7 +223,6 @@ abstract class Arrays implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
 	 * @return array<float>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use FloatArray::extract
@@ -250,8 +236,6 @@ abstract class Arrays implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
 	 * @return array<float>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use FloatArray::extractOrNull
@@ -277,7 +261,6 @@ abstract class Arrays implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
 	 * @return array<string>|null
 	 * @deprecated use StringArray::::fromOrNull
 	 */
@@ -290,7 +273,6 @@ abstract class Arrays implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
 	 * @return array<string>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use StringArray::extract
@@ -304,8 +286,6 @@ abstract class Arrays implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
 	 * @return array<string>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use StringArray::extractOrNull

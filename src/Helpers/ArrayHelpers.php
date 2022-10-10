@@ -17,9 +17,7 @@ abstract class ArrayHelpers
 	final public static function collectionItemsToArray(
 		array $arrayableCollection
 	): array {
-		$toArrayCallback = static function (ToArrayInterface $toArray) {
-			return $toArray->toArray();
-		};
+		$toArrayCallback = static fn (ToArrayInterface $toArray): array => $toArray->toArray();
 
 		return \array_map(
 			$toArrayCallback,
@@ -34,9 +32,7 @@ abstract class ArrayHelpers
 	final public static function stringExtractableCollectionToArray(
 		array $stringableCollection
 	): array {
-		$toArrayCallback = static function (ToStringInterface $toString) {
-			return (string) $toString;
-		};
+		$toArrayCallback = static fn (ToStringInterface $toString): string => (string) $toString;
 
 		return \array_map(
 			$toArrayCallback,
