@@ -9,9 +9,8 @@ on:
       - 'master'
 
 env:
-  extensions: 'json'
-  cache-version: '1'
-  composer-version: 'v1'
+  php-version: '8.1'
+  php-extensions: 'json'
   composer-install: 'composer update --no-interaction --no-progress --no-suggest --prefer-dist --prefer-stable'
 
 jobs:
@@ -26,9 +25,8 @@ jobs:
       - name: 'Install PHP'
         uses: 'shivammathur/setup-php@v2'
         with:
-          php-version: '8.1'
-          extensions: '${{ env.extensions }}'
-          tools: 'composer:${{ env.composer-version }}'
+          php-version: '${{ env.php-version }}'
+          extensions: '${{ env.php-extensions }}'
 
       - name: 'Install dependencies'
         run: '${{ env.composer-install }}'
@@ -47,9 +45,8 @@ jobs:
       - name: 'Install PHP'
         uses: 'shivammathur/setup-php@v2'
         with:
-          php-version: '8.1'
-          extensions: '${{ env.extensions }}'
-          tools: 'composer:${{ env.composer-version }}'
+          php-version: '${{ env.php-version }}'
+          extensions: '${{ env.php-extensions }}'
 
       - name: 'Install dependencies'
         run: '${{ env.composer-install }}'
@@ -79,8 +76,7 @@ jobs:
         uses: 'shivammathur/setup-php@v2'
         with:
           php-version: '${{ matrix.php-version }}'
-          extensions: '${{ env.extensions }}'
-          tools: 'composer:${{ env.composer-version }}'
+          extensions: '${{ env.php-extensions }}'
 
       - name: 'Install dependencies'
         run: '${{ env.composer-install }} ${{ matrix.composer-args }}'
@@ -95,8 +91,6 @@ jobs:
     name: 'Tests with code coverage'
     runs-on: 'ubuntu-latest'
 
-    if: "github.event_name == 'push'"
-
     steps:
       - name: 'Checkout'
         uses: 'actions/checkout@v2'
@@ -104,9 +98,8 @@ jobs:
       - name: 'Install PHP'
         uses: 'shivammathur/setup-php@v2'
         with:
-          php-version: '7.4'
-          extensions: '${{ env.extensions }}'
-          tools: 'composer:${{ env.composer-version }}'
+          php-version: '${{ env.php-version }}'
+          extensions: '${{ env.php-extensions }}'
 
       - name: 'Install dependencies'
         run: '${{ env.composer-install }}'
