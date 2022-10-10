@@ -28,7 +28,7 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 	 */
 	private array $objects;
 
-	private string $type;
+	private ?string $type = null;
 
 	/**
 	 * @param array<\SmartEmailing\Types\ToStringInterface> $data
@@ -134,7 +134,7 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 	): bool {
 		$type = \get_class($valueObject);
 
-		if (!$this->type) {
+		if ($this->type === null) {
 			$this->type = $type;
 		}
 
