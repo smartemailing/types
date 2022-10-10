@@ -40,6 +40,67 @@ abstract class DateTimes implements ExtractableTypeInterface
 		);
 	}
 
+    /**
+     * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
+     * @throws \SmartEmailing\Types\InvalidTypeException
+     */
+    final public static function extract(
+        $data,
+        string $key
+    ): \DateTime {
+        $value = ExtractableHelpers::extractValue($data, $key);
+
+        try {
+            return self::from($value);
+        } catch (InvalidTypeException $exception) {
+            throw $exception->wrap($key);
+        }
+    }
+
+    /**
+     * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
+     */
+    final public static function extractOrNull(
+        $data,
+        string $key,
+        bool $nullIfInvalid = false
+    ): ?\DateTime {
+        $value = ExtractableHelpers::extractValueOrNull($data, $key);
+
+        if ($value === null) {
+            return null;
+        }
+
+        try {
+            return self::fromOrNull($value, $nullIfInvalid);
+        } catch (InvalidTypeException $exception) {
+            throw $exception->wrap($key);
+        }
+    }
+
+    /**
+     * @param array<mixed> $data
+     * @throws \SmartEmailing\Types\InvalidTypeException
+     * @deprecated Use Dates::extract
+     */
+    final public static function extractDate(
+        array &$data,
+        string $key
+    ): \DateTime {
+        return Dates::extract($data, $key);
+    }
+
+    /**
+     * @param array<mixed> $data
+     * @deprecated Use Dates::extractDateOrNull
+     */
+    final public static function extractDateOrNull(
+        array &$data,
+        string $key
+    ): ?\DateTime {
+        return Dates::extractOrNull($data, $key);
+    }
+
 	/**
 	 * @param mixed $value
 	 */
@@ -60,67 +121,6 @@ abstract class DateTimes implements ExtractableTypeInterface
 
 			throw $e;
 		}
-	}
-
-	/**
-	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @throws \SmartEmailing\Types\InvalidTypeException
-	 */
-	final public static function extract(
-		$data,
-		string $key
-	): \DateTime {
-		$value = ExtractableHelpers::extractValue($data, $key);
-
-		try {
-			return self::from($value);
-		} catch (InvalidTypeException $exception) {
-			throw $exception->wrap($key);
-		}
-	}
-
-	/**
-	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 */
-	final public static function extractOrNull(
-		$data,
-		string $key,
-		bool $nullIfInvalid = false
-	): ?\DateTime {
-		$value = ExtractableHelpers::extractValueOrNull($data, $key);
-
-		if ($value === null) {
-			return null;
-		}
-
-		try {
-			return self::fromOrNull($value, $nullIfInvalid);
-		} catch (InvalidTypeException $exception) {
-			throw $exception->wrap($key);
-		}
-	}
-
-	/**
-	 * @param array<mixed> $data
-	 * @throws \SmartEmailing\Types\InvalidTypeException
-	 * @deprecated Use Dates::extract
-	 */
-	final public static function extractDate(
-		array &$data,
-		string $key
-	): \DateTime {
-		return Dates::extract($data, $key);
-	}
-
-	/**
-	 * @param array<mixed> $data
-	 * @deprecated Use Dates::extractDateOrNull
-	 */
-	final public static function extractDateOrNull(
-		array &$data,
-		string $key
-	): ?\DateTime {
-		return Dates::extractOrNull($data, $key);
 	}
 
 }

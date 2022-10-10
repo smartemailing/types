@@ -32,6 +32,44 @@ abstract class Dates implements ExtractableTypeInterface
 		);
 	}
 
+    /**
+     * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
+     * @throws \SmartEmailing\Types\InvalidTypeException
+     */
+    final public static function extract(
+        $data,
+        string $key
+    ): \DateTime {
+        $value = ExtractableHelpers::extractValue($data, $key);
+
+        try {
+            return self::from($value);
+        } catch (InvalidTypeException $exception) {
+            throw $exception->wrap($key);
+        }
+    }
+
+    /**
+     * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
+     */
+    final public static function extractOrNull(
+        $data,
+        string $key,
+        bool $nullIfInvalid = false
+    ): ?\DateTime {
+        $value = ExtractableHelpers::extractValueOrNull($data, $key);
+
+        if ($value === null) {
+            return null;
+        }
+
+        try {
+            return self::fromOrNull($value, $nullIfInvalid);
+        } catch (InvalidTypeException $exception) {
+            throw $exception->wrap($key);
+        }
+    }
+
 	/**
 	 * @param mixed $value
 	 */
@@ -51,44 +89,6 @@ abstract class Dates implements ExtractableTypeInterface
 			}
 
 			throw $e;
-		}
-	}
-
-	/**
-	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @throws \SmartEmailing\Types\InvalidTypeException
-	 */
-	final public static function extract(
-		$data,
-		string $key
-	): \DateTime {
-		$value = ExtractableHelpers::extractValue($data, $key);
-
-		try {
-			return self::from($value);
-		} catch (InvalidTypeException $exception) {
-			throw $exception->wrap($key);
-		}
-	}
-
-	/**
-	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 */
-	final public static function extractOrNull(
-		$data,
-		string $key,
-		bool $nullIfInvalid = false
-	): ?\DateTime {
-		$value = ExtractableHelpers::extractValueOrNull($data, $key);
-
-		if ($value === null) {
-			return null;
-		}
-
-		try {
-			return self::fromOrNull($value, $nullIfInvalid);
-		} catch (InvalidTypeException $exception) {
-			throw $exception->wrap($key);
 		}
 	}
 
