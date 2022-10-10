@@ -98,7 +98,7 @@ jobs:
       - name: 'Install PHP'
         uses: 'shivammathur/setup-php@v2'
         with:
-          php-version: '${{ env.php-version }}'
+          php-version: '7.4'
           extensions: '${{ env.php-extensions }}'
 
       - name: 'Install dependencies'
