@@ -13,9 +13,7 @@ final class ContentType implements ToStringInterface, ComparableInterface
 {
 
 	use StringExtractableTrait;
-
 	use ToStringTrait;
-
 	use StringComparableTrait;
 
 	/**
