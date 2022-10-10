@@ -36,6 +36,9 @@ jobs:
           extensions: '${{ env.extensions }}'
           tools: 'composer:${{ env.composer-version }}'
 
+      - name: 'Install dependencies'
+        run: '${{ env.composer-install }}'
+
       - name: 'Coding Standard'
         run: 'bin/cs'
 
