@@ -39,9 +39,7 @@ final class ContentTypeTest extends TestCase
 
 		foreach ($invalidValues as $value) {
 			Assert::throws(
-				static function () use (
-					$value
-				): void {
+				static function () use ($value): void {
 					ContentType::from($value);
 				},
 				InvalidTypeException::class
