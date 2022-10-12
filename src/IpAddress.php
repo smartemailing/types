@@ -16,15 +16,9 @@ final class IpAddress implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
-	/**
-	 * @var int
-	 */
-	private $version;
+	private int $version;
 
 	private function __construct(
 		string $value

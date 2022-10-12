@@ -27,7 +27,6 @@ abstract class IntArray implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
 	 * @return array<int>|null
 	 */
 	final public static function fromOrNull(
@@ -59,7 +58,6 @@ abstract class IntArray implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
 	 * @return array<int>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
@@ -78,8 +76,6 @@ abstract class IntArray implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
 	 * @return array<int>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */

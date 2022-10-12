@@ -17,10 +17,7 @@ final class JsonString implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
 	private function __construct(
 		string $value
@@ -35,7 +32,6 @@ final class JsonString implements ToStringInterface, ComparableInterface
 
 	/**
 	 * @param string|mixed|array<mixed> $data
-	 * @return self
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function from(
@@ -63,8 +59,6 @@ final class JsonString implements ToStringInterface, ComparableInterface
 
 	/**
 	 * @param mixed $value
-	 * @param bool $oneLine
-	 * @return \SmartEmailing\Types\JsonString
 	 */
 	public static function encode(
 		$value,

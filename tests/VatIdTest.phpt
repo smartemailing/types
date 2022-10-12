@@ -26,7 +26,6 @@ final class VatIdTest extends TestCase
 
 	public function testIsValid(): void
 	{
-		/** @var string $vatId */
 		foreach ($this->getValidVatIds() as $vatId) {
 			Assert::true(VatId::isValid($vatId));
 		}
@@ -34,7 +33,6 @@ final class VatIdTest extends TestCase
 
 	public function testIsInvalid(): void
 	{
-		/** @var string $vatId */
 		foreach ($this->getInvalidVatIds() as $vatId) {
 			Assert::false(VatId::isValid($vatId));
 		}

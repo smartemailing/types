@@ -11,7 +11,6 @@ abstract class StringType implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @return string
 	 */
 	final public static function from(
 		$value
@@ -25,8 +24,6 @@ abstract class StringType implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
-	 * @return string|null
 	 */
 	final public static function fromOrNull(
 		$value,
@@ -49,8 +46,6 @@ abstract class StringType implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
-	 * @return string
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
@@ -68,9 +63,6 @@ abstract class StringType implements ExtractableTypeInterface
 
 	/**
 	 * @param \ArrayAccess<mixed,mixed>|array<mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
-	 * @return string|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractOrNull(

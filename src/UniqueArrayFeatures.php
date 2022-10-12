@@ -14,8 +14,6 @@ trait UniqueArrayFeatures
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return self
 	 */
 	public static function extractOrEmpty(
 		array $data,
@@ -34,12 +32,15 @@ trait UniqueArrayFeatures
 	}
 
 	/**
-	 * @param int $chunkSize
 	 * @return array<self>
 	 */
 	public function split(
 		int $chunkSize
 	): array {
+		if ($chunkSize < 1) {
+			throw new \Exception('Parameter $chunkSize must be greater than 0.');
+		}
+
 		$return = [];
 		$chunks = \array_chunk(
 			$this->getValues(),

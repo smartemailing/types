@@ -14,20 +14,11 @@ final class DateTimeRange implements ToArrayInterface, ComparableInterface
 	use ArrayExtractableTrait;
 	use ArrayComparableTrait;
 
-	/**
-	 * @var \DateTimeImmutable
-	 */
-	private $from;
+	private \DateTimeImmutable $from;
 
-	/**
-	 * @var \DateTimeImmutable
-	 */
-	private $to;
+	private \DateTimeImmutable $to;
 
-	/**
-	 * @var int
-	 */
-	private $durationInSeconds;
+	private int $durationInSeconds;
 
 	/**
 	 * @param array<mixed> $data

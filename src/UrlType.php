@@ -19,10 +19,7 @@ final class UrlType implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	/**
-	 * @var \Nette\Http\Url
-	 */
-	private $url;
+	private Url $url;
 
 	private function __construct(
 		string $value
@@ -39,9 +36,7 @@ final class UrlType implements ToStringInterface, ComparableInterface
 		// urlencode non-ascii chars
 		$value = (string) \preg_replace_callback(
 			'/[^\x20-\x7f]/',
-			static function ($match) {
-				return \urlencode($match[0]);
-			},
+			static fn ($match): string => \urlencode($match[0]),
 			$value
 		);
 
@@ -85,8 +80,6 @@ final class UrlType implements ToStringInterface, ComparableInterface
 	}
 
 	/**
-	 * @param string $name
-	 * @return string|null
 	 * @deprecated use getQueryParameter instead
 	 */
 	public function getParameter(
@@ -102,7 +95,6 @@ final class UrlType implements ToStringInterface, ComparableInterface
 	}
 
 	/**
-	 * @return string
 	 * @deprecated use getValue or (string) type cast
 	 */
 	public function toString(): string
@@ -117,7 +109,6 @@ final class UrlType implements ToStringInterface, ComparableInterface
 
 	/**
 	 * @param array<string> $names
-	 * @return bool
 	 */
 	public function hasParameters(
 		array $names
@@ -143,9 +134,7 @@ final class UrlType implements ToStringInterface, ComparableInterface
 	}
 
 	/**
-	 * @param string $name
 	 * @param mixed|null $value
-	 * @return \SmartEmailing\Types\UrlType
 	 */
 	public function withQueryParameter(
 		string $name,
@@ -162,8 +151,6 @@ final class UrlType implements ToStringInterface, ComparableInterface
 	}
 
 	/**
-	 * @param \SmartEmailing\Types\Domain $host
-	 * @return $this
 	 * @deprecated use withHostName
 	 */
 	public function withHost(
@@ -215,7 +202,6 @@ final class UrlType implements ToStringInterface, ComparableInterface
 	}
 
 	/**
-	 * @param string $name
 	 * @param mixed|null $default
 	 * @return mixed
 	 */
@@ -247,7 +233,6 @@ final class UrlType implements ToStringInterface, ComparableInterface
 
 	/**
 	 * @param array<string, string|int> $urlParts
-	 * @return string
 	 */
 	private function buildUrl(
 		array $urlParts

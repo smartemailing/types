@@ -11,7 +11,6 @@ trait ArrayComparableTrait
 
 	/**
 	 * @param mixed $that
-	 * @return bool
 	 */
 	public function equals(
 		$that

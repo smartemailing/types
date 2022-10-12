@@ -27,7 +27,6 @@ abstract class BoolArray implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
 	 * @return array<bool>|null
 	 */
 	final public static function fromOrNull(
@@ -59,7 +58,6 @@ abstract class BoolArray implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
 	 * @return array<bool>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
@@ -78,8 +76,6 @@ abstract class BoolArray implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
 	 * @return array<bool>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */

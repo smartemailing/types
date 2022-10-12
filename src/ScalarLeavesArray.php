@@ -18,7 +18,7 @@ final class ScalarLeavesArray implements ToArrayInterface, ComparableInterface
 	/**
 	 * @var array<mixed>
 	 */
-	private $data;
+	private array $data;
 
 	/**
 	 * @param array<mixed> $data
@@ -35,8 +35,6 @@ final class ScalarLeavesArray implements ToArrayInterface, ComparableInterface
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return self
 	 */
 	public static function extractOrEmpty(
 		array $data,

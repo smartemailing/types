@@ -14,15 +14,9 @@ final class KeyValuePair implements ToArrayInterface, ComparableInterface
 	use ArrayExtractableTrait;
 	use ArrayComparableTrait;
 
-	/**
-	 * @var string
-	 */
-	private $key;
+	private string $key;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
 	/**
 	 * @param array<string> $data

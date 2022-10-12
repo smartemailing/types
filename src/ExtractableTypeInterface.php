@@ -17,7 +17,6 @@ interface ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
 	 * @return mixed
 	 */
 	public static function fromOrNull(
@@ -27,7 +26,6 @@ interface ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
 	 * @return mixed
 	 */
 	public static function extract(
@@ -37,8 +35,6 @@ interface ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
 	 * @return mixed
 	 */
 	public static function extractOrNull(
