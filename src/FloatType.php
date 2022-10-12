@@ -11,7 +11,6 @@ abstract class FloatType implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @return float
 	 */
 	final public static function from(
 		$value
@@ -34,8 +33,6 @@ abstract class FloatType implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
-	 * @return float|null
 	 */
 	final public static function fromOrNull(
 		$value,
@@ -58,8 +55,6 @@ abstract class FloatType implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
-	 * @return float
 	 */
 	final public static function extract(
 		$data,
@@ -76,9 +71,6 @@ abstract class FloatType implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
-	 * @return float
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractOrNull(

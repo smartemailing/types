@@ -11,7 +11,6 @@ abstract class Dates implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @return \DateTime
 	 */
 	final public static function from(
 		$value
@@ -33,10 +32,46 @@ abstract class Dates implements ExtractableTypeInterface
 		);
 	}
 
+    /**
+     * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
+     * @throws \SmartEmailing\Types\InvalidTypeException
+     */
+    final public static function extract(
+        $data,
+        string $key
+    ): \DateTime {
+        $value = ExtractableHelpers::extractValue($data, $key);
+
+        try {
+            return self::from($value);
+        } catch (InvalidTypeException $exception) {
+            throw $exception->wrap($key);
+        }
+    }
+
+    /**
+     * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
+     */
+    final public static function extractOrNull(
+        $data,
+        string $key,
+        bool $nullIfInvalid = false
+    ): ?\DateTime {
+        $value = ExtractableHelpers::extractValueOrNull($data, $key);
+
+        if ($value === null) {
+            return null;
+        }
+
+        try {
+            return self::fromOrNull($value, $nullIfInvalid);
+        } catch (InvalidTypeException $exception) {
+            throw $exception->wrap($key);
+        }
+    }
+
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
-	 * @return \DateTime
 	 */
 	public static function fromOrNull(
 		$value,
@@ -54,49 +89,6 @@ abstract class Dates implements ExtractableTypeInterface
 			}
 
 			throw $e;
-		}
-	}
-
-	/**
-	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
-	 * @return \DateTime
-	 * @throws \SmartEmailing\Types\InvalidTypeException
-	 */
-	final public static function extract(
-		$data,
-		string $key
-	): \DateTime {
-		$value = ExtractableHelpers::extractValue($data, $key);
-
-		try {
-			return self::from($value);
-		} catch (InvalidTypeException $exception) {
-			throw $exception->wrap($key);
-		}
-	}
-
-	/**
-	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
-	 * @return \DateTime
-	 */
-	final public static function extractOrNull(
-		$data,
-		string $key,
-		bool $nullIfInvalid = false
-	): ?\DateTime {
-		$value = ExtractableHelpers::extractValueOrNull($data, $key);
-
-		if ($value === null) {
-			return null;
-		}
-
-		try {
-			return self::fromOrNull($value, $nullIfInvalid);
-		} catch (InvalidTypeException $exception) {
-			throw $exception->wrap($key);
 		}
 	}
 

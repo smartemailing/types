@@ -14,25 +14,13 @@ final class Address implements ToArrayInterface, ComparableInterface
 	use ArrayExtractableTrait;
 	use ArrayComparableTrait;
 
-	/**
-	 * @var string
-	 */
-	private $streetAndNumber;
+	private string $streetAndNumber;
 
-	/**
-	 * @var string
-	 */
-	private $town;
+	private string $town;
 
-	/**
-	 * @var \SmartEmailing\Types\ZipCode
-	 */
-	private $zipCode;
+	private ZipCode $zipCode;
 
-	/**
-	 * @var \SmartEmailing\Types\CountryCode
-	 */
-	private $country;
+	private CountryCode $country;
 
 	/**
 	 * @param array<mixed> $data

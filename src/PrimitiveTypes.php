@@ -12,7 +12,6 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param mixed $value
-	 * @return int
 	 * @deprecated use IntType::from
 	 */
 	final public static function getInt(
@@ -23,8 +22,6 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
-	 * @return int|null
 	 * @deprecated use IntType::fromOrNull
 	 */
 	final public static function getIntOrNull(
@@ -36,8 +33,6 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return int
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use IntType::extract
 	 */
@@ -50,9 +45,6 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
-	 * @return int
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use IntType::extractOrNull
 	 */
@@ -66,7 +58,6 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param mixed $value
-	 * @return float
 	 * @deprecated use FloatType::from
 	 */
 	final public static function getFloat(
@@ -77,8 +68,6 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
-	 * @return float|null
 	 * @deprecated use FloatType::fromOrNull
 	 */
 	final public static function getFloatOrNull(
@@ -90,8 +79,6 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return float
 	 * @deprecated use FloatType::extract
 	 */
 	final public static function extractFloat(
@@ -103,9 +90,6 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param array<float> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
-	 * @return float
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use FloatType::extractOrNull
 	 */
@@ -119,7 +103,6 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param mixed $value
-	 * @return string
 	 * @deprecated use StringType::from
 	 */
 	final public static function getString(
@@ -130,8 +113,6 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
-	 * @return string|null
 	 * @deprecated use StringType::fromOrNull
 	 */
 	final public static function getStringOrNull(
@@ -143,8 +124,6 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return string
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use StringType::extract
 	 */
@@ -157,9 +136,6 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
-	 * @return string|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use StringType::extractOrNull
 	 */
@@ -173,7 +149,6 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param mixed $value
-	 * @return bool
 	 * @deprecated use BoolType::from
 	 */
 	final public static function getBool(
@@ -184,8 +159,6 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
-	 * @return bool|null
 	 * @deprecated use BoolType::fromOrNull
 	 */
 	final public static function getBoolOrNull(
@@ -197,8 +170,6 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
-	 * @return bool
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use BoolType::extract
 	 */
@@ -211,9 +182,6 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
-	 * @return bool|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use BoolType::extractOrNull
 	 */
@@ -240,7 +208,6 @@ abstract class PrimitiveTypes
 	 * Preserves keys
 	 *
 	 * @param array<mixed> $data
-	 * @param string $key
 	 * @return array<mixed>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use Arrays::extract
@@ -260,8 +227,6 @@ abstract class PrimitiveTypes
 	 * Preserves keys
 	 *
 	 * @param array<mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
 	 * @return array<mixed>|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use Arrays::extractOrNull
@@ -281,7 +246,6 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
 	 * @return array<string>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use StringArray::extract
@@ -298,7 +262,6 @@ abstract class PrimitiveTypes
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
 	 * @return array<int>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use IntArray::extract

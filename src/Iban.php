@@ -19,15 +19,9 @@ final class Iban implements ToStringInterface, ComparableInterface
 	public const FORMAT_ELECTRONIC = 'electronic';
 	public const FORMAT_PRINT = 'print';
 
-	/**
-	 * @var \Iban\Validation\Iban
-	 */
-	private $iban;
+	private \Iban\Validation\Iban $iban;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
 	public function __construct(
 		string $value

@@ -15,10 +15,7 @@ final class UnsignedInt implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	/**
-	 * @var int
-	 */
-	private $value;
+	private int $value;
 
 	public function __construct(
 		int $value

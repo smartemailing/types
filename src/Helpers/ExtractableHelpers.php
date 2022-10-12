@@ -12,7 +12,6 @@ abstract class ExtractableHelpers
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed>|mixed $data
-	 * @param string $key
 	 * @return mixed
 	 */
 	final public static function extractValue(
@@ -32,7 +31,6 @@ abstract class ExtractableHelpers
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed>|mixed $data
-	 * @param string $key
 	 * @return mixed
 	 */
 	final public static function extractValueOrNull(
@@ -52,7 +50,6 @@ abstract class ExtractableHelpers
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
 	 * @return mixed
 	 */
 	private static function extractValueFromArray(
@@ -69,7 +66,6 @@ abstract class ExtractableHelpers
 
 	/**
 	 * @param \ArrayAccess<mixed, mixed> $data
-	 * @param string $key
 	 * @return mixed
 	 */
 	private static function extractValueFromArrayAccess(
@@ -86,7 +82,6 @@ abstract class ExtractableHelpers
 
 	/**
 	 * @param array<mixed> $data
-	 * @param string $key
 	 * @return mixed
 	 */
 	private static function extractValueFromArrayOrNull(
@@ -99,7 +94,6 @@ abstract class ExtractableHelpers
 
 	/**
 	 * @param \ArrayAccess<mixed, mixed> $data
-	 * @param string $key
 	 * @return mixed
 	 */
 	private static function extractValueFromArrayAccessOrNull(

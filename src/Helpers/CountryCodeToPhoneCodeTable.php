@@ -12,7 +12,7 @@ abstract class CountryCodeToPhoneCodeTable
 	/**
 	 * @var array<string,int>
 	 */
-	public static $countryCodesToPhoneCodes = [
+	public static array $countryCodesToPhoneCodes = [
 		CountryCode::AF => 93,
 		CountryCode::AL => 355,
 		CountryCode::DZ => 213,

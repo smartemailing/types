@@ -12,7 +12,6 @@ abstract class BoolType implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @return bool
 	 */
 	final public static function from(
 		$value
@@ -38,8 +37,6 @@ abstract class BoolType implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
-	 * @return bool|null
 	 */
 	final public static function fromOrNull(
 		$value,
@@ -62,8 +59,6 @@ abstract class BoolType implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
-	 * @return bool
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
@@ -81,9 +76,6 @@ abstract class BoolType implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
-	 * @return bool|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractOrNull(

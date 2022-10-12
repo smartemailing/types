@@ -12,7 +12,6 @@ abstract class IntType implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @return int
 	 */
 	final public static function from(
 		$value
@@ -26,8 +25,6 @@ abstract class IntType implements ExtractableTypeInterface
 
 	/**
 	 * @param mixed $value
-	 * @param bool $nullIfInvalid
-	 * @return int|null
 	 */
 	final public static function fromOrNull(
 		$value,
@@ -50,8 +47,6 @@ abstract class IntType implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
-	 * @return int
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
@@ -69,9 +64,6 @@ abstract class IntType implements ExtractableTypeInterface
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @param string $key
-	 * @param bool $nullIfInvalid
-	 * @return int
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractOrNull(
