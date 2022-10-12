@@ -16,20 +16,11 @@ final class ContentType implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	/**
-	 * @var string
-	 */
-	private $value;
+	private string $value;
 
-	/**
-	 * @var string
-	 */
-	private $type;
+	private string $type;
 
-	/**
-	 * @var string
-	 */
-	private $subType;
+	private string $subType;
 
 	private function __construct(
 		string $value
