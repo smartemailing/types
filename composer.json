@@ -26,7 +26,8 @@
     "phpstan/phpstan": "^1.8",
     "phpstan/phpstan-nette": "^1.1",
     "slevomat/coding-standard": "^8.5",
-    "tracy/tracy": "^2.8"
+    "tracy/tracy": "^2.8",
+    "symfony/options-resolver": "^5.4|^6.0"
   },
   "autoload": {
     "psr-4": {
