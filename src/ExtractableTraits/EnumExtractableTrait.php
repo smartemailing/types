@@ -11,7 +11,7 @@ trait EnumExtractableTrait
 
 	/**
 	 * @param mixed $data
-	 * @return static
+	 * @return self
 	 */
 	final public static function from(
 		$data

@@ -50,8 +50,7 @@ final class EnumTest extends TestCase
 
 		Assert::exception(
 			static function (): void {
-				SimpleEnum::extract(['test' => static function (): void {
-				}], 'test');
+				SimpleEnum::extract(['test' => static function (): void {}], 'test');
 			},
 			InvalidTypeException::class,
 			'Problem at key test: Closure [object] is not a valid value for SmartEmailing\Types\SimpleEnum, accepted values: test'
