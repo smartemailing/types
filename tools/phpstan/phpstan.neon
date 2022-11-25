@@ -2,7 +2,7 @@ parameters:
 	level: 8
 	fileExtensions:
 		- php
-		#- phpt
+		- phpt
 	paths:
 		- ./../../src
 		- ./../../tests
@@ -10,3 +10,4 @@ parameters:
 includes:
 	- ../../vendor/phpstan/phpstan-nette/extension.neon
 	- ../../vendor/phpstan/phpstan-nette/rules.neon
+	- ../../vendor/nepada/phpstan-nette-tester/extension.neon

@@ -18,6 +18,7 @@ class CountryCodeTest extends TestCase
 		Assert::equal('SK', $countrySK->getValue());
 
 		$countryGB = CountryCode::extractOrNull(['currency_code' => 'GB'], 'currency_code');
+		Assert::type(CountryCode::class, $countryGB);
 		Assert::equal('GB', $countryGB->getValue());
 
 		$countryPL = CountryCode::extract(['currency_code' => 'PL'], 'currency_code');

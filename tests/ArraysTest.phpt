@@ -204,7 +204,7 @@ final class ArraysTest extends TestCase
 
 		Assert::throws(
 			static function (): void {
-				Assert::null(Arrays::extractFloatArray(['floats' => [1, 'failed', 2.5]], 'floats'));
+				Arrays::extractFloatArray(['floats' => [1, 'failed', 2.5]], 'floats');
 			},
 			InvalidTypeException::class
 		);

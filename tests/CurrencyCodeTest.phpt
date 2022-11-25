@@ -21,6 +21,7 @@ final class CurrencyCodeTest extends TestCase
 		Assert::equal('EUR', $currencyEur->getValue());
 
 		$currencyCzk = CurrencyCode::extractOrNull(['currency_code' => 'CZK'], 'currency_code');
+		Assert::type(CurrencyCode::class, $currencyCzk);
 		Assert::equal('CZK', $currencyCzk->getValue());
 
 		$currencyPln = CurrencyCode::extract(['currency_code' => 'PLN'], 'currency_code');
@@ -34,8 +35,8 @@ final class CurrencyCodeTest extends TestCase
 		Assert::type('array', $enums);
 
 		$enum = \reset($enums);
-		Assert::equal('CZK', $enum->getValue());
 		Assert::type(CurrencyCode::class, $enum);
+		Assert::equal('CZK', $enum->getValue());
 
 		$values = CurrencyCode::getAvailableValues();
 		Assert::type('array', $values);

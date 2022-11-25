@@ -16,7 +16,7 @@ final class ExtractableTraitTest extends TestCase
 	{
 		Assert::throws(
 			static function (): void {
-				Emailaddress::extract('aa', 'x');
+				Emailaddress::extract(['aa'], 'x');
 			},
 			InvalidTypeException::class
 		);
@@ -135,7 +135,7 @@ final class ExtractableTraitTest extends TestCase
 		Assert::throws(
 			static function (): void {
 				$data = 'a';
-				Emailaddress::extractOrNull($data, 'a');
+				Emailaddress::extractOrNull([$data], 'a');
 			},
 			InvalidTypeException::class
 		);
