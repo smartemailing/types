@@ -23,11 +23,8 @@ abstract class IntType implements ExtractableTypeInterface
 		throw InvalidTypeException::typeError('int', $value);
 	}
 
-	/**
-	 * @param mixed $value
-	 */
 	final public static function fromOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
 	): ?int {
 		if ($value === null) {

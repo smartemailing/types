@@ -7,11 +7,8 @@ namespace SmartEmailing\Types\Comparable;
 interface ComparableInterface
 {
 
-	/**
-	 * @param mixed $that
-	 */
 	public function equals(
-		$that
+		mixed $that
 	): bool;
 
 }

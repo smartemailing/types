@@ -133,12 +133,9 @@ final class UrlType implements ToStringInterface, ComparableInterface
 		return $this->url->getQueryParameters();
 	}
 
-	/**
-	 * @param mixed|null $value
-	 */
 	public function withQueryParameter(
 		string $name,
-		$value
+		mixed $value
 	): self
 	{
 		$dolly = clone $this;
@@ -202,12 +199,11 @@ final class UrlType implements ToStringInterface, ComparableInterface
 	}
 
 	/**
-	 * @param mixed|null $default
 	 * @return mixed
 	 */
 	public function getQueryParameter(
 		string $name,
-		$default = null
+		mixed $default = null
 	)
 	{
 		return $this->url->getQueryParameter($name) ?? $default;

@@ -13,11 +13,10 @@ trait ExtractableTrait
 {
 
 	/**
-	 * @param mixed $data
 	 * @return self
 	 */
 	abstract public static function from(
-		$data
+		mixed $data
 	);
 
 	/**
@@ -43,12 +42,11 @@ trait ExtractableTrait
 	}
 
 	/**
-	 * @param mixed $value
 	 * @return self|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function fromOrNull(
-		$value,
+		mixed $value,
 		bool $getNullIfInvalid = false
 	) {
 		if ($value === null) {

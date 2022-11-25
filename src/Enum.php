@@ -26,11 +26,8 @@ abstract class Enum
 	 */
 	private static array $availableValues = [];
 
-	/**
-	 * @param mixed $value
-	 */
 	final private function __construct(
-		$value
+		mixed $value
 	)
 	{
 		static::checkValue($value);
@@ -38,11 +35,10 @@ abstract class Enum
 	}
 
 	/**
-	 * @param mixed $value
 	 * @return static
 	 */
 	final public static function get(
-		$value
+		mixed $value
 	): self
 	{
 		self::checkValue($value);
@@ -73,22 +69,18 @@ abstract class Enum
 		return $this === $that;
 	}
 
-	/**
-	 * @param mixed $value
-	 */
 	public function equalsValue(
-		$value
+		mixed $value
 	): bool
 	{
 		return $this->getValue() === $value;
 	}
 
 	/**
-	 * @param mixed $value
 	 * @throws \Exception
 	 */
 	public static function checkValue(
-		$value
+		mixed $value
 	): void
 	{
 		if (!\is_subclass_of(static::class, self::class)) {
@@ -145,11 +137,8 @@ abstract class Enum
 		return $out;
 	}
 
-	/**
-	 * @param mixed $value
-	 */
 	public static function isValidValue(
-		$value
+		mixed $value
 	): bool
 	{
 		return \in_array($value, self::getAvailableValues(), true);
@@ -192,11 +181,8 @@ abstract class Enum
 		}
 	}
 
-	/**
-	 * @param mixed $value
-	 */
 	private static function checkType(
-		$value
+		mixed $value
 	): void
 	{
 		if (\is_scalar($value) || $value === null) {
@@ -236,11 +222,8 @@ abstract class Enum
 		);
 	}
 
-	/**
-	 * @param mixed $value
-	 */
 	private static function getValueIndex(
-		$value
+		mixed $value
 	): string
 	{
 		$type = \gettype($value);

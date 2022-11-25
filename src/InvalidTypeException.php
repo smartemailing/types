@@ -18,12 +18,9 @@ class InvalidTypeException extends \RuntimeException
 		parent::__construct($message, $code, $previous);
 	}
 
-	/**
-	 * @param mixed|array<mixed> $value
-	 */
 	public static function typeError(
 		string $expected,
-		$value
+		mixed $value
 	): self {
 		$type = self::getType($value);
 		$description = self::getDescription($value);
@@ -39,11 +36,10 @@ class InvalidTypeException extends \RuntimeException
 
 	/**
 	 * @param array<string> $expected
-	 * @param mixed|array<mixed> $value
 	 */
 	public static function typesError(
 		array $expected,
-		$value
+		mixed $value
 	): self {
 		$type = self::getType($value);
 		$description = self::getDescription($value);
@@ -80,11 +76,8 @@ class InvalidTypeException extends \RuntimeException
 		return new static($message, $this->code, $this);
 	}
 
-	/**
-	 * @param mixed $value
-	 */
 	private static function getType(
-		$value
+		mixed $value
 	): string
 	{
 		$type = \gettype($value);
@@ -96,11 +89,8 @@ class InvalidTypeException extends \RuntimeException
 		return $type;
 	}
 
-	/**
-	 * @param mixed $value
-	 */
 	private static function getDescription(
-		$value
+		mixed $value
 	): string
 	{
 		$description = '';

@@ -9,11 +9,8 @@ use SmartEmailing\Types\Helpers\ExtractableHelpers;
 abstract class StringType implements ExtractableTypeInterface
 {
 
-	/**
-	 * @param mixed $value
-	 */
 	final public static function from(
-		$value
+		mixed $value
 	): string {
 		if (\is_scalar($value)) {
 			return (string) $value;
@@ -22,11 +19,8 @@ abstract class StringType implements ExtractableTypeInterface
 		throw InvalidTypeException::typeError('string', $value);
 	}
 
-	/**
-	 * @param mixed $value
-	 */
 	final public static function fromOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
 	): ?string {
 		if ($value === null) {

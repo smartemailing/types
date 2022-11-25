@@ -9,11 +9,8 @@ use SmartEmailing\Types\Helpers\ExtractableHelpers;
 abstract class FloatType implements ExtractableTypeInterface
 {
 
-	/**
-	 * @param mixed $value
-	 */
 	final public static function from(
-		$value
+		mixed $value
 	): float {
 		if (\is_string($value)) {
 			$value = \strtr(
@@ -31,11 +28,8 @@ abstract class FloatType implements ExtractableTypeInterface
 		throw InvalidTypeException::typeError('float', $value);
 	}
 
-	/**
-	 * @param mixed $value
-	 */
 	final public static function fromOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
 	): ?float {
 		if ($value === null) {

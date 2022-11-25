@@ -8,11 +8,10 @@ abstract class StringArray implements ExtractableTypeInterface
 {
 
 	/**
-	 * @param mixed $value
 	 * @return array<string>
 	 */
 	final public static function from(
-		$value
+		mixed $value
 	): array {
 		$array = Arrays::from($value);
 
@@ -26,11 +25,10 @@ abstract class StringArray implements ExtractableTypeInterface
 	}
 
 	/**
-	 * @param mixed $value
 	 * @return array<string>|null
 	 */
 	final public static function fromOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
 	): ?array {
 		$array = Arrays::fromOrNull($value, $nullIfInvalid);

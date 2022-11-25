@@ -8,19 +8,17 @@ interface ExtractableTypeInterface
 {
 
 	/**
-	 * @param mixed $value
 	 * @return mixed
 	 */
 	public static function from(
-		$value
+		mixed $value
 	);
 
 	/**
-	 * @param mixed $value
 	 * @return mixed
 	 */
 	public static function fromOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid
 	);
 

@@ -9,11 +9,8 @@ use SmartEmailing\Types\ToArrayInterface;
 trait ArrayComparableTrait
 {
 
-	/**
-	 * @param mixed $that
-	 */
 	public function equals(
-		$that
+		mixed $that
 	): bool
 	{
 		return $this instanceof ToArrayInterface &&
