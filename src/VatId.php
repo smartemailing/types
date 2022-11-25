@@ -210,7 +210,11 @@ final class VatId implements ToStringInterface, ComparableInterface
 	}
 
 	/**
-	 * @return array<mixed>
+	 * @return array{
+	 *     0: \SmartEmailing\Types\CountryCode|null,
+	 *     1: string|null,
+	 *     2: string
+	 * }
 	 */
 	private static function extractCountryAndPrefixAndNumber(
 		string $vatId
