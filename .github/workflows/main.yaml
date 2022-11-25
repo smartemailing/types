@@ -60,11 +60,11 @@ jobs:
 
     strategy:
       matrix:
-        php-version: [ '7.4', '8.0', '8.1' ]
+        php-version: [ '8.1' ]
         operating-system: [ 'ubuntu-latest' ]
         composer-args: [ '' ]
         include:
-          - php-version: '7.4'
+          - php-version: '8.1'
             operating-system: 'ubuntu-latest'
             composer-args: '--prefer-lowest'
 
@@ -101,7 +101,6 @@ jobs:
         uses: 'shivammathur/setup-php@v2'
         with:
           php-version: '8.1'
-          coverage: 'xdebug'
           extensions: '${{ env.php-extensions }}'
 
       - name: 'Install dependencies'
@@ -116,5 +115,5 @@ jobs:
           CI: true
           COVERALLS_REPO_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
         run: |
-          wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.5.2/php-coveralls.phar
+          wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.4.2/php-coveralls.phar
           php php-coveralls.phar --verbose --config tests/.coveralls.yml
