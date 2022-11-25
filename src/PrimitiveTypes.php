@@ -89,7 +89,7 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param array<float> $data
+	 * @param array<mixed> $data
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use FloatType::extractOrNull
 	 */
