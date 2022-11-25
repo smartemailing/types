@@ -198,13 +198,10 @@ final class UrlType implements ToStringInterface, ComparableInterface
 		return $dolly;
 	}
 
-	/**
-	 * @return mixed
-	 */
 	public function getQueryParameter(
 		string $name,
 		mixed $default = null
-	)
+	): mixed
 	{
 		return $this->url->getQueryParameter($name) ?? $default;
 	}

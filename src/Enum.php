@@ -52,10 +52,7 @@ abstract class Enum
 		return self::$instances[$index];
 	}
 
-	/**
-	 * @return mixed
-	 */
-	public function getValue()
+	public function getValue(): mixed
 	{
 		return $this->value;
 	}

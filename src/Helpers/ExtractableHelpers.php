@@ -12,12 +12,11 @@ abstract class ExtractableHelpers
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed>|mixed $data
-	 * @return mixed
 	 */
 	final public static function extractValue(
 		$data,
 		string $key
-	) {
+	): mixed {
 		if ($data instanceof ArrayAccess) {
 			return self::extractValueFromArrayAccess($data, $key);
 		}
@@ -31,12 +30,11 @@ abstract class ExtractableHelpers
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed>|mixed $data
-	 * @return mixed
 	 */
 	final public static function extractValueOrNull(
 		$data,
 		string $key
-	) {
+	): mixed {
 		if ($data instanceof ArrayAccess) {
 			return self::extractValueFromArrayAccessOrNull($data, $key);
 		}
@@ -50,12 +48,11 @@ abstract class ExtractableHelpers
 
 	/**
 	 * @param array<mixed> $data
-	 * @return mixed
 	 */
 	private static function extractValueFromArray(
 		array $data,
 		string $key
-	)
+	): mixed
 	{
 		if (!\array_key_exists($key, $data)) {
 			throw InvalidTypeException::missingKey($key);
@@ -66,12 +63,11 @@ abstract class ExtractableHelpers
 
 	/**
 	 * @param \ArrayAccess<mixed, mixed> $data
-	 * @return mixed
 	 */
 	private static function extractValueFromArrayAccess(
 		ArrayAccess $data,
 		string $key
-	)
+	): mixed
 	{
 		if (!$data->offsetExists($key)) {
 			throw InvalidTypeException::missingKey($key);
@@ -82,24 +78,22 @@ abstract class ExtractableHelpers
 
 	/**
 	 * @param array<mixed> $data
-	 * @return mixed
 	 */
 	private static function extractValueFromArrayOrNull(
 		array $data,
 		string $key
-	)
+	): mixed
 	{
 		return $data[$key] ?? null;
 	}
 
 	/**
 	 * @param \ArrayAccess<mixed, mixed> $data
-	 * @return mixed
 	 */
 	private static function extractValueFromArrayAccessOrNull(
 		ArrayAccess $data,
 		string $key
-	)
+	): mixed
 	{
 		if (!$data->offsetExists($key)) {
 			return null;
