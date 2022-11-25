@@ -9,11 +9,8 @@ use SmartEmailing\Types\Helpers\ExtractableHelpers;
 abstract class DateTimes implements ExtractableTypeInterface
 {
 
-	/**
-	 * @param mixed $value
-	 */
 	final public static function from(
-		$value
+		mixed $value
 	): \DateTime {
 		if ($value instanceof \DateTime) {
 			return $value;
@@ -101,11 +98,8 @@ abstract class DateTimes implements ExtractableTypeInterface
         return Dates::extractOrNull($data, $key);
     }
 
-	/**
-	 * @param mixed $value
-	 */
 	public static function fromOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
 	): ?\DateTime {
 		if ($value === null) {

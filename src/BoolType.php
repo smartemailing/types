@@ -10,11 +10,8 @@ use SmartEmailing\Types\Helpers\ExtractableHelpers;
 abstract class BoolType implements ExtractableTypeInterface
 {
 
-	/**
-	 * @param mixed $value
-	 */
 	final public static function from(
-		$value
+		mixed $value
 	): bool {
 		if (\is_bool($value)) {
 			return $value;
@@ -35,11 +32,8 @@ abstract class BoolType implements ExtractableTypeInterface
 		throw InvalidTypeException::typeError('bool', $value);
 	}
 
-	/**
-	 * @param mixed $value
-	 */
 	final public static function fromOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
 	): ?bool {
 		if ($value === null) {

@@ -1,8 +1,13 @@
 parameters:
-	scanDirectories:
-		- ../../src
-		- ../../tests
-	excludes_analyse:
+	level: 8
+	fileExtensions:
+		- php
+		- phpt
+	paths:
+		- ./../../src
+		- ./../../tests
+
 includes:
 	- ../../vendor/phpstan/phpstan-nette/extension.neon
 	- ../../vendor/phpstan/phpstan-nette/rules.neon
+	- ../../vendor/nepada/phpstan-nette-tester/extension.neon

@@ -36,11 +36,8 @@ final class Duration implements ToStringInterface, ToArrayInterface, ComparableI
 		$this->lengthInSeconds = (int) \abs($diff);
 	}
 
-	/**
-	 * @param mixed $data
-	 */
 	public static function from(
-		$data
+		mixed $data
 	): Duration {
 		if ($data instanceof self) {
 			return $data;

@@ -57,11 +57,8 @@ final class JsonString implements ToStringInterface, ComparableInterface
 		throw InvalidTypeException::typesError(['string', 'array'], $data);
 	}
 
-	/**
-	 * @param mixed $value
-	 */
 	public static function encode(
-		$value,
+		mixed $value,
 		bool $oneLine = false
 	): self
 	{

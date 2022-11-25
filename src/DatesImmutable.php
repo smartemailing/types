@@ -7,11 +7,8 @@ namespace SmartEmailing\Types;
 abstract class DatesImmutable implements ExtractableTypeInterface
 {
 
-	/**
-	 * @param mixed $value
-	 */
 	final public static function from(
-		$value
+		mixed $value
 	): \DateTimeImmutable {
 		$dateTime = Dates::from($value);
 
@@ -55,11 +52,8 @@ abstract class DatesImmutable implements ExtractableTypeInterface
         return self::immutate($dateTime);
     }
 
-	/**
-	 * @param mixed $value
-	 */
 	public static function fromOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
 	): ?\DateTimeImmutable {
 		$dateTime = Dates::fromOrNull($value, $nullIfInvalid);

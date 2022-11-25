@@ -7,40 +7,30 @@ namespace SmartEmailing\Types;
 interface ExtractableTypeInterface
 {
 
-	/**
-	 * @param mixed $value
-	 * @return mixed
-	 */
 	public static function from(
-		$value
-	);
+		mixed $value
+	): mixed;
 
-	/**
-	 * @param mixed $value
-	 * @return mixed
-	 */
 	public static function fromOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid
-	);
+	): mixed;
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @return mixed
 	 */
 	public static function extract(
 		$data,
 		string $key
-	);
+	): mixed;
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @return mixed
 	 */
 	public static function extractOrNull(
 		$data,
 		string $key,
 		bool $nullIfInvalid
-	);
+	): mixed;
 
 }

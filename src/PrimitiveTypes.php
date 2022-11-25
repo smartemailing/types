@@ -11,21 +11,19 @@ abstract class PrimitiveTypes
 {
 
 	/**
-	 * @param mixed $value
 	 * @deprecated use IntType::from
 	 */
 	final public static function getInt(
-		$value
+		mixed $value
 	): int {
 		return IntType::from($value);
 	}
 
 	/**
-	 * @param mixed $value
 	 * @deprecated use IntType::fromOrNull
 	 */
 	final public static function getIntOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
 	): ?int {
 		return IntType::fromOrNull($value, $nullIfInvalid);
@@ -57,21 +55,19 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param mixed $value
 	 * @deprecated use FloatType::from
 	 */
 	final public static function getFloat(
-		$value
+		mixed $value
 	): float {
 		return FloatType::from($value);
 	}
 
 	/**
-	 * @param mixed $value
 	 * @deprecated use FloatType::fromOrNull
 	 */
 	final public static function getFloatOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
 	): ?float {
 		return FloatType::fromOrNull($value, $nullIfInvalid);
@@ -89,7 +85,7 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param array<float> $data
+	 * @param array<mixed> $data
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 * @deprecated use FloatType::extractOrNull
 	 */
@@ -102,21 +98,19 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param mixed $value
 	 * @deprecated use StringType::from
 	 */
 	final public static function getString(
-		$value
+		mixed $value
 	): string {
 		return StringType::from($value);
 	}
 
 	/**
-	 * @param mixed $value
 	 * @deprecated use StringType::fromOrNull
 	 */
 	final public static function getStringOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
 	): ?string {
 		return StringType::fromOrNull($value, $nullIfInvalid);
@@ -148,21 +142,19 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param mixed $value
 	 * @deprecated use BoolType::from
 	 */
 	final public static function getBool(
-		$value
+		mixed $value
 	): bool {
 		return BoolType::from($value);
 	}
 
 	/**
-	 * @param mixed $value
 	 * @deprecated use BoolType::fromOrNull
 	 */
 	final public static function getBoolOrNull(
-		$value,
+		mixed $value,
 		bool $nullIfInvalid = false
 	): ?bool {
 		return BoolType::fromOrNull($value, $nullIfInvalid);
@@ -194,12 +186,11 @@ abstract class PrimitiveTypes
 	}
 
 	/**
-	 * @param mixed $value
 	 * @return array<mixed>
 	 * @deprecated use Arrays::from instead
 	 */
 	final public static function getArray(
-		$value
+		mixed $value
 	): array {
 		return Arrays::from($value);
 	}
