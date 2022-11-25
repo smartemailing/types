@@ -1,6 +1,6 @@
 # SmartEmailing \ Types 
 
-### Missing data types for PHP 7.2, 7.3, 7.4 and 8.0. Highly extendable, production tested.
+### Missing data types for PHP 8.1. Highly extendable, production tested.
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 [![Latest release](https://img.shields.io/github/release/smartemailing/types.svg)](https://github.com/smartemailing/types/releases/)
