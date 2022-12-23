@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
-use Iban\Validation\Validator;
 use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
@@ -27,8 +26,12 @@ final class Iban implements ToStringInterface, ComparableInterface
 		string $value
 	)
 	{
+		if (!\class_exists(\Iban\Validation\Iban::class) || !\class_exists(\Iban\Validation\Validator::class)) {
+			throw new \Exception('For using ' . self::class . ' type, please require "jschaedl/iban-validation" in your project composer.');
+		}
+
 		$this->iban = new \Iban\Validation\Iban($value);
-		$validator = new Validator();
+		$validator = new \Iban\Validation\Validator();
 
 		if (!$validator->validate($this->iban)) {
 			throw new InvalidTypeException('Invalid Iban: ' . $value);
@@ -44,7 +47,7 @@ final class Iban implements ToStringInterface, ComparableInterface
 
 	public function getCountry(): CountryCode
 	{
-		return CountryCode::from($this->iban->getCountryCode());
+		return CountryCode::from($this->iban->countryCode());
 	}
 
 	public function getFormatted(
@@ -56,7 +59,7 @@ final class Iban implements ToStringInterface, ComparableInterface
 
 	public function getChecksum(): int
 	{
-		return (int) $this->iban->getChecksum();
+		return (int) $this->iban->checksum();
 	}
 
 }
