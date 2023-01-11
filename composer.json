@@ -18,16 +18,16 @@
     "php": "^8.1",
     "nette/utils": "^3.0",
     "nette/http": "^3.0",
-    "egulias/email-validator": "^3.1.1"
+    "egulias/email-validator": "^3.1.1|^4.0"
   },
   "require-dev": {
     "jschaedl/iban-validation": "^2.0",
     "nepada/phpstan-nette-tester": "^1.0",
     "nette/tester": "^2.4",
-    "phpstan/phpstan": "^1.8",
-    "phpstan/phpstan-nette": "^1.1",
-    "slevomat/coding-standard": "^8.5",
-    "tracy/tracy": "^2.8"
+    "phpstan/phpstan": "^1.9",
+    "phpstan/phpstan-nette": "^1.2",
+    "slevomat/coding-standard": "^8.8",
+    "tracy/tracy": "^2.9"
   },
   "suggest": {
     "jschaedl/iban-validation": "Allows using SmartEmailing\\Types\\Iban type."
