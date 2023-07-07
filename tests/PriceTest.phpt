@@ -15,9 +15,9 @@ final class PriceTest extends TestCase
 	public function test1(): void
 	{
 		$data = [
-			'with_vat' => 432.1,
-			'without_vat' => '123.45',
-			'currency' => CurrencyCode::CZK,
+            'currency' => CurrencyCode::CZK,
+            'without_vat' => '123.45',
+            'with_vat' => 432.1,
 		];
 
 		$price = Price::from($data);
@@ -40,9 +40,9 @@ final class PriceTest extends TestCase
 	public function test2(): void
 	{
 		$data = [
-			'with_vat' => 242,
-			'without_vat' => 200,
-			'currency' => CurrencyCode::CZK,
+            'currency' => CurrencyCode::CZK,
+            'without_vat' => 200,
+            'with_vat' => 242,
 		];
 
 		$price = Price::from($data);
