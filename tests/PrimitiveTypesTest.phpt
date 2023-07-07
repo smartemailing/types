@@ -351,9 +351,9 @@ final class PrimitiveTypesTest extends TestCase
 	public function testExtractArrayOrNull(): void
 	{
 		$data = [
-			'null' => null,
-			'non_empty_array' => [1, 2, 3],
-			'not_an_array' => 'hello!',
+            'non_empty_array' => [1, 2, 3],
+            'not_an_array' => 'hello!',
+            'null' => null,
 		];
 
 		Assert::null(PrimitiveTypes::extractArrayOrNull($data, 'test'));

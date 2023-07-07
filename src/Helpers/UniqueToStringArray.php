@@ -73,7 +73,7 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 			...$plainIntArrays
 		);
 
-		$output = new UniqueToStringArray([]);
+		$output = new self([]);
 		$output->objects = $result;
 
 		return $output;

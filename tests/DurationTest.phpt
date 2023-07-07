@@ -25,8 +25,8 @@ final class DurationTest extends TestCase
 		Assert::throws(
 			static function (): void {
 				Duration::from([
-					'value' => 0,
-					'unit' => 'week',
+                    'unit' => 'week',
+                    'value' => 0,
 				]);
 			},
 			InvalidTypeException::class
@@ -67,14 +67,14 @@ final class DurationTest extends TestCase
 	public function testCreate(): void
 	{
 		Duration::from([
-			'value' => 1,
-			'unit' => TimeUnit::HOURS,
+            'unit' => TimeUnit::HOURS,
+            'value' => 1,
 		]);
 
 		Duration::extract([
 			'duration' => [
-				'value' => -10,
-				'unit' => TimeUnit::DAYS,
+                'unit' => TimeUnit::DAYS,
+                'value' => -10,
 			],
 		], 'duration');
 
@@ -88,8 +88,8 @@ final class DurationTest extends TestCase
 	public function testGetUnit(): void
 	{
 		$duration = Duration::from([
-			'value' => 1,
-			'unit' => TimeUnit::YEARS,
+            'unit' => TimeUnit::YEARS,
+            'value' => 1,
 		]);
 
 		Assert::type(Duration::class, $duration);
@@ -99,8 +99,8 @@ final class DurationTest extends TestCase
 	public function testGetValue(): void
 	{
 		$duration = Duration::from([
-			'value' => 1,
-			'unit' => TimeUnit::DAYS,
+            'unit' => TimeUnit::DAYS,
+            'value' => 1,
 		]);
 
 		Assert::type(Duration::class, $duration);
@@ -111,15 +111,15 @@ final class DurationTest extends TestCase
 	public function testLengthInSeconds(): void
 	{
 		$duration = Duration::from([
-			'value' => 3,
-			'unit' => TimeUnit::HOURS,
+            'unit' => TimeUnit::HOURS,
+            'value' => 3,
 		]);
 		Assert::type(Duration::class, $duration);
 		Assert::equal(10800, $duration->getLengthInSeconds());
 
 		$duration = Duration::from([
-			'value' => 10,
-			'unit' => TimeUnit::MINUTES,
+            'unit' => TimeUnit::MINUTES,
+            'value' => 10,
 		]);
 		Assert::type(Duration::class, $duration);
 		Assert::equal(600, $duration->getLengthInSeconds());

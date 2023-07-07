@@ -15,10 +15,10 @@ final class AddressTest extends TestCase
 	public function test1(): void
 	{
 		$data = [
-			'street_and_number' => 'Testovací 123',
-			'town' => 'Želeč',
-			'zip_code' => '391 74',
-			'country' => 'CZ',
+            'country' => 'CZ',
+            'street_and_number' => 'Testovací 123',
+            'town' => 'Želeč',
+            'zip_code' => '391 74',
 		];
 
 		$address = Address::from($data);
@@ -35,10 +35,10 @@ final class AddressTest extends TestCase
 
 		Assert::true($address->equals(Address::from($data)));
 		Assert::false($address->equals(Address::from([
-			'street_and_number' => 'Netestovací 11',
-			'town' => 'Želeč',
-			'zip_code' => '391 74',
-			'country' => 'CZ',
+            'country' => 'CZ',
+            'street_and_number' => 'Netestovací 11',
+            'town' => 'Želeč',
+            'zip_code' => '391 74',
 		])));
 
 		$address = Address::from($data);
