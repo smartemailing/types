@@ -182,10 +182,10 @@ final class ExtractableTraitTest extends TestCase
 
 		$a = Address::from(
 			[
-				'street_and_number' => 'Netroufalky 5',
-				'town' => 'Brno',
-				'zip_code' => 12345,
-				'country' => 'CZ',
+                'country' => 'CZ',
+                'street_and_number' => 'Netroufalky 5',
+                'town' => 'Brno',
+                'zip_code' => 12345,
 			]
 		);
 

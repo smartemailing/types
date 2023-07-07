@@ -40,10 +40,10 @@ final class Address implements ToArrayInterface, ComparableInterface
 	public function toArray(): array
 	{
 		return [
-			'street_and_number' => $this->streetAndNumber,
-			'town' => $this->town,
-			'zip_code' => $this->zipCode->getValue(),
-			'country' => $this->country->getValue(),
+            'country' => $this->country->getValue(),
+            'street_and_number' => $this->streetAndNumber,
+            'town' => $this->town,
+            'zip_code' => $this->zipCode->getValue(),
 		];
 	}
 

@@ -58,9 +58,9 @@ final class Price implements ToArrayInterface, ComparableInterface
 	public function toArray(): array
 	{
 		return [
-			'without_vat' => $this->withoutVat,
-			'with_vat' => $this->withVat,
-			'currency' => $this->currency->getValue(),
+            'currency' => $this->currency->getValue(),
+            'without_vat' => $this->withoutVat,
+            'with_vat' => $this->withVat,
 		];
 	}
 

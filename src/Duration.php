@@ -38,7 +38,7 @@ final class Duration implements ToStringInterface, ToArrayInterface, ComparableI
 
 	public static function from(
 		mixed $data
-	): Duration {
+	): self {
 		if ($data instanceof self) {
 			return $data;
 		}
@@ -77,8 +77,8 @@ final class Duration implements ToStringInterface, ToArrayInterface, ComparableI
 
 		return new static(
 			[
-				'value' => $value,
-				'unit' => $unit->getValue(),
+                'unit' => $unit->getValue(),
+                'value' => $value,
 			]
 		);
 	}
@@ -104,8 +104,8 @@ final class Duration implements ToStringInterface, ToArrayInterface, ComparableI
 	public function toArray(): array
 	{
 		return [
-			'value' => $this->value,
-			'unit' => $this->unit->getValue(),
+            'unit' => $this->unit->getValue(),
+            'value' => $this->value,
 		];
 	}
 

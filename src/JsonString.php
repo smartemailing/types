@@ -36,7 +36,7 @@ final class JsonString implements ToStringInterface, ComparableInterface
 	 */
 	public static function from(
 		$data
-	): JsonString
+	): self
 	{
 		if ($data instanceof self) {
 			return $data;
