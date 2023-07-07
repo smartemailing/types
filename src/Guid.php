@@ -29,7 +29,7 @@ final class Guid implements ToStringInterface, ComparableInterface
 
 	public static function fromHex32(
 		Hex32 $hex32
-	): self {
+	): Guid {
 		$parts = \str_split(
 			$hex32->getValue(),
 			4

@@ -30,7 +30,7 @@ final class Hex32 implements ToStringInterface, ComparableInterface
 
 	public static function fromGuid(
 		Guid $guid
-	): self {
+	): Hex32 {
 		return self::from(
 			Strings::replace($guid->getValue(), '/-/', '')
 		);

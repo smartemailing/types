@@ -40,7 +40,7 @@ final class Domain implements ToStringInterface
 		return $this->value;
 	}
 
-	public function getSecondLevelDomain(): self
+	public function getSecondLevelDomain(): Domain
 	{
 		$parts = \explode('.', $this->value);
 		$numberOfKeptParts = 2;

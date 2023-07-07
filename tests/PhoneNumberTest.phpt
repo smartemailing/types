@@ -38,16 +38,16 @@ class PhoneNumberTest extends TestCase
 	public function testValidValues(): void
 	{
 		$validValues = [
-            '+420 950 111 111' => CountryCode::CZ,
-            '+420(608)111111' => CountryCode::CZ,
-            '+35796562049' => CountryCode::CY,
-            '+385915809952' => CountryCode::HR,
-            '+420720182158' => CountryCode::CZ,
-            '+905322002020' => CountryCode::TR,
-            '+972546589568' => CountryCode::IL,
-            '+391234567891234' => CountryCode::IT,
-            '00421 905 111 111' => CountryCode::SK,
-            '00421 254111111' => CountryCode::SK,
+			'+385915809952' => CountryCode::HR,
+			'+420(608)111111' => CountryCode::CZ,
+			'00421 254111111' => CountryCode::SK,
+			'00421 905 111 111' => CountryCode::SK,
+			'+420 950 111 111' => CountryCode::CZ,
+			'+420720182158' => CountryCode::CZ,
+			'+391234567891234' => CountryCode::IT,
+			'+905322002020' => CountryCode::TR,
+			'+972546589568' => CountryCode::IL,
+			'+35796562049' => CountryCode::CY,
 		];
 
 		foreach ($validValues as $number => $country) {
