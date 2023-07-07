@@ -17,8 +17,8 @@ final class DateTimeRangeTest extends TestCase
 		Assert::throws(
 			static function (): void {
 				$data = [
-                    'from' => '2100-01-01 00:00:00',
-                    'to' => '2000-01-01 00:00:00',
+					'to' => '2000-01-01 00:00:00',
+					'from' => '2100-01-01 00:00:00',
 				];
 				DateTimeRange::from($data);
 			},

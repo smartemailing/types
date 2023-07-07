@@ -65,7 +65,7 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInt
 	 */
 	public static function intersect(
 		array $uniqueIntArrays
-	): self {
+	): UniqueIntArray {
 		if (\count($uniqueIntArrays) === 1) {
 			return \reset($uniqueIntArrays);
 		}
@@ -80,7 +80,7 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInt
 			...$plainIntArrays
 		);
 
-		$output = new self([]);
+		$output = new UniqueIntArray([]);
 		$output->valuesPresenceMap = $result;
 
 		return $output;
@@ -91,7 +91,7 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInt
 	 */
 	public static function union(
 		array $uniqueIntArrays
-	): self {
+	): UniqueIntArray {
 		$result = [];
 
 		foreach ($uniqueIntArrays as $uniqueIntArray) {
@@ -100,7 +100,7 @@ final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInt
 			}
 		}
 
-		$output = new self([]);
+		$output = new UniqueIntArray([]);
 		$output->valuesPresenceMap = $result;
 
 		return $output;

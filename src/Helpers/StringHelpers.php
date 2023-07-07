@@ -93,8 +93,8 @@ abstract class StringHelpers
 		return \strtr(
 			$value,
 			[
-                "\r" => "\n",
-                "\r\n" => "\n",
+				"\r\n" => "\n",
+				"\r" => "\n",
 			]
 		);
 	}

@@ -37,7 +37,7 @@ final class HostName implements ToStringInterface, ComparableInterface
 		return $this->value;
 	}
 
-	public function getSecondLevelDomain(): self
+	public function getSecondLevelDomain(): HostName
 	{
 		$parts = \explode('.', $this->value);
 		$numberOfKeptParts = 2;
