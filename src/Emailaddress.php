@@ -78,8 +78,8 @@ final class Emailaddress implements ToStringInterface, ComparableInterface
 		return \strtr(
 			$sanitized,
 			[
-				'>' => '',
-				'<' => '',
+                '<' => '',
+                '>' => '',
 			]
 		);
 	}
