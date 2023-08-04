@@ -16,14 +16,10 @@ final class SwiftBic implements ToStringInterface, ComparableInterface
 	use StringExtractableTrait;
 	use StringComparableTrait;
 
-	private string $value;
-
 	public function __construct(
-		string $value
+		private string $value
 	)
 	{
-		$this->value = $value;
-
 		if (!$this->isValid($this->value)) {
 			throw new InvalidTypeException('Invalid Swift/Bic: ' . $value);
 		}

@@ -15,16 +15,12 @@ final class SigmoidValue implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	private float $value;
-
 	public function __construct(
-		float $value
+		private float $value
 	) {
 		if ($value < -1 || $value > 1) {
 			throw new InvalidTypeException('Invalid sigmoid value: ' . $value);
 		}
-
-		$this->value = $value;
 	}
 
 	public function getValue(): float

@@ -15,16 +15,12 @@ final class UnsignedFloat implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	private float $value;
-
 	public function __construct(
-		float $value
+		private float $value
 	) {
 		if ($value < 0.0 || $value > \PHP_INT_MAX) {
 			throw new InvalidTypeException('Invalid unsigned float: ' . $value);
 		}
-
-		$this->value = $value;
 	}
 
 	public function getValue(): float

@@ -15,16 +15,12 @@ final class Guid implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	private string $value;
-
 	private function __construct(
-		string $value
+		private string $value
 	) {
 		if (!\preg_match('/^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i', $value)) {
 			throw new InvalidTypeException('Invalid guid value');
 		}
-
-		$this->value = $value;
 	}
 
 	public static function fromHex32(

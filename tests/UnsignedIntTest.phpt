@@ -25,6 +25,7 @@ final class UnsignedIntTest extends TestCase
 		foreach ($invalidValues as $validValue) {
 			Assert::throws(
 				static function () use ($validValue): void {
+					echo 'Testing ' . \var_export($validValue, true) . \PHP_EOL;
 					UnsignedInt::from($validValue);
 				},
 				InvalidTypeException::class

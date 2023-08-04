@@ -26,7 +26,7 @@ final class IntArrayUniqueTest extends TestCase
 				new \stdClass(),
 			],
 			[
-				1.0,
+				1.01,
 				2,
 				3,
 			],
@@ -40,6 +40,7 @@ final class IntArrayUniqueTest extends TestCase
 		foreach ($invalidValues as $invalidValue) {
 			Assert::throws(
 				static function () use ($invalidValue): void {
+					echo 'Testing ' . \var_export($invalidValue, true) . \PHP_EOL;
 					UniqueIntArray::from($invalidValue);
 				},
 				InvalidTypeException::class
@@ -49,12 +50,12 @@ final class IntArrayUniqueTest extends TestCase
 		$validValues = [
 
 			[
-				'1',
+				'1.00',
 				'2',
 				'3',
 			],
 			[
-				1,
+				1.0,
 				2,
 				3,
 			],

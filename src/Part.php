@@ -15,16 +15,12 @@ final class Part implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	private float $value;
-
 	public function __construct(
-		float $value
+		private float $value
 	) {
 		if ($value < 0 || $value > 1) {
 			throw new InvalidTypeException('Invalid part: ' . $value);
 		}
-
-		$this->value = $value;
 	}
 
 	public static function fromRatio(
