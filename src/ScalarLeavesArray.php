@@ -16,21 +16,14 @@ final class ScalarLeavesArray implements ToArrayInterface, ComparableInterface
 	use ArrayComparableTrait;
 
 	/**
-	 * @var array<mixed>
-	 */
-	private array $data;
-
-	/**
 	 * @param array<mixed> $data
 	 */
 	public function __construct(
-		array $data
+		private array $data
 	) {
 		if (!ValidationHelpers::isScalarLeavesArray($data)) {
 			throw new InvalidTypeException('Array must have all it\'s leaves scalar or null');
 		}
-
-		$this->data = $data;
 	}
 
 	/**

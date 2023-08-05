@@ -20,10 +20,8 @@ final class Iban implements ToStringInterface, ComparableInterface
 
 	private \Iban\Validation\Iban $iban;
 
-	private string $value;
-
 	public function __construct(
-		string $value
+		private string $value
 	)
 	{
 		if (!\class_exists(\Iban\Validation\Iban::class) || !\class_exists(\Iban\Validation\Validator::class)) {
@@ -36,8 +34,6 @@ final class Iban implements ToStringInterface, ComparableInterface
 		if (!$validator->validate($this->iban)) {
 			throw new InvalidTypeException('Invalid Iban: ' . $value);
 		}
-
-		$this->value = $value;
 	}
 
 	public function getValue(): string

@@ -15,16 +15,12 @@ final class Quantity implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	private int $value;
-
 	public function __construct(
-		int $value
+		private int $value
 	) {
 		if ($value < 1 || $value > \PHP_INT_MAX) {
 			throw new InvalidTypeException('Invalid quantity: ' . $value);
 		}
-
-		$this->value = $value;
 	}
 
 	public function getValue(): int

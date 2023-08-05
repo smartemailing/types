@@ -15,16 +15,12 @@ final class ReLUValue implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	private float $value;
-
 	public function __construct(
-		float $value
+		private float $value
 	) {
 		if ($value < 0.0) {
 			throw new InvalidTypeException('Invalid ReLU value: ' . $value);
 		}
-
-		$this->value = $value;
 	}
 
 	public function getValue(): float

@@ -17,17 +17,13 @@ final class JsonString implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	private string $value;
-
 	private function __construct(
-		string $value
+		private string $value
 	)
 	{
 		if (!$this->isValid($value)) {
 			throw new InvalidTypeException('Invalid JSON string');
 		}
-
-		$this->value = $value;
 	}
 
 	/**

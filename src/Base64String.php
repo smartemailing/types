@@ -15,17 +15,13 @@ final class Base64String implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	private string $value;
-
 	private function __construct(
-		string $value
+		private string $value
 	)
 	{
 		if (!$this->isValid($value)) {
 			throw new InvalidTypeException('Invalid Base64 string');
 		}
-
-		$this->value = $value;
 	}
 
 	public static function encode(

@@ -20,6 +20,10 @@ abstract class IntType implements ExtractableTypeInterface
 			return (int) $value;
 		}
 
+        if (Validators::isNumeric($value) && (int) $value === (int) \ceil(\abs((float) $value))) {
+			return (int) $value;
+		}
+
 		throw InvalidTypeException::typeError('int', $value);
 	}
 
