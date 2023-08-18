@@ -52,6 +52,7 @@ final class CompanyRegistrationNumberTest extends TestCase
 			'33127977', // NL
 			'001632553B28', // NL
 			'500271615', // PT
+			'B82454', // LU
 		];
 
 		foreach ($validValues as $validValue) {
