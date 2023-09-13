@@ -138,7 +138,7 @@ abstract class Enum
 		mixed $value
 	): bool
 	{
-		return \in_array($value, self::getAvailableValues(), true);
+		return \in_array($value, static::getAvailableValues(), true);
 	}
 
 	protected function checkSameEnum(
