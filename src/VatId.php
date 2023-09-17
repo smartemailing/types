@@ -11,18 +11,18 @@ use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 use SmartEmailing\Types\Helpers\StringHelpers;
 
-final class VatId implements ToStringInterface, ComparableInterface
+final class VatId implements ToStringInterface, ComparableInterface, \JsonSerializable
 {
 
 	use ToStringTrait;
 	use StringExtractableTrait;
 	use StringComparableTrait;
 
-	private ?CountryCode $country;
+	private readonly ?CountryCode $country;
 
-	private ?string $prefix;
+	private readonly ?string $prefix;
 
-	private string $vatNumber;
+	private readonly string $vatNumber;
 
 	/**
 	 * @var array<string>

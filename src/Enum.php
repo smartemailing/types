@@ -8,13 +8,10 @@ use Nette\Utils\Json;
 use ReflectionClass;
 use ReflectionClassConstant;
 
-abstract class Enum
+abstract class Enum implements \JsonSerializable, ToStringInterface
 {
 
-	/**
-	 * @var mixed
-	 */
-	private $value;
+	use ToStringTrait;
 
 	/**
 	 * @var array<static> indexed by enum and value
@@ -27,11 +24,10 @@ abstract class Enum
 	private static array $availableValues = [];
 
 	final private function __construct(
-		mixed $value
+		private mixed $value
 	)
 	{
 		static::checkValue($value);
-		$this->value = $value;
 	}
 
 	/**

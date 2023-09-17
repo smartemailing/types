@@ -19,7 +19,7 @@ final class Domain implements ToStringInterface
 	use StringExtractableTrait;
 	use ToStringTrait;
 
-	private string $value;
+	private readonly string $value;
 
 	private function __construct(
 		string $value
@@ -56,7 +56,8 @@ final class Domain implements ToStringInterface
 
 	private function isValid(
 		string $value
-	): bool {
+	): bool
+	{
 		return \preg_match('/^([a-z\\d](-*[a-z\\d])*)(\\.([a-z\\d](-*[a-z\\d])*))*$/i', $value) //valid chars check
 			&& \preg_match('/^.{1,253}$/', $value)// overall length check
 			&& \preg_match('/^[^\\.]{1,63}(\\.[^\\.]{1,63})*$/', $value);

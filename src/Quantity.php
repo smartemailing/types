@@ -8,7 +8,7 @@ use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\IntExtractableTrait;
 
-final class Quantity implements ToStringInterface, ComparableInterface
+final class Quantity implements ToStringInterface, ComparableInterface, \JsonSerializable
 {
 
 	use IntExtractableTrait;
@@ -16,7 +16,7 @@ final class Quantity implements ToStringInterface, ComparableInterface
 	use StringComparableTrait;
 
 	public function __construct(
-		private int $value
+		private readonly int $value
 	) {
 		if ($value < 1 || $value > \PHP_INT_MAX) {
 			throw new InvalidTypeException('Invalid quantity: ' . $value);

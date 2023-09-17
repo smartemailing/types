@@ -9,18 +9,19 @@ use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
-final class ContentType implements ToStringInterface, ComparableInterface
+final class ContentType implements ToStringInterface, ComparableInterface, \JsonSerializable
 {
 
 	use StringExtractableTrait;
 	use ToStringTrait;
 	use StringComparableTrait;
+	use GetValueJsonSerializableTrait;
 
-	private string $value;
+	private readonly string $value;
 
-	private string $type;
+	private readonly string $type;
 
-	private string $subType;
+	private readonly string $subType;
 
 	private function __construct(
 		string $value

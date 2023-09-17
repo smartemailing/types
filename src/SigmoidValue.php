@@ -8,7 +8,7 @@ use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\FloatExtractableTrait;
 
-final class SigmoidValue implements ToStringInterface, ComparableInterface
+final class SigmoidValue implements ToStringInterface, ComparableInterface, \JsonSerializable
 {
 
 	use FloatExtractableTrait;
@@ -16,7 +16,7 @@ final class SigmoidValue implements ToStringInterface, ComparableInterface
 	use StringComparableTrait;
 
 	public function __construct(
-		private float $value
+		private readonly float $value
 	) {
 		if ($value < -1 || $value > 1) {
 			throw new InvalidTypeException('Invalid sigmoid value: ' . $value);

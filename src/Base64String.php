@@ -8,15 +8,16 @@ use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
-final class Base64String implements ToStringInterface, ComparableInterface
+final class Base64String implements ToStringInterface, ComparableInterface, \JsonSerializable
 {
 
 	use StringExtractableTrait;
 	use ToStringTrait;
 	use StringComparableTrait;
+	use GetValueJsonSerializableTrait;
 
 	private function __construct(
-		private string $value
+		private readonly string $value
 	)
 	{
 		if (!$this->isValid($value)) {

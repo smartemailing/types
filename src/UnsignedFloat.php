@@ -8,7 +8,7 @@ use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\FloatExtractableTrait;
 
-final class UnsignedFloat implements ToStringInterface, ComparableInterface
+final class UnsignedFloat implements ToStringInterface, ComparableInterface, \JsonSerializable
 {
 
 	use FloatExtractableTrait;
@@ -16,7 +16,7 @@ final class UnsignedFloat implements ToStringInterface, ComparableInterface
 	use StringComparableTrait;
 
 	public function __construct(
-		private float $value
+		private readonly float $value
 	) {
 		if ($value < 0.0 || $value > \PHP_INT_MAX) {
 			throw new InvalidTypeException('Invalid unsigned float: ' . $value);

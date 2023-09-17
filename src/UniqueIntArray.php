@@ -11,12 +11,13 @@ use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 /**
  * @implements \IteratorAggregate<int>
  */
-final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInterface, ComparableInterface
+final class UniqueIntArray implements \Countable, \IteratorAggregate, ToArrayInterface, ComparableInterface, \JsonSerializable
 {
 
 	use ArrayExtractableTrait;
 	use UniqueArrayFeatures;
 	use ArrayComparableTrait;
+	use ToArrayJsonSerializableTrait;
 
 	/**
 	 * @var array<bool>

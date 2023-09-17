@@ -11,7 +11,7 @@ use SmartEmailing\Types\ExtractableTraits\EnumExtractableTrait;
  *
  * @see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
  */
-final class CountryCode extends Enum implements ToStringInterface
+final class CountryCode extends Enum implements ToStringInterface, \JsonSerializable
 {
 
 	use EnumExtractableTrait;

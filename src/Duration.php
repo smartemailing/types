@@ -9,17 +9,18 @@ use SmartEmailing\Types\Comparable\ArrayComparableTrait;
 use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\ExtractableTraits\ExtractableTrait;
 
-final class Duration implements ToStringInterface, ToArrayInterface, ComparableInterface
+final class Duration implements ToStringInterface, ToArrayInterface, ComparableInterface, \JsonSerializable
 {
 
 	use ExtractableTrait;
 	use ArrayComparableTrait;
+	use ToArrayJsonSerializableTrait;
 
-	private int $value;
+	private readonly int $value;
 
-	private TimeUnit $unit;
+	private readonly TimeUnit $unit;
 
-	private int $lengthInSeconds;
+	private readonly int $lengthInSeconds;
 
 	/**
 	 * @param array<mixed> $data

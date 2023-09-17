@@ -9,7 +9,7 @@ use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
-final class SwiftBic implements ToStringInterface, ComparableInterface
+final class SwiftBic implements ToStringInterface, ComparableInterface, \JsonSerializable
 {
 
 	use ToStringTrait;
@@ -17,7 +17,7 @@ final class SwiftBic implements ToStringInterface, ComparableInterface
 	use StringComparableTrait;
 
 	public function __construct(
-		private string $value
+		private readonly string $value
 	)
 	{
 		if (!$this->isValid($this->value)) {

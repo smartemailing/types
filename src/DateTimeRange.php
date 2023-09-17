@@ -8,17 +8,18 @@ use SmartEmailing\Types\Comparable\ArrayComparableTrait;
 use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 
-final class DateTimeRange implements ToArrayInterface, ComparableInterface
+final class DateTimeRange implements ToArrayInterface, ComparableInterface, \JsonSerializable
 {
 
 	use ArrayExtractableTrait;
 	use ArrayComparableTrait;
+	use ToArrayJsonSerializableTrait;
 
-	private \DateTimeImmutable $from;
+	private readonly \DateTimeImmutable $from;
 
-	private \DateTimeImmutable $to;
+	private readonly \DateTimeImmutable $to;
 
-	private int $durationInSeconds;
+	private readonly int $durationInSeconds;
 
 	/**
 	 * @param array<mixed> $data

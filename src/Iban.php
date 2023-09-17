@@ -8,7 +8,7 @@ use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
-final class Iban implements ToStringInterface, ComparableInterface
+final class Iban implements ToStringInterface, ComparableInterface, \JsonSerializable
 {
 
 	use StringExtractableTrait;
@@ -18,10 +18,10 @@ final class Iban implements ToStringInterface, ComparableInterface
 	public const FORMAT_ELECTRONIC = 'electronic';
 	public const FORMAT_PRINT = 'print';
 
-	private \Iban\Validation\Iban $iban;
+	private readonly \Iban\Validation\Iban $iban;
 
 	public function __construct(
-		private string $value
+		private readonly string $value
 	)
 	{
 		if (!\class_exists(\Iban\Validation\Iban::class) || !\class_exists(\Iban\Validation\Validator::class)) {

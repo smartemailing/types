@@ -9,14 +9,14 @@ use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
-final class NonEmptyString implements ToStringInterface, ComparableInterface
+final class NonEmptyString implements ToStringInterface, ComparableInterface, \JsonSerializable
 {
 
 	use StringExtractableTrait;
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	private string $value;
+	private readonly string $value;
 
 	public function __construct(
 		string $value

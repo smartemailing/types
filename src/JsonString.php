@@ -10,7 +10,7 @@ use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\ExtractableTrait;
 
-final class JsonString implements ToStringInterface, ComparableInterface
+final class JsonString implements ToStringInterface, ComparableInterface, \JsonSerializable
 {
 
 	use ExtractableTrait;
@@ -18,7 +18,7 @@ final class JsonString implements ToStringInterface, ComparableInterface
 	use StringComparableTrait;
 
 	private function __construct(
-		private string $value
+		private readonly string $value
 	)
 	{
 		if (!$this->isValid($value)) {

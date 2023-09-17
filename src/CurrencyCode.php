@@ -9,11 +9,12 @@ use SmartEmailing\Types\ExtractableTraits\EnumExtractableTrait;
 /**
  * ISO-4217 three-letter ("Alpha-3")
  */
-final class CurrencyCode extends Enum implements ToStringInterface
+final class CurrencyCode extends Enum implements ToStringInterface, \JsonSerializable
 {
 
 	use EnumExtractableTrait;
 	use ToStringTrait;
+	use GetValueJsonSerializableTrait;
 
 	public const CZK = 'CZK';
 
