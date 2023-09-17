@@ -9,17 +9,18 @@ use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 use SmartEmailing\Types\Helpers\ValidationHelpers;
 
-final class ScalarLeavesArray implements ToArrayInterface, ComparableInterface
+final class ScalarLeavesArray implements ToArrayInterface, ComparableInterface, \JsonSerializable
 {
 
 	use ArrayExtractableTrait;
 	use ArrayComparableTrait;
+	use ToArrayJsonSerializableTrait;
 
 	/**
 	 * @param array<mixed> $data
 	 */
 	public function __construct(
-		private array $data
+		private readonly array $data
 	) {
 		if (!ValidationHelpers::isScalarLeavesArray($data)) {
 			throw new InvalidTypeException('Array must have all it\'s leaves scalar or null');

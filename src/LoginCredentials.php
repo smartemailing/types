@@ -8,15 +8,16 @@ use SmartEmailing\Types\Comparable\ArrayComparableTrait;
 use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 
-final class LoginCredentials implements ToArrayInterface, ComparableInterface
+final class LoginCredentials implements ToArrayInterface, ComparableInterface, \JsonSerializable
 {
 
 	use ArrayExtractableTrait;
 	use ArrayComparableTrait;
+	use ToArrayJsonSerializableTrait;
 
-	private string $login;
+	private readonly string $login;
 
-	private string $password;
+	private readonly string $password;
 
 	/**
 	 * @param array<string> $data

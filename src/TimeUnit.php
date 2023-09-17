@@ -6,7 +6,7 @@ namespace SmartEmailing\Types;
 
 use SmartEmailing\Types\ExtractableTraits\EnumExtractableTrait;
 
-final class TimeUnit extends Enum implements ToStringInterface
+final class TimeUnit extends Enum implements ToStringInterface, \JsonSerializable
 {
 
 	use EnumExtractableTrait;

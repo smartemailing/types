@@ -12,7 +12,6 @@ final class HttpMethod extends Enum implements ToStringInterface, ComparableInte
 {
 
 	use EnumExtractableTrait;
-	use ToStringTrait;
 	use StringComparableTrait;
 
 	public const GET = 'GET';

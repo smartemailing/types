@@ -8,17 +8,18 @@ use SmartEmailing\Types\Comparable\ArrayComparableTrait;
 use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 
-final class Price implements ToArrayInterface, ComparableInterface
+final class Price implements ToArrayInterface, ComparableInterface, \JsonSerializable
 {
 
 	use ArrayExtractableTrait;
 	use ArrayComparableTrait;
+	use ToArrayJsonSerializableTrait;
 
-	private float $withoutVat;
+	private readonly float $withoutVat;
 
-	private float $withVat;
+	private readonly float $withVat;
 
-	private CurrencyCode $currency;
+	private readonly CurrencyCode $currency;
 
 	/**
 	 * @param array<mixed> $data

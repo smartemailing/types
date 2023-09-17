@@ -150,6 +150,20 @@ final class UrlTypeTest extends TestCase
 		);
 	}
 
+	public function testClone(): void
+	{
+		Assert::noError(
+			static function () {
+				$value = 'https://marketadanisova.cz/wp-content/uploads/2018/09/Snímek-obrazovky-2018-09-18-v-21.21.41.png';
+				$url = UrlType::from($value);
+
+				$dolly = clone $url;
+
+				Assert::true($dolly->getValue() === $url->getValue());
+			}
+		);
+	}
+
 }
 
 (new UrlTypeTest())->run();

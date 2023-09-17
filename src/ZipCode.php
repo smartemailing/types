@@ -11,14 +11,14 @@ use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 use SmartEmailing\Types\Helpers\StringHelpers;
 
 // phpcs:disable SlevomatCodingStandard.Files.LineLength.LineTooLong
-final class ZipCode implements ToStringInterface, ComparableInterface
+final class ZipCode implements ToStringInterface, ComparableInterface, \JsonSerializable
 {
 
 	use StringExtractableTrait;
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	private string $value;
+	private readonly string $value;
 
 	/**
 	 * @var array<string>
