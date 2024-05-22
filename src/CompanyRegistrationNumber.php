@@ -50,8 +50,34 @@ final class CompanyRegistrationNumber implements ToStringInterface, ComparableIn
 			$this->isValidHR($value) ||
 			$this->isValidNL($value) ||
 			$this->isValidPT($value) ||
-			$this->isValidLU($value);
+            $this->isValidLU($value) ||
+            $this->isValidIE($value);
 	}
+
+private function isValidIE(
+        string $value
+    ): bool
+    {
+        if (!\preg_match('/^\d{7}[A-Z]{1,2}$/', $value)) {
+            return false;
+        }
+
+        $weight = 8;
+        $sum = 0;
+
+        for ($i = 0; $i < 7; $i++) {
+            $sum += (int) $value[$i] * $weight;
+            $weight--;
+        }
+
+        if (\strlen($value) === 9) {
+            $sum += (\ord($value[8]) - \ord('A') + 1) * 9;
+        }
+
+        $remainder = $sum % 23;
+
+        return \chr(\ord('A') - 1 + $remainder) === $value[7];
+    }
 
 	private function isValidCH(
 		string $value
