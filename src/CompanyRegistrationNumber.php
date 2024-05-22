@@ -54,10 +54,9 @@ final class CompanyRegistrationNumber implements ToStringInterface, ComparableIn
             $this->isValidIE($value);
 	}
 
-private function isValidIE(
+    private function isValidIE(
         string $value
-    ): bool
-    {
+    ): bool {
         if (!\preg_match('/^\d{7}[A-Z]{1,2}$/', $value)) {
             return false;
         }
