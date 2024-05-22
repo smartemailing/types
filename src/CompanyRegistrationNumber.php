@@ -51,8 +51,31 @@ final class CompanyRegistrationNumber implements ToStringInterface, ComparableIn
 			$this->isValidNL($value) ||
 			$this->isValidPT($value) ||
             $this->isValidLU($value) ||
-            $this->isValidIE($value);
+            $this->isValidIE($value) || 
+            $this->isValidEL($value);
 	}
+
+    private function isValidEL(
+        string $value
+    ): bool {
+        if(!\preg_match('/^\d{9}$/', $value)) {
+            return false;
+        }
+
+        if($value === '000000000') {
+            return false;
+        }
+
+        $sum = 0;
+
+        for($i = 0; $i < 8; $i++) {
+            $sum += ((int) $value[$i]) << 8 - $i;
+        }
+
+        $remainder = $sum % 11 % 10;
+
+        return $remainder === (int) $value[8];
+    }
 
     private function isValidIE(
         string $value

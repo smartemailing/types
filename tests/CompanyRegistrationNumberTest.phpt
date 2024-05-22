@@ -56,6 +56,7 @@ final class CompanyRegistrationNumberTest extends TestCase
             '1234567T', // IE
             '1234567FA',// IE
             '2036426OA',// IE
+            '996861833', // EL
 		];
 
 		foreach ($validValues as $validValue) {
