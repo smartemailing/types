@@ -8,19 +8,20 @@ use SmartEmailing\Types\Comparable\ArrayComparableTrait;
 use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 
-final class Address implements ToArrayInterface, ComparableInterface
+final class Address implements ToArrayInterface, ComparableInterface, \JsonSerializable
 {
 
 	use ArrayExtractableTrait;
 	use ArrayComparableTrait;
+	use ToArrayJsonSerializableTrait;
 
-	private string $streetAndNumber;
+	private readonly string $streetAndNumber;
 
-	private string $town;
+	private readonly string $town;
 
-	private ZipCode $zipCode;
+	private readonly ZipCode $zipCode;
 
-	private CountryCode $country;
+	private readonly CountryCode $country;
 
 	/**
 	 * @param array<mixed> $data

@@ -10,14 +10,14 @@ use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 use SmartEmailing\Types\Helpers\CountryCodeToPhoneCodeTable;
 
-final class PhoneNumber implements ToStringInterface, ComparableInterface
+final class PhoneNumber implements ToStringInterface, ComparableInterface, \JsonSerializable
 {
 
 	use StringExtractableTrait;
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	private string $value;
+	private readonly string $value;
 
 	private function __construct(
 		string $value

@@ -9,14 +9,14 @@ use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\Comparable\StringComparableTrait;
 use SmartEmailing\Types\ExtractableTraits\StringExtractableTrait;
 
-final class HostName implements ToStringInterface, ComparableInterface
+final class HostName implements ToStringInterface, ComparableInterface, \JsonSerializable
 {
 
 	use StringExtractableTrait;
 	use ToStringTrait;
 	use StringComparableTrait;
 
-	private string $value;
+	private readonly string $value;
 
 	private function __construct(
 		string $value
@@ -53,7 +53,8 @@ final class HostName implements ToStringInterface, ComparableInterface
 
 	private function isValid(
 		string $value
-	): bool {
+	): bool
+	{
 		return \preg_match('/^([a-z\\d](-*[a-z\\d])*)(\\.([a-z\\d](-*[a-z\\d])*))*$/i', $value) //valid chars check
 			&& \preg_match('/^.{1,253}$/', $value)// overall length check
 			&& \preg_match('/^[^\\.]{1,63}(\\.[^\\.]{1,63})*$/', $value);

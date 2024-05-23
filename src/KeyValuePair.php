@@ -8,15 +8,16 @@ use SmartEmailing\Types\Comparable\ArrayComparableTrait;
 use SmartEmailing\Types\Comparable\ComparableInterface;
 use SmartEmailing\Types\ExtractableTraits\ArrayExtractableTrait;
 
-final class KeyValuePair implements ToArrayInterface, ComparableInterface
+final class KeyValuePair implements ToArrayInterface, ComparableInterface, \JsonSerializable
 {
 
 	use ArrayExtractableTrait;
 	use ArrayComparableTrait;
+	use ToArrayJsonSerializableTrait;
 
-	private string $key;
+	private readonly string $key;
 
-	private string $value;
+	private readonly string $value;
 
 	/**
 	 * @param array<string> $data
