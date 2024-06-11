@@ -9,17 +9,18 @@ trait EnumExtractableTrait
 
 	use ExtractableTrait;
 
-	/**
-	 * @return static
-	 */
-	final public static function from(
-		mixed $data
-	) {
-		if ($data instanceof self) {
-			return $data;
-		}
+    final public static function from(
+        mixed $data
+    ): static {
+        if ($data instanceof static) {
+            return $data;
+        }
 
-		return self::get($data);
-	}
+        return self::get($data);
+    }
+
+	abstract public static function get(
+        mixed $data
+    ): static;
 
 }

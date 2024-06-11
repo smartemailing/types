@@ -11,12 +11,11 @@ trait StringComparableTrait
 
 	public function equals(
 		mixed $that
-	): bool
-	{
-		return $this instanceof ToStringInterface &&
-			$that instanceof ToStringInterface &&
-			\get_class($that) === static::class &&
-			(string) $this === (string) $that;
+	): bool {
+		return $this instanceof ToStringInterface
+			&& $that instanceof ToStringInterface
+			&& \get_class($that) === static::class
+			&& (string) $this === (string) $that;
 	}
 
 }
