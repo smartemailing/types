@@ -11,24 +11,23 @@ trait FloatExtractableTrait
 
 	use ExtractableTrait;
 
+    /**
+     * @param string|mixed|array<mixed> $data
+     */
+    final public static function from(
+        $data
+    ): static {
+        if ($data instanceof self) {
+            return $data;
+        }
+
+        $data = FloatType::from($data);
+
+        return new static($data);
+    }
+
 	abstract public function __construct(
 		float $value
 	);
-
-	/**
-	 * @param string|mixed|array<mixed> $data
-	 * @return static
-	 */
-	final public static function from(
-		$data
-	) {
-		if ($data instanceof self) {
-			return $data;
-		}
-
-		$data = FloatType::from($data);
-
-		return new static($data);
-	}
 
 }

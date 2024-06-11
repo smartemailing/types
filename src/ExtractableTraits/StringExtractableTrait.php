@@ -11,24 +11,23 @@ trait StringExtractableTrait
 
 	use ExtractableTrait;
 
+    /**
+     * @param string|mixed|array<mixed> $data
+     */
+    final public static function from(
+        $data
+    ): static {
+        if ($data instanceof self) {
+            return $data;
+        }
+
+        $data = StringType::from($data);
+
+        return new static($data);
+    }
+
 	abstract public function __construct(
 		string $value
 	);
-
-	/**
-	 * @param string|mixed|array<mixed> $data
-	 * @return static
-	 */
-	final public static function from(
-		$data
-	) {
-		if ($data instanceof self) {
-			return $data;
-		}
-
-		$data = StringType::from($data);
-
-		return new static($data);
-	}
 
 }

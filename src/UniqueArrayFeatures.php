@@ -32,7 +32,7 @@ trait UniqueArrayFeatures
 	}
 
 	/**
-	 * @return array<self>
+	 * @return array<static>
 	 */
 	public function split(
 		int $chunkSize

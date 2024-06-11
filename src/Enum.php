@@ -5,16 +5,9 @@ declare(strict_types = 1);
 namespace SmartEmailing\Types;
 
 use Nette\Utils\Json;
-use ReflectionClass;
-use ReflectionClassConstant;
 
 abstract class Enum
 {
-
-	/**
-	 * @var mixed
-	 */
-	private $value;
 
 	/**
 	 * @var array<static> indexed by enum and value
@@ -26,30 +19,24 @@ abstract class Enum
 	 */
 	private static array $availableValues = [];
 
+    final public static function get(
+        mixed $value
+    ): static {
+        self::checkValue($value);
+
+        $index = \sprintf('%s::%s', static::class, self::getValueIndex($value));
+
+        if (!isset(self::$instances[$index])) {
+            self::$instances[$index] = new static($value);
+        }
+
+        return self::$instances[$index];
+    }
+
 	final private function __construct(
-		mixed $value
-	)
-	{
+		private mixed $value
+	) {
 		static::checkValue($value);
-		$this->value = $value;
-	}
-
-	/**
-	 * @return static
-	 */
-	final public static function get(
-		mixed $value
-	): self
-	{
-		self::checkValue($value);
-
-		$index = \sprintf('%s::%s', static::class, self::getValueIndex($value));
-
-		if (!isset(self::$instances[$index])) {
-			self::$instances[$index] = new static($value);
-		}
-
-		return self::$instances[$index];
 	}
 
 	public function getValue(): mixed
@@ -59,8 +46,7 @@ abstract class Enum
 
 	public function equals(
 		self $that
-	): bool
-	{
+	): bool {
 		$this->checkSameEnum($that);
 
 		return $this === $that;
@@ -68,8 +54,7 @@ abstract class Enum
 
 	public function equalsValue(
 		mixed $value
-	): bool
-	{
+	): bool {
 		return $this->getValue() === $value;
 	}
 
@@ -78,28 +63,23 @@ abstract class Enum
 	 */
 	public static function checkValue(
 		mixed $value
-	): void
-	{
+	): void {
 		if (!\is_subclass_of(static::class, self::class)) {
-			throw new \Exception(\sprintf(
-				'"%s" is not a subclass of "%s"',
-				static::class,
-				self::class
-			));
+			throw new \Exception(\sprintf('"%s" is not a subclass of "%s"', static::class, self::class));
 		}
 
 		if (!static::isValidValue($value)) {
 			$availableValues = static::getAvailableValues();
 
 			throw new InvalidTypeException(
-				\sprintf(
-					'%s [%s] is not a valid value for %s, accepted values: %s',
-					\is_object($value) ? \get_class($value) : Json::encode($value),
-					\gettype($value),
-					static::class,
-					\implode(', ', $availableValues)
-				)
-			);
+                \sprintf(
+                    '%s [%s] is not a valid value for %s, accepted values: %s',
+                    \is_object($value) ? \get_class($value) : Json::encode($value),
+                    \gettype($value),
+                    static::class,
+                    \implode(', ', $availableValues)
+                )
+            );
 		}
 	}
 
@@ -136,15 +116,13 @@ abstract class Enum
 
 	public static function isValidValue(
 		mixed $value
-	): bool
-	{
+	): bool {
 		return \in_array($value, self::getAvailableValues(), true);
 	}
 
 	protected function checkSameEnum(
 		self $that
-	): void
-	{
+	): void {
 		if (\get_class($that) !== static::class) {
 			throw new InvalidTypeException(\sprintf('Operation supported only for enum of same class: %s given, %s expected', \get_class($that), static::class));
 		}
@@ -155,8 +133,7 @@ abstract class Enum
 	 */
 	protected static function checkAvailableValues(
 		array $availableValues
-	): void
-	{
+	): void {
 		$index = [];
 
 		foreach ($availableValues as $value) {
@@ -164,14 +141,7 @@ abstract class Enum
 			$key = self::getValueIndex($value);
 
 			if (isset($index[$key])) {
-				throw new InvalidTypeException(
-					\sprintf(
-						'Value %s [%s] is specified in %s\'s available values multiple times',
-						$value,
-						\gettype($value),
-						static::class
-					)
-				);
+				throw new InvalidTypeException(\sprintf('Value %s [%s] is specified in %s\'s available values multiple times', $value, \gettype($value), static::class));
 			}
 
 			$index[$key] = true;
@@ -180,8 +150,7 @@ abstract class Enum
 
 	private static function checkType(
 		mixed $value
-	): void
-	{
+	): void {
 		if (\is_scalar($value) || $value === null) {
 			return;
 		}
@@ -189,40 +158,38 @@ abstract class Enum
 		if (\is_object($value)) {
 			$valueType = \get_class($value);
 			$printableValue = \get_class($value);
-		} elseif (\is_array($value)) {
+		}
+		elseif (\is_array($value)) {
 			$valueType = '';
 			$printableValue = Json::encode($value);
-		} else {
+		}
+		else {
 			$valueType = \gettype($value);
 			$printableValue = Json::encode($value);
 		}
 
-		throw new InvalidTypeException(
-			\sprintf('%s expected, %s [%s] given', 'int|string|float|bool|null', $printableValue, $valueType)
-		);
+		throw new InvalidTypeException(\sprintf('%s expected, %s [%s] given', 'int|string|float|bool|null', $printableValue, $valueType));
 	}
 
 	/**
 	 * @param \ReflectionClass<static> $classReflection
-	 * @return array<int, \ReflectionClassConstant>
+     * @return array<int, \ReflectionClassConstant>
 	 */
 	private static function getDeclaredConstants(
-		ReflectionClass $classReflection
-	): array
-	{
+		\ReflectionClass $classReflection
+	): array {
 		$constants = $classReflection->getReflectionConstants();
 		$className = $classReflection->getName();
 
 		return \array_filter(
 			$constants,
-			static fn (ReflectionClassConstant $constant): bool => $constant->getDeclaringClass()->getName() === $className
+			static fn (\ReflectionClassConstant $constant): bool => $constant->getDeclaringClass()->getName() === $className
 		);
 	}
 
 	private static function getValueIndex(
 		mixed $value
-	): string
-	{
+	): string {
 		$type = \gettype($value);
 
 		return $value . \sprintf('[%s]', $type);
@@ -233,11 +200,11 @@ abstract class Enum
 	 */
 	private static function getEnumConstants(): array
 	{
-		$classReflection = new ReflectionClass(static::class);
+		$classReflection = new \ReflectionClass(static::class);
 		$declaredConstants = self::getDeclaredConstants($classReflection);
 		$declaredPublicConstants = \array_filter(
 			$declaredConstants,
-			static fn (ReflectionClassConstant $constant): bool => $constant->isPublic()
+			static fn (\ReflectionClassConstant $constant): bool => $constant->isPublic()
 		);
 
 		$out = [];
