@@ -10,7 +10,7 @@ trait EnumExtractableTrait
 	use ExtractableTrait;
 
 	/**
-	 * @return self
+	 * @return static
 	 */
 	final public static function from(
 		mixed $data
