@@ -36,6 +36,62 @@ final class Duration implements ToStringInterface, ToArrayInterface, ComparableI
 		$this->lengthInSeconds = (int) \abs($diff);
 	}
 
+    public static function fromDateTimeModify(
+        string $dateTimeModify
+    ): self
+    {
+        $matches = Strings::match($dateTimeModify, '/^(-?|\+?)(\d+)\s+(.+)/');
+
+        if (!$matches) {
+            throw new InvalidTypeException('Duration: ' . $dateTimeModify . '  is not in valid duration format.');
+        }
+
+        $value = IntType::extract($matches, '2');
+        $unit = TimeUnit::extract($matches, '3');
+
+        if ($matches[1] === '-') {
+            $value *= -1;
+        }
+
+        return new static(
+            [
+                'value' => $value,
+                'unit' => $unit->getValue(),
+            ]
+        );
+    }
+
+    public function getValue(): int
+    {
+        return $this->value;
+    }
+
+    public function getUnit(): TimeUnit
+    {
+        return $this->unit;
+    }
+
+    public function getDateTimeModify(): string
+    {
+        return $this->value . ' ' . $this->unit->getValue();
+    }
+
+    /**
+     * @return array<mixed>
+     */
+    public function toArray(): array
+    {
+        return [
+            'value' => $this->value,
+            'unit' => $this->unit->getValue(),
+        ];
+    }
+
+    public function getLengthInSeconds(): int
+    {
+        return $this->lengthInSeconds;
+    }
+
 	public static function from(
 		mixed $data
 	): static {
@@ -56,62 +112,6 @@ final class Duration implements ToStringInterface, ToArrayInterface, ComparableI
 		}
 
 		throw InvalidTypeException::typesError(['string', 'array'], $data);
-	}
-
-	public static function fromDateTimeModify(
-		string $dateTimeModify
-	): self
-	{
-		$matches = Strings::match($dateTimeModify, '/^(-?|\+?)(\d+)\s+(.+)/');
-
-		if (!$matches) {
-			throw new InvalidTypeException('Duration: ' . $dateTimeModify . '  is not in valid duration format.');
-		}
-
-		$value = IntType::extract($matches, '2');
-		$unit = TimeUnit::extract($matches, '3');
-
-		if ($matches[1] === '-') {
-			$value *= -1;
-		}
-
-		return new static(
-			[
-				'value' => $value,
-				'unit' => $unit->getValue(),
-			]
-		);
-	}
-
-	public function getValue(): int
-	{
-		return $this->value;
-	}
-
-	public function getUnit(): TimeUnit
-	{
-		return $this->unit;
-	}
-
-	public function getDateTimeModify(): string
-	{
-		return $this->value . ' ' . $this->unit->getValue();
-	}
-
-	/**
-	 * @return array<mixed>
-	 */
-	public function toArray(): array
-	{
-		return [
-			'value' => $this->value,
-			'unit' => $this->unit->getValue(),
-		];
-	}
-
-	public function getLengthInSeconds(): int
-	{
-		return $this->lengthInSeconds;
 	}
 
 	public function __toString(): string
