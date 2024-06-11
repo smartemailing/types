@@ -32,7 +32,7 @@ final class JsonString implements ToStringInterface, ComparableInterface
 	 */
 	public static function from(
 		$data
-	): JsonString
+	): static
 	{
 		if ($data instanceof self) {
 			return $data;
@@ -41,7 +41,7 @@ final class JsonString implements ToStringInterface, ComparableInterface
 		$string = StringType::fromOrNull($data, true);
 
 		if (\is_string($string)) {
-			return new static($string);
+			return new self($string);
 		}
 
 		$array = Arrays::fromOrNull($data, true);
@@ -59,7 +59,7 @@ final class JsonString implements ToStringInterface, ComparableInterface
 	): self
 	{
 		try {
-			return new static(
+			return new self(
 				Json::encode(
 					$value,
 					$oneLine ? 0 : Json::PRETTY

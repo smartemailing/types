@@ -38,7 +38,7 @@ final class Duration implements ToStringInterface, ToArrayInterface, ComparableI
 
 	public static function from(
 		mixed $data
-	): Duration {
+	): static {
 		if ($data instanceof self) {
 			return $data;
 		}
