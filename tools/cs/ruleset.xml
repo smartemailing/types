@@ -34,7 +34,6 @@
 		<exclude name="SlevomatCodingStandard.Numbers.DisallowNumericLiteralSeparator.DisallowedNumericLiteralSeparator"/>
 
 		<!-- TODO Enable after migration to PHP 8.1 -->
-		<exclude name="SlevomatCodingStandard.Files.FunctionLength.FunctionLength"/>
 		<exclude name="SlevomatCodingStandard.Functions.FunctionLength.FunctionLength"/>
 		<exclude name="SlevomatCodingStandard.Functions.RequireTrailingCommaInCall.MissingTrailingComma"/>
 		<exclude name="SlevomatCodingStandard.Files.FileLength.FileTooLong"/>
