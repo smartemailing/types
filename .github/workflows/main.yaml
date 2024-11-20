@@ -100,7 +100,7 @@ jobs:
       - name: 'Install PHP'
         uses: 'shivammathur/setup-php@v2'
         with:
-          php-version: '8.1'
+          php-version: '8.3'
           coverage: 'xdebug'
           extensions: '${{ env.php-extensions }}'
 
@@ -116,5 +116,5 @@ jobs:
           CI: true
           COVERALLS_REPO_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
         run: |
-          wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.5.2/php-coveralls.phar
+          wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.7.0/php-coveralls.phar
           php php-coveralls.phar --verbose --config tests/.coveralls.yml
