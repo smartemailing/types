@@ -9,7 +9,7 @@ on:
       - 'master'
 
 env:
-  php-version: '8.2'
+  php-version: '8.3'
   php-extensions: 'json'
   composer-install: 'composer update --no-interaction --no-progress --no-suggest --prefer-dist --prefer-stable'
 
@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: 'Checkout'
-        uses: 'actions/checkout@v3'
+        uses: 'actions/checkout@v4'
 
       - name: 'Install PHP'
         uses: 'shivammathur/setup-php@v2'
@@ -40,7 +40,7 @@ jobs:
 
     steps:
       - name: 'Checkout'
-        uses: 'actions/checkout@v3'
+        uses: 'actions/checkout@v4'
 
       - name: 'Install PHP'
         uses: 'shivammathur/setup-php@v2'
@@ -60,7 +60,7 @@ jobs:
 
     strategy:
       matrix:
-        php-version: [ '8.1', '8.2' ]
+        php-version: [ '8.1', '8.2', '8.3' ]
         operating-system: [ 'ubuntu-latest' ]
         composer-args: [ '' ]
         include:
@@ -70,7 +70,7 @@ jobs:
 
     steps:
       - name: 'Checkout'
-        uses: 'actions/checkout@v3'
+        uses: 'actions/checkout@v4'
 
       - name: 'Install PHP'
         uses: 'shivammathur/setup-php@v2'
@@ -95,7 +95,7 @@ jobs:
 
     steps:
       - name: 'Checkout'
-        uses: 'actions/checkout@v3'
+        uses: 'actions/checkout@v4'
 
       - name: 'Install PHP'
         uses: 'shivammathur/setup-php@v2'
