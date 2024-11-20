@@ -17,7 +17,7 @@ final class PortTest extends TestCase
 		$invalidValues = [
 			'xxx',
 			-2,
-			100000,
+			100_000,
 		];
 
 		foreach ($invalidValues as $validValue) {
@@ -30,7 +30,7 @@ final class PortTest extends TestCase
 		}
 
 		Assert::noError(static fn () => Port::from(0));
-		Assert::noError(static fn () => Port::from(65535));
+		Assert::noError(static fn () => Port::from(65_535));
 		Assert::noError(static fn () => Port::from(20));
 
 		Assert::equal(20, Port::from(20)->getValue());

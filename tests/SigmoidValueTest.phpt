@@ -17,7 +17,7 @@ final class SigmoidValueTest extends TestCase
 		$invalidValues = [
 			'xxx',
 			-2,
-			100000,
+			100_000,
 			1.1,
 		];
 
@@ -42,8 +42,8 @@ final class SigmoidValueTest extends TestCase
 		$sigmoidValue = SigmoidValue::from(1.0);
 		Assert::equal(1.0, $sigmoidValue->getValue());
 
-		$sigmoidValue = SigmoidValue::from(-0.0003);
-		Assert::equal(-0.0003, $sigmoidValue->getValue());
+		$sigmoidValue = SigmoidValue::from(-0.000_3);
+		Assert::equal(-0.000_3, $sigmoidValue->getValue());
 
 		$sigmoidValue = SigmoidValue::from(-1.0);
 		Assert::equal(-1.0, $sigmoidValue->getValue());

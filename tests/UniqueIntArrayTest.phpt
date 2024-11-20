@@ -59,7 +59,7 @@ final class UniqueIntArrayTest extends TestCase
 		$append->add(2);
 		Assert::equal([1, 2], $append->getValues());
 
-		$append->remove(12345);
+		$append->remove(12_345);
 		Assert::equal([1, 2], $append->getValues());
 
 		$append->remove(1);

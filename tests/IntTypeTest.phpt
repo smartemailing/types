@@ -43,7 +43,7 @@ final class IntTypeTest extends TestCase
 		$invalid = [
 			1,
 			'1',
-			1.00000,
+			1.000_00,
 			'1.00000',
 		];
 

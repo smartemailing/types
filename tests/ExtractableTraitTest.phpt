@@ -183,7 +183,7 @@ final class ExtractableTraitTest extends TestCase
 			[
 				'street_and_number' => 'Netroufalky 5',
 				'town' => 'Brno',
-				'zip_code' => 12345,
+				'zip_code' => 12_345,
 				'country' => 'CZ',
 			]
 		);

@@ -93,7 +93,7 @@ final class PrimitiveTypesTest extends TestCase
 			InvalidTypeException::class
 		);
 
-		Assert::equal(10174, PrimitiveTypes::getInt('0010174'));
+		Assert::equal(10_174, PrimitiveTypes::getInt('0010174'));
 
 		Assert::equal(0, PrimitiveTypes::getInt('0'));
 		Assert::equal(0, PrimitiveTypes::getInt('000'));

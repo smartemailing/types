@@ -33,7 +33,7 @@ final class UnsignedIntTest extends TestCase
 		}
 
 		Assert::noError(static fn () => UnsignedInt::from(1));
-		Assert::noError(static fn () => UnsignedInt::from(1000000));
+		Assert::noError(static fn () => UnsignedInt::from(1_000_000));
 
 		Assert::equal(20, UnsignedInt::from(20)->getValue());
 		Assert::equal('20', (string) UnsignedInt::from(20));

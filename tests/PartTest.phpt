@@ -17,7 +17,7 @@ final class PartTest extends TestCase
 		$invalidValues = [
 			'xxx',
 			-2,
-			100000,
+			100_000,
 			-0.01,
 			1.1,
 		];
@@ -43,8 +43,8 @@ final class PartTest extends TestCase
 		$part = Part::from(1.0);
 		Assert::equal(1.0, $part->getValue());
 
-		$part = Part::from(0.0003);
-		Assert::equal(0.0003, $part->getValue());
+		$part = Part::from(0.000_3);
+		Assert::equal(0.000_3, $part->getValue());
 
 		$part = Part::fromRatio(0.0, 0.0);
 		Assert::equal(0.0, $part->getValue());
@@ -60,7 +60,7 @@ final class PartTest extends TestCase
 			'Value cannot be higher than whole: but 2 / 1 given.'
 		);
 
-		$part = Part::from(0.1234);
+		$part = Part::from(0.123_4);
 		Assert::equal(12.34, $part->getPercent());
 	}
 

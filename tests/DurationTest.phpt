@@ -109,7 +109,7 @@ final class DurationTest extends TestCase
 			'value' => 3,
 			'unit' => TimeUnit::HOURS,
 		]);
-		Assert::equal(10800, $duration->getLengthInSeconds());
+		Assert::equal(10_800, $duration->getLengthInSeconds());
 
 		$duration = Duration::from([
 			'value' => 10,
