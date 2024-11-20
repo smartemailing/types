@@ -24,7 +24,7 @@ abstract class DateTimes implements ExtractableTypeInterface
 			\is_string($value) &&
 			\preg_match('#^\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d(\.\d+)?\z#', $value, $matches) === 1
 		) {
-			if (($matches[1] ?? 0) > 0) {
+			if (\array_key_exists(1, $matches)) {
 				$value = \substr($value, 0, \strlen($value) - \strlen($matches[1])); // remove micro seconds
 			}
 
