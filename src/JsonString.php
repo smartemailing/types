@@ -27,11 +27,10 @@ final class JsonString implements ToStringInterface, ComparableInterface
 	}
 
 	/**
-	 * @param string|mixed|array<mixed> $data
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function from(
-		$data
+		mixed $data
 	): JsonString
 	{
 		if ($data instanceof self) {

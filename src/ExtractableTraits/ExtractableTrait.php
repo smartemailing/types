@@ -21,7 +21,7 @@ trait ExtractableTrait
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function extract(
-		$data,
+		array|\ArrayAccess $data,
 		string $key
 	): self {
 		$value = ExtractableHelpers::extractValue($data, $key);
@@ -64,7 +64,7 @@ trait ExtractableTrait
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function extractOrNull(
-		$data,
+		array|\ArrayAccess $data,
 		string $key,
 		bool $nullIfInvalid = false
 	): ?self {

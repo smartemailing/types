@@ -252,7 +252,7 @@ abstract class Arrays implements ExtractableTypeInterface
 	 * @return array<mixed>
 	 */
 	public static function extract(
-		$data,
+		array|\ArrayAccess $data,
 		string $key
 	): array
 	{
@@ -270,7 +270,7 @@ abstract class Arrays implements ExtractableTypeInterface
 	 * @return array<mixed>|null
 	 */
 	public static function extractOrNull(
-		$data,
+		array|\ArrayAccess $data,
 		string $key,
 		bool $nullIfInvalid = false
 	): ?array

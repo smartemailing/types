@@ -34,7 +34,7 @@ abstract class Dates implements ExtractableTypeInterface
      * @throws \SmartEmailing\Types\InvalidTypeException
      */
     final public static function extract(
-        $data,
+		array|\ArrayAccess $data,
         string $key
     ): \DateTime {
         $value = ExtractableHelpers::extractValue($data, $key);
@@ -50,7 +50,7 @@ abstract class Dates implements ExtractableTypeInterface
      * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
      */
     final public static function extractOrNull(
-        $data,
+		array|\ArrayAccess $data,
         string $key,
         bool $nullIfInvalid = false
     ): ?\DateTime {

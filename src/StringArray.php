@@ -60,7 +60,7 @@ abstract class StringArray implements ExtractableTypeInterface
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
-		$data,
+		array|\ArrayAccess $data,
 		string $key
 	): array {
 		$value = Arrays::extract($data, $key);
@@ -78,7 +78,7 @@ abstract class StringArray implements ExtractableTypeInterface
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractOrNull(
-		$data,
+		array|\ArrayAccess $data,
 		string $key,
 		bool $nullIfInvalid = false
 	): ?array {
