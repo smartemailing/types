@@ -67,6 +67,9 @@ jobs:
           - php-version: '8.1'
             operating-system: 'ubuntu-latest'
             composer-args: '--prefer-lowest'
+          - php-version: 'nightly'
+            operating-system: 'ubuntu-latest'
+            continue-on-error: true
 
     steps:
       - name: 'Checkout'
