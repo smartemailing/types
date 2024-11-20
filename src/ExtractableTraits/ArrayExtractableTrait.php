@@ -20,11 +20,10 @@ trait ArrayExtractableTrait
 
 	/**
 	 * @param string|mixed|array<mixed> $data
-	 * @return static
 	 */
 	final public static function from(
 		$data
-	) {
+	): self {
 		if ($data instanceof self) {
 			return $data;
 		}
