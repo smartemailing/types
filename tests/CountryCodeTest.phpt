@@ -9,7 +9,7 @@ use Tester\TestCase;
 
 require_once __DIR__ . '/bootstrap.php';
 
-class CountryCodeTest extends TestCase
+final class CountryCodeTest extends TestCase
 {
 
 	public function testDefaults(): void

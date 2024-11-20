@@ -6,7 +6,7 @@ namespace SmartEmailing\Types;
 
 use SmartEmailing\Types\Helpers\StringHelpers;
 
-class InvalidTypeException extends \RuntimeException
+class InvalidTypeException extends \RuntimeException // phpcs:ignore
 {
 
 	final public function __construct(

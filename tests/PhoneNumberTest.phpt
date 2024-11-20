@@ -9,7 +9,7 @@ use Tester\TestCase;
 
 require __DIR__ . '/bootstrap.php';
 
-class PhoneNumberTest extends TestCase
+final class PhoneNumberTest extends TestCase
 {
 
 	public function testInvalidValues(): void
