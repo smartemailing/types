@@ -44,7 +44,7 @@ final class DurationTest extends TestCase
 				Duration::extract(['duration' => 1], 'duration');
 			},
 			InvalidTypeException::class,
-			'Problem at key duration: Duration: 1  is not in valid duration format.'
+			'Problem at key duration: Duration: 1 is not in valid duration format.'
 		);
 
 		Assert::throws(
