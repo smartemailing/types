@@ -10,11 +10,8 @@ use SmartEmailing\Types\Helpers\ExtractableHelpers;
 abstract class IntType implements ExtractableTypeInterface
 {
 
-	/**
-	 * @param mixed $value
-	 */
 	final public static function from(
-		$value
+		mixed $value
 	): int {
 		if (Validators::isNumericInt($value)) {
 			return (int) $value;
@@ -51,7 +48,7 @@ abstract class IntType implements ExtractableTypeInterface
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
-		$data,
+		array|\ArrayAccess $data,
 		string $key
 	): int {
 		$value = ExtractableHelpers::extractValue($data, $key);
@@ -68,7 +65,7 @@ abstract class IntType implements ExtractableTypeInterface
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractOrNull(
-		$data,
+		array|\ArrayAccess $data,
 		string $key,
 		bool $nullIfInvalid = false
 	): ?int {

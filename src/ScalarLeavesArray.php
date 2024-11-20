@@ -38,7 +38,7 @@ final class ScalarLeavesArray implements ToArrayInterface, ComparableInterface
 			$key
 		);
 
-		if ($self) {
+		if ($self !== null) {
 			return $self;
 		}
 

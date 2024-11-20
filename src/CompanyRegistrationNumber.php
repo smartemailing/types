@@ -58,7 +58,7 @@ final class CompanyRegistrationNumber implements ToStringInterface, ComparableIn
     private function isValidGR(
         string $value
     ): bool {
-        if(!\preg_match('/^\d{9}$/', $value)) {
+        if(\preg_match('/^\d{9}$/', $value) !== 1) {
             return false;
         }
 
@@ -80,7 +80,7 @@ final class CompanyRegistrationNumber implements ToStringInterface, ComparableIn
     private function isValidIE(
         string $value
     ): bool {
-        if (!\preg_match('/^\d{7}[A-Z]{1,2}$/', $value)) {
+        if (\preg_match('/^\d{7}[A-Z]{1,2}$/', $value) !== 1) {
             return false;
         }
 
@@ -117,11 +117,11 @@ final class CompanyRegistrationNumber implements ToStringInterface, ComparableIn
 		$nieRegEx = '/^[XYZ]\d{7}[A-Z]$/i';
 		$letters = 'TRWAGMYFPDXBNJZSQVHLCKE';
 
-		if (\preg_match($valueRegEx, $value)) {
-			return $letters[\substr($value, 0, 8) % 23] === $value[8];
+		if (\preg_match($valueRegEx, $value) === 1) {
+			return $letters[(int) \substr($value, 0, 8) % 23] === $value[8];
 		}
 
-		if (\preg_match($nieRegEx, $value)) {
+		if (\preg_match($nieRegEx, $value) === 1) {
 			if ($value[0] === 'X') {
 				$value[0] = '0';
 			} elseif ($value[0] === 'Y') {
@@ -130,7 +130,7 @@ final class CompanyRegistrationNumber implements ToStringInterface, ComparableIn
 				$value[0] = '2';
 			}
 
-			return $letters[\substr($value, 0, 8) % 23] === $value[8];
+			return $letters[(int) \substr($value, 0, 8) % 23] === $value[8];
 		}
 
 		return false;
@@ -163,7 +163,7 @@ final class CompanyRegistrationNumber implements ToStringInterface, ComparableIn
 			$value
 		);
 
-		if (!\preg_match('#^\d{8}$#', $value)) {
+		if (\preg_match('#^\d{8}$#', $value) !== 1) {
 			return false;
 		}
 
@@ -195,7 +195,7 @@ final class CompanyRegistrationNumber implements ToStringInterface, ComparableIn
 			$value
 		);
 
-		if (!\preg_match('#^\d{9}$#', $value)) {
+		if (\preg_match('#^\d{9}$#', $value) !== 1) {
 			return false;
 		}
 
@@ -230,7 +230,7 @@ final class CompanyRegistrationNumber implements ToStringInterface, ComparableIn
 			$value
 		);
 
-		if (!\preg_match('#^(\d{2})\-(\d{7})$#', $value, $matches)) {
+		if (\preg_match('#^(\d{2})\-(\d{7})$#', $value, $matches) !== 1) {
 			return false;
 		}
 

@@ -33,7 +33,7 @@ final class Duration implements ToStringInterface, ToArrayInterface, ComparableI
 		$now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
 		$end = $now->modify('+' . $this->getDateTimeModify());
 		$diff = $end->getTimestamp() - $now->getTimestamp();
-		$this->lengthInSeconds = (int) \abs($diff);
+		$this->lengthInSeconds = \abs($diff);
 	}
 
 	public static function from(
@@ -64,7 +64,7 @@ final class Duration implements ToStringInterface, ToArrayInterface, ComparableI
 	{
 		$matches = Strings::match($dateTimeModify, '/^(-?|\+?)(\d+)\s+(.+)/');
 
-		if (!$matches) {
+		if ($matches === null) {
 			throw new InvalidTypeException('Duration: ' . $dateTimeModify . '  is not in valid duration format.');
 		}
 

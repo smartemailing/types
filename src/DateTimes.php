@@ -20,9 +20,12 @@ abstract class DateTimes implements ExtractableTypeInterface
 			$value = DateTimeFormatter::format($value);
 		}
 
-		if (\is_string($value) && \preg_match('#^\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d(\.\d+)?\z#', $value, $matches)) {
-			if (\count($matches) > 1) {
-				$value = \substr($value, 0, \strlen($value) - \strlen($matches[1]));
+		if (
+			\is_string($value) &&
+			\preg_match('#^\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d(\.\d+)?\z#', $value, $matches) === 1
+		) {
+			if (\array_key_exists(1, $matches)) {
+				$value = \substr($value, 0, \strlen($value) - \strlen($matches[1])); // remove micro seconds
 			}
 
 			$date = \DateTime::createFromFormat(DateTimeFormat::DATETIME, $value);
@@ -42,7 +45,7 @@ abstract class DateTimes implements ExtractableTypeInterface
      * @throws \SmartEmailing\Types\InvalidTypeException
      */
     final public static function extract(
-        $data,
+		array|\ArrayAccess $data,
         string $key
     ): \DateTime {
         $value = ExtractableHelpers::extractValue($data, $key);
@@ -58,7 +61,7 @@ abstract class DateTimes implements ExtractableTypeInterface
      * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
      */
     final public static function extractOrNull(
-        $data,
+		array|\ArrayAccess $data,
         string $key,
         bool $nullIfInvalid = false
     ): ?\DateTime {

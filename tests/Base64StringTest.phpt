@@ -37,12 +37,10 @@ final class Base64StringTest extends TestCase
 		];
 
 		foreach ($validValues as $base64) {
-			$phone = Base64String::from($base64);
-			Assert::type(Base64String::class, $phone);
+			Assert::noError(static fn () => Base64String::from($base64));
 		}
 
 		$b = Base64String::encode('hello');
-		Assert::type('string', $b->getValue());
 		Assert::equal('hello', $b->getDecodedValue());
 
 		Assert::true($b->equals(Base64String::encode('hello')));

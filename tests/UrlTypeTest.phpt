@@ -37,8 +37,7 @@ final class UrlTypeTest extends TestCase
 		];
 
 		foreach ($validValues as $validValue) {
-			$url = UrlType::from($validValue);
-			Assert::type(UrlType::class, $url);
+			Assert::noError(static fn () => UrlType::from($validValue));
 		}
 	}
 

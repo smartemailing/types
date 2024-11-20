@@ -10,11 +10,8 @@ use SmartEmailing\Types\InvalidTypeException;
 abstract class ExtractableHelpers
 {
 
-	/**
-	 * @param array<mixed>|\ArrayAccess<mixed, mixed>|mixed $data
-	 */
 	final public static function extractValue(
-		$data,
+		mixed $data,
 		string $key
 	): mixed {
 		if ($data instanceof ArrayAccess) {
@@ -28,11 +25,8 @@ abstract class ExtractableHelpers
 		throw InvalidTypeException::typesError(['array', \ArrayAccess::class], $data);
 	}
 
-	/**
-	 * @param array<mixed>|\ArrayAccess<mixed, mixed>|mixed $data
-	 */
 	final public static function extractValueOrNull(
-		$data,
+		mixed $data,
 		string $key
 	): mixed {
 		if ($data instanceof ArrayAccess) {

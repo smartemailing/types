@@ -87,13 +87,10 @@ final class DurationTest extends TestCase
 
 	public function testGetUnit(): void
 	{
-		$duration = Duration::from([
+		Assert::noError(static fn () => Duration::from([
 			'value' => 1,
 			'unit' => TimeUnit::YEARS,
-		]);
-
-		Assert::type(Duration::class, $duration);
-		Assert::type(TimeUnit::class, $duration->getUnit());
+		]));
 	}
 
 	public function testGetValue(): void
@@ -103,8 +100,6 @@ final class DurationTest extends TestCase
 			'unit' => TimeUnit::DAYS,
 		]);
 
-		Assert::type(Duration::class, $duration);
-		Assert::type('int', $duration->getValue());
 		Assert::equal(1, $duration->getValue());
 	}
 
@@ -114,14 +109,12 @@ final class DurationTest extends TestCase
 			'value' => 3,
 			'unit' => TimeUnit::HOURS,
 		]);
-		Assert::type(Duration::class, $duration);
-		Assert::equal(10800, $duration->getLengthInSeconds());
+		Assert::equal(10_800, $duration->getLengthInSeconds());
 
 		$duration = Duration::from([
 			'value' => 10,
 			'unit' => TimeUnit::MINUTES,
 		]);
-		Assert::type(Duration::class, $duration);
 		Assert::equal(600, $duration->getLengthInSeconds());
 	}
 
@@ -147,10 +140,9 @@ final class DurationTest extends TestCase
 	{
 		$duration = Duration::fromDateTimeModify('1 weeks');
 
-		Assert::type(Duration::class, Duration::from($duration->toArray()));
-		Assert::type(Duration::class, Duration::extract(['duration' => $duration->toArray()], 'duration'));
-
-		Assert::type(Duration::class, Duration::from((string) $duration));
+		Assert::noError(static fn () => Duration::from($duration->toArray()));
+		Assert::noError(static fn () => Duration::extract(['duration' => $duration->toArray()], 'duration'));
+		Assert::noError(static fn () => Duration::from((string) $duration));
 	}
 
 	/**

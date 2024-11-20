@@ -56,7 +56,7 @@ abstract class BoolType implements ExtractableTypeInterface
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extract(
-		$data,
+		array|\ArrayAccess $data,
 		string $key
 	): bool {
 		$value = ExtractableHelpers::extractValue($data, $key);
@@ -73,7 +73,7 @@ abstract class BoolType implements ExtractableTypeInterface
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractOrNull(
-		$data,
+		array|\ArrayAccess $data,
 		string $key,
 		bool $nullIfInvalid = false
 	): ?bool {

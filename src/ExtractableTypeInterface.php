@@ -20,7 +20,7 @@ interface ExtractableTypeInterface
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 */
 	public static function extract(
-		$data,
+		array|\ArrayAccess $data,
 		string $key
 	): mixed;
 
@@ -28,7 +28,7 @@ interface ExtractableTypeInterface
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 */
 	public static function extractOrNull(
-		$data,
+		array|\ArrayAccess $data,
 		string $key,
 		bool $nullIfInvalid
 	): mixed;

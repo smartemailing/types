@@ -12,22 +12,18 @@ use SmartEmailing\Types\InvalidTypeException;
 trait ExtractableTrait
 {
 
-	/**
-	 * @return self
-	 */
 	abstract public static function from(
 		mixed $data
-	);
+	): self;
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @return self
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function extract(
-		$data,
+		array|\ArrayAccess $data,
 		string $key
-	) {
+	): self {
 		$value = ExtractableHelpers::extractValue($data, $key);
 
 		if ($value instanceof self) {
@@ -42,13 +38,12 @@ trait ExtractableTrait
 	}
 
 	/**
-	 * @return self|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function fromOrNull(
 		mixed $value,
 		bool $getNullIfInvalid = false
-	) {
+	): ?self {
 		if ($value === null) {
 			return null;
 		}
@@ -66,14 +61,13 @@ trait ExtractableTrait
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-	 * @return self|null
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function extractOrNull(
-		$data,
+		array|\ArrayAccess $data,
 		string $key,
 		bool $nullIfInvalid = false
-	) {
+	): ?self {
 		$value = ExtractableHelpers::extractValueOrNull($data, $key);
 
 		if ($value === null) {

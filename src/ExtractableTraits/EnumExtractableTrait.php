@@ -9,12 +9,9 @@ trait EnumExtractableTrait
 
 	use ExtractableTrait;
 
-	/**
-	 * @return self
-	 */
 	final public static function from(
 		mixed $data
-	) {
+	): self {
 		if ($data instanceof self) {
 			return $data;
 		}

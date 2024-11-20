@@ -242,7 +242,7 @@ final class UrlType implements ToStringInterface, ComparableInterface
 		$pass = isset($urlParts['pass'])
 			? ':' . $urlParts['pass']
 			: '';
-		$pass = $user || $pass
+		$pass = $user !== '' || $pass !== ''
 			? $pass . '@'
 			: '';
 		$path = $urlParts['path'] ?? '/';

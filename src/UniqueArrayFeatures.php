@@ -24,7 +24,7 @@ trait UniqueArrayFeatures
 			$key
 		);
 
-		if ($self) {
+		if ($self !== null) {
 			return $self;
 		}
 

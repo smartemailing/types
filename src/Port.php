@@ -18,7 +18,7 @@ final class Port implements ToStringInterface, ComparableInterface
 	public function __construct(
 		private int $value
 	) {
-		if ($value < 0 || $value > 65535) {
+		if ($value < 0 || $value > 65_535) {
 			throw new InvalidTypeException('Invalid Port number: ' . $value);
 		}
 	}

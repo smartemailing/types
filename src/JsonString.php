@@ -27,11 +27,10 @@ final class JsonString implements ToStringInterface, ComparableInterface
 	}
 
 	/**
-	 * @param string|mixed|array<mixed> $data
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function from(
-		$data
+		mixed $data
 	): JsonString
 	{
 		if ($data instanceof self) {
@@ -75,12 +74,9 @@ final class JsonString implements ToStringInterface, ComparableInterface
 		return $this->value;
 	}
 
-	/**
-	 * @return mixed|array<mixed>
-	 */
-	public function getDecodedValue()
+	public function getDecodedValue(): mixed
 	{
-		return Json::decode($this->value, Json::FORCE_ARRAY);
+		return Json::decode($this->value, \JSON_OBJECT_AS_ARRAY);
 	}
 
 	private function isValid(

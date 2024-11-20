@@ -16,7 +16,6 @@ final class VatIdTest extends TestCase
 	{
 		$vatId = VatId::from('cz123456789');
 
-		Assert::type(VatId::class, $vatId);
 		Assert::type(CountryCode::class, $vatId->getCountry());
 		Assert::equal(CountryCode::CZ, $vatId->getCountry()->getValue());
 		Assert::equal('123456789', $vatId->getVatNumber());

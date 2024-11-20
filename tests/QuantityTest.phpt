@@ -29,8 +29,8 @@ final class QuantityTest extends TestCase
 			);
 		}
 
-		Assert::type(Quantity::class, Quantity::from(1));
-		Assert::type(Quantity::class, Quantity::from(1000000));
+		Assert::noError(static fn () => Quantity::from(1));
+		Assert::noError(static fn () => Quantity::from(1_000_000));
 
 		Assert::equal(20, Quantity::from(20)->getValue());
 		Assert::equal('20', (string) Quantity::from(20));

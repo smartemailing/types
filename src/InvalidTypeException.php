@@ -6,7 +6,7 @@ namespace SmartEmailing\Types;
 
 use SmartEmailing\Types\Helpers\StringHelpers;
 
-class InvalidTypeException extends \RuntimeException
+class InvalidTypeException extends \RuntimeException // phpcs:ignore
 {
 
 	final public function __construct(
@@ -100,7 +100,7 @@ class InvalidTypeException extends \RuntimeException
 			$stringValue = StringHelpers::sanitize($stringValue);
 			$description = ' (' . $stringValue . ')';
 		} elseif (\is_object($value)) {
-			$description = ' (' . \get_class($value) . ')';
+			$description = ' (' . $value::class . ')';
 		}
 
 		return $description;

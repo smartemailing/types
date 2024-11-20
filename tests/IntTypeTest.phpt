@@ -29,7 +29,7 @@ final class IntTypeTest extends TestCase
 
 		foreach ($invalid as $value) {
 			Assert::throws(
-				static function () use ($value) {
+				static function () use ($value): void {
 					echo 'Trying invalid: ' . \var_export($value, true) . \PHP_EOL;
 					IntType::from($value);
 				},
@@ -43,15 +43,13 @@ final class IntTypeTest extends TestCase
 		$invalid = [
 			1,
 			'1',
-			1.00000,
+			1.000_00,
 			'1.00000',
 		];
 
 		foreach ($invalid as $value) {
 			echo 'Trying valid: ' . \var_export($value, true) . \PHP_EOL;
-			Assert::true(
-				\is_int(IntType::from($value))
-			);
+			Assert::noError(static fn () => IntType::from($value));
 		}
 	}
 

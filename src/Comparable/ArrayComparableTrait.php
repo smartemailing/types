@@ -15,7 +15,7 @@ trait ArrayComparableTrait
 	{
 		return $this instanceof ToArrayInterface &&
 			$that instanceof ToArrayInterface &&
-			\get_class($that) === static::class &&
+			$that::class === static::class &&
 			$this->toArray() === $that->toArray();
 	}
 

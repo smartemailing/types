@@ -10,7 +10,7 @@ use Tester\TestCase;
 
 require __DIR__ . '/bootstrap.php';
 
-class SimpleEnum extends Enum
+final class SimpleEnum extends Enum
 {
 
 	use EnumExtractableTrait;

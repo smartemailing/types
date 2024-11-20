@@ -20,7 +20,7 @@ abstract class DatesImmutable implements ExtractableTypeInterface
      * @throws \SmartEmailing\Types\InvalidTypeException
      */
     final public static function extract(
-        $data,
+		array|\ArrayAccess $data,
         string $key
     ): \DateTimeImmutable {
         $dateTime = Dates::extract(
@@ -35,7 +35,7 @@ abstract class DatesImmutable implements ExtractableTypeInterface
      * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
      */
     final public static function extractOrNull(
-        $data,
+		array|\ArrayAccess $data,
         string $key,
         bool $nullIfInvalid = false
     ): ?\DateTimeImmutable {

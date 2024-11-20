@@ -14,11 +14,9 @@ final class DatesImmutableTest extends TestCase
 
 	public function testFrom(): void
 	{
-		$d = DatesImmutable::from('2000-01-01');
-		Assert::type(\DateTimeImmutable::class, $d);
+		Assert::noError(static fn () => DatesImmutable::from('2000-01-01'));
 
-		$d = DatesImmutable::from(new \DateTime('2000-01-01'));
-		Assert::type(\DateTimeImmutable::class, $d);
+		Assert::noError(static fn () => DatesImmutable::from(new \DateTime('2000-01-01')));
 
 		$d = DatesImmutable::from(new \DateTimeImmutable('2000-01-01'));
 		Assert::equal('2000-01-01 00:00:00', DateTimeFormatter::format($d));
@@ -68,11 +66,9 @@ final class DatesImmutableTest extends TestCase
 			InvalidTypeException::class
 		);
 
-		$d = DatesImmutable::extract($data, 'b');
-		Assert::type(\DateTimeImmutable::class, $d);
+		Assert::noError(static fn () => DatesImmutable::extract($data, 'b'));
 
-		$d = DatesImmutable::extract($data, 'c');
-		Assert::type(\DateTimeImmutable::class, $d);
+		Assert::noError(static fn () => DatesImmutable::extract($data, 'c'));
 	}
 
 	public function testExtractOrNull(): void

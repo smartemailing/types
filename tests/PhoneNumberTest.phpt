@@ -9,7 +9,7 @@ use Tester\TestCase;
 
 require __DIR__ . '/bootstrap.php';
 
-class PhoneNumberTest extends TestCase
+final class PhoneNumberTest extends TestCase
 {
 
 	public function testInvalidValues(): void
@@ -52,7 +52,6 @@ class PhoneNumberTest extends TestCase
 
 		foreach ($validValues as $number => $country) {
 			$phone = PhoneNumber::from($number);
-			Assert::type(PhoneNumber::class, $phone);
 			Assert::type(CountryCode::class, $phone->guessCountry());
 			Assert::equal(
 				$country,

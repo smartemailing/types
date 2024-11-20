@@ -41,8 +41,8 @@ final class DateTimeRange implements ToArrayInterface, ComparableInterface
 		$interval = $this->to->diff($this->from);
 
 		$this->durationInSeconds
-			= $interval->days * 86400
-			+ $interval->h * 3600
+			= (int) $interval->days * 86_400
+			+ $interval->h * 3_600
 			+ $interval->i * 60
 			+ $interval->s;
 	}

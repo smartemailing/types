@@ -36,7 +36,6 @@ final class ZipCodeTest extends TestCase
 
 		foreach ($validValues as $validValue) {
 			$zip = ZipCode::from($validValue);
-			Assert::type(ZipCode::class, $zip);
 			Assert::equal($validValue, $zip->getValue());
 		}
 

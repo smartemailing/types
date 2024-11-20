@@ -60,8 +60,7 @@ final class CompanyRegistrationNumberTest extends TestCase
 		];
 
 		foreach ($validValues as $validValue) {
-			$crn = CompanyRegistrationNumber::from($validValue);
-			Assert::type(CompanyRegistrationNumber::class, $crn);
+			Assert::noError(static fn () => CompanyRegistrationNumber::from($validValue));
 		}
 
 		$number = CompanyRegistrationNumber::from('73270091');

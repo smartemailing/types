@@ -14,13 +14,6 @@ final class ExtractableTraitTest extends TestCase
 
 	public function testExtract(): void
 	{
-		Assert::throws(
-			static function (): void {
-				Emailaddress::extract('aa', 'x');// @phpstan-ignore-line
-			},
-			InvalidTypeException::class
-		);
-
 		$emailaddress1 = Emailaddress::from('martin+1@smartemailing.cz');
 		$data = [
 			'x' => 'martin@smartemailing.cz',
@@ -28,8 +21,7 @@ final class ExtractableTraitTest extends TestCase
 			'z' => 'qq',
 		];
 
-		$emailaddress2 = Emailaddress::extract($data, 'x');
-		Assert::type(Emailaddress::class, $emailaddress2);
+		Assert::noError(static fn () => Emailaddress::extract($data, 'x'));
 
 		$emailaddress3 = Emailaddress::extract($data, 'y');
 		Assert::same($emailaddress1, $emailaddress3);
@@ -132,14 +124,6 @@ final class ExtractableTraitTest extends TestCase
 
 	public function testExtractOrNull(): void
 	{
-		Assert::throws(
-			static function (): void {
-				$data = 'a';
-				Emailaddress::extractOrNull($data, 'a');// @phpstan-ignore-line
-			},
-			InvalidTypeException::class
-		);
-
 		$data = [
 			'a' => '',
 			'b' => 'qqq',
@@ -184,7 +168,7 @@ final class ExtractableTraitTest extends TestCase
 			[
 				'street_and_number' => 'Netroufalky 5',
 				'town' => 'Brno',
-				'zip_code' => 12345,
+				'zip_code' => 12_345,
 				'country' => 'CZ',
 			]
 		);

@@ -51,7 +51,7 @@ abstract class FloatType implements ExtractableTypeInterface
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
 	 */
 	final public static function extract(
-		$data,
+		array|\ArrayAccess $data,
 		string $key
 	): float {
 		$value = ExtractableHelpers::extractValue($data, $key);
@@ -68,7 +68,7 @@ abstract class FloatType implements ExtractableTypeInterface
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	final public static function extractOrNull(
-		$data,
+		array|\ArrayAccess $data,
 		string $key,
 		bool $nullIfInvalid = false
 	): ?float {

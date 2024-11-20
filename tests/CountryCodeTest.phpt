@@ -9,7 +9,7 @@ use Tester\TestCase;
 
 require_once __DIR__ . '/bootstrap.php';
 
-class CountryCodeTest extends TestCase
+final class CountryCodeTest extends TestCase
 {
 
 	public function testDefaults(): void
@@ -28,15 +28,7 @@ class CountryCodeTest extends TestCase
 		Assert::true($countryPL->equalsValue(CountryCode::PL));
 		Assert::false($countryPL->equals($countryGB));
 
-		$enums = CountryCode::getAvailableEnums();
-		Assert::type('array', $enums);
-
-		$values = CountryCode::getAvailableValues();
-		Assert::type('array', $values);
-
-		$country = CountryCode::from('CZ');
-		Assert::type(CountryCode::class, $country);
-		Assert::type(CountryCode::class, $country);
+		Assert::noError(static fn () => CountryCode::from('CZ'));
 	}
 
 }
