@@ -14,11 +14,84 @@ env:
   composer-install: 'composer update --no-interaction --no-progress --no-suggest --prefer-dist --prefer-stable'
 
 jobs:
+  coding_style:
+    name: 'Coding style'
+    runs-on: 'ubuntu-latest'
+
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v4'
+
+      - name: 'Install PHP'
+        uses: 'shivammathur/setup-php@v2'
+        with:
+          php-version: '${{ env.php-version }}'
+          extensions: '${{ env.php-extensions }}'
+
+      - name: 'Install dependencies'
+        run: '${{ env.composer-install }}'
+
+      - name: 'Coding Standard'
+        run: 'bin/cs'
+
+  php_stan:
+    name: 'PHP Stan'
+    runs-on: 'ubuntu-latest'
+
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v4'
+
+      - name: 'Install PHP'
+        uses: 'shivammathur/setup-php@v2'
+        with:
+          php-version: '${{ env.php-version }}'
+          extensions: '${{ env.php-extensions }}'
+
+      - name: 'Install dependencies'
+        run: '${{ env.composer-install }}'
+
+      - name: 'PHPStan'
+        run: 'bin/stan'
+
+  tests:
+    name: 'Tests'
+    runs-on: '${{ matrix.operating-system }}'
+
+    strategy:
+      matrix:
+        php-version: [ '8.1', '8.2', '8.3' ]
+        operating-system: [ 'ubuntu-latest' ]
+        composer-args: [ '' ]
+        include:
+          - php-version: '8.1'
+            operating-system: 'ubuntu-latest'
+            composer-args: '--prefer-lowest'
+
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v4'
+
+      - name: 'Install PHP'
+        uses: 'shivammathur/setup-php@v2'
+        with:
+          php-version: '${{ matrix.php-version }}'
+          extensions: '${{ env.php-extensions }}'
+
+      - name: 'Install dependencies'
+        run: '${{ env.composer-install }} ${{ matrix.composer-args }}'
+
+      - name: 'Tests'
+        run: 'vendor/bin/tester tests -C'
+
+      - name: 'Email test'
+        run: 'php tests/EmailaddressTest.phpt'
+
   tests_code_coverage:
     name: 'Tests with code coverage'
     runs-on: 'ubuntu-latest'
 
-    #if: "github.event_name == 'push'"
+    if: "github.event_name == 'push'"
 
     steps:
       - name: 'Checkout'
