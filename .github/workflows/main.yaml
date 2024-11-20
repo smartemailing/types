@@ -29,13 +29,14 @@ jobs:
         with:
           php-version: '8.3'
           coverage: 'xdebug'
+          ini-values: memory_limit=-1
           extensions: '${{ env.php-extensions }}'
 
       - name: 'Install dependencies'
         run: '${{ env.composer-install }}'
 
       - name: 'Tests'
-        run: 'vendor/bin/tester -d memory_limit=-1 -s -p phpdbg --colors 1 -C --coverage ./coverage.xml --coverage-src ./src tests'
+        run: 'vendor/bin/tester -s -p phpdbg --colors 1 -C --coverage ./coverage.xml --coverage-src ./src tests'
 
       - name: 'Coveralls.io'
         env:
