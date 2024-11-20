@@ -15,7 +15,7 @@ trait StringComparableTrait
 	{
 		return $this instanceof ToStringInterface &&
 			$that instanceof ToStringInterface &&
-			\get_class($that) === static::class &&
+			$that::class === static::class &&
 			(string) $this === (string) $that;
 	}
 

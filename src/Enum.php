@@ -83,7 +83,7 @@ abstract class Enum
 			throw new InvalidTypeException(
 				\sprintf(
 					'%s [%s] is not a valid value for %s, accepted values: %s',
-					\is_object($value) ? \get_class($value) : Json::encode($value),
+					\is_object($value) ? $value::class : Json::encode($value),
 					\gettype($value),
 					static::class,
 					\implode(', ', $availableValues)
@@ -134,8 +134,8 @@ abstract class Enum
 		self $that
 	): void
 	{
-		if (\get_class($that) !== static::class) {
-			throw new InvalidTypeException(\sprintf('Operation supported only for enum of same class: %s given, %s expected', \get_class($that), static::class));
+		if ($that::class !== static::class) {
+			throw new InvalidTypeException(\sprintf('Operation supported only for enum of same class: %s given, %s expected', $that::class, static::class));
 		}
 	}
 
@@ -176,8 +176,8 @@ abstract class Enum
 		}
 
 		if (\is_object($value)) {
-			$valueType = \get_class($value);
-			$printableValue = \get_class($value);
+			$valueType = $value::class;
+			$printableValue = $value::class;
 		} elseif (\is_array($value)) {
 			$valueType = '';
 			$printableValue = Json::encode($value);

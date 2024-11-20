@@ -40,11 +40,10 @@
 		<exclude name="SlevomatCodingStandard.Classes.ClassLength.ClassTooLong"/>
 		<exclude name="SlevomatCodingStandard.Functions.RequireTrailingCommaInDeclaration.MissingTrailingComma"/>
 		<exclude name="SlevomatCodingStandard.Exceptions.RequireNonCapturingCatch.NonCapturingCatchRequired"/>
+		<exclude name="SlevomatCodingStandard.Complexity.Cognitive.ComplexityTooHigh"/>
 
 		<exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint"/>
 
-		<exclude name="SlevomatCodingStandard.Complexity.Cognitive.ComplexityTooHigh"/>
-		<exclude name="SlevomatCodingStandard.Classes.ModernClassNameReference"/>
 		<exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint"/>
 		<exclude name="SlevomatCodingStandard.Classes.DisallowConstructorPropertyPromotion.DisallowedConstructorPropertyPromotion"/>
 		<exclude name="SlevomatCodingStandard.Classes.ForbiddenPublicProperty.ForbiddenPublicProperty"/>

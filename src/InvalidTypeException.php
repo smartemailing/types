@@ -100,7 +100,7 @@ class InvalidTypeException extends \RuntimeException // phpcs:ignore
 			$stringValue = StringHelpers::sanitize($stringValue);
 			$description = ' (' . $stringValue . ')';
 		} elseif (\is_object($value)) {
-			$description = ' (' . \get_class($value) . ')';
+			$description = ' (' . $value::class . ')';
 		}
 
 		return $description;
