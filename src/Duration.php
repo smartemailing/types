@@ -65,7 +65,7 @@ final class Duration implements ToStringInterface, ToArrayInterface, ComparableI
 		$matches = Strings::match($dateTimeModify, '/^(-?|\+?)(\d+)\s+(.+)/');
 
 		if ($matches === null) {
-			throw new InvalidTypeException('Duration: ' . $dateTimeModify . '  is not in valid duration format.');
+			throw new InvalidTypeException('Duration: ' . $dateTimeModify . ' is not in valid duration format.');
 		}
 
 		$value = IntType::extract($matches, '2');

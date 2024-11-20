@@ -50,56 +50,56 @@ final class CompanyRegistrationNumber implements ToStringInterface, ComparableIn
 			$this->isValidHR($value) ||
 			$this->isValidNL($value) ||
 			$this->isValidPT($value) ||
-            $this->isValidLU($value) ||
-            $this->isValidIE($value) || 
-            $this->isValidGR($value);
+			$this->isValidLU($value) ||
+			$this->isValidIE($value) ||
+			$this->isValidGR($value);
 	}
 
-    private function isValidGR(
-        string $value
-    ): bool {
-        if(\preg_match('/^\d{9}$/', $value) !== 1) {
-            return false;
-        }
+	private function isValidGR(
+		string $value
+	): bool {
+		if(\preg_match('/^\d{9}$/', $value) !== 1) {
+			return false;
+		}
 
-        if($value === '000000000') {
-            return false;
-        }
+		if($value === '000000000') {
+			return false;
+		}
 
-        $sum = 0;
+		$sum = 0;
 
-        for($i = 0; $i < 8; $i++) {
-            $sum += ((int) $value[$i]) << 8 - $i;
-        }
+		for($i = 0; $i < 8; $i++) {
+			$sum += ((int) $value[$i]) << 8 - $i;
+		}
 
-        $remainder = $sum % 11 % 10;
+		$remainder = $sum % 11 % 10;
 
-        return $remainder === (int) $value[8];
-    }
+		return $remainder === (int) $value[8];
+	}
 
-    private function isValidIE(
-        string $value
-    ): bool {
-        if (\preg_match('/^\d{7}[A-Z]{1,2}$/', $value) !== 1) {
-            return false;
-        }
+	private function isValidIE(
+		string $value
+	): bool {
+		if (\preg_match('/^\d{7}[A-Z]{1,2}$/', $value) !== 1) {
+			return false;
+		}
 
-        $weight = 8;
-        $sum = 0;
+		$weight = 8;
+		$sum = 0;
 
-        for ($i = 0; $i < 7; $i++) {
-            $sum += (int) $value[$i] * $weight;
-            $weight--;
-        }
+		for ($i = 0; $i < 7; $i++) {
+			$sum += (int) $value[$i] * $weight;
+			$weight--;
+		}
 
-        if (\strlen($value) === 9) {
-            $sum += (\ord($value[8]) - \ord('A') + 1) * 9;
-        }
+		if (\strlen($value) === 9) {
+			$sum += (\ord($value[8]) - \ord('A') + 1) * 9;
+		}
 
-        $remainder = $sum % 23;
+		$remainder = $sum % 23;
 
-        return \chr(\ord('A') - 1 + $remainder) === $value[7];
-    }
+		return \chr(\ord('A') - 1 + $remainder) === $value[7];
+	}
 
 	private function isValidCH(
 		string $value

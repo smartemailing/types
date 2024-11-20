@@ -17,679 +17,679 @@ final class CountryCode extends Enum implements ToStringInterface
 	use EnumExtractableTrait;
 	use ToStringTrait;
 
-	//  Afghanistan
+	// Afghanistan
 	public const AF = 'AF';
 
-	//  Albania
+	// Albania
 	public const AL = 'AL';
 
-	//  Algeria
+	// Algeria
 	public const DZ = 'DZ';
 
-	//  American Samoa
+	// American Samoa
 	public const AS = 'AS';
 
-	//  Andorra
+	// Andorra
 	public const AD = 'AD';
 
-	//  Angola
+	// Angola
 	public const AO = 'AO';
 
-	//  Anguilla
+	// Anguilla
 	public const AI = 'AI';
 
-	//  Antarctica
+	// Antarctica
 	public const AQ = 'AQ';
 
-	//  Argentina
+	// Argentina
 	public const AR = 'AR';
 
-	//  Armenia
+	// Armenia
 	public const AM = 'AM';
 
-	//  Aruba
+	// Aruba
 	public const AW = 'AW';
 
-	//  Australia
+	// Australia
 	public const AU = 'AU';
 
-	//  Austria
+	// Austria
 	public const AT = 'AT';
 
-	//  Azerbaijan
+	// Azerbaijan
 	public const AZ = 'AZ';
 
-	//  Bahamas
+	// Bahamas
 	public const BS = 'BS';
 
-	//  Bahrain
+	// Bahrain
 	public const BH = 'BH';
 
-	//  Bangladesh
+	// Bangladesh
 	public const BD = 'BD';
 
-	//  Barbados
+	// Barbados
 	public const BB = 'BB';
 
-	//  Belarus
+	// Belarus
 	public const BY = 'BY';
 
-	//  Belgium
+	// Belgium
 	public const BE = 'BE';
 
-	//  Belize
+	// Belize
 	public const BZ = 'BZ';
 
-	//  Benin
+	// Benin
 	public const BJ = 'BJ';
 
-	//  Bermuda
+	// Bermuda
 	public const BM = 'BM';
 
-	//  Bhutan
+	// Bhutan
 	public const BT = 'BT';
 
-	//  Bolivia
+	// Bolivia
 	public const BO = 'BO';
 
-	//  Bosnia and Herzegovina
+	// Bosnia and Herzegovina
 	public const BA = 'BA';
 
-	//  Botswana
+	// Botswana
 	public const BW = 'BW';
 
-	//  Brazil
+	// Brazil
 	public const BR = 'BR';
 
-	//  British Virgin Islands
+	// British Virgin Islands
 	public const VG = 'VG';
 
-	//  Brunei
+	// Brunei
 	public const BN = 'BN';
 
-	//  Bulgaria
+	// Bulgaria
 	public const BG = 'BG';
 
-	//  Burkina Faso
+	// Burkina Faso
 	public const BF = 'BF';
 
-	//  Burundi
+	// Burundi
 	public const BI = 'BI';
 
-	//  Cambodia
+	// Cambodia
 	public const KH = 'KH';
 
-	//  Cameroon
+	// Cameroon
 	public const CM = 'CM';
 
-	//  Canada
+	// Canada
 	public const CA = 'CA';
 
-	//  Cape Verde
+	// Cape Verde
 	public const CV = 'CV';
 
-	//  Cayman Islands
+	// Cayman Islands
 	public const KY = 'KY';
 
-	//  Central African Republic
+	// Central African Republic
 	public const CF = 'CF';
 
-	//  Chile
+	// Chile
 	public const CL = 'CL';
 
-	//  China
+	// China
 	public const CN = 'CN';
 
-	//  Colombia
+	// Colombia
 	public const CO = 'CO';
 
-	//  Comoros
+	// Comoros
 	public const KM = 'KM';
 
-	//  Cook Islands
+	// Cook Islands
 	public const CK = 'CK';
 
-	//  Costa Rica
+	// Costa Rica
 	public const CR = 'CR';
 
-	//  Croatia
+	// Croatia
 	public const HR = 'HR';
 
-	//  Cuba
+	// Cuba
 	public const CU = 'CU';
 
-	//  Curacao
+	// Curacao
 	public const CW = 'CW';
 
-	//  Cyprus
+	// Cyprus
 	public const CY = 'CY';
 
-	//  Czech Republic
+	// Czech Republic
 	public const CZ = 'CZ';
 
-	//  Democratic Republic of Congo
+	// Democratic Republic of Congo
 	public const CD = 'CD';
 
-	//  Denmark
+	// Denmark
 	public const DK = 'DK';
 
-	//  Djibouti
+	// Djibouti
 	public const DJ = 'DJ';
 
-	//  Dominica
+	// Dominica
 	public const DM = 'DM';
 
-	//  Dominican Republic
+	// Dominican Republic
 	public const DO = 'DO';
 
-	//  East Timor
+	// East Timor
 	public const TL = 'TL';
 
-	//  Ecuador
+	// Ecuador
 	public const EC = 'EC';
 
-	//  Egypt
+	// Egypt
 	public const EG = 'EG';
 
-	//  El Salvador
+	// El Salvador
 	public const SV = 'SV';
 
-	//  Equatorial Guinea
+	// Equatorial Guinea
 	public const GQ = 'GQ';
 
-	//  Eritrea
+	// Eritrea
 	public const ER = 'ER';
 
-	//  Estonia
+	// Estonia
 	public const EE = 'EE';
 
-	//  Ethiopia
+	// Ethiopia
 	public const ET = 'ET';
 
-	//  Falkland Islands
+	// Falkland Islands
 	public const FK = 'FK';
 
-	//  Faroe Islands
+	// Faroe Islands
 	public const FO = 'FO';
 
-	//  Fiji
+	// Fiji
 	public const FJ = 'FJ';
 
-	//  Finland
+	// Finland
 	public const FI = 'FI';
 
-	//  France
+	// France
 	public const FR = 'FR';
 
-	//  French Polynesia
+	// French Polynesia
 	public const PF = 'PF';
 
-	//  Gabon
+	// Gabon
 	public const GA = 'GA';
 
-	//  Gambia
+	// Gambia
 	public const GM = 'GM';
 
-	//  Georgia
+	// Georgia
 	public const GE = 'GE';
 
-	//  Germany
+	// Germany
 	public const DE = 'DE';
 
-	//  Ghana
+	// Ghana
 	public const GH = 'GH';
 
-	//  Gibraltar
+	// Gibraltar
 	public const GI = 'GI';
 
-	//  Greece
+	// Greece
 	public const GR = 'GR';
 
-	//  Greenland
+	// Greenland
 	public const GL = 'GL';
 
-	//  Guadeloupe
+	// Guadeloupe
 	public const GP = 'GP';
 
-	//  Guam
+	// Guam
 	public const GU = 'GU';
 
-	//  Guatemala
+	// Guatemala
 	public const GT = 'GT';
 
-	//  Guinea
+	// Guinea
 	public const GN = 'GN';
 
-	//  Guinea-Bissau
+	// Guinea-Bissau
 	public const GW = 'GW';
 
-	//  Guyana
+	// Guyana
 	public const GY = 'GY';
 
-	//  Haiti
+	// Haiti
 	public const HT = 'HT';
 
-	//  Honduras
+	// Honduras
 	public const HN = 'HN';
 
-	//  Hong Kong
+	// Hong Kong
 	public const HK = 'HK';
 
-	//  Hungary
+	// Hungary
 	public const HU = 'HU';
 
-	//  Iceland
+	// Iceland
 	public const IS = 'IS';
 
-	//  India
+	// India
 	public const IN = 'IN';
 
-	//  Indonesia
+	// Indonesia
 	public const ID = 'ID';
 
-	//  Iran
+	// Iran
 	public const IR = 'IR';
 
-	//  Iraq
+	// Iraq
 	public const IQ = 'IQ';
 
-	//  Ireland
+	// Ireland
 	public const IE = 'IE';
 
-	//  Isle of Man
+	// Isle of Man
 	public const IM = 'IM';
 
-	//  Israel
+	// Israel
 	public const IL = 'IL';
 
-	//  Italy
+	// Italy
 	public const IT = 'IT';
 
-	//  Ivory Coast
+	// Ivory Coast
 	public const CI = 'CI';
 
-	//  Jamaica
+	// Jamaica
 	public const JM = 'JM';
 
-	//  Japan
+	// Japan
 	public const JP = 'JP';
 
-	//  Jordan
+	// Jordan
 	public const JO = 'JO';
 
-	//  Kazakhstan
+	// Kazakhstan
 	public const KZ = 'KZ';
 
-	//  Kenya
+	// Kenya
 	public const KE = 'KE';
 
-	//  Kiribati
+	// Kiribati
 	public const KI = 'KI';
 
-	//  Kosovo
+	// Kosovo
 	public const XK = 'XK';
 
-	//  Kuwait
+	// Kuwait
 	public const KW = 'KW';
 
-	//  Kyrgyzstan
+	// Kyrgyzstan
 	public const KG = 'KG';
 
-	//  Laos
+	// Laos
 	public const LA = 'LA';
 
-	//  Latvia
+	// Latvia
 	public const LV = 'LV';
 
-	//  Lebanon
+	// Lebanon
 	public const LB = 'LB';
 
-	//  Lesotho
+	// Lesotho
 	public const LS = 'LS';
 
-	//  Liberia
+	// Liberia
 	public const LR = 'LR';
 
-	//  Libya
+	// Libya
 	public const LY = 'LY';
 
-	//  Liechtenstein
+	// Liechtenstein
 	public const LI = 'LI';
 
-	//  Lithuania
+	// Lithuania
 	public const LT = 'LT';
 
-	//  Luxembourg
+	// Luxembourg
 	public const LU = 'LU';
 
-	//  Macau
+	// Macau
 	public const MO = 'MO';
 
-	//  Macedonia
+	// Macedonia
 	public const MK = 'MK';
 
-	//  Madagascar
+	// Madagascar
 	public const MG = 'MG';
 
-	//  Malawi
+	// Malawi
 	public const MW = 'MW';
 
-	//  Malaysia
+	// Malaysia
 	public const MY = 'MY';
 
-	//  Maldives
+	// Maldives
 	public const MV = 'MV';
 
-	//  Mali
+	// Mali
 	public const ML = 'ML';
 
-	//  Malta
+	// Malta
 	public const MT = 'MT';
 
-	//  Marshall Islands
+	// Marshall Islands
 	public const MH = 'MH';
 
-	//  Mauritania
+	// Mauritania
 	public const MR = 'MR';
 
-	//  Mauritius
+	// Mauritius
 	public const MU = 'MU';
 
-	//  Mexico
+	// Mexico
 	public const MX = 'MX';
 
-	//  Micronesia
+	// Micronesia
 	public const FM = 'FM';
 
-	//  Moldova
+	// Moldova
 	public const MD = 'MD';
 
-	//  Monaco
+	// Monaco
 	public const MC = 'MC';
 
-	//  Mongolia
+	// Mongolia
 	public const MN = 'MN';
 
-	//  Montenegro
+	// Montenegro
 	public const ME = 'ME';
 
-	//  Montserrat
+	// Montserrat
 	public const MS = 'MS';
 
-	//  Morocco
+	// Morocco
 	public const MA = 'MA';
 
-	//  Mozambique
+	// Mozambique
 	public const MZ = 'MZ';
 
-	//  Myanmar [Burma]
+	// Myanmar [Burma]
 	public const MM = 'MM';
 
-	//  Namibia
+	// Namibia
 	public const NA = 'NA';
 
-	//  Nauru
+	// Nauru
 	public const NR = 'NR';
 
-	//  Nepal
+	// Nepal
 	public const NP = 'NP';
 
-	//  Netherlands
+	// Netherlands
 	public const NL = 'NL';
 
-	//  New Caledonia
+	// New Caledonia
 	public const NC = 'NC';
 
-	//  New Zealand
+	// New Zealand
 	public const NZ = 'NZ';
 
-	//  Nicaragua
+	// Nicaragua
 	public const NI = 'NI';
 
-	//  Niger
+	// Niger
 	public const NE = 'NE';
 
-	//  Nigeria
+	// Nigeria
 	public const NG = 'NG';
 
-	//  Niue
+	// Niue
 	public const NU = 'NU';
 
-	//  Norfolk Island
+	// Norfolk Island
 	public const NF = 'NF';
 
-	//  North Korea
+	// North Korea
 	public const KP = 'KP';
 
-	//  Northern Mariana Islands
+	// Northern Mariana Islands
 	public const MP = 'MP';
 
-	//  Norway
+	// Norway
 	public const NO = 'NO';
 
-	//  Oman
+	// Oman
 	public const OM = 'OM';
 
-	//  Pakistan
+	// Pakistan
 	public const PK = 'PK';
 
-	//  Palau
+	// Palau
 	public const PW = 'PW';
 
-	//  Panama
+	// Panama
 	public const PA = 'PA';
 
-	//  Papua New Guinea
+	// Papua New Guinea
 	public const PG = 'PG';
 
-	//  Paraguay
+	// Paraguay
 	public const PY = 'PY';
 
-	//  Peru
+	// Peru
 	public const PE = 'PE';
 
-	//  Philippines
+	// Philippines
 	public const PH = 'PH';
 
-	//  Pitcairn Islands
+	// Pitcairn Islands
 	public const PN = 'PN';
 
-	//  Poland
+	// Poland
 	public const PL = 'PL';
 
-	//  Portugal
+	// Portugal
 	public const PT = 'PT';
 
-	//  Puerto Rico
+	// Puerto Rico
 	public const PR = 'PR';
 
-	//  Qatar
+	// Qatar
 	public const QA = 'QA';
 
-	//  Republic of the Congo
+	// Republic of the Congo
 	public const CG = 'CG';
 
-	//  Reunion
+	// Reunion
 	public const RE = 'RE';
 
-	//  Romania
+	// Romania
 	public const RO = 'RO';
 
-	//  Russia
+	// Russia
 	public const RU = 'RU';
 
-	//  Rwanda
+	// Rwanda
 	public const RW = 'RW';
 
-	//  Saint Barthélemy
+	// Saint Barthélemy
 	public const BL = 'BL';
 
-	//  Saint Helena
+	// Saint Helena
 	public const SH = 'SH';
 
-	//  Saint Kitts and Nevis
+	// Saint Kitts and Nevis
 	public const KN = 'KN';
 
-	//  Saint Lucia
+	// Saint Lucia
 	public const LC = 'LC';
 
-	//  Saint Martin
+	// Saint Martin
 	public const MF = 'MF';
 
-	//  Saint Pierre and Miquelon
+	// Saint Pierre and Miquelon
 	public const PM = 'PM';
 
-	//  Saint Vincent and the Grenadines
+	// Saint Vincent and the Grenadines
 	public const VC = 'VC';
 
-	//  Samoa
+	// Samoa
 	public const WS = 'WS';
 
-	//  San Marino
+	// San Marino
 	public const SM = 'SM';
 
-	//  Sao Tome and Principe
+	// Sao Tome and Principe
 	public const ST = 'ST';
 
-	//  Saudi Arabia
+	// Saudi Arabia
 	public const SA = 'SA';
 
-	//  Senegal
+	// Senegal
 	public const SN = 'SN';
 
-	//  Serbia
+	// Serbia
 	public const RS = 'RS';
 
-	//  Seychelles
+	// Seychelles
 	public const SC = 'SC';
 
-	//  Sierra Leone
+	// Sierra Leone
 	public const SL = 'SL';
 
-	//  Singapore
+	// Singapore
 	public const SG = 'SG';
 
-	//  Slovakia
+	// Slovakia
 	public const SK = 'SK';
 
-	//  Slovenia
+	// Slovenia
 	public const SI = 'SI';
 
-	//  Solomon Islands
+	// Solomon Islands
 	public const SB = 'SB';
 
-	//  Somalia
+	// Somalia
 	public const SO = 'SO';
 
-	//  South Africa
+	// South Africa
 	public const ZA = 'ZA';
 
-	//  South Korea
+	// South Korea
 	public const KR = 'KR';
 
-	//  South Sudan
+	// South Sudan
 	public const SS = 'SS';
 
-	//  Spain
+	// Spain
 	public const ES = 'ES';
 
-	//  Sri Lanka
+	// Sri Lanka
 	public const LK = 'LK';
 
-	//  Sudan
+	// Sudan
 	public const SD = 'SD';
 
-	//  Suriname
+	// Suriname
 	public const SR = 'SR';
 
-	//  Swaziland
+	// Swaziland
 	public const SZ = 'SZ';
 
-	//  Sweden
+	// Sweden
 	public const SE = 'SE';
 
-	//  Switzerland
+	// Switzerland
 	public const CH = 'CH';
 
-	//  Syria
+	// Syria
 	public const SY = 'SY';
 
-	//  Taiwan
+	// Taiwan
 	public const TW = 'TW';
 
-	//  Tajikistan
+	// Tajikistan
 	public const TJ = 'TJ';
 
-	//  Tanzania
+	// Tanzania
 	public const TZ = 'TZ';
 
-	//  Thailand
+	// Thailand
 	public const TH = 'TH';
 
-	//  Togo
+	// Togo
 	public const TG = 'TG';
 
-	//  Tokelau
+	// Tokelau
 	public const TK = 'TK';
 
-	//  Trinidad and Tobago
+	// Trinidad and Tobago
 	public const TT = 'TT';
 
-	//  Tunisia
+	// Tunisia
 	public const TN = 'TN';
 
-	//  Turkey
+	// Turkey
 	public const TR = 'TR';
 
-	//  Turkmenistan
+	// Turkmenistan
 	public const TM = 'TM';
 
-	//  Tuvalu
+	// Tuvalu
 	public const TV = 'TV';
 
-	//  Uganda
+	// Uganda
 	public const UG = 'UG';
 
-	//  Ukraine
+	// Ukraine
 	public const UA = 'UA';
 
-	//  United Arab Emirates
+	// United Arab Emirates
 	public const AE = 'AE';
 
-	//  United Kingdom
+	// United Kingdom
 	public const GB = 'GB';
 
-	//  United States
+	// United States
 	public const US = 'US';
 
-	//  Uruguay
+	// Uruguay
 	public const UY = 'UY';
 
-	//  Uzbekistan
+	// Uzbekistan
 	public const UZ = 'UZ';
 
-	//  Vanuatu
+	// Vanuatu
 	public const VU = 'VU';
 
-	//  Vatican
+	// Vatican
 	public const VA = 'VA';
 
-	//  Venezuela
+	// Venezuela
 	public const VE = 'VE';
 
-	//  Vietnam
+	// Vietnam
 	public const VN = 'VN';
 
-	//  Western Sahara
+	// Western Sahara
 	public const EH = 'EH';
 
-	//  Yemen
+	// Yemen
 	public const YE = 'YE';
 
-	//  Zambia
+	// Zambia
 	public const ZM = 'ZM';
 
-	//  Zimbabwe
+	// Zimbabwe
 	public const ZW = 'ZW';
 
 	// Guernsey

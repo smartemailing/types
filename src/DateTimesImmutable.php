@@ -15,65 +15,65 @@ abstract class DateTimesImmutable implements ExtractableTypeInterface
 		return self::immutate($dateTime);
 	}
 
-    /**
-     * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-     * @throws \SmartEmailing\Types\InvalidTypeException
-     */
-    final public static function extract(
+	/**
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
+	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 */
+	final public static function extract(
 		array|\ArrayAccess $data,
-        string $key
-    ): \DateTimeImmutable {
-        $dateTime = DateTimes::extract(
-            $data,
-            $key
-        );
+		string $key
+	): \DateTimeImmutable {
+		$dateTime = DateTimes::extract(
+			$data,
+			$key
+		);
 
-        return self::immutate($dateTime);
-    }
+		return self::immutate($dateTime);
+	}
 
-    /**
-     * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
-     */
-    final public static function extractOrNull(
+	/**
+	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
+	 */
+	final public static function extractOrNull(
 		array|\ArrayAccess $data,
-        string $key,
-        bool $nullIfInvalid = false
-    ): ?\DateTimeImmutable {
-        $dateTime = DateTimes::extractOrNull(
-            $data,
-            $key,
-            $nullIfInvalid
-        );
+		string $key,
+		bool $nullIfInvalid = false
+	): ?\DateTimeImmutable {
+		$dateTime = DateTimes::extractOrNull(
+			$data,
+			$key,
+			$nullIfInvalid
+		);
 
-        if ($dateTime === null) {
-            return null;
-        }
+		if ($dateTime === null) {
+			return null;
+		}
 
-        return self::immutate($dateTime);
-    }
+		return self::immutate($dateTime);
+	}
 
-    /**
-     * @param array<mixed> $data
-     * @throws \SmartEmailing\Types\InvalidTypeException
-     * @deprecated Use DatesImmutable::extract
-     */
-    final public static function extractDate(
-        array &$data,
-        string $key
-    ): \DateTimeImmutable {
-        return DatesImmutable::extract($data, $key);
-    }
+	/**
+	 * @param array<mixed> $data
+	 * @throws \SmartEmailing\Types\InvalidTypeException
+	 * @deprecated Use DatesImmutable::extract
+	 */
+	final public static function extractDate(
+		array &$data,
+		string $key
+	): \DateTimeImmutable {
+		return DatesImmutable::extract($data, $key);
+	}
 
-    /**
-     * @param array<mixed> $data
-     * @deprecated Use DatesImmutable::extractDateOrNull
-     */
-    final public static function extractDateOrNull(
-        array &$data,
-        string $key
-    ): ?\DateTimeImmutable {
-        return DatesImmutable::extractOrNull($data, $key);
-    }
+	/**
+	 * @param array<mixed> $data
+	 * @deprecated Use DatesImmutable::extractDateOrNull
+	 */
+	final public static function extractDateOrNull(
+		array &$data,
+		string $key
+	): ?\DateTimeImmutable {
+		return DatesImmutable::extractOrNull($data, $key);
+	}
 
 	public static function fromOrNull(
 		mixed $value,
