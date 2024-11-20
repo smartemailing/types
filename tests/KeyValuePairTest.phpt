@@ -20,7 +20,6 @@ final class KeyValuePairTest extends TestCase
 		];
 
 		$keyValuePair = KeyValuePair::from($data);
-		Assert::type(KeyValuePair::class, $keyValuePair);
 
 		Assert::equal('X-Header-Name', $keyValuePair->getKey());
 		Assert::equal('cool value', $keyValuePair->getValue());

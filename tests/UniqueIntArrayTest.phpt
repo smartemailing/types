@@ -50,8 +50,7 @@ final class UniqueIntArrayTest extends TestCase
 		];
 
 		foreach ($validValues as $validValue) {
-			$intArray = UniqueIntArray::from($validValue);
-			Assert::type(UniqueIntArray::class, $intArray);
+			Assert::noError(static fn () => UniqueIntArray::from($validValue));
 		}
 
 		$append = UniqueIntArray::from([1]);
@@ -71,17 +70,12 @@ final class UniqueIntArrayTest extends TestCase
 			'not_existing'
 		);
 
-		Assert::type(UniqueIntArray::class, $empty);
 		Assert::count(0, $empty);
 
 		$data = [
 			'data' => $empty,
 		];
-		$derived = UniqueIntArray::extract(
-			$data,
-			'data'
-		);
-		Assert::type(UniqueIntArray::class, $derived);
+		Assert::noError(static fn () => UniqueIntArray::extract($data, 'data'));
 
 		$containsTest = UniqueIntArray::from(
 			[
@@ -120,10 +114,6 @@ final class UniqueIntArrayTest extends TestCase
 			],
 			$result->toArray()
 		);
-
-		foreach ($result as $item) {
-			Assert::type('int', $item);
-		}
 
 		$arr = UniqueIntArray::from(
 			[

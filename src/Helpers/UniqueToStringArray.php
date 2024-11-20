@@ -31,7 +31,7 @@ final class UniqueToStringArray implements \Countable, \IteratorAggregate
 	private ?string $type = null;
 
 	/**
-	 * @param array<\SmartEmailing\Types\ToStringInterface> $data
+	 * @param array<\SmartEmailing\Types\ToStringInterface|mixed> $data
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	private function __construct(

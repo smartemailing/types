@@ -20,7 +20,6 @@ final class LoginCredentialsTest extends TestCase
 		];
 
 		$loginCredentials = LoginCredentials::from($data);
-		Assert::type(LoginCredentials::class, $loginCredentials);
 
 		Assert::equal('admin', $loginCredentials->getLogin());
 		Assert::equal('1234', $loginCredentials->getPassword());

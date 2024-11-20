@@ -28,8 +28,7 @@ final class ExtractableTraitTest extends TestCase
 			'z' => 'qq',
 		];
 
-		$emailaddress2 = Emailaddress::extract($data, 'x');
-		Assert::type(Emailaddress::class, $emailaddress2);
+		Assert::noError(static fn () => Emailaddress::extract($data, 'x'));
 
 		$emailaddress3 = Emailaddress::extract($data, 'y');
 		Assert::same($emailaddress1, $emailaddress3);

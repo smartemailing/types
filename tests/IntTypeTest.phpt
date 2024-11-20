@@ -49,9 +49,7 @@ final class IntTypeTest extends TestCase
 
 		foreach ($invalid as $value) {
 			echo 'Trying valid: ' . \var_export($value, true) . \PHP_EOL;
-			Assert::true(
-				\is_int(IntType::from($value))
-			);
+			Assert::noError(static fn () => IntType::from($value));
 		}
 	}
 

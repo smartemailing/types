@@ -31,7 +31,6 @@ final class DateTimeRangeTest extends TestCase
 		];
 
 		$dateTimeRange = DateTimeRange::from($data);
-		Assert::type(DateTimeRange::class, $dateTimeRange);
 
 		Assert::equal($data, $dateTimeRange->toArray());
 

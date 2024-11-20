@@ -30,8 +30,8 @@ final class UnsignedFloatTest extends TestCase
 			);
 		}
 
-		Assert::type(UnsignedFloat::class, UnsignedFloat::from(1));
-		Assert::type(UnsignedFloat::class, UnsignedFloat::from(1000000.0));
+		Assert::noError(static fn () => UnsignedFloat::from(1));
+		Assert::noError(static fn () => UnsignedFloat::from(1000000.0));
 
 		Assert::equal(20.0, UnsignedFloat::from(20)->getValue());
 		Assert::equal('20', (string) UnsignedFloat::from(20));

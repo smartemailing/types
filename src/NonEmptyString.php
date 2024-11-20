@@ -16,6 +16,9 @@ final class NonEmptyString implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
+	/**
+	 * @var non-empty-string
+	 */
 	private string $value;
 
 	public function __construct(
@@ -31,6 +34,9 @@ final class NonEmptyString implements ToStringInterface, ComparableInterface
 		$this->value = $value;
 	}
 
+	/**
+	 * @return non-empty-string
+	 */
 	public function getValue(): string
 	{
 		return $this->value;

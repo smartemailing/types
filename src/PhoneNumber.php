@@ -88,7 +88,7 @@ final class PhoneNumber implements ToStringInterface, ComparableInterface
 			]
 		);
 
-		if (Strings::startsWith($value, '00')) {
+		if (\str_starts_with($value, '00')) {
 			$value = '+' . Strings::substring($value, 2);
 		}
 

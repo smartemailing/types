@@ -15,9 +15,8 @@ abstract class StringHelpers
 		$string = Strings::fixEncoding($string);
 		$string = self::removeUtf8Mb4($string);
 		$string = Strings::trim($string);
-		$string = self::normalizeLineEndings($string);
 
-		return $string;
+		return self::normalizeLineEndings($string);
 	}
 
 	final public static function sanitizeOrNull(

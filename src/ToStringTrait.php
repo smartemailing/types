@@ -9,7 +9,7 @@ trait ToStringTrait
 
 	public function __toString(): string
 	{
-		return (string) $this->getValue();
+		return (string) $this->getValue(); // @phpstan-ignore-line
 	}
 
 }

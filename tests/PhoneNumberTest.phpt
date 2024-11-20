@@ -52,7 +52,6 @@ class PhoneNumberTest extends TestCase
 
 		foreach ($validValues as $number => $country) {
 			$phone = PhoneNumber::from($number);
-			Assert::type(PhoneNumber::class, $phone);
 			Assert::type(CountryCode::class, $phone->guessCountry());
 			Assert::equal(
 				$country,

@@ -39,8 +39,7 @@ final class IpAddressTest extends TestCase
 		];
 
 		foreach ($validValues as $validValue) {
-			$ipAddressType = IpAddress::from($validValue);
-			Assert::type(IpAddress::class, $ipAddressType);
+			Assert::noError(static fn () => IpAddress::from($validValue));
 		}
 
 		Assert::equal(4, IpAddress::from('192.168.0.1')->getVersion());

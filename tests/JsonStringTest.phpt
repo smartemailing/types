@@ -15,7 +15,6 @@ final class JsonStringTest extends TestCase
 	public function testValid(): void
 	{
 		$json = JsonString::encode([1, 2, 3]);
-		Assert::type('string', $json->getValue());
 
 		Assert::equal($json, JsonString::from($json));
 

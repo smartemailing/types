@@ -21,17 +21,14 @@ final class AddressTest extends TestCase
 			'country' => 'CZ',
 		];
 
-		$address = Address::from($data);
-		Assert::type(Address::class, $address);
-		Assert::type(ZipCode::class, $address->getZipCode());
-		Assert::type(CountryCode::class, $address->getCountry());
-
 		Assert::throws(
 			static function (): void {
 				Address::from([]);
 			},
 			InvalidTypeException::class
 		);
+
+		$address = Address::from($data);
 
 		Assert::true($address->equals(Address::from($data)));
 		Assert::false($address->equals(Address::from([
@@ -42,7 +39,6 @@ final class AddressTest extends TestCase
 		])));
 
 		$address = Address::from($data);
-		Assert::type('array', $address->toArray());
 
 		Assert::equal($data['country'], $address->getCountry()->getValue());
 		Assert::equal($data['street_and_number'], $address->getStreetAndNumber());

@@ -36,12 +36,10 @@ final class HexColorTest extends TestCase
 
 		foreach ($validValues as $validValue) {
 			$hexColor = HexColor::from($validValue);
-			Assert::type(HexColor::class, $hexColor);
 			Assert::equal($validValue, $hexColor->getValue());
 		}
 
 		$hexColor = HexColor::from('#fff');
-		Assert::type(HexColor::class, $hexColor);
 		Assert::equal('#FFF', $hexColor->getValue());
 	}
 

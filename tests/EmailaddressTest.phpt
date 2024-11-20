@@ -60,8 +60,7 @@ final class EmailaddressTest extends TestCase
 		];
 
 		foreach ($validValues as $validValue) {
-			$emailaddress = Emailaddress::from($validValue);
-			Assert::type(Emailaddress::class, $emailaddress);
+			Assert::noError(static fn () => Emailaddress::from($validValue));
 		}
 
 		$e = Emailaddress::from('martin@smartemailing.cz');

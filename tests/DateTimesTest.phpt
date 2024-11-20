@@ -15,7 +15,6 @@ final class DateTimesTest extends TestCase
 	public function testFrom(): void
 	{
 		$d = DateTimes::from('2000-01-01 00:00:00');
-		Assert::type(\DateTime::class, $d);
 
 		$d2 = DateTimes::from($d);
 		Assert::same($d, $d2);
@@ -71,11 +70,9 @@ final class DateTimesTest extends TestCase
 			InvalidTypeException::class
 		);
 
-		$d = DateTimes::extract($data, 'b');
-		Assert::type(\DateTime::class, $d);
+		Assert::noError(static fn () => DateTimes::extract($data, 'b'));
 
-		$d = DateTimes::extract($data, 'c');
-		Assert::type(\DateTime::class, $d);
+		Assert::noError(static fn () => DateTimes::extract($data, 'c'));
 	}
 
 	public function testExtractDate(): void
@@ -102,11 +99,9 @@ final class DateTimesTest extends TestCase
 		);
 
 		$d = DateTimes::extractDate($data, 'b');
-		Assert::type(\DateTime::class, $d);
 		Assert::equal('2000-01-01 00:00:00', DateTimeFormatter::format($d));
 
 		$d = DateTimes::extractDate($data, 'c');
-		Assert::type(\DateTime::class, $d);
 		Assert::equal('2010-01-01 00:00:00', DateTimeFormatter::format($d));
 	}
 

@@ -56,8 +56,7 @@ final class UniqueToStringArrayTest extends TestCase
 		];
 
 		foreach ($validValues as $validValue) {
-			$intArray = UniqueToStringArray::from($validValue);
-			Assert::type(UniqueToStringArray::class, $intArray);
+			Assert::noError(static fn () => UniqueToStringArray::from($validValue));
 		}
 
 		$ip1 = IpAddress::from('8.8.4.4');
@@ -87,18 +86,13 @@ final class UniqueToStringArrayTest extends TestCase
 		$empty2 = UniqueToStringArray::extractOrEmpty($deep, 'a');
 
 		Assert::same($empty, $empty2);
-
-		Assert::type(UniqueToStringArray::class, $empty);
 		Assert::count(0, $empty);
 
 		$data = [
 			'data' => $empty,
 		];
-		$derived = UniqueToStringArray::extract(
-			$data,
-			'data'
-		);
-		Assert::type(UniqueToStringArray::class, $derived);
+
+		Assert::noError(static fn () => UniqueToStringArray::extract($data, 'data'));
 
 		$containsTest = UniqueToStringArray::from(
 			[

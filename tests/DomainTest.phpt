@@ -39,8 +39,7 @@ final class DomainTest extends TestCase
 		];
 
 		foreach ($validValues as $validValue) {
-			$domain = Domain::from($validValue);
-			Assert::type(Domain::class, $domain);
+			Assert::noError(static fn () => Domain::from($validValue));
 		}
 
 		$domain = Domain::from('test.seznam.cz');

@@ -16,7 +16,7 @@ abstract class Dates implements ExtractableTypeInterface
 			$value = $value->format('Y-m-d');
 		}
 
-		if (\is_string($value) && \preg_match('#^\d\d\d\d-\d\d-\d\d\z#', $value)) {
+		if (\is_string($value) && \preg_match('#^\d\d\d\d-\d\d-\d\d\z#', $value) === 1) {
 			$date = \DateTime::createFromFormat(DateTimeFormat::DATETIME, $value . ' 00:00:00');
 
 			if ($date instanceof \DateTime && DateTimeFormatter::format($date, DateTimeFormat::DATE) === $value) {

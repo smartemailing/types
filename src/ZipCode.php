@@ -69,7 +69,7 @@ final class ZipCode implements ToStringInterface, ComparableInterface
 		string $value
 	): bool {
 		foreach (self::$patternsByCountry as $pattern) {
-			if (Strings::match($value, $pattern)) {
+			if (Strings::match($value, $pattern) !== null) {
 				return true;
 			}
 		}

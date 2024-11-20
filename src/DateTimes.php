@@ -20,9 +20,12 @@ abstract class DateTimes implements ExtractableTypeInterface
 			$value = DateTimeFormatter::format($value);
 		}
 
-		if (\is_string($value) && \preg_match('#^\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d(\.\d+)?\z#', $value, $matches)) {
-			if (\count($matches) > 1) {
-				$value = \substr($value, 0, \strlen($value) - \strlen($matches[1]));
+		if (
+			\is_string($value) &&
+			\preg_match('#^\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d(\.\d+)?\z#', $value, $matches) === 1
+		) {
+			if (($matches[1] ?? 0) > 0) {
+				$value = \substr($value, 0, \strlen($value) - \strlen($matches[1])); // remove micro seconds
 			}
 
 			$date = \DateTime::createFromFormat(DateTimeFormat::DATETIME, $value);

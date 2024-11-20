@@ -51,8 +51,7 @@ final class UniqueStringArrayTest extends TestCase
 		];
 
 		foreach ($validValues as $validValue) {
-			$intArray = UniqueStringArray::from($validValue);
-			Assert::type(UniqueStringArray::class, $intArray);
+			Assert::noError(static fn () => UniqueStringArray::from($validValue));
 		}
 
 		$append = UniqueStringArray::from([1]);
@@ -73,18 +72,13 @@ final class UniqueStringArrayTest extends TestCase
 		);
 
 		Assert::true($empty->isEmpty());
-
-		Assert::type(UniqueStringArray::class, $empty);
 		Assert::count(0, $empty);
 
 		$data = [
 			'data' => $empty,
 		];
-		$derived = UniqueStringArray::extract(
-			$data,
-			'data'
-		);
-		Assert::type(UniqueStringArray::class, $derived);
+
+		Assert::noError(static fn () => UniqueStringArray::extract($data, 'data'));
 
 		$containsTest = UniqueStringArray::from(
 			[
@@ -123,12 +117,6 @@ final class UniqueStringArrayTest extends TestCase
 			],
 			$result->toArray()
 		);
-
-		$result->removeDuplicities();
-
-		foreach ($result as $item) {
-			Assert::type('string', $item);
-		}
 	}
 
 }

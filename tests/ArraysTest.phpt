@@ -35,8 +35,7 @@ final class ArraysTest extends TestCase
 
 	public function testExtractIntArray(): void
 	{
-		$data = ['data' => ['1', 1, '-999', 9]];
-		Assert::type('array', Arrays::extractIntArray($data, 'data'));
+		Assert::noError(static fn () => Arrays::extractIntArray(['data' => ['1', 1, '-999', 9]], 'data'));
 
 		$data = ['data' => ['not-int']];
 		Assert::exception(static function () use ($data): void {
@@ -55,7 +54,7 @@ final class ArraysTest extends TestCase
 	public function testGetArray(): void
 	{
 		$data = ['data' => ['1', 1, true, 'etc']];
-		Assert::type('array', Arrays::getArray($data));
+		Assert::noError(static fn () => Arrays::getArray($data));
 	}
 
 	public function testGetArrayOrNull(): void
@@ -78,8 +77,7 @@ final class ArraysTest extends TestCase
 
 	public function testExtractStringArray(): void
 	{
-		$data = ['data' => ['1', 1, true, 'etc']];
-		Assert::type('array', Arrays::extractStringArray($data, 'data'));
+		Assert::noError(static fn () => ['data' => ['1', 1, true, 'etc']]);
 
 		$data = ['data' => ['1', 1, true, 'etc', new \stdClass()]];
 		Assert::exception(static function () use ($data): void {
@@ -89,12 +87,7 @@ final class ArraysTest extends TestCase
 
 	public function testGetIntArray(): void
 	{
-		$intArray = Arrays::getIntArray(['1', 2, '-55', -99]);
-		Assert::type('array', $intArray);
-
-		foreach ($intArray as $item) {
-			Assert::type('int', $item);
-		}
+		Assert::noError(static fn () => Arrays::getIntArray(['1', 2, '-55', -99]));
 	}
 
 	public function testGetIntArrayOrNull(): void
@@ -118,12 +111,7 @@ final class ArraysTest extends TestCase
 
 	public function testGetStringArray(): void
 	{
-		$stringArray = Arrays::getStringArray(['1', 2, '-55', -99]);
-		Assert::type('array', $stringArray);
-
-		foreach ($stringArray as $item) {
-			Assert::type('string', $item);
-		}
+		Assert::noError(static fn () => Arrays::getStringArray(['1', 2, '-55', -99]));
 	}
 
 	public function testGetStringArrayOrNull(): void

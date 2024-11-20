@@ -126,7 +126,7 @@ final class VatId implements ToStringInterface, ComparableInterface
 		string $vatId
 	): ?string
 	{
-		if (!$country) {
+		if ($country === null) {
 			return null;
 		}
 
@@ -138,7 +138,7 @@ final class VatId implements ToStringInterface, ComparableInterface
 		string $vatId
 	): string
 	{
-		return $country
+		return $country !== null
 			? Strings::substring($vatId, 2)
 			: $vatId;
 	}
@@ -149,7 +149,7 @@ final class VatId implements ToStringInterface, ComparableInterface
 		string $vatNumber
 	): bool
 	{
-		if ($country) {
+		if ($country !== null) {
 			return self::isValidForCountry($country, $prefix, $vatNumber);
 		}
 
@@ -164,19 +164,19 @@ final class VatId implements ToStringInterface, ComparableInterface
 	{
 		$pattern = self::$patternsByCountry[$country->getValue()] ?? null;
 
-		if (!$pattern) {
+		if ($pattern === null) {
 			return false;
 		}
 
 		$match = Strings::match($prefix . $vatNumber, '/^(' . $pattern . ')$/');
 
-		if (!$match) {
+		if ($match === null) {
 			return false;
 		}
 
 		$modulo = self::getDivisible()[$country->getValue()] ?? 1;
 
-		return !Validators::isNumericInt($vatNumber) || ($vatNumber % $modulo === 0);
+		return !Validators::isNumericInt($vatNumber) || ((int) $vatNumber % $modulo === 0);
 	}
 
 	/**

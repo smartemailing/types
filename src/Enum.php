@@ -73,21 +73,10 @@ abstract class Enum
 		return $this->getValue() === $value;
 	}
 
-	/**
-	 * @throws \Exception
-	 */
 	public static function checkValue(
 		mixed $value
 	): void
 	{
-		if (!\is_subclass_of(static::class, self::class)) {
-			throw new \Exception(\sprintf(
-				'"%s" is not a subclass of "%s"',
-				static::class,
-				self::class
-			));
-		}
-
 		if (!static::isValidValue($value)) {
 			$availableValues = static::getAvailableValues();
 
@@ -243,8 +232,6 @@ abstract class Enum
 		$out = [];
 
 		foreach ($declaredPublicConstants as $publicConstant) {
-			\assert($publicConstant instanceof \ReflectionClassConstant);
-
 			$out[$publicConstant->getName()] = $publicConstant->getValue();
 		}
 

@@ -18,7 +18,7 @@ final class Guid implements ToStringInterface, ComparableInterface
 	private function __construct(
 		private string $value
 	) {
-		if (!\preg_match('/^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i', $value)) {
+		if (\preg_match('/^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i', $value) !== 1) {
 			throw new InvalidTypeException('Invalid guid value');
 		}
 	}
