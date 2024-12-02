@@ -11,7 +11,8 @@ trait EnumExtractableTrait
 
 	final public static function from(
 		mixed $data
-	): self {
+	): static
+	{
 		if ($data instanceof self) {
 			return $data;
 		}

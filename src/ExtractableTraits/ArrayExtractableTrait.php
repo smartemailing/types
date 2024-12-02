@@ -11,16 +11,10 @@ trait ArrayExtractableTrait
 
 	use ExtractableTrait;
 
-	/**
-	 * @param array<mixed> $data
-	 */
-	abstract public function __construct(
-		array $data
-	);
-
 	final public static function from(
 		mixed $data
-	): self {
+	): static
+	{
 		if ($data instanceof self) {
 			return $data;
 		}
@@ -29,5 +23,12 @@ trait ArrayExtractableTrait
 
 		return new static($data);
 	}
+
+	/**
+	 * @param array<mixed> $data
+	 */
+	abstract public function __construct(
+		array $data
+	);
 
 }

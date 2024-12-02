@@ -11,13 +11,10 @@ trait FloatExtractableTrait
 
 	use ExtractableTrait;
 
-	abstract public function __construct(
-		float $value
-	);
-
 	final public static function from(
 		mixed $data
-	): self {
+	): static
+	{
 		if ($data instanceof self) {
 			return $data;
 		}
@@ -26,5 +23,9 @@ trait FloatExtractableTrait
 
 		return new static($data);
 	}
+
+	abstract public function __construct(
+		float $value
+	);
 
 }

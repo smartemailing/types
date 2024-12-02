@@ -14,7 +14,7 @@ trait ExtractableTrait
 
 	abstract public static function from(
 		mixed $data
-	): self;
+	): static;
 
 	/**
 	 * @param array<mixed>|\ArrayAccess<mixed, mixed> $data
@@ -23,7 +23,8 @@ trait ExtractableTrait
 	public static function extract(
 		array|\ArrayAccess $data,
 		string $key
-	): self {
+	): static
+	{
 		$value = ExtractableHelpers::extractValue($data, $key);
 
 		if ($value instanceof self) {
@@ -43,7 +44,8 @@ trait ExtractableTrait
 	public static function fromOrNull(
 		mixed $value,
 		bool $getNullIfInvalid = false
-	): ?self {
+	): ?static
+	{
 		if ($value === null) {
 			return null;
 		}
@@ -67,7 +69,8 @@ trait ExtractableTrait
 		array|\ArrayAccess $data,
 		string $key,
 		bool $nullIfInvalid = false
-	): ?self {
+	): ?static
+	{
 		$value = ExtractableHelpers::extractValueOrNull($data, $key);
 
 		if ($value === null) {
@@ -91,7 +94,7 @@ trait ExtractableTrait
 
 	/**
 	 * @param array<mixed> $data
-	 * @return array<self>
+	 * @return array<static>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function extractArrayOf(
@@ -110,7 +113,7 @@ trait ExtractableTrait
 
 	/**
 	 * @param array<mixed> $data
-	 * @return array<self>
+	 * @return array<static>
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function extractArrayOfOrEmpty(
@@ -127,7 +130,7 @@ trait ExtractableTrait
 
 	/**
 	 * @param array<mixed> $array
-	 * @return array<self>
+	 * @return array<static>
 	 */
 	public static function getArrayOf(
 		array $array
@@ -150,7 +153,7 @@ trait ExtractableTrait
 
 	/**
 	 * @param array<mixed> $array
-	 * @return array<self>
+	 * @return array<static>
 	 */
 	public static function getArrayOfSkipInvalid(
 		array $array
@@ -175,7 +178,7 @@ trait ExtractableTrait
 
 	/**
 	 * @param array<mixed> $data
-	 * @return array<self>
+	 * @return array<static>
 	 */
 	public static function extractArrayOfSkipInvalid(
 		array $data,
