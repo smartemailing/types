@@ -26,12 +26,39 @@ final class JsonString implements ToStringInterface, ComparableInterface
 		}
 	}
 
+    public static function encode(
+        mixed $value,
+        bool $oneLine = false
+    ): self
+    {
+        try {
+            return new static(
+                Json::encode(
+                    $value,
+                    $oneLine ? 0 : \JSON_PRETTY_PRINT
+                )
+            );
+        } catch (JsonException $e) {
+            throw new InvalidTypeException($e->getMessage());
+        }
+    }
+
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+
+    public function getDecodedValue(): mixed
+    {
+        return Json::decode($this->value, \JSON_OBJECT_AS_ARRAY);
+    }
+
 	/**
 	 * @throws \SmartEmailing\Types\InvalidTypeException
 	 */
 	public static function from(
 		mixed $data
-	): JsonString
+	): static
 	{
 		if ($data instanceof self) {
 			return $data;
@@ -50,33 +77,6 @@ final class JsonString implements ToStringInterface, ComparableInterface
 		}
 
 		throw InvalidTypeException::typesError(['string', 'array'], $data);
-	}
-
-	public static function encode(
-		mixed $value,
-		bool $oneLine = false
-	): self
-	{
-		try {
-			return new static(
-				Json::encode(
-					$value,
-					$oneLine ? 0 : Json::PRETTY
-				)
-			);
-		} catch (JsonException $e) {
-			throw new InvalidTypeException($e->getMessage());
-		}
-	}
-
-	public function getValue(): string
-	{
-		return $this->value;
-	}
-
-	public function getDecodedValue(): mixed
-	{
-		return Json::decode($this->value, \JSON_OBJECT_AS_ARRAY);
 	}
 
 	private function isValid(
