@@ -26,32 +26,32 @@ final class JsonString implements ToStringInterface, ComparableInterface
 		}
 	}
 
-    public static function encode(
-        mixed $value,
-        bool $oneLine = false
-    ): self
-    {
-        try {
-            return new static(
-                Json::encode(
-                    $value,
-                    $oneLine ? 0 : Json::PRETTY
-                )
-            );
-        } catch (JsonException $e) {
-            throw new InvalidTypeException($e->getMessage());
-        }
-    }
+	public static function encode(
+		mixed $value,
+		bool $oneLine = false
+	): self
+	{
+		try {
+			return new static(
+				Json::encode(
+					$value,
+					$oneLine ? 0 : Json::PRETTY
+				)
+			);
+		} catch (JsonException $e) {
+			throw new InvalidTypeException($e->getMessage());
+		}
+	}
 
-    public function getValue(): string
-    {
-        return $this->value;
-    }
+	public function getValue(): string
+	{
+		return $this->value;
+	}
 
-    public function getDecodedValue(): mixed
-    {
-        return Json::decode($this->value, \JSON_OBJECT_AS_ARRAY);
-    }
+	public function getDecodedValue(): mixed
+	{
+		return Json::decode($this->value, \JSON_OBJECT_AS_ARRAY);
+	}
 
 	/**
 	 * @throws \SmartEmailing\Types\InvalidTypeException
