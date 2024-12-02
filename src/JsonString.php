@@ -35,7 +35,7 @@ final class JsonString implements ToStringInterface, ComparableInterface
             return new static(
                 Json::encode(
                     $value,
-                    $oneLine ? 0 : \JSON_PRETTY_PRINT
+                    $oneLine ? 0 : Json::PRETTY
                 )
             );
         } catch (JsonException $e) {
