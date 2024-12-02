@@ -21,67 +21,46 @@ final class Duration implements ToStringInterface, ToArrayInterface, ComparableI
 
 	private int $lengthInSeconds;
 
-	/**
-	 * @param array<mixed> $data
-	 */
-	private function __construct(
-		array $data
-	) {
-		$this->value = IntType::extract($data, 'value');
-		$this->unit = TimeUnit::extract($data, 'unit');
+    /**
+     * @param array<mixed> $data
+     */
+    private function __construct(
+        array $data
+    )
+    {
+        $this->value = IntType::extract($data, 'value');
+        $this->unit = TimeUnit::extract($data, 'unit');
 
-		$now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
-		$end = $now->modify('+' . $this->getDateTimeModify());
-		$diff = $end->getTimestamp() - $now->getTimestamp();
-		$this->lengthInSeconds = \abs($diff);
-	}
+        $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
+        $end = $now->modify('+' . $this->getDateTimeModify());
+        $diff = $end->getTimestamp() - $now->getTimestamp();
+        $this->lengthInSeconds = \abs($diff);
+    }
 
-	public static function from(
-		mixed $data
-	): Duration {
-		if ($data instanceof self) {
-			return $data;
-		}
+    public static function fromDateTimeModify(
+        string $dateTimeModify
+    ): self
+    {
+        $matches = Strings::match($dateTimeModify, '/^(-?|\+?)(\d+)\s+(.+)/');
 
-		$string = StringType::fromOrNull($data, true);
+        if ($matches === null) {
+            throw new InvalidTypeException('Duration: ' . $dateTimeModify . ' is not in valid duration format.');
+        }
 
-		if (\is_string($string)) {
-			return self::fromDateTimeModify($string);
-		}
+        $value = IntType::extract($matches, '2');
+        $unit = TimeUnit::extract($matches, '3');
 
-		$array = Arrays::fromOrNull($data, true);
+        if ($matches[1] === '-') {
+            $value *= -1;
+        }
 
-		if (\is_array($array)) {
-			return new self($data);
-		}
-
-		throw InvalidTypeException::typesError(['string', 'array'], $data);
-	}
-
-	public static function fromDateTimeModify(
-		string $dateTimeModify
-	): self
-	{
-		$matches = Strings::match($dateTimeModify, '/^(-?|\+?)(\d+)\s+(.+)/');
-
-		if ($matches === null) {
-			throw new InvalidTypeException('Duration: ' . $dateTimeModify . ' is not in valid duration format.');
-		}
-
-		$value = IntType::extract($matches, '2');
-		$unit = TimeUnit::extract($matches, '3');
-
-		if ($matches[1] === '-') {
-			$value *= -1;
-		}
-
-		return new static(
-			[
-				'value' => $value,
-				'unit' => $unit->getValue(),
-			]
-		);
-	}
+        return new static(
+            [
+                'value' => $value,
+                'unit' => $unit->getValue(),
+            ]
+        );
+    }
 
 	public function getValue(): int
 	{
@@ -113,6 +92,29 @@ final class Duration implements ToStringInterface, ToArrayInterface, ComparableI
 	{
 		return $this->lengthInSeconds;
 	}
+
+    public static function from(
+        mixed $data
+    ): static
+    {
+        if ($data instanceof self) {
+            return $data;
+        }
+
+        $string = StringType::fromOrNull($data, true);
+
+        if (\is_string($string)) {
+            return self::fromDateTimeModify($string);
+        }
+
+        $array = Arrays::fromOrNull($data, true);
+
+        if (\is_array($array)) {
+            return new self($data);
+        }
+
+        throw InvalidTypeException::typesError(['string', 'array'], $data);
+    }
 
 	public function __toString(): string
 	{
