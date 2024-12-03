@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace SmartEmailing\Types;
 
+use Nette\Utils\Strings;
 use Tester\Assert;
 use Tester\TestCase;
 
@@ -32,11 +33,16 @@ final class GuidTest extends TestCase
 
 		$validValues = [
 			'd7c8539e-089e-11e8-b161-2edbc134be21',
+			'd7c8539e-089E-11E8-B161-2edbc134be21',
 		];
 
 		foreach ($validValues as $validValue) {
 			$guid = Guid::from($validValue);
-			Assert::equal($validValue, $guid->getValue());
+
+			Assert::equal(
+				Strings::lower($validValue),
+				$guid->getValue()
+			);
 		}
 	}
 
