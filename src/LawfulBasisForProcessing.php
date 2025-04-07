@@ -11,6 +11,8 @@ use SmartEmailing\Types\ExtractableTraits\EnumExtractableTrait;
  *
  * @package SmartEmailing\Types
  * @see https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/lawful-basis-for-processing/
+ *
+ * @extends \SmartEmailing\Types\Enum<string>
  */
 final class LawfulBasisForProcessing extends Enum
 {

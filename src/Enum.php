@@ -8,11 +8,14 @@ use Nette\Utils\Json;
 use ReflectionClass;
 use ReflectionClassConstant;
 
+/**
+ * @template T
+ */
 abstract class Enum
 {
 
 	/**
-	 * @var mixed
+	 * @var T
 	 */
 	private $value;
 
@@ -22,7 +25,7 @@ abstract class Enum
 	private static array $instances = [];
 
 	/**
-	 * @var array<string, mixed>
+	 * @var array<string, array<T>>
 	 */
 	private static array $availableValues = [];
 
@@ -52,11 +55,17 @@ abstract class Enum
 		return self::$instances[$index];
 	}
 
-	public function getValue(): mixed
+	/**
+	 * @return T
+	 */
+	public function getValue()
 	{
 		return $this->value;
 	}
 
+	/**
+	 * @param self<T> $that
+	 */
 	public function equals(
 		self $that
 	): bool
@@ -93,7 +102,7 @@ abstract class Enum
 	}
 
 	/**
-	 * @return array<mixed>
+	 * @return array<T>
 	 */
 	public static function getAvailableValues(): array
 	{
@@ -130,6 +139,9 @@ abstract class Enum
 		return \in_array($value, self::getAvailableValues(), true);
 	}
 
+	/**
+	 * @param self<T> $that
+	 */
 	protected function checkSameEnum(
 		self $that
 	): void
@@ -140,7 +152,7 @@ abstract class Enum
 	}
 
 	/**
-	 * @param array<mixed> $availableValues
+	 * @param array<T> $availableValues
 	 */
 	protected static function checkAvailableValues(
 		array $availableValues
@@ -218,7 +230,7 @@ abstract class Enum
 	}
 
 	/**
-	 * @return array<string, mixed>
+	 * @return array<string, T>
 	 */
 	private static function getEnumConstants(): array
 	{

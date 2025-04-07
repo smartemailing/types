@@ -10,6 +10,8 @@ use SmartEmailing\Types\ExtractableTraits\EnumExtractableTrait;
  * ISO-3166-1 Alpha 2 country code enum
  *
  * @see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+ *
+ * @extends \SmartEmailing\Types\Enum<string>
  */
 final class CountryCode extends Enum implements ToStringInterface
 {
