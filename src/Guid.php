@@ -39,7 +39,7 @@ final class Guid implements ToStringInterface, ComparableInterface
 		return self::from(
 			\sprintf(
 				'%s%s-%s-%s-%s-%s%s%s',
-				...$parts
+				...$parts // phpcs:disable SlevomatCodingStandard.PHP.OptimizedFunctionsWithoutUnpacking.UnpackingUsed
 			)
 		);
 	}
