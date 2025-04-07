@@ -6,6 +6,9 @@ namespace SmartEmailing\Types;
 
 use SmartEmailing\Types\ExtractableTraits\EnumExtractableTrait;
 
+/**
+ * @extends \SmartEmailing\Types\Enum<string>
+ */
 final class FieldOfApplication extends Enum
 {
 

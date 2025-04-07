@@ -10,6 +10,9 @@ use Tester\TestCase;
 
 require __DIR__ . '/bootstrap.php';
 
+/**
+ * @extends \SmartEmailing\Types\Enum<string>
+ */
 final class SimpleEnum extends Enum
 {
 
