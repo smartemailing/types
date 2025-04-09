@@ -45,6 +45,9 @@ final class IntTypeTest extends TestCase
 			'1',
 			1.000_00,
 			'1.00000',
+			-1,
+			-1.0,
+			'-1.0',
 		];
 
 		foreach ($invalid as $value) {
