@@ -35,9 +35,7 @@ abstract class DateTimes implements ExtractableTypeInterface
 			}
 		}
 
-		throw new InvalidTypeException(
-			'Value ' . $value . ' must be string in ' . DateTimeFormat::DATETIME . ' format'
-		);
+		throw InvalidTypeException::typeError(DateTimeFormat::DATETIME . ' format', $value);
 	}
 
 	/**

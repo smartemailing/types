@@ -24,9 +24,7 @@ abstract class Dates implements ExtractableTypeInterface
 			}
 		}
 
-		throw new InvalidTypeException(
-			'Value ' . $value . ' must be string in ' . DateTimeFormat::DATE . ' format'
-		);
+		throw InvalidTypeException::typeError(DateTimeFormat::DATE . ' format', $value);
 	}
 
 	/**
