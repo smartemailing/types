@@ -43,6 +43,19 @@ final class DateTimesTest extends TestCase
 			InvalidTypeException::class
 		);
 
+		Assert::throws(
+			static function (): void {
+				DateTimes::from(
+					[
+						'date' => '1979-02-23 00:00:00.000000',
+						'timezone' => 'Europe/Prague',
+						'timezone_type' => 3,
+					]
+				);
+			},
+			InvalidTypeException::class
+		);
+
 		$d = DateTimes::from('2000-01-01 00:00:00.123456');
 		Assert::equal('2000-01-01 00:00:00', DateTimeFormatter::format($d));
 

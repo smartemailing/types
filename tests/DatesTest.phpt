@@ -41,6 +41,19 @@ final class DatesTest extends TestCase
 			},
 			InvalidTypeException::class
 		);
+
+		Assert::throws(
+			static function (): void {
+				Dates::from(
+					[
+						'date' => '1979-02-23 00:00:00.000000',
+						'timezone' => 'Europe/Prague',
+						'timezone_type' => 3,
+					]
+				);
+			},
+			InvalidTypeException::class
+		);
 	}
 
 	public function testExtract(): void
