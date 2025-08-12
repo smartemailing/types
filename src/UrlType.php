@@ -69,6 +69,11 @@ final class UrlType implements ToStringInterface, ComparableInterface
 		return $this->url->getQuery();
 	}
 
+    public function getFragment(): string
+    {
+        return $this->url->getFragment();
+    }
+
 	public function getPath(): string
 	{
 		return $this->url->getPath();
