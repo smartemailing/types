@@ -18,16 +18,16 @@ final class PositiveInt implements ToStringInterface, ComparableInterface
 	/**
 	 * @var positive-int
 	 */
-	private int $value; // phpcs:ignore
+	private int $value;
 
 	public function __construct(
-		int $value
+		int $val
 	) {
-		if ($value < 1 || $value > \PHP_INT_MAX) {
-			throw new InvalidTypeException('Invalid positive integer: ' . $value);
+		if ($val < 1 || $val > \PHP_INT_MAX) {
+			throw new InvalidTypeException('Invalid positive integer: ' . $val);
 		}
 
-		$this->value = $value;
+		$this->value = $val;
 	}
 
 	/**
