@@ -21,7 +21,7 @@ final class HexColorAlphaTest extends TestCase
 			'#ff',
 			'#zzzzzz',
 			'skakalpes',
-			'#ffffffffff'
+			'#ffffffffff',
 		];
 
 		foreach ($invalidValues as $invalidValue) {
@@ -42,7 +42,7 @@ final class HexColorAlphaTest extends TestCase
 		];
 
 		foreach ($validValues as $validValue) {
-			$hexColor = HexColorAlpha::from($validValue);
+			HexColorAlpha::from($validValue);
 		}
 
 		$hexColor = HexColorAlpha::from('#fff');
