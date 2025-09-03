@@ -22,7 +22,7 @@ final class HexColorAlpha implements ToStringInterface, ComparableInterface
 		string $value
 	)
 	{
-		$value = $this->preProcess($value);
+		$value = $this->preprocess($value);
 
 		if (!$this->isValid($value)) {
 			throw new InvalidTypeException('Invalid hex color string: ' . $value);
@@ -45,7 +45,7 @@ final class HexColorAlpha implements ToStringInterface, ComparableInterface
 		return (bool) \preg_match('#^\#([A-F0-9]{3,4}|[A-F0-9]{6}|[A-F0-9]{8})\z#', $value);
 	}
 
-	private function preProcess(
+	private function preprocess(
 		string $value
 	): string
 	{
