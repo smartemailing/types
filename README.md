@@ -40,6 +40,7 @@ Your code will be unbreakable and your IDE will love it.
     + [Domain](#domain)
     + [Hex 32](#hex-32)
     + [Hex Color](#hex-color)
+    + [Hex Color Alpha](#hex-color-alpha)
     + [GUID](#guid)
     + [IP address](#ip-address)
     + [URL](#url)
@@ -229,6 +230,13 @@ Lowercased 32-characters long hexadecimal string useful as container for MD5 or 
 
 Uppercased 7-characters long string useful as container for color. (`#006EDB`)
 
+### Hex color alpha
+
+`SmartEmailing\Types\HexColorAlpha`
+
+Uppercased 9-character long string useful as a container for color with an alpha channel (transparency). (`#FFFFFFFF`)
+
+If you provide a standard 6-digit hex color (e.g., `#000000`), it will be automatically converted by appending FF for 100% opacity (`#000000FF`).
 
 ### GUID
 
