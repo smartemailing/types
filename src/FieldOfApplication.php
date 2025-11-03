@@ -36,7 +36,7 @@ final class FieldOfApplication extends Enum
 
 	public const PERSONAL_DEVELOPMENT = 'personal-development';
 
-	public const MARGETING = 'margeting';
+	public const MARKETING = 'marketing';
 
 	public const NON_PROFIT = 'non-profit';
 
