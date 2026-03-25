@@ -65,7 +65,7 @@ abstract class StringHelpers
 		$replaceTable = [];
 
 		foreach (InvisibleSpaceCharacterCodes::getCodes() as $charCode) {
-			$replaceTable[\chr($charCode)] = '';
+			$replaceTable[\mb_chr($charCode, 'UTF-8')] = '';
 		}
 
 		return \strtr(

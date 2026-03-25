@@ -98,7 +98,7 @@ final class CompanyRegistrationNumber implements ToStringInterface, ComparableIn
 
 		$remainder = $sum % 23;
 
-		return \chr(\ord('A') - 1 + $remainder) === $value[7];
+		return \mb_chr(\ord('A') - 1 + $remainder, 'UTF-8') === $value[7];
 	}
 
 	private function isValidCH(

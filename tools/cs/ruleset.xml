@@ -32,6 +32,7 @@
 		<exclude name="SlevomatCodingStandard.Arrays.AlphabeticallySortedByKeys.IncorrectKeyOrder"/>
 		<exclude name="SlevomatCodingStandard.Classes.RequireSelfReference.RequiredSelfReference"/>
 		<exclude name="SlevomatCodingStandard.Numbers.DisallowNumericLiteralSeparator.DisallowedNumericLiteralSeparator"/>
+		<exclude name="SlevomatCodingStandard.Classes.TraitUseOrder.IncorrectOrder"/>
 
 		<!-- TODO Enable after migration to PHP 8.1 -->
 		<exclude name="SlevomatCodingStandard.Functions.FunctionLength.FunctionLength"/>
