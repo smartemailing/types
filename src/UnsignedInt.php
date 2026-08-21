@@ -23,6 +23,9 @@ final class UnsignedInt implements ToStringInterface, ComparableInterface
 		}
 	}
 
+	/**
+	 * @return int<0, max>
+	 */
 	public function getValue(): int
 	{
 		return $this->value;

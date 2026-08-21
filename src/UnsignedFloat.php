@@ -23,6 +23,9 @@ final class UnsignedFloat implements ToStringInterface, ComparableInterface
 		}
 	}
 
+	/**
+	 * @return float<0.00, 9223372036854775807>
+	 */
 	public function getValue(): float
 	{
 		return $this->value;
