@@ -46,6 +46,10 @@
 		<exclude name="SlevomatCodingStandard.Classes.DisallowConstructorPropertyPromotion.DisallowedConstructorPropertyPromotion"/>
 		<exclude name="SlevomatCodingStandard.Classes.ForbiddenPublicProperty.ForbiddenPublicProperty"/>
 	</rule>
+	<!-- Promoted properties can't carry a ranged @var, which PHPStan needs for int<0, max> -->
+	<rule ref="SlevomatCodingStandard.Classes.RequireConstructorPropertyPromotion">
+		<exclude-pattern>src/UnsignedInt.php</exclude-pattern>
+	</rule>
 	<rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
 		<properties>
 			<property name="searchAnnotations" type="boolean" value="true"/>

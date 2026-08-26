@@ -15,14 +15,24 @@ final class UnsignedInt implements ToStringInterface, ComparableInterface
 	use ToStringTrait;
 	use StringComparableTrait;
 
+	/**
+	 * @var int<0, max>
+	 */
+	private int $value;
+
 	public function __construct(
-		private int $value
+		int $value
 	) {
 		if ($value < 0 || $value > \PHP_INT_MAX) {
 			throw new InvalidTypeException('Invalid unsigned integer: ' . $value);
 		}
+
+		$this->value = $value;
 	}
 
+	/**
+	 * @return int<0, max>
+	 */
 	public function getValue(): int
 	{
 		return $this->value;
