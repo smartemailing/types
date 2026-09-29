@@ -18,6 +18,8 @@
 		<exclude name="SlevomatCodingStandard.ControlStructures.DisallowShortTernaryOperator.DisallowedShortTernaryOperator"/>
 		<exclude name="SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostDecrementOperator"/>
 		<exclude name="SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint"/>
+		<!-- Deprecated, superseded by SlevomatCodingStandard.TypeHints.DNFTypeHintFormat -->
+		<exclude name="SlevomatCodingStandard.TypeHints.UnionTypeHintFormat"/>
 		<exclude name="SlevomatCodingStandard.Classes.RequireSingleLineMethodSignature"/>
 		<exclude name="SlevomatCodingStandard.Functions.RequireSingleLineCall.RequiredSingleLineCall"/>
 		<exclude name="SlevomatCodingStandard.Commenting.DisallowCommentAfterCode.DisallowedCommentAfterCode"/>
