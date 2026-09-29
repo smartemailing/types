@@ -6,6 +6,8 @@ namespace SmartEmailing\Types;
 
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\RFCValidation;
+use Egulias\EmailValidator\Warning\EmailTooLong;
+use Egulias\EmailValidator\Warning\LocalTooLong;
 use Nette\Utils\Strings;
 use Nette\Utils\Validators;
 use SmartEmailing\Types\Comparable\ComparableInterface;
@@ -108,6 +110,15 @@ final class Emailaddress implements ToStringInterface, ComparableInterface
 
 		if (!$isValid) {
 			return false;
+		}
+
+		// RFC 5321 section 4.5.3.1 length limits are reported by the validator only as warnings,
+		// but addresses exceeding them cannot be delivered over SMTP.
+		// Warnings are matched by class: the validator renumbers their keys while merging.
+		foreach ($validator->getWarnings() as $warning) {
+			if ($warning instanceof LocalTooLong || $warning instanceof EmailTooLong) {
+				return false;
+			}
 		}
 
 		$exploded = \explode('@', $emailaddress);

@@ -198,6 +198,8 @@ They can be easily converted back to string by string-type casting or calling `$
 
 Lowercased and ASCII-transformed e-mail address (`hello@gmail.com`)
 
+The address must satisfy RFC 5321 length limits (local part max 64 octets, whole address max 254 octets), otherwise `InvalidEmailaddressException` is thrown.
+
 Type-specific methods:
 - `getLocalPart() : string` returns local part of e-mail address (`hello`)
 - `getDomain() : \SmartEmailing\Types\Domain` returns domain part (`gmail.com`, represented as `Types\Domain`)
