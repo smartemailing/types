@@ -34,6 +34,7 @@ Your code will be unbreakable and your IDE will love it.
   * [How does it work](#how-does-it-work)
     + [Wrapping raw value](#wrapping-raw-value)
     + [Extraction from array](#extraction-from-array)
+    + [Error messages for public APIs](#error-messages-for-public-apis)
   * [String-extractable types](#string-extractable-types)
     + [E-mail address](#e-mail-address)
     + [Non-empty string](#non-empty-string)
@@ -185,6 +186,39 @@ $emailaddress
 	?? Emailaddress::from('default@domain.com'); 
 	// uses null coalescing operator to assign default value if key not present or null or invalid
 ```
+
+### Error messages for public APIs
+
+`InvalidTypeException::getMessage()` may contain internal details (PHP class names, PHP types) useful for logs and debugging.
+When you send the error to API clients, use `getPublicMessage()` and the structured getters instead:
+
+```php
+<?php
+
+use SmartEmailing\Types\Emailaddress;
+use SmartEmailing\Types\InvalidTypeException;
+
+try {
+	$emailaddress = Emailaddress::extract(['emailaddress' => 'bla bla'], 'emailaddress');
+} catch (InvalidTypeException $e) {
+	$e->getMessage();        // Problem at key emailaddress: Invalid emailaddress: bla bla
+	$e->getPublicMessage();  // Problem at key emailaddress: Invalid emailaddress: bla bla
+	$e->getKey();            // emailaddress (nested extraction: outer key first, e.g. address.country for Address::extract($data, 'address'))
+	$e->getInvalidValue();   // null (known for type errors and enums)
+	$e->getAcceptedValues(); // null (list of accepted values for enums)
+}
+```
+
+The messages differ when `getMessage()` contains internal details:
+
+| Error | `getMessage()` | `getPublicMessage()` |
+|---|---|---|
+| `Relation::extract(['relation' => 'XOR'], 'relation')` | `Problem at key relation: "XOR" [string] is not a valid value for SmartEmailing\Types\Relation, accepted values: AND, OR` | `Problem at key relation: "XOR" is not a valid value, accepted values: AND, OR` |
+| `IntType::from('abc')` | `Expected int, got string (abc)` | `Expected int, got "abc"` |
+
+`getPublicMessage()` falls back to `getMessage()`, so exceptions you throw yourself in your own types (`new InvalidTypeException('Label must not be empty.')`)
+are considered public and keep working unchanged. If your message contains internal details, pass the public variant (and optionally the invalid value) as further constructor arguments:
+`new InvalidTypeException($message, 0, null, $publicMessage, $invalidValue)`.
 
 ## String-extractable types
 

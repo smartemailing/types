@@ -35,7 +35,12 @@ final class DateTimeRange implements ToArrayInterface, ComparableInterface
 		);
 
 		if ($compared > 0) {
-			throw new InvalidTypeException(self::class . ' cannot have negative duration');
+			throw new InvalidTypeException(
+				self::class . ' cannot have negative duration',
+				0,
+				null,
+				'Date time range cannot have negative duration'
+			);
 		}
 
 		$interval = $this->to->diff($this->from);

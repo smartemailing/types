@@ -88,15 +88,27 @@ abstract class Enum
 	{
 		if (!static::isValidValue($value)) {
 			$availableValues = static::getAvailableValues();
+			$printableValue = \is_object($value)
+				? $value::class
+				: Json::encode($value);
 
 			throw new InvalidTypeException(
 				\sprintf(
 					'%s [%s] is not a valid value for %s, accepted values: %s',
-					\is_object($value) ? $value::class : Json::encode($value),
+					$printableValue,
 					\gettype($value),
 					static::class,
 					\implode(', ', $availableValues)
-				)
+				),
+				0,
+				null,
+				\sprintf(
+					'%s is not a valid value, accepted values: %s',
+					\is_object($value) ? 'Given value' : $printableValue,
+					\implode(', ', $availableValues)
+				),
+				$value,
+				$availableValues
 			);
 		}
 	}
@@ -147,7 +159,12 @@ abstract class Enum
 	): void
 	{
 		if ($that::class !== static::class) {
-			throw new InvalidTypeException(\sprintf('Operation supported only for enum of same class: %s given, %s expected', $that::class, static::class));
+			throw new InvalidTypeException(
+				\sprintf('Operation supported only for enum of same class: %s given, %s expected', $that::class, static::class),
+				0,
+				null,
+				'Operation supported only for enums of the same type'
+			);
 		}
 	}
 
@@ -171,7 +188,10 @@ abstract class Enum
 						$value,
 						\gettype($value),
 						static::class
-					)
+					),
+					0,
+					null,
+					\sprintf('Value %s is specified in available values multiple times', $value)
 				);
 			}
 
@@ -199,7 +219,10 @@ abstract class Enum
 		}
 
 		throw new InvalidTypeException(
-			\sprintf('%s expected, %s [%s] given', 'int|string|float|bool|null', $printableValue, $valueType)
+			\sprintf('%s expected, %s [%s] given', 'int|string|float|bool|null', $printableValue, $valueType),
+			0,
+			null,
+			'Enum values must be scalar or null'
 		);
 	}
 
