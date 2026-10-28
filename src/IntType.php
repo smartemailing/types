@@ -17,8 +17,17 @@ abstract class IntType implements ExtractableTypeInterface
 			return (int) $value;
 		}
 
-		if (Validators::isNumeric($value) && \abs((int) $value) === (int) \ceil(\abs((float) $value))) {
-			return (int) $value;
+		if (Validators::isNumeric($value)) {
+			$float = (float) $value;
+
+			if (
+				\is_finite($float)
+				&& $float >= (float) \PHP_INT_MIN
+				&& $float < (float) \PHP_INT_MAX
+				&& \floor($float) === $float
+			) {
+				return (int) $float;
+			}
 		}
 
 		throw InvalidTypeException::typeError('int', $value);

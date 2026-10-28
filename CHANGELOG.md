@@ -1,6 +1,14 @@
 # Changelog
 
-## 6.1.0 (unreleased)
+## 6.1.1
+
+### Fixed
+
+- `IntType::from()` rejects non-finite floats (`NAN`, `INF`) and floats outside the int range instead of casting them. Previously `NAN`/`INF` returned `0`, `1e30` returned a meaningless number and PHP 8.5 emitted the warning "not representable as an int". The same applies to all types built on `IntType` (`UnsignedInt`, `PositiveInt`, `Port`, `Quantity`, `IntArray`, …).
+- `IntType::from((float) PHP_INT_MIN)` returns `PHP_INT_MIN` instead of throwing.
+- `InvalidTypeException` messages for `NAN` no longer trigger the PHP 8.5 warning "unexpected NAN value was coerced to string".
+
+## 6.1.0
 
 ### Added
 
