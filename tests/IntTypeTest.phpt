@@ -25,7 +25,7 @@ final class IntTypeTest extends TestCase
 			'x',
 			1.001,
 			'1.001',
-			9223372036854775808.0,
+			9_223_372_036_854_775_808.0,
 			-1.0e19,
 			1.0e30,
 			'100000000000000000000.0',
@@ -68,7 +68,7 @@ final class IntTypeTest extends TestCase
 		Assert::same(\PHP_INT_MAX, IntType::from(\PHP_INT_MAX));
 		Assert::same(\PHP_INT_MIN, IntType::from(\PHP_INT_MIN));
 		Assert::same(\PHP_INT_MIN, IntType::from((float) \PHP_INT_MIN));
-		Assert::same(9007199254740992, IntType::from(9007199254740992.0));
+		Assert::same(9_007_199_254_740_992, IntType::from(9_007_199_254_740_992.0));
 	}
 
 }
