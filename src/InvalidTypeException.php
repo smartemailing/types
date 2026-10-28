@@ -186,11 +186,25 @@ class InvalidTypeException extends \RuntimeException // phpcs:ignore
 	{
 		return match (true) {
 			\is_string($value) => '"' . StringHelpers::sanitize($value) . '"',
-			\is_int($value), \is_float($value) => (string) $value,
+			\is_int($value), \is_float($value) => self::scalarToString($value),
 			\is_bool($value) => $value ? 'true' : 'false',
 			$value === null => 'null',
 			default => null,
 		};
+	}
+
+	/**
+	 * PHP 8.5 warns when NAN is cast to string.
+	 */
+	private static function scalarToString(
+		bool|float|int|string $value
+	): string
+	{
+		if (\is_float($value) && \is_nan($value)) {
+			return 'NAN';
+		}
+
+		return (string) $value;
 	}
 
 	private static function isClassName(
@@ -222,8 +236,7 @@ class InvalidTypeException extends \RuntimeException // phpcs:ignore
 		$description = '';
 
 		if (\is_scalar($value)) {
-			$stringValue = (string) $value;
-			$stringValue = StringHelpers::sanitize($stringValue);
+			$stringValue = StringHelpers::sanitize(self::scalarToString($value));
 			$description = ' (' . $stringValue . ')';
 		} elseif (\is_object($value)) {
 			$description = ' (' . $value::class . ')';
